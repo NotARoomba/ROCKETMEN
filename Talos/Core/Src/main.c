@@ -123,13 +123,15 @@ int main(void)
       } else {
         HAL_UART_Transmit(&huart1, (uint8_t*)"Transmit success\r\n", 18, 1000);
 
-        uint8_t data[2];
+        int8_t data[2];
+        int16_t temp;
         if (HAL_I2C_Master_Receive(&hi2c1, 0x41 << 1, data, 2, 1000) != HAL_OK) {
           HAL_UART_Transmit(&huart1, (uint8_t*)"Receive failed\r\n", 16, 1000);
         } else {
           HAL_UART_Transmit(&huart1, (uint8_t*)"Receive success\r\n", 17, 1000);
           char str[28] =  "The temperature is: ";
-          sprintf(str, "%s%i\r\n", str, (int)round((((uint16_t)((data[0] << 8) | data[1]))/256.0f)+25.0f));
+          temp = (int16_t)((data[0] << 8) | data[1]))
+          sprintf(str, "%s%f\r\n", str, ((temp/256.0f)+25.0f));
           HAL_UART_Transmit(&huart1, (uint8_t*)str, 27, 1000);
         }
       }
