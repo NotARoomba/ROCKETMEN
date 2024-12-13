@@ -111,8 +111,30 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_UART_Transmit(&huart1, (uint8_t*)"Hello World!\r\n", 14, 1000);
-    HAL_Delay(1000);
+    // HAL_UART_Transmit(&huart1, (uint8_t*)"Hello World!\r\n", 14, 1000);
+    if (HAL_I2C_IsDeviceReady(&hi2c1, 0x41 << 1, 2, 1000) != HAL_OK) {
+      HAL_UART_Transmit(&huart1, (uint8_t*)"Device not ready\r\n", 18, 1000);
+    } else {
+      HAL_UART_Transmit(&huart1, (uint8_t*)"Device ready\r\n", 14, 1000);
+      HAL_I2C_Mem_Write(&hi2c1, 0x41 << 1, 0x04, 1, (uint8_t*)0x00, 1, 1000);
+
+      if (HAL_I2C_Master_Transmit(&hi2c1, 0x41 << 1, (uint8_t*)0xBC, 2, 1000) != HAL_OK) {
+        HAL_UART_Transmit(&huart1, (uint8_t*)"Transmit failed\r\n", 17, 1000);
+      } else {
+        HAL_UART_Transmit(&huart1, (uint8_t*)"Transmit success\r\n", 18, 1000);
+
+        uint8_t data[2];
+        if (HAL_I2C_Master_Receive(&hi2c1, 0x41 << 1, data, 2, 1000) != HAL_OK) {
+          HAL_UART_Transmit(&huart1, (uint8_t*)"Receive failed\r\n", 16, 1000);
+        } else {
+          HAL_UART_Transmit(&huart1, (uint8_t*)"Receive success\r\n", 17, 1000);
+          char str[28] =  "The temperature is: ";
+          sprintf(str, "%s%i\r\n", str, (int)round((((uint16_t)((data[0] << 8) | data[1]))/256.0f)+25.0f));
+          HAL_UART_Transmit(&huart1, (uint8_t*)str, 27, 1000);
+        }
+      }
+      HAL_Delay(1000);
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -184,7 +206,7 @@ static void MX_I2C1_Init(void)
   hi2c1.Instance = I2C1;
   hi2c1.Init.ClockSpeed = 100000;
   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.OwnAddress1 = 130;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
   hi2c1.Init.OwnAddress2 = 0;
@@ -195,7 +217,7 @@ static void MX_I2C1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN I2C1_Init 2 */
-
+  
   /* USER CODE END I2C1_Init 2 */
 
 }

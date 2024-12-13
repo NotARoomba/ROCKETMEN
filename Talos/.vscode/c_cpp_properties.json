@@ -19,8 +19,20 @@
     },
     {
       "name": "STM32",
-      "includePath": [],
-      "defines": [],
+      "includePath": [
+        "Core/Inc",
+        "Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+        "Drivers/CMSIS/Include",
+        "Drivers/STM32F4xx_HAL_Driver/Inc",
+        "Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+        "FATFS/App",
+        "FATFS/Target",
+        "Middlewares/Third_Party/FatFs/src"
+      ],
+      "defines": [
+        "STM32F405xx",
+        "USE_HAL_DRIVER"
+      ],
       "compilerPath": "C:\\PROGRAM FILES (X86)\\ARM GNU TOOLCHAIN ARM-NONE-EABI\\13.3 REL1\\BIN\\ARM-NONE-EABI-GCC.EXE"
     }
   ],

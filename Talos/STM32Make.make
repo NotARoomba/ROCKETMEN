@@ -75,6 +75,40 @@ endif
 ######################################
 # C sources
 C_SOURCES =  \
+Core/Src/main.c \
+Core/Src/stm32f4xx_hal_msp.c \
+Core/Src/stm32f4xx_it.c \
+Core/Src/syscalls.c \
+Core/Src/sysmem.c \
+Core/Src/system_stm32f4xx.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_mmc.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sd.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.c \
+FATFS/App/fatfs.c \
+FATFS/Target/bsp_driver_sd.c \
+FATFS/Target/fatfs_platform.c \
+FATFS/Target/sd_diskio.c \
+Middlewares/Third_Party/FatFs/src/diskio.c \
+Middlewares/Third_Party/FatFs/src/ff.c \
+Middlewares/Third_Party/FatFs/src/ff_gen_drv.c \
+Middlewares/Third_Party/FatFs/src/option/syscall.c
 
 
 CPP_SOURCES = \
@@ -82,6 +116,7 @@ CPP_SOURCES = \
 
 # ASM sources
 ASM_SOURCES =  \
+startup_stm32f405xx.s
 
 
 #######################################
@@ -124,13 +159,13 @@ OPENOCD ?= openocd
 # CFLAGS
 #######################################
 # cpu
-CPU = 
+CPU = -mcpu=cortex-m4
 
 # fpu
-FPU = 
+FPU = -mfpu=fpv4-sp-d16
 
 # float-abi
-FLOAT-ABI = 
+FLOAT-ABI = -mfloat-abi=hard
 
 # mcu
 MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
@@ -141,10 +176,14 @@ AS_DEFS =
 
 # C defines
 C_DEFS =  \
+-DSTM32F405xx \
+-DUSE_HAL_DRIVER
 
 
 # CXX defines
 CXX_DEFS =  \
+-DSTM32F405xx \
+-DUSE_HAL_DRIVER
 
 
 # AS includes
@@ -152,6 +191,14 @@ AS_INCLUDES = \
 
 # C includes
 C_INCLUDES =  \
+-ICore/Inc \
+-IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
+-IDrivers/CMSIS/Include \
+-IDrivers/STM32F4xx_HAL_Driver/Inc \
+-IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy \
+-IFATFS/App \
+-IFATFS/Target \
+-IMiddlewares/Third_Party/FatFs/src
 
 
 
@@ -181,15 +228,15 @@ CXXFLAGS += $(ASSEMBLER_LIST_OUTPUT_FLAG)
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = 
+LDSCRIPT = stm32f405rgtx_flash.ld
 
 # libraries
-LIBS = -lc -lm 
+LIBS = -lc -lm -lnosys 
 LIBDIR = \
 
 
 # Additional LD Flags from config file
-ADDITIONALLDFLAGS = -Wl,--print-memory-usage 
+ADDITIONALLDFLAGS = -Wl,--print-memory-usage -specs=nano.specs 
 
 LDFLAGS = $(MCU) $(ADDITIONALLDFLAGS) -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIRECTORY)/$(TARGET).map,--cref -Wl,--gc-sections
 
