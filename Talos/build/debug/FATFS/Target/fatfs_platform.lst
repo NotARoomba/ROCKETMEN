@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPYk8Qh.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccRfgZx0.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPYk8Qh.s 			page 1
   35              		.cfi_offset 3, -8
   36              		.cfi_offset 14, -4
   22:FATFS/Target/fatfs_platform.c ****     uint8_t status = SD_PRESENT;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPYk8Qh.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccRfgZx0.s 			page 2
 
 
   37              		.loc 1 22 5 view .LVU1
@@ -107,14 +107,14 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPYk8Qh.s 			page 1
   69              		.file 3 "C:/PROGRAM FILES (X86)/ARM GNU TOOLCHAIN ARM-NONE-EABI/13.3 REL1/arm-none-eabi/include/sy
   70              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
   71              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccPYk8Qh.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccRfgZx0.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 fatfs_platform.c
-C:\Users\Nathan\AppData\Local\Temp\ccPYk8Qh.s:21     .text.BSP_PlatformIsDetected:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccPYk8Qh.s:27     .text.BSP_PlatformIsDetected:00000000 BSP_PlatformIsDetected
-C:\Users\Nathan\AppData\Local\Temp\ccPYk8Qh.s:62     .text.BSP_PlatformIsDetected:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccRfgZx0.s:21     .text.BSP_PlatformIsDetected:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccRfgZx0.s:27     .text.BSP_PlatformIsDetected:00000000 BSP_PlatformIsDetected
+C:\Users\Nathan\AppData\Local\Temp\ccRfgZx0.s:62     .text.BSP_PlatformIsDetected:00000014 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_ReadPin

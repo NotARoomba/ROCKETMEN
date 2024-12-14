@@ -49,6 +49,7 @@ assemblyFlags:
 
 linkerFlags: 
   - -Wl,--print-memory-usage
+  - -u _printf_float -u _scanf_float
 
 
 # libraries to be included. The -l prefix to the library will be automatically added.
