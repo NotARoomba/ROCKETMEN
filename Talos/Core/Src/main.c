@@ -104,7 +104,7 @@ int main(void)
   MX_I2C1_Init();
   MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
-
+  int16_t temp;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -112,27 +112,15 @@ int main(void)
   while (1)
   {
     // HAL_UART_Transmit(&huart1, (uint8_t*)"Hello World!\r\n", 14, 1000);
-    if (HAL_I2C_IsDeviceReady(&hi2c1, 0x41 << 1, 2, 1000) != HAL_OK) {
-      HAL_UART_Transmit(&huart1, (uint8_t*)"Device not ready\r\n", 18, 1000);
-    } else {
-      HAL_UART_Transmit(&huart1, (uint8_t*)"Device ready\r\n", 14, 1000);
-      HAL_I2C_Mem_Write(&hi2c1, 0x41 << 1, 0x04, 1, (uint8_t*)0x00, 1, 1000);
-
-      if (HAL_I2C_Master_Transmit(&hi2c1, 0x41 << 1, (uint8_t*)0xBC, 2, 1000) != HAL_OK) {
-        HAL_UART_Transmit(&huart1, (uint8_t*)"Transmit failed\r\n", 17, 1000);
-      } else {
-        HAL_UART_Transmit(&huart1, (uint8_t*)"Transmit success\r\n", 18, 1000);
-
-        int8_t data[2];
-        int16_t temp;
-        if (HAL_I2C_Master_Receive(&hi2c1, 0x41 << 1, data, 2, 1000) != HAL_OK) {
-          HAL_UART_Transmit(&huart1, (uint8_t*)"Receive failed\r\n", 16, 1000);
-        } else {
-          HAL_UART_Transmit(&huart1, (uint8_t*)"Receive success\r\n", 17, 1000);
-          char str[28] =  "The temperature is: ";
-          temp = (int16_t)((data[0] << 8) | data[1]))
-          sprintf(str, "%s%f\r\n", str, ((temp/256.0f)+25.0f));
-          HAL_UART_Transmit(&huart1, (uint8_t*)str, 27, 1000);
+    if (HAL_I2C_IsDeviceReady(&hi2c1, 0x41 << 1, 2, 1000) == HAL_OK) {
+      if (HAL_I2C_Master_Transmit(&hi2c1, 0x41 << 1, (uint8_t*)0xBC, 2, 1000) == HAL_OK) {
+        uint8_t tempData[3];
+        if (HAL_I2C_Master_Receive(&hi2c1, 0x41 << 1, &tempData, 3, 1000) == HAL_OK) {
+          char str[25] =  "Temperature: ";
+          temp = (int16_t)((tempData[1] << 8) | tempData[0]);
+          float tempFloat = ((float)temp/256.0f)+25.0f;
+          sprintf(str, "%s%.3f°C\r\n", str, tempFloat);
+          HAL_UART_Transmit(&huart1, (uint8_t*)str, 24, 1000);
         }
       }
       HAL_Delay(1000);
@@ -219,6 +207,13 @@ static void MX_I2C1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN I2C1_Init 2 */
+
+  // TEMPERATURE SENSOR INIT
+  if (HAL_I2C_IsDeviceReady(&hi2c1, 0x41 << 1, 2, 1000) != HAL_OK) {
+      HAL_UART_Transmit(&huart1, (uint8_t*)"Temperature not ready\r\n", 18, 1000);
+    } else {
+      HAL_I2C_Mem_Write(&hi2c1, 0x41 << 1, 0x04, 1, (uint8_t*)0x00, 1, 1000);
+    }
   
   /* USER CODE END I2C1_Init 2 */
 
