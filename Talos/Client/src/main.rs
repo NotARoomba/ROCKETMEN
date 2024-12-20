@@ -15,6 +15,12 @@ struct ClientData {
     accel_x: f32,
     accel_y: f32,
     accel_z: f32,
+    vel_x: f32,
+    vel_y: f32,
+    vel_z: f32,
+    pos_x: f32,
+    pos_y: f32,
+    pos_z: f32,
     temperature: f32,
     pressure: f32,
     time: i64,
@@ -51,6 +57,12 @@ async fn main() {
             accel_x: 0.0,
             accel_y: 0.0,
             accel_z: 0.0,
+            vel_x: 0.0,
+            vel_y: 0.0,
+            vel_z: 0.0,
+            pos_x: 0.0,
+            pos_y: 0.0,
+            pos_z: 0.0,
             temperature: 0.0,
             pressure: 0.0,
             time: 0,
@@ -90,6 +102,9 @@ async fn main() {
                 data[3] = data[3] / 1000.0;
                 data[4] = data[4] / 1000.0;
                 data[5] = data[5] / 1000.0;
+
+                // acceleration z is facing down so should cancel out gravity
+                data[2] = data[2] - 9.8;
                 // the data is in the format of degrees C, so we need to convert it to C
                 data[6] = data[6];
 
@@ -99,7 +114,8 @@ async fn main() {
                     current_data.time = chrono::Utc::now().timestamp_micros();
                 }
                 let dt =
-                    ((chrono::Utc::now().timestamp_micros() - current_data.time) as f32) / 100000.0;
+                    ((chrono::Utc::now().timestamp_micros() - current_data.time) as f32) /
+                    1000000.0;
                 println!("dt: {}", dt);
                 // println!("{:?}", data);
                 current_data.accel_x += data[0] * (dt as f32);
@@ -108,6 +124,12 @@ async fn main() {
                 current_data.angle_x += data[3] * (dt as f32);
                 current_data.angle_y += data[4] * (dt as f32);
                 current_data.angle_z += data[5] * (dt as f32);
+                current_data.vel_x += current_data.accel_x * dt;
+                current_data.vel_y += current_data.accel_y * dt;
+                current_data.vel_z += current_data.accel_z * dt;
+                current_data.pos_x += current_data.vel_x * dt;
+                current_data.pos_y += current_data.vel_y * dt;
+                current_data.pos_z += current_data.vel_z * dt;
                 current_data.temperature = data[6];
                 current_data.pressure = data[7];
                 current_data.time = chrono::Utc::now().timestamp_micros();

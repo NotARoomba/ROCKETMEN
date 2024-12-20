@@ -20,6 +20,12 @@ struct ClientData {
     accel_x: f32,
     accel_y: f32,
     accel_z: f32,
+    vel_x: f32,
+    vel_y: f32,
+    vel_z: f32,
+    pos_x: f32,
+    pos_y: f32,
+    pos_z: f32,
     temperature: f32,
     pressure: f32,
     time: i64,
@@ -42,7 +48,7 @@ async fn handle_connection(peer_map: PeerMap, addr: SocketAddr, stream: TcpStrea
     let (outgoing, incoming) = ws_stream.unwrap().split();
 
     let broadcast_incoming = incoming.try_for_each(|msg| {
-        println!("Received a message from {}: {}", addr, msg.to_text().unwrap());
+        // println!("Received a message from {}: {}", addr, msg.to_text().unwrap());
         let mut data = serde_json::from_str::<ClientData>(msg.to_text().unwrap()).unwrap();
         if data.auth_token != env::var("AUTH_TOKEN").expect("AUTH_TOKEN must be set.") {
             return ok(());

@@ -168,8 +168,8 @@ int main(void)
   /*  Enable Block Data Update */
   lsm6dsm_block_data_update_set(&dev_ctx, PROPERTY_ENABLE);
   /* Set Output Data Rate for Acc and Gyro */
-  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_12Hz5);
-  lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_GY_ODR_12Hz5);
+  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_416Hz);
+  lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_416Hz);
   /* Set full scale */
   lsm6dsm_xl_full_scale_set(&dev_ctx, LSM6DSM_2g);
   lsm6dsm_gy_full_scale_set(&dev_ctx, LSM6DSM_2000dps);
@@ -187,6 +187,21 @@ int main(void)
   //lsm6dsm_xl_hp_bandwidth_set(&dev_ctx, LSM6DSM_XL_HP_ODR_DIV_100);
   /* Gyroscope - filtering chain */
   lsm6dsm_gy_band_pass_set(&dev_ctx, LSM6DSM_HP_260mHz_LP1_STRONG);
+  // update the offset bias of acceleration
+  //create a while loop that gets 5 sample of acceleration and calculate the average, then set the offset weight and write it to the sensor taking to account the above
+  int16_t acc_bias[3] = {0, 0, 0};
+  for (int i = 0; i < 5; i++) {
+    lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
+    acc_bias[0] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
+    acc_bias[1] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
+    acc_bias[2] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
+    platform_delay(100);
+  } 
+  acc_bias[0] /= 5;
+  acc_bias[1] /= 5;
+  acc_bias[2] /= 5;
+
+  lsm6dsm_xl_usr_offset_set(&dev_ctx, (uint8_t*)acc_bias);
 
   // LORA MODULE CONFIGURATION
   // platform_delay(100);
@@ -253,7 +268,7 @@ int main(void)
 	      memset(data_raw_angular_rate, 0x00, 3 * sizeof(int16_t));
 	      lsm6dsm_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate);
 	      angular_rate_mdps[0] =
-	        ldsm_from(data_raw_angular_rate[0]);
+	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]);
 	      angular_rate_mdps[1] =
 	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]);
 	      angular_rate_mdps[2] =
