@@ -233,42 +233,44 @@ int main(void)
 	    /* Read output only if new value is available */
 	    lsm6dsm_status_reg_get(&dev_ctx, &reg.status_reg);
 
-	    // if (reg.status_reg.xlda) {
-	    //   /* Read acceleration field data */
-	    //   memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
-	    //   lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
-	    //   acceleration_mg[0] =
-	    //     lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
-	    //   acceleration_mg[1] =
-	    //     lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
-	    //   acceleration_mg[2] =
-	    //     lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
-	    //   printf("Acceleration [mg]:%4.2f\t%4.2f\t%4.2f\r\n",
-	    //           acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
-	    // }
+	    if (reg.status_reg.xlda) {
+	      /* Read acceleration field data */
+	      memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
+	      lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
+	      acceleration_mg[0] =
+	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
+	      acceleration_mg[1] =
+	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
+	      acceleration_mg[2] =
+	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
+	      // printf("Acceleration [mg]:%4.2f\t%4.2f\t%4.2f\r\n",
+	      //         acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
+        printf("%4.2f,%4.2f,%4.2f,", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
+	    }
 
 	    if (reg.status_reg.gda) {
 	      /* Read angular rate field data */
 	      memset(data_raw_angular_rate, 0x00, 3 * sizeof(int16_t));
 	      lsm6dsm_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate);
 	      angular_rate_mdps[0] =
-	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]);
+	        ldsm_from(data_raw_angular_rate[0]);
 	      angular_rate_mdps[1] =
 	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]);
 	      angular_rate_mdps[2] =
 	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]);
 	      // printf("Angular rate [mdps]:%4.2f\t%4.2f\t%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
-	      // printf("%4.2f,%4.2f,%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
+	      printf("%4.2f,%4.2f,%4.2f,", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
 	    }
-	    // if (reg.status_reg.tda) {
-	    //   /* Read temperature data */
-	    //   memset(&data_raw_temperature, 0x00, sizeof(int16_t));
-	    //   lsm6dsm_temperature_raw_get(&dev_ctx, &data_raw_temperature);
-	    //   temperature_degC = lsm6dsm_from_lsb_to_celsius(
-	    //                        data_raw_temperature);
-	    //   printf("Temperature [degC]:%6.2f\r\n",
-	    //           temperature_degC);
-	    // }
+	    if (reg.status_reg.tda) {
+	      /* Read temperature data */
+	      memset(&data_raw_temperature, 0x00, sizeof(int16_t));
+	      lsm6dsm_temperature_raw_get(&dev_ctx, &data_raw_temperature);
+	      temperature_degC = lsm6dsm_from_lsb_to_celsius(
+	                           data_raw_temperature);
+	      // printf("Temperature [degC]:%6.2f\r\n",
+	      //         temperature_degC);
+        printf("%.2f,25.25\r\n", temperature_degC);
+	    }
     //   llcc68_set_buffer_base_address(&radio_ctx, 0x00, 0x00);
     // llcc68_write_buffer(&radio_ctx, 0x00, (uint8_t*)"Hello World!\r\n", 14);
     // llcc68_set_lora_mod_params(&radio_ctx, &mod_params);
