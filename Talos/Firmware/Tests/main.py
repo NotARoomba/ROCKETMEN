@@ -3,6 +3,7 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 import serial
+import time
 
 def draw_cube():
     vertices = [
@@ -58,13 +59,13 @@ def read_serial_rotation(serial_port):
     try:
         line = serial_port.readline().decode('utf-8').strip()
         x, y, z = map(float, line.split(','))
-        return x / 10000.0, z / -10000.0, y / -10000.0  # Convert from mdps to dps
+        return x, y, z  # Raw mdps (millidegrees per second)
     except Exception as e:
         print(f"Error reading serial data: {e}")
         return 0.0, 0.0, 0.0
 
 def main():
-    serial_port = serial.Serial('COM6', 115200)  # Change 'COM3' to your serial port
+    serial_port = serial.Serial('COM6', 115200)  # Adjust to your serial port
 
     pygame.init()
     display = (800, 600)
@@ -77,7 +78,13 @@ def main():
     rotation_y = 0
     rotation_z = 0
 
+    last_time = pygame.time.get_ticks()  # Initial time in milliseconds
+
     while True:
+        current_time = pygame.time.get_ticks()
+        elapsed_time = (current_time - last_time) / 1000.0  # Time in seconds
+        last_time = current_time
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 serial_port.close()
@@ -89,17 +96,19 @@ def main():
                     rotation_y = 0
                     rotation_z = 0
 
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT )
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
         delta_x, delta_y, delta_z = read_serial_rotation(serial_port)
-        rotation_x += delta_x
-        rotation_y += delta_y
-        rotation_z += delta_z
-
+        
+        # Convert mdps to dps and scale by elapsed time
+        rotation_x += (delta_x / 1000.0) * elapsed_time
+        rotation_y += (delta_z / 1000.0) * elapsed_time
+        rotation_z += (delta_y / 1000.0) * elapsed_time
+        print(f"Rotation: ({rotation_x}, {rotation_y}, {rotation_z})")
         glPushMatrix()
-        glRotatef(rotation_x, 1, 0, 0)
-        glRotatef(rotation_y, 0, 1, 0)
-        glRotatef(rotation_z, 0, 0, 1)
+        glRotatef(rotation_x, 1, 0, 0) if abs(rotation_x) > 0.01 else None
+        glRotatef(rotation_y, 0, 1, 0) if abs(rotation_y) > 0.1 else None
+        glRotatef(rotation_z, 0, 0, 1) if abs(rotation_z) > 0.1 else None
         draw_cube()
         glPopMatrix()
 

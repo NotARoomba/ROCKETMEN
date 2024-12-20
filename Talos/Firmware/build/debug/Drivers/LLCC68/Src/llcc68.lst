@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
   28:Drivers/LLCC68/Src/llcc68.c ****  * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
   29:Drivers/LLCC68/Src/llcc68.c ****  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
   30:Drivers/LLCC68/Src/llcc68.c ****  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 2
 
 
   31:Drivers/LLCC68/Src/llcc68.c ****  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
   85:Drivers/LLCC68/Src/llcc68.c ****     LLCC68_SET_SLEEP                  = 0x84,
   86:Drivers/LLCC68/Src/llcc68.c ****     LLCC68_SET_STANDBY                = 0x80,
   87:Drivers/LLCC68/Src/llcc68.c ****     LLCC68_SET_FS                     = 0xC1,
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 3
 
 
   88:Drivers/LLCC68/Src/llcc68.c ****     LLCC68_SET_TX                     = 0x83,
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  142:Drivers/LLCC68/Src/llcc68.c ****     LLCC68_SIZE_SET_TX                     = 4,
  143:Drivers/LLCC68/Src/llcc68.c ****     LLCC68_SIZE_SET_RX                     = 4,
  144:Drivers/LLCC68/Src/llcc68.c ****     LLCC68_SIZE_SET_STOP_TIMER_ON_PREAMBLE = 2,
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 4
 
 
  145:Drivers/LLCC68/Src/llcc68.c ****     LLCC68_SIZE_SET_RX_DUTY_CYCLE          = 7,
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  199:Drivers/LLCC68/Src/llcc68.c ****     uint32_t bw;
  200:Drivers/LLCC68/Src/llcc68.c ****     uint8_t  param;
  201:Drivers/LLCC68/Src/llcc68.c **** } gfsk_bw_t;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 5
 
 
  202:Drivers/LLCC68/Src/llcc68.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  256:Drivers/LLCC68/Src/llcc68.c ****  * @param [in] data_length      Buffer size to be transmitted
  257:Drivers/LLCC68/Src/llcc68.c ****  *
  258:Drivers/LLCC68/Src/llcc68.c ****  * @returns Operation status
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 6
 
 
  259:Drivers/LLCC68/Src/llcc68.c ****  */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  313:Drivers/LLCC68/Src/llcc68.c ****   if (context == NULL)
  314:Drivers/LLCC68/Src/llcc68.c ****   {
  315:Drivers/LLCC68/Src/llcc68.c ****     return -1;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 7
 
 
  316:Drivers/LLCC68/Src/llcc68.c ****   }
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  370:Drivers/LLCC68/Src/llcc68.c ****     };
  371:Drivers/LLCC68/Src/llcc68.c **** 
  372:Drivers/LLCC68/Src/llcc68.c ****     return ( llcc68_status_t ) llcc68_hal_write( context, buf, LLCC68_SIZE_SET_FS, 0, 0 );
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 8
 
 
  373:Drivers/LLCC68/Src/llcc68.c **** }
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  427:Drivers/LLCC68/Src/llcc68.c ****         ( enable == true ) ? 1 : 0,
  428:Drivers/LLCC68/Src/llcc68.c ****     };
  429:Drivers/LLCC68/Src/llcc68.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 9
 
 
  430:Drivers/LLCC68/Src/llcc68.c ****     return ( llcc68_status_t ) llcc68_hal_write( context, buf, LLCC68_SIZE_SET_STOP_TIMER_ON_PREAMB
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  484:Drivers/LLCC68/Src/llcc68.c **** }
  485:Drivers/LLCC68/Src/llcc68.c **** 
  486:Drivers/LLCC68/Src/llcc68.c **** llcc68_status_t llcc68_set_reg_mode( const void* context, const llcc68_reg_mod_t mode )
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 10
 
 
  487:Drivers/LLCC68/Src/llcc68.c **** {
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  541:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_SET_RX_TX_FALLBACK_MODE,
  542:Drivers/LLCC68/Src/llcc68.c ****         ( uint8_t ) fallback_mode,
  543:Drivers/LLCC68/Src/llcc68.c ****     };
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 11
 
 
  544:Drivers/LLCC68/Src/llcc68.c **** 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  598:Drivers/LLCC68/Src/llcc68.c **** //
  599:Drivers/LLCC68/Src/llcc68.c **** // DIO and IRQ Control Functions
  600:Drivers/LLCC68/Src/llcc68.c **** //
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 12
 
 
  601:Drivers/LLCC68/Src/llcc68.c **** llcc68_status_t llcc68_set_dio_irq_params( const void* context, const uint16_t irq_mask, const uint
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  655:Drivers/LLCC68/Src/llcc68.c ****         *irq = llcc68_irq_mask;
  656:Drivers/LLCC68/Src/llcc68.c ****     }
  657:Drivers/LLCC68/Src/llcc68.c ****     return status;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 13
 
 
  658:Drivers/LLCC68/Src/llcc68.c **** }
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  712:Drivers/LLCC68/Src/llcc68.c **** llcc68_status_t llcc68_get_pkt_type( const void* context, llcc68_pkt_type_t* pkt_type )
  713:Drivers/LLCC68/Src/llcc68.c **** {
  714:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf[LLCC68_SIZE_GET_PKT_TYPE] = {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 14
 
 
  715:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_GET_PKT_TYPE,
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  769:Drivers/LLCC68/Src/llcc68.c ****     llcc68_status_t status;
  770:Drivers/LLCC68/Src/llcc68.c **** 
  771:Drivers/LLCC68/Src/llcc68.c ****     if( ( ( params->bw == LLCC68_LORA_BW_250 ) && ( params->sf == LLCC68_LORA_SF11 ) ) ||
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 15
 
 
  772:Drivers/LLCC68/Src/llcc68.c ****         ( ( params->bw == LLCC68_LORA_BW_125 ) &&
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  826:Drivers/LLCC68/Src/llcc68.c ****         return status;
  827:Drivers/LLCC68/Src/llcc68.c ****     }
  828:Drivers/LLCC68/Src/llcc68.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 16
 
 
  829:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf2[] = {
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  883:Drivers/LLCC68/Src/llcc68.c **** }
  884:Drivers/LLCC68/Src/llcc68.c **** 
  885:Drivers/LLCC68/Src/llcc68.c **** llcc68_status_t llcc68_set_cad_params( const void* context, const llcc68_cad_params_t* params )
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 17
 
 
  886:Drivers/LLCC68/Src/llcc68.c **** {
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  940:Drivers/LLCC68/Src/llcc68.c **** 
  941:Drivers/LLCC68/Src/llcc68.c ****     return status;
  942:Drivers/LLCC68/Src/llcc68.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 18
 
 
  943:Drivers/LLCC68/Src/llcc68.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  997:Drivers/LLCC68/Src/llcc68.c ****     const llcc68_status_t status =
  998:Drivers/LLCC68/Src/llcc68.c ****         ( llcc68_status_t ) llcc68_hal_read( context, buf, LLCC68_SIZE_GET_PKT_STATUS, pkt_status_l
  999:Drivers/LLCC68/Src/llcc68.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 19
 
 
 1000:Drivers/LLCC68/Src/llcc68.c ****     if( status == LLCC68_STATUS_OK )
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1054:Drivers/LLCC68/Src/llcc68.c ****     if( status == LLCC68_STATUS_OK )
 1055:Drivers/LLCC68/Src/llcc68.c ****     {
 1056:Drivers/LLCC68/Src/llcc68.c ****         *rssi_in_dbm = ( int8_t )( -rssi_local >> 1 );
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 20
 
 
 1057:Drivers/LLCC68/Src/llcc68.c ****     }
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1111:Drivers/LLCC68/Src/llcc68.c **** 
 1112:Drivers/LLCC68/Src/llcc68.c **** //
 1113:Drivers/LLCC68/Src/llcc68.c **** // Miscellaneous
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 21
 
 
 1114:Drivers/LLCC68/Src/llcc68.c **** //
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1168:Drivers/LLCC68/Src/llcc68.c ****                 status = LLCC68_STATUS_OK;
 1169:Drivers/LLCC68/Src/llcc68.c ****                 break;
 1170:Drivers/LLCC68/Src/llcc68.c ****             }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 22
 
 
 1171:Drivers/LLCC68/Src/llcc68.c ****         }
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1225:Drivers/LLCC68/Src/llcc68.c **** 
 1226:Drivers/LLCC68/Src/llcc68.c ****     int32_t ceil_denominator;
 1227:Drivers/LLCC68/Src/llcc68.c ****     int32_t ceil_numerator =
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 23
 
 
 1228:Drivers/LLCC68/Src/llcc68.c ****         ( pld_len_in_bytes << 3 ) + ( pkt_p->crc_is_on ? 16 : 0 ) - ( 4 * sf ) + ( pld_is_fix ? 0 :
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1282:Drivers/LLCC68/Src/llcc68.c **** 
 1283:Drivers/LLCC68/Src/llcc68.c **** uint32_t llcc68_get_gfsk_time_on_air_in_ms( const llcc68_pkt_params_gfsk_t* pkt_p,
 1284:Drivers/LLCC68/Src/llcc68.c ****                                             const llcc68_mod_params_gfsk_t* mod_p )
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 24
 
 
 1285:Drivers/LLCC68/Src/llcc68.c **** {
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1339:Drivers/LLCC68/Src/llcc68.c ****             return status;
 1340:Drivers/LLCC68/Src/llcc68.c ****         }
 1341:Drivers/LLCC68/Src/llcc68.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 25
 
 
 1342:Drivers/LLCC68/Src/llcc68.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1396:Drivers/LLCC68/Src/llcc68.c ****     {
 1397:Drivers/LLCC68/Src/llcc68.c ****         return llcc68_write_register( context, LLCC68_REG_RXGAIN, ( const uint8_t[] ){ 0x94 }, 1 );
 1398:Drivers/LLCC68/Src/llcc68.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 26
 
 
 1399:Drivers/LLCC68/Src/llcc68.c **** }
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1453:Drivers/LLCC68/Src/llcc68.c **** 
 1454:Drivers/LLCC68/Src/llcc68.c ****     // The LLCC68_REG_WHITSEEDBASEADDRESS @ref LSBit is used for the seed value. The 7 MSBits must 
 1455:Drivers/LLCC68/Src/llcc68.c ****     // Thus, we first need to read the current value and then change the LSB according to the provi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 27
 
 
 1456:Drivers/LLCC68/Src/llcc68.c ****     llcc68_status_t status = llcc68_read_register( context, LLCC68_REG_WHITSEEDBASEADDRESS, &reg_va
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1510:Drivers/LLCC68/Src/llcc68.c **** 
 1511:Drivers/LLCC68/Src/llcc68.c **** llcc68_status_t llcc68_set_trimming_capacitor_values( const void* context, const uint8_t trimming_c
 1512:Drivers/LLCC68/Src/llcc68.c ****                                                       const uint8_t trimming_cap_xtb )
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 28
 
 
 1513:Drivers/LLCC68/Src/llcc68.c **** {
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1567:Drivers/LLCC68/Src/llcc68.c **** }
 1568:Drivers/LLCC68/Src/llcc68.c **** 
 1569:Drivers/LLCC68/Src/llcc68.c **** llcc68_status_t llcc68_init_retention_list( const void* context )
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 29
 
 
 1570:Drivers/LLCC68/Src/llcc68.c **** {
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1624:Drivers/LLCC68/Src/llcc68.c ****         {
 1625:Drivers/LLCC68/Src/llcc68.c ****             reg_value |= ( 1 << 2 );  // Bit 2 set to 1 for any (G)FSK configuration
 1626:Drivers/LLCC68/Src/llcc68.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 30
 
 
 1627:Drivers/LLCC68/Src/llcc68.c **** 
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
   63              		.loc 1 1646 16 is_stmt 0 view .LVU7
   64 0018 0220     		movs	r0, #2
   65              	.LVL5:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 31
 
 
   66              		.loc 1 1646 16 view .LVU8
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  109              	.LVL9:
  269:Drivers/LLCC68/Src/llcc68.c **** 
  110              		.loc 1 269 9 view .LVU19
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 32
 
 
  111 000e 0090     		str	r0, [sp]
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  157              		.cfi_def_cfa_offset 8
  158              		.cfi_offset 4, -8
  159              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 33
 
 
  160 0004 82B0     		sub	sp, sp, #8
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  206              		.loc 1 310 69 is_stmt 1 view -0
  207              		.cfi_startproc
  208              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 34
 
 
  209              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  251              		.thumb
  252              		.thumb_func
  254              	llcc68_hal_wakeup:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 35
 
 
  255              	.LVL26:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  295              		.cfi_endproc
  296              	.LFE3:
  298              		.section	.text.llcc68_set_sleep,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 36
 
 
  299              		.align	1
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  348              	llcc68_set_standby:
  349              	.LVL35:
  350              	.LFB5:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 37
 
 
  357:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf[LLCC68_SIZE_SET_STANDBY] = {
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  367:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf[LLCC68_SIZE_SET_FS] = {
  398              		.loc 1 367 1 is_stmt 0 view .LVU84
  399 0000 00B5     		push	{lr}
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 38
 
 
  400              		.cfi_def_cfa_offset 4
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  447 0006 8DF80C30 		strb	r3, [sp, #12]
  391:Drivers/LLCC68/Src/llcc68.c ****         ( uint8_t )( timeout_in_rtc_step >> 8 ),
  448              		.loc 1 391 9 view .LVU94
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 39
 
 
  449 000a C1F30743 		ubfx	r3, r1, #16, #8
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  495              		.loc 1 413 5 is_stmt 1 view .LVU104
  413:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_SET_RX,
  496              		.loc 1 413 19 is_stmt 0 view .LVU105
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 40
 
 
  497 0004 8223     		movs	r3, #130
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  543              		.cfi_offset 14, -4
  544 0002 85B0     		sub	sp, sp, #20
  545              		.cfi_def_cfa_offset 24
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 41
 
 
  425:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_SET_STOP_TIMER_ON_PREAMBLE,
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  592 0006 8DF80830 		strb	r3, [sp, #8]
  448:Drivers/LLCC68/Src/llcc68.c ****         ( uint8_t )( rx_time_in_rtc_step >> 8 ),
  593              		.loc 1 448 9 view .LVU126
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 42
 
 
  594 000a C1F30743 		ubfx	r3, r1, #16, #8
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  638              	llcc68_set_cad:
  639              	.LVL53:
  640              	.LFB14:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 43
 
 
  460:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf[LLCC68_SIZE_SET_CAD] = {
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  688              		.cfi_offset 14, -4
  689 0002 85B0     		sub	sp, sp, #20
  690              		.cfi_def_cfa_offset 24
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 44
 
 
  470:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_SET_TX_CONTINUOUS_WAVE,
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  736              		.loc 1 483 32 is_stmt 0 view .LVU158
  737 000a 0023     		movs	r3, #0
  738 000c 0093     		str	r3, [sp]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 45
 
 
  739 000e 0122     		movs	r2, #1
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  786              		.loc 1 494 1 view .LVU167
  787 001a 05B0     		add	sp, sp, #20
  788              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 46
 
 
  789              		@ sp needed
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  838              		.align	1
  839              		.global	llcc68_cal_img
  840              		.syntax unified
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 47
 
 
  841              		.thumb
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  888              		.thumb_func
  890              	llcc68_cal_img_in_mhz:
  891              	.LVL69:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 48
 
 
  892              	.LFB20:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  936              		.loc 1 530 1 is_stmt 0 view .LVU196
  937 0000 00B5     		push	{lr}
  938              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 49
 
 
  939              		.cfi_offset 14, -4
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  980              		.section	.text.llcc68_set_rx_tx_fallback_mode,"ax",%progbits
  981              		.align	1
  982              		.global	llcc68_set_rx_tx_fallback_mode
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 50
 
 
  983              		.syntax unified
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1032              	.LFB23:
  554:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf[LLCC68_SIZE_WRITE_REGISTER] = {
  1033              		.loc 1 554 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 51
 
 
  1034              		.cfi_startproc
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1078              		.thumb
  1079              		.thumb_func
  1081              	llcc68_read_register:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 52
 
 
  1082              	.LVL85:
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1124              		.cfi_endproc
  1125              	.LFE24:
  1127              		.section	.text.llcc68_tx_modulation_workaround,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 53
 
 
  1128              		.align	1
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1171              		.loc 1 1612 11 is_stmt 0 view .LVU254
  1172 0020 012C     		cmp	r4, #1
  1173 0022 0FD0     		beq	.L79
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 54
 
 
 1625:Drivers/LLCC68/Src/llcc68.c ****         }
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1215 005a 23F00403 		bic	r3, r3, #4
  1216 005e 8DF80730 		strb	r3, [sp, #7]
  1217 0062 E5E7     		b	.L77
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 55
 
 
  1218              		.cfi_endproc
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1264 001e 5DF804FB 		ldr	pc, [sp], #4
  1265              		.cfi_endproc
  1266              	.LFE25:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 56
 
 
  1268              		.section	.text.llcc68_read_buffer,"ax",%progbits
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1313 0024 5DF804FB 		ldr	pc, [sp], #4
  1314              		.cfi_endproc
  1315              	.LFE26:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 57
 
 
  1317              		.section	.text.llcc68_set_dio_irq_params,"ax",%progbits
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1361              	.LVL110:
  604:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_SET_DIO_IRQ_PARAMS,     ( uint8_t )( irq_mask >> 8 ),  ( uint8_t )( irq_mask >> 0 ),
  1362              		.loc 1 604 19 view .LVU299
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 58
 
 
  1363 0034 8DF81330 		strb	r3, [sp, #19]
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1409              		.loc 1 619 13 is_stmt 0 view .LVU309
  1410 000c 0023     		movs	r3, #0
  1411 000e ADF80830 		strh	r3, [sp, #8]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 59
 
 
  621:Drivers/LLCC68/Src/llcc68.c ****                                                                         irq_local, sizeof( llcc68_i
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  633:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf[LLCC68_SIZE_CLR_IRQ_STATUS] = {
  1455              		.loc 1 633 1 is_stmt 1 view -0
  1456              		.cfi_startproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 60
 
 
  1457              		@ args = 0, pretend = 0, frame = 8
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1503              		.cfi_startproc
  1504              		@ args = 0, pretend = 0, frame = 8
  1505              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 61
 
 
  644:Drivers/LLCC68/Src/llcc68.c ****     llcc68_irq_mask_t llcc68_irq_mask = LLCC68_IRQ_NONE;
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1545              	.LVL122:
  1546              	.L93:
  657:Drivers/LLCC68/Src/llcc68.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 62
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 62
 
 
  1547              		.loc 1 657 5 is_stmt 1 view .LVU349
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1593              		.loc 1 667 32 is_stmt 0 view .LVU359
  1594 000e 0023     		movs	r3, #0
  1595 0010 0093     		str	r3, [sp]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 63
 
 
  1596 0012 0222     		movs	r2, #2
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1642 001a 8DF80B30 		strb	r3, [sp, #11]
  1643 001e 8DF80C20 		strb	r2, [sp, #12]
  678:Drivers/LLCC68/Src/llcc68.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 64
 
 
  1644              		.loc 1 678 5 is_stmt 1 view .LVU370
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1690              		.loc 1 694 19 view .LVU380
  1691 000c 8DF80930 		strb	r3, [sp, #9]
  695:Drivers/LLCC68/Src/llcc68.c ****         ( uint8_t )( freq >> 8 ), ( uint8_t )( freq >> 0 ),
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 65
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 65
 
 
  1692              		.loc 1 695 62 view .LVU381
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  704:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_SET_PKT_TYPE,
  1739              		.loc 1 704 5 is_stmt 1 view .LVU391
  704:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_SET_PKT_TYPE,
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 66
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 66
 
 
  1740              		.loc 1 704 19 is_stmt 0 view .LVU392
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1787              		.loc 1 719 5 is_stmt 1 view .LVU401
  719:Drivers/LLCC68/Src/llcc68.c **** }
  1788              		.loc 1 719 32 is_stmt 0 view .LVU402
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 67
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 67
 
 
  1789 000c 0122     		movs	r2, #1
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  730:Drivers/LLCC68/Src/llcc68.c **** }
  1837              		.loc 1 730 32 view .LVU411
  1838 0018 03A9     		add	r1, sp, #12
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 68
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 68
 
 
  1839              	.LVL143:
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1884              		.loc 1 759 19 view .LVU422
  1885 0016 8DF80920 		strb	r2, [sp, #9]
  760:Drivers/LLCC68/Src/llcc68.c ****         ( uint8_t )( bitrate >> 0 ),  ( uint8_t )( params->pulse_shape ),
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 69
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 69
 
 
  1886              		.loc 1 760 75 view .LVU423
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1933 0000 30B5     		push	{r4, r5, lr}
  1934              		.cfi_def_cfa_offset 12
  1935              		.cfi_offset 4, -12
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 70
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 70
 
 
  1936              		.cfi_offset 5, -8
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  1975              		.loc 1 781 32 view .LVU447
  1976 002e A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
  779:Drivers/LLCC68/Src/llcc68.c ****             LLCC68_SET_MODULATION_PARAMS, ( uint8_t )( params->sf ), ( uint8_t )( params->bw ),
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 71
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 71
 
 
  1977              		.loc 1 779 23 view .LVU448
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2017              		.loc 1 771 48 discriminator 1 view .LVU462
  2018 0054 0B2A     		cmp	r2, #11
  2019 0056 DAD1     		bne	.L114
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 72
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 72
 
 
  775:Drivers/LLCC68/Src/llcc68.c ****     }
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2065              		.loc 1 798 1 is_stmt 0 view .LVU473
  2066 0000 00B5     		push	{lr}
  2067              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 73
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 73
 
 
  2068              		.cfi_offset 14, -4
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2105 0036 8DF81430 		strb	r3, [sp, #20]
  809:Drivers/LLCC68/Src/llcc68.c ****     };
  2106              		.loc 1 809 28 view .LVU491
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 74
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 74
 
 
  2107 003a 0B7A     		ldrb	r3, [r1, #8]	@ zero_extendqisi2
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2154 0008 8C23     		movs	r3, #140
  2155 000a 8DF81430 		strb	r3, [sp, #20]
  819:Drivers/LLCC68/Src/llcc68.c ****     };
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 75
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 75
 
 
  2156              		.loc 1 819 15 view .LVU501
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2196 0036 8DF80E20 		strb	r2, [sp, #14]
  2197 003a 8DF80F30 		strb	r3, [sp, #15]
  832:Drivers/LLCC68/Src/llcc68.c ****     };
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 76
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 76
 
 
  2198              		.loc 1 832 28 view .LVU516
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2245              		.loc 1 842 28 view .LVU525
  2246 000e 0B88     		ldrh	r3, [r1]
  842:Drivers/LLCC68/Src/llcc68.c ****         ( uint8_t )( params->preamble_len_in_symb >> 0 ),
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 77
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 77
 
 
  2247              		.loc 1 842 9 view .LVU526
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2285              		.loc 1 851 29 view .LVU542
  2286 0042 2846     		mov	r0, r5
  2287              	.LVL172:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 78
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 78
 
 
  851:Drivers/LLCC68/Src/llcc68.c **** 
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  859:Drivers/LLCC68/Src/llcc68.c ****         {
  2329              		.loc 1 859 11 is_stmt 0 view .LVU556
  2330 006a 0028     		cmp	r0, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 79
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 79
 
 
  2331 006c EDD1     		bne	.L132
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  879:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t addresses[2] = { node_address, broadcast_address };
  2376              		.loc 1 879 1 is_stmt 1 view -0
  2377              		.cfi_startproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 80
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 80
 
 
  2378              		@ args = 0, pretend = 0, frame = 8
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2424 0000 00B5     		push	{lr}
  2425              		.cfi_def_cfa_offset 4
  2426              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 81
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 81
 
 
  2427 0002 85B0     		sub	sp, sp, #20
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2464 003c 0822     		movs	r2, #8
  2465 003e 0DEB0201 		add	r1, sp, r2
  2466              	.LVL185:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 82
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 82
 
 
  898:Drivers/LLCC68/Src/llcc68.c **** }
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2513              		.loc 1 910 32 view .LVU605
  2514 001a FFF7FEFF 		bl	llcc68_hal_write
  2515              	.LVL190:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 83
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 83
 
 
  911:Drivers/LLCC68/Src/llcc68.c **** 
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2563              		.loc 1 921 5 is_stmt 1 view .LVU614
  915:Drivers/LLCC68/Src/llcc68.c ****     uint8_t mant =
  2564              		.loc 1 915 13 is_stmt 0 view .LVU615
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 84
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 84
 
 
  2565 0014 0025     		movs	r5, #0
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2604              	.LVL198:
  933:Drivers/LLCC68/Src/llcc68.c **** 
  2605              		.loc 1 933 29 view .LVU631
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 85
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 85
 
 
  2606 0040 3046     		mov	r0, r6
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2646              		.loc 1 938 23 view .LVU645
  2647 0068 EFE7     		b	.L149
  2648              	.LBE5:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 86
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 86
 
 
  2649              		.cfi_endproc
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2694 0020 38B9     		cbnz	r0, .L153
  960:Drivers/LLCC68/Src/llcc68.c ****             ( llcc68_cmd_status_t )( ( status_local & LLCC68_CMD_STATUS_MASK ) >> LLCC68_CMD_STATUS
  2695              		.loc 1 960 9 is_stmt 1 view .LVU657
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 87
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 87
 
 
  961:Drivers/LLCC68/Src/llcc68.c ****         radio_status->chip_mode =
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2740              		.loc 1 971 5 is_stmt 1 view .LVU669
  971:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_GET_RX_BUFFER_STATUS,
  2741              		.loc 1 971 19 is_stmt 0 view .LVU670
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 88
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 88
 
 
  2742 0006 1323     		movs	r3, #19
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2780              	.LFE49:
  2782              		.section	.text.llcc68_get_gfsk_pkt_status,"ax",%progbits
  2783              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 89
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 89
 
 
  2784              		.global	llcc68_get_gfsk_pkt_status
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2827              		.loc 1 1002 9 is_stmt 1 view .LVU698
 1003:Drivers/LLCC68/Src/llcc68.c ****         pkt_status->rx_status.pkt_received =
  2828              		.loc 1 1003 33 is_stmt 0 view .LVU699
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 90
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 90
 
 
  2829 0026 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2863 0052 5B42     		rsbs	r3, r3, #0
 1015:Drivers/LLCC68/Src/llcc68.c ****         pkt_status->rssi_avg  = ( int8_t )( -pkt_status_local[2] >> 1 );
  2864              		.loc 1 1015 33 view .LVU720
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 91
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 91
 
 
  2865 0054 5B10     		asrs	r3, r3, #1
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1024:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_GET_PKT_STATUS,
  2910              		.loc 1 1024 5 is_stmt 1 view .LVU732
 1024:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_GET_PKT_STATUS,
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 92
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 92
 
 
  2911              		.loc 1 1024 19 is_stmt 0 view .LVU733
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1036:Drivers/LLCC68/Src/llcc68.c ****         pkt_status->signal_rssi_pkt_in_dbm = ( int8_t )( -pkt_status_local[2] >> 1 );
  2949              		.loc 1 1036 44 view .LVU750
  2950 0038 6370     		strb	r3, [r4, #1]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 93
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 93
 
 
 1037:Drivers/LLCC68/Src/llcc68.c ****     }
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  2995 0006 1523     		movs	r3, #21
  2996 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
 1049:Drivers/LLCC68/Src/llcc68.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 94
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 94
 
 
  2997              		.loc 1 1049 5 is_stmt 1 view .LVU763
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3039              		.thumb_func
  3041              	llcc68_get_gfsk_stats:
  3042              	.LVL219:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 95
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 95
 
 
  3043              	.LFB53:
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3083 0028 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
 1075:Drivers/LLCC68/Src/llcc68.c ****         stats->nb_pkt_crc_error = ( ( uint16_t ) stats_local[2] << 8 ) + ( uint16_t ) stats_local[3
  3084              		.loc 1 1075 72 view .LVU791
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 96
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 96
 
 
  3085 002c 03EB0223 		add	r3, r3, r2, lsl #8
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1084:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf[LLCC68_SIZE_GET_STATS] = {
  3127              		.loc 1 1084 1 is_stmt 1 view -0
  3128              		.cfi_startproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 97
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 97
 
 
  3129              		@ args = 0, pretend = 0, frame = 16
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1096:Drivers/LLCC68/Src/llcc68.c ****         stats->nb_pkt_crc_error    = ( ( uint16_t ) stats_local[2] << 8 ) + ( uint16_t ) stats_loca
  3169              		.loc 1 1096 36 view .LVU821
  3170 0030 2380     		strh	r3, [r4]	@ movhi
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 98
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 98
 
 
 1097:Drivers/LLCC68/Src/llcc68.c ****         stats->nb_pkt_header_error = ( ( uint16_t ) stats_local[4] << 8 ) + ( uint16_t ) stats_loca
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3213              		@ frame_needed = 0, uses_anonymous_args = 0
 1104:Drivers/LLCC68/Src/llcc68.c ****     const uint8_t buf[LLCC68_SIZE_RESET_STATS] = {
  3214              		.loc 1 1104 1 is_stmt 0 view .LVU836
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 99
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 99
 
 
  3215 0000 00B5     		push	{lr}
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3262              	.LVL228:
 1119:Drivers/LLCC68/Src/llcc68.c **** 
  3263              		.loc 1 1119 1 view .LVU846
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 100
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 100
 
 
  3264 0006 08BD     		pop	{r3, pc}
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3315 0002 84B0     		sub	sp, sp, #16
  3316              		.cfi_def_cfa_offset 24
  3317 0004 0C46     		mov	r4, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 101
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 101
 
 
 1128:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_GET_DEVICE_ERRORS,
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3355              		.loc 1 1143 1 view .LVU870
  3356              		.cfi_endproc
  3357              	.LFE58:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 102
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 102
 
 
  3359              		.section	.text.llcc68_clear_device_errors,"ax",%progbits
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3408              		.global	llcc68_get_gfsk_bw_param
  3409              		.syntax unified
  3410              		.thumb
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 103
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 103
 
 
  3411              		.thumb_func
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1158:Drivers/LLCC68/Src/llcc68.c **** 
  3453              		.loc 1 1158 21 view .LVU891
  3454 001a 0320     		movs	r0, #3
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 104
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 104
 
 
  3455              	.LVL241:
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3497              		.global	llcc68_get_lora_bw_in_hz
  3498              		.syntax unified
  3499              		.thumb
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 105
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 105
 
 
  3500              		.thumb_func
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3545              		.loc 1 1191 9 view .LVU914
 1190:Drivers/LLCC68/Src/llcc68.c ****         break;
  3546              		.loc 1 1190 18 is_stmt 0 view .LVU915
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 106
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 106
 
 
  3547 001e 43F60950 		movw	r0, #15625
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1203:Drivers/LLCC68/Src/llcc68.c ****     case LLCC68_LORA_BW_125:
  3585              		.loc 1 1203 9 view .LVU932
  3586 003a 7047     		bx	lr
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 107
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 107
 
 
  3587              	.LVL262:
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3626 0054 90D00300 		.word	250000
  3627 0058 20A10700 		.word	500000
  3628              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 108
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 108
 
 
  3629              	.LFE61:
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3671              		.loc 1 1228 28 is_stmt 0 view .LVU961
  3672 0010 DB00     		lsls	r3, r3, #3
  3673              	.LVL275:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 109
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 109
 
 
 1228:Drivers/LLCC68/Src/llcc68.c **** 
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3711              		.loc 1 1240 13 is_stmt 1 view .LVU978
 1240:Drivers/LLCC68/Src/llcc68.c ****         }
  3712              		.loc 1 1240 41 is_stmt 0 view .LVU979
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 110
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 110
 
 
  3713 0036 A2F1020E 		sub	lr, r2, #2
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3751              	.LVL285:
 1262:Drivers/LLCC68/Src/llcc68.c **** }
  3752              		.loc 1 1262 41 view .LVU996
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 111
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 111
 
 
  3753 005e 0130     		adds	r0, r0, #1
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3800              		.cfi_offset 5, -8
  3801              		.cfi_offset 14, -4
  3802 0002 0D46     		mov	r5, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 112
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 112
 
 
 1268:Drivers/LLCC68/Src/llcc68.c ****     uint32_t denominator = llcc68_get_lora_bw_in_hz( mod_p->bw );
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3846 0000 38B5     		push	{r3, r4, r5, lr}
  3847              		.cfi_def_cfa_offset 16
  3848              		.cfi_offset 3, -16
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 113
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 113
 
 
  3849              		.cfi_offset 4, -12
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3888              	.LVL300:
  3889              	.L231:
 1276:Drivers/LLCC68/Src/llcc68.c ****            pkt_p->sync_word_len_in_bits +
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 114
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 114
 
 
  3890              		.loc 1 1276 94 discriminator 1 view .LVU1034
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3935              		.cfi_endproc
  3936              	.LFE65:
  3938              		.section	.text.llcc68_get_random_numbers,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 115
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 115
 
 
  3939              		.align	1
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  3982 001e 40F6E201 		movw	r1, #2274
  3983              	.LVL307:
 1302:Drivers/LLCC68/Src/llcc68.c ****     if( status != LLCC68_STATUS_OK )
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 116
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 116
 
 
  3984              		.loc 1 1302 14 view .LVU1058
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4025              		.loc 1 1314 14 is_stmt 0 view .LVU1071
  4026 0052 0123     		movs	r3, #1
  4027 0054 0DF10602 		add	r2, sp, #6
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 117
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 117
 
 
  4028 0058 40F6E501 		movw	r1, #2277
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1328:Drivers/LLCC68/Src/llcc68.c ****     {
  4068              		.loc 1 1328 5 is_stmt 1 view .LVU1086
 1328:Drivers/LLCC68/Src/llcc68.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 118
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 118
 
 
  4069              		.loc 1 1328 7 is_stmt 0 view .LVU1087
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4110 00be FFF7FEFF 		bl	llcc68_set_standby
  4111              	.LVL324:
 1344:Drivers/LLCC68/Src/llcc68.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 119
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 119
 
 
  4112              		.loc 1 1344 5 is_stmt 1 view .LVU1101
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4157              	llcc68_convert_freq_in_hz_to_pll_step:
  4158              	.LVL330:
  4159              	.LFB67:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 120
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 120
 
 
 1361:Drivers/LLCC68/Src/llcc68.c ****     uint32_t steps_int;
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  686:Drivers/LLCC68/Src/llcc68.c ****     const uint32_t freq = llcc68_convert_freq_in_hz_to_pll_step( freq_in_hz );
  4205              		.loc 1 686 1 is_stmt 1 view -0
  4206              		.cfi_startproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 121
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 121
 
 
  4207              		@ args = 0, pretend = 0, frame = 0
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  734:Drivers/LLCC68/Src/llcc68.c ****     const uint32_t bitrate = ( uint32_t )( 32 * LLCC68_XTAL_FREQ / params->br_in_bps );
  4252              		.loc 1 734 1 is_stmt 0 view .LVU1136
  4253 0000 70B5     		push	{r4, r5, r6, lr}
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 122
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 122
 
 
  4254              		.cfi_def_cfa_offset 16
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  739:Drivers/LLCC68/Src/llcc68.c ****         ( uint8_t )( fdev >> 16 ),    ( uint8_t )( fdev >> 8 ),           ( uint8_t )( fdev >> 0 ),
  4294              		.loc 1 739 81 view .LVU1151
  4295 0036 637A     		ldrb	r3, [r4, #9]	@ zero_extendqisi2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 123
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 123
 
 
  737:Drivers/LLCC68/Src/llcc68.c ****         LLCC68_SET_MODULATION_PARAMS, ( uint8_t )( bitrate >> 16 ),       ( uint8_t )( bitrate >> 8
@@ -7378,7 +7378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4336              	.LVL347:
  749:Drivers/LLCC68/Src/llcc68.c ****         // WORKAROUND END
  4337              		.loc 1 749 18 view .LVU1166
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 124
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 124
 
 
  4338 0066 1146     		mov	r1, r2
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4389              		.loc 1 377 5 view .LVU1173
  377:Drivers/LLCC68/Src/llcc68.c ****     {
  4390              		.loc 1 377 7 is_stmt 0 view .LVU1174
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 125
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 125
 
 
  4391 0000 B1F5802F 		cmp	r1, #262144
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4437              	llcc68_set_rx:
  4438              	.LVL359:
  4439              	.LFB9:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 126
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 126
 
 
  400:Drivers/LLCC68/Src/llcc68.c ****     if( timeout_in_ms > LLCC68_MAX_TIMEOUT_IN_MS )
@@ -7558,7 +7558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4481 001c 7047     		bx	lr
  4482              		.cfi_endproc
  4483              	.LFE9:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 127
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 127
 
 
  4485              		.section	.text.llcc68_set_rx_duty_cycle,"ax",%progbits
@@ -7618,7 +7618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4529 0016 2946     		mov	r1, r5
  4530 0018 2046     		mov	r0, r4
  4531              	.LVL374:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 128
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 128
 
 
  439:Drivers/LLCC68/Src/llcc68.c **** }
@@ -7678,7 +7678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4577              	.L271:
 1393:Drivers/LLCC68/Src/llcc68.c ****     }
  4578              		.loc 1 1393 16 view .LVU1220
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 129
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 129
 
 
  4579              	.LBE9:
@@ -7738,7 +7738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4625 0000 082A     		cmp	r2, #8
  4626 0002 18D8     		bhi	.L277
 1402:Drivers/LLCC68/Src/llcc68.c ****     llcc68_status_t status = LLCC68_STATUS_ERROR;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 130
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 130
 
 
  4627              		.loc 1 1402 1 view .LVU1231
@@ -7798,7 +7798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4668              	.LVL387:
 1413:Drivers/LLCC68/Src/llcc68.c ****     }
  4669              		.loc 1 1413 18 view .LVU1245
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 131
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 131
 
 
  4670 0028 4FF4D861 		mov	r1, #1728
@@ -7858,7 +7858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4717              		.cfi_def_cfa_offset 24
  4718 0004 0546     		mov	r5, r0
  4719 0006 0C46     		mov	r4, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 132
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 132
 
 
 1421:Drivers/LLCC68/Src/llcc68.c **** 
@@ -7918,7 +7918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4759              		.loc 1 1428 33 view .LVU1269
  4760 0036 03F00F03 		and	r3, r3, #15
 1428:Drivers/LLCC68/Src/llcc68.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 133
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 133
 
 
  4761              		.loc 1 1428 43 view .LVU1270
@@ -7978,7 +7978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4806              		.loc 1 1440 5 is_stmt 1 view .LVU1281
 1440:Drivers/LLCC68/Src/llcc68.c **** }
  4807              		.loc 1 1440 12 is_stmt 0 view .LVU1282
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 134
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 134
 
 
  4808 000e 0223     		movs	r3, #2
@@ -8038,7 +8038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1447:Drivers/LLCC68/Src/llcc68.c **** }
  4855              		.loc 1 1447 12 view .LVU1292
  4856 0016 FFF7FEFF 		bl	llcc68_write_register
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 135
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 135
 
 
  4857              	.LVL404:
@@ -8098,7 +8098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1457:Drivers/LLCC68/Src/llcc68.c ****     {
  4904              		.loc 1 1457 7 is_stmt 0 view .LVU1302
  4905 001c 08B1     		cbz	r0, .L293
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 136
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 136
 
 
  4906              	.LVL408:
@@ -8158,7 +8158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  4945              		.loc 1 1464 13 is_stmt 1 view .LVU1317
 1464:Drivers/LLCC68/Src/llcc68.c ****         }
  4946              		.loc 1 1464 25 is_stmt 0 view .LVU1318
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 137
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 137
 
 
  4947 004c 0123     		movs	r3, #1
@@ -8218,7 +8218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1477:Drivers/LLCC68/Src/llcc68.c ****     {
  4994              		.loc 1 1477 7 is_stmt 0 view .LVU1328
  4995 001a 08B1     		cbz	r0, .L297
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 138
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 138
 
 
  4996              	.LVL416:
@@ -8278,7 +8278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5042              		.loc 1 1487 1 is_stmt 0 view .LVU1338
  5043 0000 10B5     		push	{r4, lr}
  5044              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 139
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 139
 
 
  5045              		.cfi_offset 4, -8
@@ -8338,7 +8338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1496:Drivers/LLCC68/Src/llcc68.c ****         {
  5087              		.loc 1 1496 11 is_stmt 0 view .LVU1351
  5088 0030 0028     		cmp	r0, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 140
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 140
 
 
  5089 0032 F3D1     		bne	.L299
@@ -8398,7 +8398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5134 0006 08BD     		pop	{r3, pc}
  5135              		.cfi_endproc
  5136              	.LFE69:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 141
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 141
 
 
  5138              		.section	.text.llcc68_set_ocp_value,"ax",%progbits
@@ -8458,7 +8458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5188              		@ args = 0, pretend = 0, frame = 8
  5189              		@ frame_needed = 0, uses_anonymous_args = 0
 1513:Drivers/LLCC68/Src/llcc68.c ****     uint8_t trimming_capacitor_values[2] = { trimming_cap_xta, trimming_cap_xtb };
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 142
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 142
 
 
  5190              		.loc 1 1513 1 is_stmt 0 view .LVU1370
@@ -8518,7 +8518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5237              		.cfi_offset 5, -20
  5238              		.cfi_offset 6, -16
  5239              		.cfi_offset 7, -12
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 143
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 143
 
 
  5240              		.cfi_offset 8, -8
@@ -8578,7 +8578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5279 002a 18E0     		b	.L310
  5280              	.LVL442:
  5281              	.L320:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 144
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 144
 
 
  5282              	.LBB15:
@@ -8638,7 +8638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5318 0054 0133     		adds	r3, r3, #1
  5319 0056 8DF80430 		strb	r3, [sp, #4]
  5320              	.LVL446:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 145
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 145
 
 
  5321              	.L313:
@@ -8698,7 +8698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5360              		.loc 1 1536 49 is_stmt 1 discriminator 2 view .LVU1427
  5361 0088 0133     		adds	r3, r3, #1
  5362              	.LVL450:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 146
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 146
 
 
 1536:Drivers/LLCC68/Src/llcc68.c ****             {
@@ -8758,7 +8758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5404              		.loc 1 1562 22 view .LVU1440
  5405 00a2 01AA     		add	r2, sp, #4
  5406 00a4 40F29F21 		movw	r1, #671
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 147
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 147
 
 
  5407 00a8 3046     		mov	r0, r6
@@ -8818,7 +8818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1573:Drivers/LLCC68/Src/llcc68.c ****                                                    sizeof( list_of_registers ) / sizeof( list_of_re
  5455              		.loc 1 1573 12 is_stmt 0 view .LVU1449
  5456 0012 0322     		movs	r2, #3
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 148
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 148
 
 
  5457 0014 6946     		mov	r1, sp
@@ -8878,7 +8878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
 1582:Drivers/LLCC68/Src/llcc68.c **** 
  5506              		.loc 1 1582 5 is_stmt 1 view .LVU1457
 1582:Drivers/LLCC68/Src/llcc68.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 149
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 149
 
 
  5507              		.loc 1 1582 30 is_stmt 0 view .LVU1458
@@ -8938,7 +8938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5548 003c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
 1590:Drivers/LLCC68/Src/llcc68.c ****             *crc_is_on = ( ( buffer_crc & LLCC68_REG_LR_HEADER_CRC_MASK ) != 0 ) ? true : false;
  5549              		.loc 1 1590 19 view .LVU1472
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 150
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 150
 
 
  5550 0040 C3F30213 		ubfx	r3, r3, #4, #3
@@ -8998,7 +8998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5603 005c 0C       		.byte	12
  5604 005d 000000   		.space	3
  5605 0060 78310100 		.word	78200
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 151
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 151
 
 
  5606 0064 1B       		.byte	27
@@ -9043,205 +9043,205 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 1
  5645              		.file 3 "C:/PROGRAM FILES (X86)/ARM GNU TOOLCHAIN ARM-NONE-EABI/13.3 REL1/arm-none-eabi/include/sy
  5646              		.file 4 "Drivers/LLCC68/Inc/llcc68.h"
  5647              		.file 5 "Drivers/LLCC68/Inc/llcc68_hal.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 152
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 152
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 llcc68.c
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:21     .text.llcc68_get_gfsk_crc_len_in_bytes:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:26     .text.llcc68_get_gfsk_crc_len_in_bytes:00000000 llcc68_get_gfsk_crc_len_in_bytes
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:39     .text.llcc68_get_gfsk_crc_len_in_bytes:00000008 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:79     .text.llcc68_hal_write:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:85     .text.llcc68_hal_write:00000000 llcc68_hal_write
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:138    .text.llcc68_hal_read:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:144    .text.llcc68_hal_read:00000000 llcc68_hal_read
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:197    .text.llcc68_hal_reset:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:203    .text.llcc68_hal_reset:00000000 llcc68_hal_reset
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:248    .text.llcc68_hal_wakeup:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:254    .text.llcc68_hal_wakeup:00000000 llcc68_hal_wakeup
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:299    .text.llcc68_set_sleep:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:305    .text.llcc68_set_sleep:00000000 llcc68_set_sleep
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:342    .text.llcc68_set_standby:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:348    .text.llcc68_set_standby:00000000 llcc68_set_standby
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:385    .text.llcc68_set_fs:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:391    .text.llcc68_set_fs:00000000 llcc68_set_fs
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:425    .text.llcc68_set_tx_with_timeout_in_rtc_step:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:431    .text.llcc68_set_tx_with_timeout_in_rtc_step:00000000 llcc68_set_tx_with_timeout_in_rtc_step
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:476    .text.llcc68_set_rx_with_timeout_in_rtc_step:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:482    .text.llcc68_set_rx_with_timeout_in_rtc_step:00000000 llcc68_set_rx_with_timeout_in_rtc_step
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:527    .text.llcc68_stop_timer_on_preamble:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:533    .text.llcc68_stop_timer_on_preamble:00000000 llcc68_stop_timer_on_preamble
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:570    .text.llcc68_set_rx_duty_cycle_with_timings_in_rtc_step:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:576    .text.llcc68_set_rx_duty_cycle_with_timings_in_rtc_step:00000000 llcc68_set_rx_duty_cycle_with_timings_in_rtc_step
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:632    .text.llcc68_set_cad:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:638    .text.llcc68_set_cad:00000000 llcc68_set_cad
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:672    .text.llcc68_set_tx_cw:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:678    .text.llcc68_set_tx_cw:00000000 llcc68_set_tx_cw
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:712    .text.llcc68_set_tx_infinite_preamble:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:718    .text.llcc68_set_tx_infinite_preamble:00000000 llcc68_set_tx_infinite_preamble
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:752    .text.llcc68_set_reg_mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:758    .text.llcc68_set_reg_mode:00000000 llcc68_set_reg_mode
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:795    .text.llcc68_cal:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:801    .text.llcc68_cal:00000000 llcc68_cal
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:838    .text.llcc68_cal_img:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:844    .text.llcc68_cal_img:00000000 llcc68_cal_img
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:884    .text.llcc68_cal_img_in_mhz:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:890    .text.llcc68_cal_img_in_mhz:00000000 llcc68_cal_img_in_mhz
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:923    .text.llcc68_set_pa_cfg:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:929    .text.llcc68_set_pa_cfg:00000000 llcc68_set_pa_cfg
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:981    .text.llcc68_set_rx_tx_fallback_mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:987    .text.llcc68_set_rx_tx_fallback_mode:00000000 llcc68_set_rx_tx_fallback_mode
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1024   .text.llcc68_write_register:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1030   .text.llcc68_write_register:00000000 llcc68_write_register
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1075   .text.llcc68_read_register:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1081   .text.llcc68_read_register:00000000 llcc68_read_register
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1128   .text.llcc68_tx_modulation_workaround:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1133   .text.llcc68_tx_modulation_workaround:00000000 llcc68_tx_modulation_workaround
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1222   .text.llcc68_write_buffer:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1228   .text.llcc68_write_buffer:00000000 llcc68_write_buffer
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1269   .text.llcc68_read_buffer:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1275   .text.llcc68_read_buffer:00000000 llcc68_read_buffer
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1318   .text.llcc68_set_dio_irq_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1324   .text.llcc68_set_dio_irq_params:00000000 llcc68_set_dio_irq_params
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 153
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:21     .text.llcc68_get_gfsk_crc_len_in_bytes:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:26     .text.llcc68_get_gfsk_crc_len_in_bytes:00000000 llcc68_get_gfsk_crc_len_in_bytes
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:39     .text.llcc68_get_gfsk_crc_len_in_bytes:00000008 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:79     .text.llcc68_hal_write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:85     .text.llcc68_hal_write:00000000 llcc68_hal_write
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:138    .text.llcc68_hal_read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:144    .text.llcc68_hal_read:00000000 llcc68_hal_read
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:197    .text.llcc68_hal_reset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:203    .text.llcc68_hal_reset:00000000 llcc68_hal_reset
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:248    .text.llcc68_hal_wakeup:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:254    .text.llcc68_hal_wakeup:00000000 llcc68_hal_wakeup
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:299    .text.llcc68_set_sleep:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:305    .text.llcc68_set_sleep:00000000 llcc68_set_sleep
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:342    .text.llcc68_set_standby:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:348    .text.llcc68_set_standby:00000000 llcc68_set_standby
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:385    .text.llcc68_set_fs:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:391    .text.llcc68_set_fs:00000000 llcc68_set_fs
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:425    .text.llcc68_set_tx_with_timeout_in_rtc_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:431    .text.llcc68_set_tx_with_timeout_in_rtc_step:00000000 llcc68_set_tx_with_timeout_in_rtc_step
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:476    .text.llcc68_set_rx_with_timeout_in_rtc_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:482    .text.llcc68_set_rx_with_timeout_in_rtc_step:00000000 llcc68_set_rx_with_timeout_in_rtc_step
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:527    .text.llcc68_stop_timer_on_preamble:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:533    .text.llcc68_stop_timer_on_preamble:00000000 llcc68_stop_timer_on_preamble
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:570    .text.llcc68_set_rx_duty_cycle_with_timings_in_rtc_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:576    .text.llcc68_set_rx_duty_cycle_with_timings_in_rtc_step:00000000 llcc68_set_rx_duty_cycle_with_timings_in_rtc_step
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:632    .text.llcc68_set_cad:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:638    .text.llcc68_set_cad:00000000 llcc68_set_cad
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:672    .text.llcc68_set_tx_cw:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:678    .text.llcc68_set_tx_cw:00000000 llcc68_set_tx_cw
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:712    .text.llcc68_set_tx_infinite_preamble:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:718    .text.llcc68_set_tx_infinite_preamble:00000000 llcc68_set_tx_infinite_preamble
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:752    .text.llcc68_set_reg_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:758    .text.llcc68_set_reg_mode:00000000 llcc68_set_reg_mode
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:795    .text.llcc68_cal:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:801    .text.llcc68_cal:00000000 llcc68_cal
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:838    .text.llcc68_cal_img:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:844    .text.llcc68_cal_img:00000000 llcc68_cal_img
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:884    .text.llcc68_cal_img_in_mhz:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:890    .text.llcc68_cal_img_in_mhz:00000000 llcc68_cal_img_in_mhz
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:923    .text.llcc68_set_pa_cfg:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:929    .text.llcc68_set_pa_cfg:00000000 llcc68_set_pa_cfg
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:981    .text.llcc68_set_rx_tx_fallback_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:987    .text.llcc68_set_rx_tx_fallback_mode:00000000 llcc68_set_rx_tx_fallback_mode
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1024   .text.llcc68_write_register:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1030   .text.llcc68_write_register:00000000 llcc68_write_register
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1075   .text.llcc68_read_register:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1081   .text.llcc68_read_register:00000000 llcc68_read_register
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1128   .text.llcc68_tx_modulation_workaround:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1133   .text.llcc68_tx_modulation_workaround:00000000 llcc68_tx_modulation_workaround
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1222   .text.llcc68_write_buffer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1228   .text.llcc68_write_buffer:00000000 llcc68_write_buffer
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1269   .text.llcc68_read_buffer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1275   .text.llcc68_read_buffer:00000000 llcc68_read_buffer
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1318   .text.llcc68_set_dio_irq_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1324   .text.llcc68_set_dio_irq_params:00000000 llcc68_set_dio_irq_params
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 153
 
 
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1383   .text.llcc68_get_irq_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1389   .text.llcc68_get_irq_status:00000000 llcc68_get_irq_status
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1446   .text.llcc68_clear_irq_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1452   .text.llcc68_clear_irq_status:00000000 llcc68_clear_irq_status
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1493   .text.llcc68_get_and_clear_irq_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1499   .text.llcc68_get_and_clear_irq_status:00000000 llcc68_get_and_clear_irq_status
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1568   .text.llcc68_set_dio2_as_rf_sw_ctrl:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1574   .text.llcc68_set_dio2_as_rf_sw_ctrl:00000000 llcc68_set_dio2_as_rf_sw_ctrl
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1611   .text.llcc68_set_dio3_as_tcxo_ctrl:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1617   .text.llcc68_set_dio3_as_tcxo_ctrl:00000000 llcc68_set_dio3_as_tcxo_ctrl
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1665   .text.llcc68_set_rf_freq_in_pll_steps:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1671   .text.llcc68_set_rf_freq_in_pll_steps:00000000 llcc68_set_rf_freq_in_pll_steps
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1720   .text.llcc68_set_pkt_type:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1726   .text.llcc68_set_pkt_type:00000000 llcc68_set_pkt_type
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1763   .text.llcc68_get_pkt_type:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1769   .text.llcc68_get_pkt_type:00000000 llcc68_get_pkt_type
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1806   .text.llcc68_set_tx_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1812   .text.llcc68_set_tx_params:00000000 llcc68_set_tx_params
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1852   .text.llcc68_set_bpsk_mod_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1858   .text.llcc68_set_bpsk_mod_params:00000000 llcc68_set_bpsk_mod_params
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1914   .text.llcc68_set_bpsk_mod_params:00000040 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1919   .text.llcc68_set_lora_mod_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:1925   .text.llcc68_set_lora_mod_params:00000000 llcc68_set_lora_mod_params
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2052   .text.llcc68_set_gfsk_pkt_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2058   .text.llcc68_set_gfsk_pkt_params:00000000 llcc68_set_gfsk_pkt_params
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2129   .text.llcc68_set_bpsk_pkt_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2135   .text.llcc68_set_bpsk_pkt_params:00000000 llcc68_set_bpsk_pkt_params
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2218   .text.llcc68_set_lora_pkt_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2224   .text.llcc68_set_lora_pkt_params:00000000 llcc68_set_lora_pkt_params
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2367   .text.llcc68_set_gfsk_pkt_address:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2373   .text.llcc68_set_gfsk_pkt_address:00000000 llcc68_set_gfsk_pkt_address
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2410   .text.llcc68_set_cad_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2416   .text.llcc68_set_cad_params:00000000 llcc68_set_cad_params
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2479   .text.llcc68_set_buffer_base_address:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2485   .text.llcc68_set_buffer_base_address:00000000 llcc68_set_buffer_base_address
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2525   .text.llcc68_set_lora_symb_nb_timeout:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2531   .text.llcc68_set_lora_symb_nb_timeout:00000000 llcc68_set_lora_symb_nb_timeout
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2653   .text.llcc68_get_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2659   .text.llcc68_get_status:00000000 llcc68_get_status
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2719   .text.llcc68_get_rx_buffer_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2725   .text.llcc68_get_rx_buffer_status:00000000 llcc68_get_rx_buffer_status
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2783   .text.llcc68_get_gfsk_pkt_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2789   .text.llcc68_get_gfsk_pkt_status:00000000 llcc68_get_gfsk_pkt_status
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2889   .text.llcc68_get_lora_pkt_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2895   .text.llcc68_get_lora_pkt_status:00000000 llcc68_get_lora_pkt_status
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2972   .text.llcc68_get_rssi_inst:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:2978   .text.llcc68_get_rssi_inst:00000000 llcc68_get_rssi_inst
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3035   .text.llcc68_get_gfsk_stats:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3041   .text.llcc68_get_gfsk_stats:00000000 llcc68_get_gfsk_stats
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3118   .text.llcc68_get_lora_stats:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3124   .text.llcc68_get_lora_stats:00000000 llcc68_get_lora_stats
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3201   .text.llcc68_reset_stats:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3207   .text.llcc68_reset_stats:00000000 llcc68_reset_stats
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3241   .text.llcc68_reset:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3247   .text.llcc68_reset:00000000 llcc68_reset
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3269   .text.llcc68_wakeup:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3275   .text.llcc68_wakeup:00000000 llcc68_wakeup
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 154
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1383   .text.llcc68_get_irq_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1389   .text.llcc68_get_irq_status:00000000 llcc68_get_irq_status
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1446   .text.llcc68_clear_irq_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1452   .text.llcc68_clear_irq_status:00000000 llcc68_clear_irq_status
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1493   .text.llcc68_get_and_clear_irq_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1499   .text.llcc68_get_and_clear_irq_status:00000000 llcc68_get_and_clear_irq_status
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1568   .text.llcc68_set_dio2_as_rf_sw_ctrl:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1574   .text.llcc68_set_dio2_as_rf_sw_ctrl:00000000 llcc68_set_dio2_as_rf_sw_ctrl
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1611   .text.llcc68_set_dio3_as_tcxo_ctrl:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1617   .text.llcc68_set_dio3_as_tcxo_ctrl:00000000 llcc68_set_dio3_as_tcxo_ctrl
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1665   .text.llcc68_set_rf_freq_in_pll_steps:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1671   .text.llcc68_set_rf_freq_in_pll_steps:00000000 llcc68_set_rf_freq_in_pll_steps
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1720   .text.llcc68_set_pkt_type:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1726   .text.llcc68_set_pkt_type:00000000 llcc68_set_pkt_type
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1763   .text.llcc68_get_pkt_type:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1769   .text.llcc68_get_pkt_type:00000000 llcc68_get_pkt_type
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1806   .text.llcc68_set_tx_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1812   .text.llcc68_set_tx_params:00000000 llcc68_set_tx_params
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1852   .text.llcc68_set_bpsk_mod_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1858   .text.llcc68_set_bpsk_mod_params:00000000 llcc68_set_bpsk_mod_params
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1914   .text.llcc68_set_bpsk_mod_params:00000040 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1919   .text.llcc68_set_lora_mod_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:1925   .text.llcc68_set_lora_mod_params:00000000 llcc68_set_lora_mod_params
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2052   .text.llcc68_set_gfsk_pkt_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2058   .text.llcc68_set_gfsk_pkt_params:00000000 llcc68_set_gfsk_pkt_params
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2129   .text.llcc68_set_bpsk_pkt_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2135   .text.llcc68_set_bpsk_pkt_params:00000000 llcc68_set_bpsk_pkt_params
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2218   .text.llcc68_set_lora_pkt_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2224   .text.llcc68_set_lora_pkt_params:00000000 llcc68_set_lora_pkt_params
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2367   .text.llcc68_set_gfsk_pkt_address:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2373   .text.llcc68_set_gfsk_pkt_address:00000000 llcc68_set_gfsk_pkt_address
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2410   .text.llcc68_set_cad_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2416   .text.llcc68_set_cad_params:00000000 llcc68_set_cad_params
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2479   .text.llcc68_set_buffer_base_address:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2485   .text.llcc68_set_buffer_base_address:00000000 llcc68_set_buffer_base_address
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2525   .text.llcc68_set_lora_symb_nb_timeout:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2531   .text.llcc68_set_lora_symb_nb_timeout:00000000 llcc68_set_lora_symb_nb_timeout
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2653   .text.llcc68_get_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2659   .text.llcc68_get_status:00000000 llcc68_get_status
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2719   .text.llcc68_get_rx_buffer_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2725   .text.llcc68_get_rx_buffer_status:00000000 llcc68_get_rx_buffer_status
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2783   .text.llcc68_get_gfsk_pkt_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2789   .text.llcc68_get_gfsk_pkt_status:00000000 llcc68_get_gfsk_pkt_status
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2889   .text.llcc68_get_lora_pkt_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2895   .text.llcc68_get_lora_pkt_status:00000000 llcc68_get_lora_pkt_status
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2972   .text.llcc68_get_rssi_inst:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:2978   .text.llcc68_get_rssi_inst:00000000 llcc68_get_rssi_inst
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3035   .text.llcc68_get_gfsk_stats:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3041   .text.llcc68_get_gfsk_stats:00000000 llcc68_get_gfsk_stats
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3118   .text.llcc68_get_lora_stats:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3124   .text.llcc68_get_lora_stats:00000000 llcc68_get_lora_stats
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3201   .text.llcc68_reset_stats:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3207   .text.llcc68_reset_stats:00000000 llcc68_reset_stats
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3241   .text.llcc68_reset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3247   .text.llcc68_reset:00000000 llcc68_reset
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3269   .text.llcc68_wakeup:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3275   .text.llcc68_wakeup:00000000 llcc68_wakeup
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 154
 
 
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3297   .text.llcc68_get_device_errors:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3303   .text.llcc68_get_device_errors:00000000 llcc68_get_device_errors
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3360   .text.llcc68_clear_device_errors:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3366   .text.llcc68_clear_device_errors:00000000 llcc68_clear_device_errors
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3402   .text.llcc68_clear_device_errors:00000024 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3407   .text.llcc68_get_gfsk_bw_param:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3413   .text.llcc68_get_gfsk_bw_param:00000000 llcc68_get_gfsk_bw_param
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3491   .text.llcc68_get_gfsk_bw_param:00000030 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5568   .data.gfsk_bw:00000000 gfsk_bw
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3496   .text.llcc68_get_lora_bw_in_hz:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3502   .text.llcc68_get_lora_bw_in_hz:00000000 llcc68_get_lora_bw_in_hz
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3516   .text.llcc68_get_lora_bw_in_hz:00000008 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3625   .text.llcc68_get_lora_bw_in_hz:00000050 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3632   .text.llcc68_get_lora_time_on_air_numerator:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3638   .text.llcc68_get_lora_time_on_air_numerator:00000000 llcc68_get_lora_time_on_air_numerator
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3782   .text.llcc68_get_lora_time_on_air_in_ms:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3788   .text.llcc68_get_lora_time_on_air_in_ms:00000000 llcc68_get_lora_time_on_air_in_ms
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3832   .text.llcc68_get_gfsk_time_on_air_numerator:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3838   .text.llcc68_get_gfsk_time_on_air_numerator:00000000 llcc68_get_gfsk_time_on_air_numerator
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3897   .text.llcc68_get_gfsk_time_on_air_in_ms:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3903   .text.llcc68_get_gfsk_time_on_air_in_ms:00000000 llcc68_get_gfsk_time_on_air_in_ms
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3939   .text.llcc68_get_random_numbers:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3945   .text.llcc68_get_random_numbers:00000000 llcc68_get_random_numbers
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4151   .text.llcc68_convert_freq_in_hz_to_pll_step:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4157   .text.llcc68_convert_freq_in_hz_to_pll_step:00000000 llcc68_convert_freq_in_hz_to_pll_step
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4191   .text.llcc68_convert_freq_in_hz_to_pll_step:00000024 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4196   .text.llcc68_set_rf_freq:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4202   .text.llcc68_set_rf_freq:00000000 llcc68_set_rf_freq
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4239   .text.llcc68_set_gfsk_mod_params:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4245   .text.llcc68_set_gfsk_mod_params:00000000 llcc68_set_gfsk_mod_params
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4347   .text.llcc68_set_gfsk_mod_params:00000070 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4352   .text.llcc68_convert_timeout_in_ms_to_rtc_step:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4358   .text.llcc68_convert_timeout_in_ms_to_rtc_step:00000000 llcc68_convert_timeout_in_ms_to_rtc_step
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4376   .text.llcc68_set_tx:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4382   .text.llcc68_set_tx:00000000 llcc68_set_tx
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4431   .text.llcc68_set_rx:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4437   .text.llcc68_set_rx:00000000 llcc68_set_rx
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4486   .text.llcc68_set_rx_duty_cycle:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4492   .text.llcc68_set_rx_duty_cycle:00000000 llcc68_set_rx_duty_cycle
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4542   .text.llcc68_cfg_rx_boosted:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4548   .text.llcc68_cfg_rx_boosted:00000000 llcc68_cfg_rx_boosted
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4609   .text.llcc68_set_gfsk_sync_word:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4615   .text.llcc68_set_gfsk_sync_word:00000000 llcc68_set_gfsk_sync_word
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4697   .text.llcc68_set_lora_sync_word:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4703   .text.llcc68_set_lora_sync_word:00000000 llcc68_set_lora_sync_word
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4781   .text.llcc68_set_gfsk_crc_seed:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4787   .text.llcc68_set_gfsk_crc_seed:00000000 llcc68_set_gfsk_crc_seed
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4824   .text.llcc68_set_gfsk_crc_polynomial:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4830   .text.llcc68_set_gfsk_crc_polynomial:00000000 llcc68_set_gfsk_crc_polynomial
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4867   .text.llcc68_set_gfsk_whitening_seed:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4873   .text.llcc68_set_gfsk_whitening_seed:00000000 llcc68_set_gfsk_whitening_seed
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4961   .text.llcc68_cfg_tx_clamp:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:4967   .text.llcc68_cfg_tx_clamp:00000000 llcc68_cfg_tx_clamp
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5029   .text.llcc68_stop_rtc:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5035   .text.llcc68_stop_rtc:00000000 llcc68_stop_rtc
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5111   .text.llcc68_handle_rx_done:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5117   .text.llcc68_handle_rx_done:00000000 llcc68_handle_rx_done
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s 			page 155
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3297   .text.llcc68_get_device_errors:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3303   .text.llcc68_get_device_errors:00000000 llcc68_get_device_errors
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3360   .text.llcc68_clear_device_errors:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3366   .text.llcc68_clear_device_errors:00000000 llcc68_clear_device_errors
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3402   .text.llcc68_clear_device_errors:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3407   .text.llcc68_get_gfsk_bw_param:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3413   .text.llcc68_get_gfsk_bw_param:00000000 llcc68_get_gfsk_bw_param
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3491   .text.llcc68_get_gfsk_bw_param:00000030 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5568   .data.gfsk_bw:00000000 gfsk_bw
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3496   .text.llcc68_get_lora_bw_in_hz:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3502   .text.llcc68_get_lora_bw_in_hz:00000000 llcc68_get_lora_bw_in_hz
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3516   .text.llcc68_get_lora_bw_in_hz:00000008 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3625   .text.llcc68_get_lora_bw_in_hz:00000050 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3632   .text.llcc68_get_lora_time_on_air_numerator:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3638   .text.llcc68_get_lora_time_on_air_numerator:00000000 llcc68_get_lora_time_on_air_numerator
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3782   .text.llcc68_get_lora_time_on_air_in_ms:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3788   .text.llcc68_get_lora_time_on_air_in_ms:00000000 llcc68_get_lora_time_on_air_in_ms
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3832   .text.llcc68_get_gfsk_time_on_air_numerator:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3838   .text.llcc68_get_gfsk_time_on_air_numerator:00000000 llcc68_get_gfsk_time_on_air_numerator
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3897   .text.llcc68_get_gfsk_time_on_air_in_ms:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3903   .text.llcc68_get_gfsk_time_on_air_in_ms:00000000 llcc68_get_gfsk_time_on_air_in_ms
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3939   .text.llcc68_get_random_numbers:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3945   .text.llcc68_get_random_numbers:00000000 llcc68_get_random_numbers
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4151   .text.llcc68_convert_freq_in_hz_to_pll_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4157   .text.llcc68_convert_freq_in_hz_to_pll_step:00000000 llcc68_convert_freq_in_hz_to_pll_step
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4191   .text.llcc68_convert_freq_in_hz_to_pll_step:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4196   .text.llcc68_set_rf_freq:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4202   .text.llcc68_set_rf_freq:00000000 llcc68_set_rf_freq
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4239   .text.llcc68_set_gfsk_mod_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4245   .text.llcc68_set_gfsk_mod_params:00000000 llcc68_set_gfsk_mod_params
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4347   .text.llcc68_set_gfsk_mod_params:00000070 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4352   .text.llcc68_convert_timeout_in_ms_to_rtc_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4358   .text.llcc68_convert_timeout_in_ms_to_rtc_step:00000000 llcc68_convert_timeout_in_ms_to_rtc_step
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4376   .text.llcc68_set_tx:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4382   .text.llcc68_set_tx:00000000 llcc68_set_tx
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4431   .text.llcc68_set_rx:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4437   .text.llcc68_set_rx:00000000 llcc68_set_rx
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4486   .text.llcc68_set_rx_duty_cycle:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4492   .text.llcc68_set_rx_duty_cycle:00000000 llcc68_set_rx_duty_cycle
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4542   .text.llcc68_cfg_rx_boosted:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4548   .text.llcc68_cfg_rx_boosted:00000000 llcc68_cfg_rx_boosted
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4609   .text.llcc68_set_gfsk_sync_word:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4615   .text.llcc68_set_gfsk_sync_word:00000000 llcc68_set_gfsk_sync_word
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4697   .text.llcc68_set_lora_sync_word:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4703   .text.llcc68_set_lora_sync_word:00000000 llcc68_set_lora_sync_word
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4781   .text.llcc68_set_gfsk_crc_seed:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4787   .text.llcc68_set_gfsk_crc_seed:00000000 llcc68_set_gfsk_crc_seed
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4824   .text.llcc68_set_gfsk_crc_polynomial:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4830   .text.llcc68_set_gfsk_crc_polynomial:00000000 llcc68_set_gfsk_crc_polynomial
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4867   .text.llcc68_set_gfsk_whitening_seed:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4873   .text.llcc68_set_gfsk_whitening_seed:00000000 llcc68_set_gfsk_whitening_seed
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4961   .text.llcc68_cfg_tx_clamp:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:4967   .text.llcc68_cfg_tx_clamp:00000000 llcc68_cfg_tx_clamp
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5029   .text.llcc68_stop_rtc:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5035   .text.llcc68_stop_rtc:00000000 llcc68_stop_rtc
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5111   .text.llcc68_handle_rx_done:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5117   .text.llcc68_handle_rx_done:00000000 llcc68_handle_rx_done
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s 			page 155
 
 
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5139   .text.llcc68_set_ocp_value:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5145   .text.llcc68_set_ocp_value:00000000 llcc68_set_ocp_value
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5177   .text.llcc68_set_trimming_capacitor_values:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5183   .text.llcc68_set_trimming_capacitor_values:00000000 llcc68_set_trimming_capacitor_values
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5220   .text.llcc68_add_registers_to_retention_list:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5226   .text.llcc68_add_registers_to_retention_list:00000000 llcc68_add_registers_to_retention_list
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5426   .text.llcc68_init_retention_list:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5432   .text.llcc68_init_retention_list:00000000 llcc68_init_retention_list
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5469   .text.llcc68_init_retention_list:00000024 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5474   .text.llcc68_get_lora_params_from_header:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5480   .text.llcc68_get_lora_params_from_header:00000000 llcc68_get_lora_params_from_header
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5565   .data.gfsk_bw:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:5633   .rodata:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:46     .text.llcc68_get_gfsk_crc_len_in_bytes:0000000f $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:46     .text.llcc68_get_gfsk_crc_len_in_bytes:00000010 $t
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3527   .text.llcc68_get_lora_bw_in_hz:00000013 $d
-C:\Users\Nathan\AppData\Local\Temp\cc6w58BZ.s:3527   .text.llcc68_get_lora_bw_in_hz:00000014 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5139   .text.llcc68_set_ocp_value:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5145   .text.llcc68_set_ocp_value:00000000 llcc68_set_ocp_value
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5177   .text.llcc68_set_trimming_capacitor_values:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5183   .text.llcc68_set_trimming_capacitor_values:00000000 llcc68_set_trimming_capacitor_values
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5220   .text.llcc68_add_registers_to_retention_list:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5226   .text.llcc68_add_registers_to_retention_list:00000000 llcc68_add_registers_to_retention_list
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5426   .text.llcc68_init_retention_list:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5432   .text.llcc68_init_retention_list:00000000 llcc68_init_retention_list
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5469   .text.llcc68_init_retention_list:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5474   .text.llcc68_get_lora_params_from_header:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5480   .text.llcc68_get_lora_params_from_header:00000000 llcc68_get_lora_params_from_header
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5565   .data.gfsk_bw:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:5633   .rodata:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:46     .text.llcc68_get_gfsk_crc_len_in_bytes:0000000f $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:46     .text.llcc68_get_gfsk_crc_len_in_bytes:00000010 $t
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3527   .text.llcc68_get_lora_bw_in_hz:00000013 $d
+C:\Users\Nathan\AppData\Local\Temp\ccNn3H3d.s:3527   .text.llcc68_get_lora_bw_in_hz:00000014 $t
 
 NO UNDEFINED SYMBOLS

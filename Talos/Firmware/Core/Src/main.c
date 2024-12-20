@@ -19,14 +19,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "fatfs.h"
-#include <lsm6dsm_reg.h>
-// #include "llcc68.h"
-// #include <llcc68_hal.h>
-#include <stm32f405xx.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <lsm6dsm_reg.h>
+#include <stm32f405xx.h>
+#include <llcc68_hal.h>
+#include <llcc68.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -71,6 +70,10 @@ static int32_t lsm6dsm_platform_write(void *handle, uint8_t reg, const uint8_t *
 static int32_t lsm6dsm_platform_read(void *handle, uint8_t reg, uint8_t *bufp,
                              uint16_t len);
 static void platform_delay(uint32_t ms);
+
+static int32_t llcc68_platform_write_read(void *handle, const uint8_t *command, uint16_t command_length,
+                                          uint8_t *data, uint16_t data_length);
+static int32_t llcc68_platform_reset(void *handle);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -130,14 +133,17 @@ int main(void)
   dev_ctx.read_reg = lsm6dsm_platform_read;
   dev_ctx.handle = &hspi1;
 
-  // llcc68_ctx_t radio_ctx;
-  // radio_ctx.write_reg = llcc68_platform_write_read;
-  // radio_ctx.read_reg = llcc68_platform_write_read;
-  // radio_ctx.reset = llcc68_platform_reset;
-  // radio_ctx.handle = &hspi1;
+  llcc68_ctx_t radio_ctx;
+  radio_ctx.write_reg = llcc68_platform_write_read;
+  radio_ctx.read_reg = llcc68_platform_write_read;
+  radio_ctx.reset = llcc68_platform_reset;
+  radio_ctx.handle = &hspi1;
 
   /* Wait sensor boot time */
   platform_delay(100);
+
+  // IMU CONFIGURATION
+
   //set SPI as 3 wire communication
   lsm6dsm_spi_mode_set(&dev_ctx,LSM6DSM_SPI_3_WIRE);
   //set auto increment to read several register at same time
@@ -181,6 +187,25 @@ int main(void)
   //lsm6dsm_xl_hp_bandwidth_set(&dev_ctx, LSM6DSM_XL_HP_ODR_DIV_100);
   /* Gyroscope - filtering chain */
   lsm6dsm_gy_band_pass_set(&dev_ctx, LSM6DSM_HP_260mHz_LP1_STRONG);
+
+  // LORA MODULE CONFIGURATION
+  // platform_delay(100);
+  //   llcc68_set_standby(&radio_ctx, LLCC68_STANDBY_CFG_RC);
+  //   llcc68_set_pkt_type(&radio_ctx, LLCC68_PKT_TYPE_LORA);
+  //   llcc68_set_rf_freq(&radio_ctx, 433000000);
+  //   // // 17dBm
+  //   // // {0x03, 0x05, 0x00, 0x01}
+  //   const llcc68_pa_cfg_params_t pa_cfg = {0x03,
+  //     0x05,
+  //    0x00,
+  //     0x01
+  //   };
+  //   const llcc68_pkt_params_lora_t pkt_params = {14, LLCC68_LORA_PKT_EXPLICIT, 14, true, false};
+  //   const llcc68_mod_params_lora_t mod_params = {LLCC68_LORA_SF11, LLCC68_LORA_BW_250, LLCC68_LORA_CR_4_5, 0};
+  //   llcc68_set_pa_cfg(&radio_ctx, (llcc68_pa_cfg_params_t*) &pa_cfg);
+  //   // //The output power is defined as power in dBm in a range of - 9 (0xF7) to +22 (0x16) dBm by step of 1 dB
+  //   llcc68_set_tx_params(&radio_ctx, 0x16, LLCC68_RAMP_200_US);
+  //    platform_delay(100);
 
   /* USER CODE END 2 */
 
@@ -233,9 +258,8 @@ int main(void)
 	      angular_rate_mdps[2] =
 	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]);
 	      // printf("Angular rate [mdps]:%4.2f\t%4.2f\t%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
-	      printf("%4.2f,%4.2f,%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
+	      // printf("%4.2f,%4.2f,%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
 	    }
-
 	    // if (reg.status_reg.tda) {
 	    //   /* Read temperature data */
 	    //   memset(&data_raw_temperature, 0x00, sizeof(int16_t));
@@ -245,6 +269,28 @@ int main(void)
 	    //   printf("Temperature [degC]:%6.2f\r\n",
 	    //           temperature_degC);
 	    // }
+    //   llcc68_set_buffer_base_address(&radio_ctx, 0x00, 0x00);
+    // llcc68_write_buffer(&radio_ctx, 0x00, (uint8_t*)"Hello World!\r\n", 14);
+    // llcc68_set_lora_mod_params(&radio_ctx, &mod_params);
+    // llcc68_set_lora_pkt_params(&radio_ctx, &pkt_params);
+    // llcc68_set_dio_irq_params(&radio_ctx, LLCC68_IRQ_TX_DONE | LLCC68_IRQ_RX_DONE, LLCC68_IRQ_TX_DONE | LLCC68_IRQ_RX_DONE, LLCC68_IRQ_NONE, LLCC68_IRQ_NONE);
+
+    // llcc68_write_register(&radio_ctx, 0x06C0, (uint8_t)0x12, 1);
+    // llcc68_write_register(&radio_ctx, 0x06C1, (uint8_t)0x23, 1);
+    // llcc68_write_register(&radio_ctx, 0x06C2, (uint8_t)0x34, 1);
+    // llcc68_write_register(&radio_ctx, 0x06C3, (uint8_t)0x45, 1);
+    // llcc68_write_register(&radio_ctx, 0x06C4, (uint8_t)0x56, 1);
+    // llcc68_write_register(&radio_ctx, 0x06C5, (uint8_t)0x67, 1);
+    // llcc68_write_register(&radio_ctx, 0x06C6, (uint8_t)0x78, 1);
+    // llcc68_write_register(&radio_ctx, 0x06C7, (uint8_t)0x89, 1);
+
+    // llcc68_set_tx(&radio_ctx, 0);
+    //   llcc68_chip_status_t chip_status;
+    //   llcc68_status_t lora_status = llcc68_get_status(&radio_ctx, &chip_status);
+    //   printf("LoRa Status: %d, Chip Status: %d\r\n", lora_status, chip_status.cmd_status);
+    //  llcc68_set_standby(&radio_ctx, LLCC68_STANDBY_CFG_RC);
+    //  ///print if busy or not with busy gpio pin
+    //  HAL_GPIO_ReadPin(BUSY_GPIO_Port, BUSY_Pin) == GPIO_PIN_SET ? printf("Busy\r\n") : printf("Not Busy\r\n");
       platform_delay(100);
   }
   /* USER CODE END 3 */
@@ -485,11 +531,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PC4 ANTENNA_IRQ_Pin */
-  GPIO_InitStruct.Pin = GPIO_PIN_4|ANTENNA_IRQ_Pin;
+  /*Configure GPIO pin : BUSY_Pin */
+  GPIO_InitStruct.Pin = BUSY_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_Init(BUSY_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ANTENNA_IRQ_Pin */
+  GPIO_InitStruct.Pin = ANTENNA_IRQ_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(ANTENNA_IRQ_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
@@ -544,11 +596,12 @@ static int32_t lsm6dsm_platform_read(void *handle, uint8_t reg, uint8_t *bufp,
   return 0;
 }
 
-static void llcc68_platform_reset(void *handle) {
+static int32_t llcc68_platform_reset(void *handle) {
   HAL_GPIO_WritePin(RF_RESET_GPIO_Port, RF_RESET_Pin, GPIO_PIN_RESET);
   HAL_Delay(1);
   HAL_GPIO_WritePin(RF_RESET_GPIO_Port, RF_RESET_Pin, GPIO_PIN_SET);
   HAL_Delay(1);
+  return 0;
 }
 
 /*
@@ -562,19 +615,12 @@ static void platform_delay(uint32_t ms)
   HAL_Delay(ms);
 }
 
-static void llcc68_reset() {
-  HAL_GPIO_WritePin(RF_RESET_GPIO_Port, RF_RESET_Pin, GPIO_PIN_RESET);
-  HAL_Delay(1);
-  HAL_GPIO_WritePin(RF_RESET_GPIO_Port, RF_RESET_Pin, GPIO_PIN_SET);
-  HAL_Delay(1);
-}
-
 static int32_t llcc68_platform_write_read(void *handle, const uint8_t* command, const uint16_t command_length,
                                      uint8_t* data, const uint16_t data_length ) {
  uint8_t res;
     
     /* set cs low */
-    HAL_GPIO_WritePin(ANTENNA_IRQ_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(CS_WIRELESS_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_RESET);
     
     /* if in_len > 0 */
     if (command_length > 0)
@@ -584,7 +630,7 @@ static int32_t llcc68_platform_write_read(void *handle, const uint8_t* command, 
         if (res != HAL_OK)
         {
             /* set cs high */
-            HAL_GPIO_WritePin(ANTENNA_IRQ_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_SET);
+            HAL_GPIO_WritePin(CS_WIRELESS_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_SET);
            
             return 1;
         }
@@ -598,14 +644,14 @@ static int32_t llcc68_platform_write_read(void *handle, const uint8_t* command, 
         if (res != HAL_OK)
         {
             /* set cs high */
-            HAL_GPIO_WritePin(ANTENNA_IRQ_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_SET);
+            HAL_GPIO_WritePin(CS_WIRELESS_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_SET);
            
             return 1;
         }
     }
     
     /* set cs high */
-    HAL_GPIO_WritePin(ANTENNA_IRQ_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(CS_WIRELESS_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_SET);
     
     return 0;
                                      }

@@ -79,6 +79,8 @@ void Error_Handler(void);
 #define MISO_GPIO_Port GPIOA
 #define MOSI_Pin GPIO_PIN_7
 #define MOSI_GPIO_Port GPIOA
+#define BUSY_Pin GPIO_PIN_4
+#define BUSY_GPIO_Port GPIOC
 #define ANTENNA_IRQ_Pin GPIO_PIN_5
 #define ANTENNA_IRQ_GPIO_Port GPIOC
 #define PRESSURE_INT_Pin GPIO_PIN_6
