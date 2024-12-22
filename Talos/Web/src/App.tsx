@@ -21,12 +21,12 @@ const TEST = true;
 export default function App() {
   const [data, setData] = useState<Data[]>([]);
   const [isConnected, setIsConnected] = useState(false);
-  const [velocityData, setVelocityData] = useState<
-    { velocity: number; time: string }[]
-  >([]);
-  const [accelerationData, setAccelerationData] = useState<
-    { acceleration: number; time: string }[]
-  >([]);
+  // const [velocityData, setVelocityData] = useState<
+  //   { velocity: number; time: string }[]
+  // >([]);
+  // const [accelerationData, setAccelerationData] = useState<
+  //   { acceleration: number; time: string }[]
+  // >([]);
   const [isDarkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = (checked: boolean) => {
@@ -35,6 +35,7 @@ export default function App() {
   };
 
   useEffect(() => {
+    // toggleDarkMode(true);
     // Create the WebSocket connection
     const socket = new WebSocket(API_URL);
 
@@ -77,6 +78,7 @@ export default function App() {
             accel_x: 1 + 0.000005 * (Date.now() - startDate),
             accel_y: 1 + 0.000005 * (Date.now() - startDate),
             accel_z: 1 + 0.000005 * (Date.now() - startDate),
+            avg_accel: 0 + 0.000005 * (Date.now() - startDate),
             vel_x:
               prevData.length > 0
                 ? prevData[prevData.length - 1].vel_x +
@@ -92,6 +94,13 @@ export default function App() {
                 ? prevData[prevData.length - 1].vel_z +
                   prevData[prevData.length - 1].accel_z
                 : 0,
+            avg_vel:
+              prevData.length > 0
+                ? prevData[prevData.length - 1].avg_vel +
+                  (prevData[prevData.length - 1].avg_accel *
+                    (Date.now() - startDate)) /
+                    100000
+                : 0,
             angle_x: (Math.sin(Date.now() / 1000) * 180) / Math.PI,
             angle_y: 0,
             angle_z: (Math.cos(Date.now() / 1000) * 180) / Math.PI,
@@ -102,7 +111,7 @@ export default function App() {
             time: Date.now(),
           },
         ]);
-      }, 100);
+      }, 10);
     }
 
     return () => subscription.unsubscribe();
@@ -111,39 +120,39 @@ export default function App() {
   // Derive velocity and acceleration from the data
   //update every second
 
-  useEffect(() => {
-    if (data.length > 0 && data.length % 3 == 0) {
-      const accelerationData = data.map((d) => ({
-        time: `${(d.time - data[0].time) / 1000}`,
-        acceleration: Math.sqrt(
-          d.accel_x ** 2 + d.accel_y ** 2 + d.accel_z ** 2
-        ),
-      }));
-      setAccelerationData(accelerationData);
-    }
+  // useEffect(() => {
+  //   if (data.length > 0 && data.length % 3 == 0) {
+  //     const accelerationData = data.map((d) => ({
+  //       time: `${(d.time - data[0].time) / 1000}`,
+  //       acceleration: Math.sqrt(
+  //         d.accel_x ** 2 + d.accel_y ** 2 + d.accel_z ** 2
+  //       ),
+  //     }));
+  //     setAccelerationData(accelerationData);
+  //   }
 
-    //updat the velocity data so that it is the integral of the acceleration data using a for loop
-    let velocityData: { velocity: number; time: string }[] = [];
-    for (let i = 0; i < accelerationData.length; i++) {
-      if (i === 0) {
-        velocityData.push({
-          time: accelerationData[i].time,
-          velocity: 0,
-        });
-      } else {
-        velocityData.push({
-          time: accelerationData[i].time,
-          velocity:
-            velocityData[i - 1].velocity +
-            ((accelerationData[i].acceleration +
-              accelerationData[i - 1].acceleration) /
-              2) *
-              0.01,
-        });
-      }
-    }
-    setVelocityData(velocityData);
-  }, [data]);
+  //   //updat the velocity data so that it is the integral of the acceleration data using a for loop
+  //   let velocityData: { velocity: number; time: string }[] = [];
+  //   for (let i = 0; i < accelerationData.length; i++) {
+  //     if (i === 0) {
+  //       velocityData.push({
+  //         time: accelerationData[i].time,
+  //         velocity: 0,
+  //       });
+  //     } else {
+  //       velocityData.push({
+  //         time: accelerationData[i].time,
+  //         velocity:
+  //           velocityData[i - 1].velocity +
+  //           ((accelerationData[i].acceleration +
+  //             accelerationData[i - 1].acceleration) /
+  //             2) *
+  //             0.01,
+  //       });
+  //     }
+  //   }
+  //   setVelocityData(velocityData);
+  // }, [data]);
 
   // const accelerationData = data.map((d) => ({
   //   time: `${(d.time - data[0].time) / 1000}`,
@@ -208,21 +217,14 @@ export default function App() {
       <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl h-3/4 p-4 flex flex-col">
         <p className="text-4xl mx-auto mb-4">Acceleration</p>
         <p className="text-7xl m-auto">
-          {accelerationData.length > 0
-            ? accelerationData[
-                accelerationData.length - 1
-              ].acceleration.toFixed(2)
-            : 0}{" "}
+          {data.length > 0 ? data[data.length - 1].avg_accel.toFixed(2) : 0}{" "}
           m/s²
         </p>
       </div>
       <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl h-3/4 p-4 flex flex-col">
         <p className="text-4xl mx-auto mb-4">Velocity</p>
         <p className="text-7xl m-auto">
-          {velocityData.length > 0
-            ? velocityData[velocityData.length - 1].velocity.toFixed(2)
-            : 0}{" "}
-          m/s
+          {data.length > 0 ? data[data.length - 1].avg_vel.toFixed(2) : 0} m/s
         </p>
       </div>
       <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl text-9xl flex">
@@ -234,7 +236,9 @@ export default function App() {
             <LineChart
               width={500}
               height={300}
-              data={accelerationData}
+              data={data.filter((value, index) => {
+                return index % 20 === 0;
+              })}
               margin={{
                 top: 30,
                 right: 35,
@@ -245,6 +249,7 @@ export default function App() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="time"
+                tickFormatter={(time) => `${(time - data[0].time) / 1000}s`}
                 label={{
                   value: `Time`,
                   style: { textAnchor: "middle" },
@@ -264,7 +269,7 @@ export default function App() {
               <Tooltip />
               <Line
                 type="monotone"
-                dataKey="acceleration"
+                dataKey="avg_accel"
                 stroke="#7B8CDE"
                 activeDot={{ r: 4 }}
                 dot={false}
@@ -281,7 +286,9 @@ export default function App() {
             <LineChart
               width={500}
               height={300}
-              data={velocityData}
+              data={data.filter((value, index) => {
+                return index % 20 === 0;
+              })}
               margin={{
                 top: 30,
                 right: 35,
@@ -292,6 +299,7 @@ export default function App() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="time"
+                tickFormatter={(time) => `${(time - data[0].time) / 1000}s`}
                 label={{
                   value: `Time`,
                   style: { textAnchor: "middle" },
@@ -311,7 +319,7 @@ export default function App() {
               <Tooltip />
               <Line
                 type="monotone"
-                dataKey="velocity"
+                dataKey="avg_vel"
                 stroke="#7B8CDE"
                 activeDot={{ r: 4 }}
                 dot={false}
