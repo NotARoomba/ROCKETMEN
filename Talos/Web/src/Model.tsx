@@ -15,12 +15,12 @@ export default function Model({ data, axis }: { data: Data; axis: Axis }) {
     axis == Axis.TOP
       ? new Vector3(0, 1, 0)
       : axis == Axis.FRONT
-      ? new Vector3(0, 0, 1)
-      : new Vector3(1, 0, 0);
+        ? new Vector3(0, 0, 1)
+        : new Vector3(1, 0, 0);
   const vector = new Vector3(
     (data.angle_x * Math.PI) / 180,
     (data.angle_y * Math.PI) / 180,
-    (data.angle_z * Math.PI) / 180
+    (data.angle_z * Math.PI) / 180,
   );
 
   return (
@@ -30,7 +30,7 @@ export default function Model({ data, axis }: { data: Data; axis: Axis }) {
         camera={{
           position: new Vector3().multiplyVectors(
             new Vector3(2, 2, 2),
-            unitVector
+            unitVector,
           ),
           //   rotation: new Euler(180, 0, 0),
         }}
@@ -42,7 +42,7 @@ export default function Model({ data, axis }: { data: Data; axis: Axis }) {
         <Rocket
           rotation={
             new Euler(
-              ...new Vector3().addVectors(new Vector3(Math.PI, 0, 0), vector)
+              ...new Vector3().addVectors(new Vector3(Math.PI, 0, 0), vector),
             )
           }
           scale={0.018}

@@ -1,5 +1,4 @@
-import { Graphics, Stage } from "@pixi/react";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import {
   LineChart,
@@ -10,9 +9,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { fromEvent, interval, buffer, Observable, bufferTime } from "rxjs";
+import { Observable, bufferTime } from "rxjs";
 import Model from "./Model";
-import { velocity } from "three/tsl";
 import { Data, Axis } from "./Types";
 
 const API_URL = "ws://localhost:3001";
@@ -236,7 +234,7 @@ export default function App() {
             <LineChart
               width={500}
               height={300}
-              data={data.filter((value, index) => {
+              data={data.filter((_, index) => {
                 return index % 20 === 0;
               })}
               margin={{
@@ -286,7 +284,7 @@ export default function App() {
             <LineChart
               width={500}
               height={300}
-              data={data.filter((value, index) => {
+              data={data.filter((_, index) => {
                 return index % 20 === 0;
               })}
               margin={{
@@ -334,7 +332,9 @@ export default function App() {
         <p
           className={
             "m-auto text-center " +
-            (isConnected || TEST ? " text-sea_green" : " text-amaranth")
+            (isConnected || TEST
+              ? " text-marian_blue dark:text-vista_blue"
+              : " text-amaranth")
           }
         >
           {isConnected || TEST ? "Status Connected" : "Status Disconnected"}
