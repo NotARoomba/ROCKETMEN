@@ -2,7 +2,7 @@ use serde::Serialize;
 use serde_json::json;
 use serialport;
 use dotenv::dotenv;
-use std::{ io::{ BufRead, BufReader }, thread::current, time::Duration };
+use std::{ io::{ BufRead, BufReader }, time::Duration };
 use tokio_tungstenite::{ connect_async, tungstenite::protocol::Message };
 use futures::SinkExt;
 
@@ -40,7 +40,7 @@ async fn main() {
         println!("No ports found!");
     } else if ports.len() == 1 {
         println!("Found 1 port: {}", ports[0].port_name);
-        let mut port = serialport
+        let port = serialport
             ::new("COM6", 115_200)
             .timeout(Duration::from_millis(1000))
             .open()
@@ -48,7 +48,7 @@ async fn main() {
         println!("Port opened successfully");
         let mut received_text = String::new();
         let mut reader = BufReader::new(port);
-        let mut data = vec![0.0; 8];
+        let mut data: Vec<f32>;
         let mut current_data: ClientData = ClientData {
             auth_token,
             angle_x: 0.0,
