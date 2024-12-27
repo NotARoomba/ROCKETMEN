@@ -42,7 +42,7 @@ async fn handle_connection(
     addr: SocketAddr,
     mut request: Request<Incoming>
 ) -> Result<Response<Full<Bytes>>, Error> {
-    println!("Incoming TCP connection from: {}", addr);
+    tracing::info!("Incoming TCP connection from: {}", addr);
 
     if hyper_tungstenite::is_upgrade_request(&request) {
         let (response, stream) = hyper_tungstenite
@@ -54,10 +54,10 @@ async fn handle_connection(
             let ws_stream = stream.await;
             // let ws_stream = tokio_tungstenite::accept_async(stream).await;
             if ws_stream.is_err() {
-                println!("Error during the websocket handshake occurred");
+                tracing::info!("Error during the websocket handshake occurred");
                 return;
             }
-            println!("WebSocket connection established: {}", addr);
+            tracing::info!("WebSocket connection established: {}", addr);
 
             // Insert the write part of this peer to the peer map.
             let (tx, rx) = unbounded();
@@ -74,7 +74,7 @@ async fn handle_connection(
                     return ok(());
                 }
                 data.auth_token = "REDACTED".to_string();
-                println!("Data: {:#?}", data);
+                tracing::info!("Data: {:#?}", data);
                 let peers = peer_map.lock().unwrap();
 
                 // We want to broadcast the message to everyone except ourselves.
@@ -97,7 +97,7 @@ async fn handle_connection(
             pin_mut!(broadcast_incoming, receive_from_others);
             select(broadcast_incoming, receive_from_others).await;
 
-            println!("{} disconnected", &addr);
+            tracing::info!("{} disconnected", &addr);
             peer_map.lock().unwrap().remove(&addr);
         });
 
@@ -111,7 +111,7 @@ async fn handle_connection(
 
 #[tokio::main]
 async fn main() {
-    env_logger::init();
+    tracing_subscriber::fmt::init();
     dotenv().ok();
 
     let port: u16 = std::env
@@ -123,7 +123,7 @@ async fn main() {
     let addr = SocketAddr::from(([0, 0, 0, 0, 0, 0, 0, 0], port));
 
     let listener = TcpListener::bind(&addr).await.expect("Can't listen");
-    println!("Listening on: {}", addr);
+    tracing::info!("Listening on: {}", addr);
 
     let mut http = hyper::server::conn::http1::Builder::new();
     http.keep_alive(true);
@@ -132,7 +132,7 @@ async fn main() {
 
     while let Ok((stream, _)) = listener.accept().await {
         let peer = stream.peer_addr().expect("Connected streams should have a peer address");
-        println!("Peer address: {}", peer);
+        tracing::info!("Peer address: {}", peer);
         let state = state.clone();
         let connection = http
             .serve_connection(
@@ -144,7 +144,7 @@ async fn main() {
             .with_upgrades();
         tokio::spawn(async move {
             if let Err(err) = connection.await {
-                println!("Error serving HTTP connection: {err:?}");
+                tracing::info!("Error serving HTTP connection: {err:?}");
             }
         });
     }
