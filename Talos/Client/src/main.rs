@@ -31,6 +31,10 @@ struct ClientData {
 #[tokio::main]
 async fn main() {
     dotenv().ok();
+    rustls::crypto::ring
+        ::default_provider()
+        .install_default()
+        .expect("Failed to install default rustls crypto provider");
     println!("Talos Client");
 
     let api_url: String = std::env::var("API_URL").expect("API_URL must be set.");
@@ -70,6 +74,7 @@ async fn main() {
             pressure: 0.0,
             time: 0,
         };
+
         let (mut ws_stream, _) = connect_async(api_url).await.expect("Failed to connect");
         loop {
             // Read data from the serial port

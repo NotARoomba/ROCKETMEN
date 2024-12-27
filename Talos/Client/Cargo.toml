@@ -9,6 +9,8 @@ serde_json = "1.0.133"
 serialport = "4.6.1"
 tokio = { version = "1.32.0", features = ["full"] }
 tokio-tungstenite = { version = "0.26.1", features = ["native-tls"] }
+native-tls = "0.2.8"
+rustls = { version = "0.23.17", features = ["ring"] }
 futures = "0.3"
 log = "0.4"
 env_logger = "0.11.5"
