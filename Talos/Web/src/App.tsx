@@ -304,8 +304,22 @@ export default function App() {
                 <Tooltip />
                 <Line
                   type="monotone"
-                  dataKey="avg_accel"
-                  stroke="#7B8CDE"
+                  dataKey="accel_x"
+                  stroke="#ff0000"
+                  activeDot={{ r: 4 }}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="accel_y"
+                  stroke="#00ff00"
+                  activeDot={{ r: 4 }}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="accel_z"
+                  stroke="#0000ff"
                   activeDot={{ r: 4 }}
                   dot={false}
                 />
@@ -354,8 +368,22 @@ export default function App() {
                 <Tooltip />
                 <Line
                   type="monotone"
-                  dataKey="avg_vel"
-                  stroke="#7B8CDE"
+                  dataKey="vel_x"
+                  stroke="#ff0000"
+                  activeDot={{ r: 4 }}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="vel_y"
+                  stroke="#00ff00"
+                  activeDot={{ r: 4 }}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="vel_z"
+                  stroke="#0000ff"
                   activeDot={{ r: 4 }}
                   dot={false}
                 />
@@ -405,8 +433,22 @@ export default function App() {
               <Tooltip />
               <Line
                 type="monotone"
-                dataKey="avg_accel"
-                stroke="#7B8CDE"
+                dataKey="accel_x"
+                stroke="#ff0000"
+                activeDot={{ r: 4 }}
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="accel_y"
+                stroke="#00ff00"
+                activeDot={{ r: 4 }}
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="accel_z"
+                stroke="#0000ff"
                 activeDot={{ r: 4 }}
                 dot={false}
               />
@@ -455,8 +497,22 @@ export default function App() {
               <Tooltip />
               <Line
                 type="monotone"
-                dataKey="avg_vel"
-                stroke="#7B8CDE"
+                dataKey="vel_x"
+                stroke="#ff0000"
+                activeDot={{ r: 4 }}
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="vel_y"
+                stroke="#00ff00"
+                activeDot={{ r: 4 }}
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="vel_z"
+                stroke="#0000ff"
                 activeDot={{ r: 4 }}
                 dot={false}
               />

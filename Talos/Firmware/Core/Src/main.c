@@ -205,16 +205,25 @@ int main(void)
 
   // do the same for gyro
   int16_t gyro_bias[3] = {0, 0, 0};
-  for (int i = 0; i < 10; i++) {
-    lsm6dsm_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate);
-    gyro_bias[0] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]);
-    gyro_bias[1] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]);
-    gyro_bias[2] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]);
-    platform_delay(100);
-  }
-  gyro_bias[0] /= 10;
-  gyro_bias[1] /= 10;
-  gyro_bias[2] /= 10;
+  int i = 0;
+  do {
+    lsm6dsm_reg_t reg;
+	    /* Read output only if new value is available */
+	    lsm6dsm_status_reg_get(&dev_ctx, &reg.status_reg);
+      if (reg.status_reg.gda) {
+        /* Read angular rate field data */
+        memset(data_raw_angular_rate, 0x00, 3 * sizeof(int16_t));
+        lsm6dsm_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate);
+        gyro_bias[0] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]);
+        gyro_bias[1] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]);
+        gyro_bias[2] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]);
+        platform_delay(100);
+        i++;
+      }
+  } while (i < 10);
+  gyro_bias[0] /= (i+1);
+  gyro_bias[1] /= (i+1);
+  gyro_bias[2] /= (i+1);
 
   // LORA MODULE CONFIGURATION
   // platform_delay(100);

@@ -65,7 +65,7 @@ def read_serial_rotation(serial_port):
         return 0.0, 0.0, 0.0
 
 def main():
-    serial_port = serial.Serial('COM7', 115200)  # Adjust to your serial port
+    serial_port = serial.Serial('COM8', 115200)  # Adjust to your serial port
 
     pygame.init()
     display = (800, 600)
