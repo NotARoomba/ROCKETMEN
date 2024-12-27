@@ -112,10 +112,13 @@ async fn main() {
     env_logger::init();
     dotenv().ok();
 
-    let addr = format!(
-        "127.0.0.1:{}",
-        env::var("PORT").unwrap_or_else(|_| "8080".to_string())
-    );
+    let port: u16 = std::env
+        ::var("PORT")
+        .unwrap_or("8080".into())
+        .parse()
+        .expect("failed to convert to number");
+
+    let addr = SocketAddr::from(([0, 0, 0, 0, 0, 0, 0, 0], port));
 
     let listener = TcpListener::bind(&addr).await.expect("Can't listen");
     println!("Listening on: {}", addr);
