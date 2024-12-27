@@ -66,7 +66,7 @@ async fn handle_connection(
             let (outgoing, incoming) = ws_stream.unwrap().split();
 
             let broadcast_incoming = incoming.try_for_each(|msg| {
-                // println!("Received a message from {}: {}", addr, msg.to_text().unwrap());
+                println!("Received a message from {}: {}", addr, msg);
                 let mut data = serde_json::from_str::<ClientData>(msg.to_text().unwrap()).unwrap();
                 if data.auth_token != env::var("AUTH_TOKEN").expect("AUTH_TOKEN must be set.") {
                     return ok(());
