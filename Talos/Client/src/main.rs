@@ -112,7 +112,7 @@ async fn main() {
                 data[5] = data[5] / 1000.0;
 
                 // acceleration z is facing down so should cancel out gravity
-                data[2] = data[2] / 16.384;
+                // data[2] = data[2] / 16.384;
                 // the data is in the format of degrees C, so we need to convert it to C
                 data[6] = data[6];
 
