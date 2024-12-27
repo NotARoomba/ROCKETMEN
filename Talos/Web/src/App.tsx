@@ -13,7 +13,7 @@ import { Observable, bufferTime } from "rxjs";
 import Model from "./Model";
 import { Axis, Data } from "./Types";
 
-const API_URL = "ws://talos-api.notaroomba.dev";
+const API_URL = "wss://talos-api.notaroomba.dev";
 const TEST = false;
 
 export default function App() {
