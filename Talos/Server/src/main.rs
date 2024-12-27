@@ -88,7 +88,10 @@ async fn main() {
     env_logger::init();
     dotenv().ok();
 
-    let addr = "127.0.0.1:3001";
+    let addr = format!(
+        "127.0.0.1:{}",
+        env::var("PORT").unwrap_or_else(|_| "8080".to_string())
+    );
 
     let listener = TcpListener::bind(&addr).await.expect("Can't listen");
     println!("Listening on: {}", addr);
