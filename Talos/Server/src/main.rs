@@ -103,7 +103,7 @@ async fn handle_connection(
         Ok(response)
     } else {
         // Handle regular HTTP requests here.
-        Ok(Response::new(Full::<Bytes>::from("Hello HTTP!")))
+        Ok(Response::new(Full::<Bytes>::from("You are not supposed to be here!")))
     }
 }
 
