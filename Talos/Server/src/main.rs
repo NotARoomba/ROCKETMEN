@@ -20,9 +20,11 @@ struct ClientData {
     accel_x: f32,
     accel_y: f32,
     accel_z: f32,
+    avg_accel: f32,
     vel_x: f32,
     vel_y: f32,
     vel_z: f32,
+    avg_vel: f32,
     pos_x: f32,
     pos_y: f32,
     pos_z: f32,
@@ -64,9 +66,9 @@ async fn handle_connection(peer_map: PeerMap, addr: SocketAddr, stream: TcpStrea
             .map(|(_, ws_sink)| ws_sink);
 
         for recp in broadcast_recipients {
-            recp.unbounded_send(
+            let _ = recp.unbounded_send(
                 Message::text(serde_json::to_string(&data.clone()).unwrap())
-            ).unwrap();
+            );
         }
 
         ok(())
@@ -87,6 +89,7 @@ async fn main() {
     dotenv().ok();
 
     let addr = "127.0.0.1:3001";
+
     let listener = TcpListener::bind(&addr).await.expect("Can't listen");
     println!("Listening on: {}", addr);
 

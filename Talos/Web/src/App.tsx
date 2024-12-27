@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import {
-  LineChart,
+  CartesianGrid,
   Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from "recharts";
 import { Observable, bufferTime } from "rxjs";
 import Model from "./Model";
-import { Data, Axis } from "./Types";
+import { Axis, Data } from "./Types";
 
-const API_URL = "ws://localhost:3001";
-const TEST = true;
+const API_URL = "ws://talos-api.notaroomba.dev";
+const TEST = false;
 
 export default function App() {
   const [data, setData] = useState<Data[]>([]);
@@ -53,7 +53,7 @@ export default function App() {
     });
 
     // Buffer incoming data and update state every second
-    const buffered$ = message$.pipe(bufferTime(1000));
+    const buffered$ = message$.pipe(bufferTime(10));
     const subscription = buffered$.subscribe((bufferedData) => {
       if (bufferedData.length > 0) {
         console.log(bufferedData);
@@ -177,9 +177,28 @@ export default function App() {
   //   }
   // }
   return (
-    <div className="h-[100vh] w-full bg-anti-flash_white dark:bg-eerie_black text-eerie_black dark:text-french_gray grid grid-rows-3 grid-cols-3 p-8 gap-6">
-      <div className="flex gap-x-6 col-span-2">
-        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-1/4 p-4 flex flex-col">
+    <div className="h-full xl:h-screen  w-full bg-anti-flash_white text-center dark:bg-eerie_black text-eerie_black dark:text-french_gray grid xl:grid-rows-3 grid-cols-1 xl:grid-cols-3 p-8 gap-6">
+      <div className="flex  gap-6 col-span-1 xl:col-span-2 xl:flex-nowrap flex-wrap">
+        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl py-12 text-8xl w-full xl:hidden flex">
+          <p className="m-auto">Talos</p>
+        </div>
+        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl  py-12 text-5xl xl:hidden flex">
+          <p
+            className={
+              "m-auto text-center " +
+              (isConnected || TEST
+                ? " text-marian_blue dark:text-vista_blue"
+                : " text-amaranth")
+            }
+          >
+            {isConnected || TEST
+              ? data.length == 0
+                ? "Status No Data"
+                : "Status Connected"
+              : "Status Disconnected"}
+          </p>
+        </div>
+        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-full xl:w-1/4 xl:min-w-48 mx-auto p-4 flex flex-col ">
           <div className="m-auto flex flex-col">
             <p className="m-auto text-2xl">X</p>
             <p className="m-auto text-4xl">
@@ -199,37 +218,156 @@ export default function App() {
             </p>
           </div>
         </div>
-        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-1/4 p-4 flex flex-col">
-          <p className="text-4xl mx-auto">Top</p>
-          <Model data={data[data.length - 1]} axis={Axis.TOP} />
-        </div>
-        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-1/4 p-4 flex flex-col">
-          <p className="text-4xl mx-auto">Front</p>
-          <Model data={data[data.length - 1]} axis={Axis.FRONT} />
-        </div>
-        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-1/4 p-4 flex flex-col">
-          <p className="text-4xl mx-auto">Side</p>
-          <Model data={data[data.length - 1]} axis={Axis.SIDE} />
+        <div className="flex w-full gap-6 sm:flex-nowrap flex-wrap">
+          <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-full xl:max-w-56 p-4 flex flex-col mx-auto">
+            <p className="text-4xl mx-auto">Top</p>
+            <Model data={data[data.length - 1]} axis={Axis.TOP} />
+          </div>
+          <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-full xl:max-w-56  p-4 flex flex-col mx-auto">
+            <p className="text-4xl mx-auto">Front</p>
+            <Model data={data[data.length - 1]} axis={Axis.FRONT} />
+          </div>
+          <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-full xl:max-w-56 p-4 flex flex-col mx-auto">
+            <p className="text-4xl mx-auto">Side</p>
+            <Model data={data[data.length - 1]} axis={Axis.SIDE} />
+          </div>
         </div>
       </div>
-      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl h-3/4 p-4 flex flex-col">
+      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl h-3/4 p-4 xl:flex hidden flex-col">
         <p className="text-4xl mx-auto mb-4">Acceleration</p>
-        <p className="text-7xl m-auto">
+        <p className="text-6xl m-auto">
           {data.length > 0 ? data[data.length - 1].avg_accel.toFixed(2) : 0}{" "}
           m/s²
         </p>
       </div>
-      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl h-3/4 p-4 flex flex-col">
+      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl h-3/4 p-4 xl:flex hidden flex-col">
         <p className="text-4xl mx-auto mb-4">Velocity</p>
-        <p className="text-7xl m-auto">
+        <p className="text-6xl m-auto">
           {data.length > 0 ? data[data.length - 1].avg_vel.toFixed(2) : 0} m/s
         </p>
       </div>
-      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl text-9xl flex">
+      <div className="flex gap-6 mx-auto w-full h-full xl:hidden flex-wrap sm:flex-nowrap">
+        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-full p-4 flex flex-col">
+          <p className="text-4xl mx-auto mb-4">Acceleration</p>
+          <p className="text-5xl sm:text-6xl m-auto">
+            {data.length > 0 ? data[data.length - 1].avg_accel.toFixed(2) : 0}{" "}
+            m/s²
+          </p>
+        </div>
+        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-full p-4 flex flex-col">
+          <p className="text-4xl mx-auto mb-4">Velocity</p>
+          <p className="text-5xl sm:text-6xl m-auto">
+            {data.length > 0 ? data[data.length - 1].avg_vel.toFixed(2) : 0} m/s
+          </p>
+        </div>
+      </div>
+      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl py-12 xl:p-0 text-8xl xl:text-9xl hidden xl:flex">
         <p className="m-auto">Talos</p>
       </div>
-      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl -translate-y-[20%] h-[125%] flex">
-        {isConnected || TEST ? (
+      <div className="flex-row w-full gap-6 md:flex-nowrap flex-wrap xl:hidden flex">
+        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl min-h-64 w-full xl:hidden flex">
+          {(isConnected || TEST) && data.length != 0 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                width={500}
+                height={300}
+                data={data.filter((_, index) => {
+                  return index % 20 === 0;
+                })}
+                margin={{
+                  top: 30,
+                  right: 35,
+                  left: 20,
+                  bottom: 20,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="time"
+                  tickFormatter={(time) => `${(time - data[0].time) / 1000}s`}
+                  label={{
+                    value: `Time`,
+                    style: { textAnchor: "middle" },
+                    position: "bottom",
+                    offset: 0,
+                  }}
+                />
+                <YAxis
+                  label={{
+                    value: `Acceleration (m/s^2)`,
+                    style: { textAnchor: "middle" },
+                    angle: -90,
+                    position: "left",
+                    offset: 0,
+                  }}
+                />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="avg_accel"
+                  stroke="#7B8CDE"
+                  activeDot={{ r: 4 }}
+                  dot={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          ) : (
+            <p className="text-6xl m-auto text-amaranth">No Data</p>
+          )}
+        </div>
+        <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-full min-h-64 xl:h-[125%] xl:hidden flex xl:-translate-y-[20%]">
+          {(isConnected || TEST) && data.length != 0 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                width={500}
+                height={300}
+                data={data.filter((_, index) => {
+                  return index % 20 === 0;
+                })}
+                margin={{
+                  top: 30,
+                  right: 35,
+                  left: 20,
+                  bottom: 20,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="time"
+                  tickFormatter={(time) => `${(time - data[0].time) / 1000}s`}
+                  label={{
+                    value: `Time`,
+                    style: { textAnchor: "middle" },
+                    position: "bottom",
+                    offset: 0,
+                  }}
+                />
+                <YAxis
+                  label={{
+                    value: `Velocity (m/s)`,
+                    style: { textAnchor: "middle" },
+                    angle: -90,
+                    position: "left",
+                    offset: 0,
+                  }}
+                />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="avg_vel"
+                  stroke="#7B8CDE"
+                  activeDot={{ r: 4 }}
+                  dot={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          ) : (
+            <p className="text-6xl m-auto text-amaranth">No Data</p>
+          )}
+        </div>
+      </div>
+      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl min-h-64 xl:-translate-y-[20%] xl:h-[125%] xl:flex hidden">
+        {(isConnected || TEST) && data.length != 0 ? (
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               width={500}
@@ -278,8 +416,8 @@ export default function App() {
           <p className="text-6xl m-auto text-amaranth">No Data</p>
         )}
       </div>
-      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl h-[125%] flex -translate-y-[20%]">
-        {isConnected || TEST ? (
+      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-full min-h-64 xl:h-[125%] xl:-translate-y-[20%] xl:flex hidden">
+        {(isConnected || TEST) && data.length != 0 ? (
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               width={500}
@@ -328,7 +466,7 @@ export default function App() {
           <p className="text-6xl m-auto text-amaranth">No Data</p>
         )}
       </div>
-      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl w-[125%] text-5xl flex">
+      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl  py-12 xl:p-0 xl:w-[125%] text-5xl hidden xl:flex">
         <p
           className={
             "m-auto text-center " +
@@ -337,10 +475,14 @@ export default function App() {
               : " text-amaranth")
           }
         >
-          {isConnected || TEST ? "Status Connected" : "Status Disconnected"}
+          {isConnected || TEST
+            ? data.length == 0
+              ? "Status No Data"
+              : "Status Connected"
+            : "Status Disconnected"}
         </p>
       </div>
-      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl translate-x-1/3 w-3/4 p-4 flex flex-col gap-y-4">
+      <div className="dark:bg-onyx shadow-2xl bg-white rounded-2xl xl:translate-x-1/3 w-full xl:w-3/4 p-4 flex flex-col gap-y-4">
         <div className="m-auto flex flex-col">
           <p className="m-auto text-2xl">Temperature</p>
           <p className="m-auto text-6xl">

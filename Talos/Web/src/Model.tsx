@@ -1,9 +1,6 @@
-// use threejs and react-three-fiber to create a 3D model of a line over a 3d plane and rotate it based on the x, y, and z angles
-
+import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useRef } from "react";
-import { Camera, Euler, Group, Line, Object3DEventMap, Vector3 } from "three";
-import { CameraControls, CubeCamera, OrbitControls } from "@react-three/drei";
+import { Euler, Vector3 } from "three";
 import Rocket from "./Rocket";
 import { Axis, Data } from "./Types";
 
@@ -25,7 +22,7 @@ export default function Model({ data, axis }: { data: Data; axis: Axis }) {
 
   return (
     //the camera should be in the top view
-    <div className="w-full h-full">
+    <div className="w-48 mx-auto ">
       <Canvas
         camera={{
           position: new Vector3().multiplyVectors(

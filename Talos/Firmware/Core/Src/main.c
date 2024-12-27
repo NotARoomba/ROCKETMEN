@@ -168,8 +168,8 @@ int main(void)
   /*  Enable Block Data Update */
   lsm6dsm_block_data_update_set(&dev_ctx, PROPERTY_ENABLE);
   /* Set Output Data Rate for Acc and Gyro */
-  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_416Hz);
-  lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_416Hz);
+  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_6k66Hz);
+  lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_6k66Hz);
   /* Set full scale */
   lsm6dsm_xl_full_scale_set(&dev_ctx, LSM6DSM_2g);
   lsm6dsm_gy_full_scale_set(&dev_ctx, LSM6DSM_2000dps);
@@ -181,27 +181,40 @@ int main(void)
   //lsm6dsm_xl_lp1_bandwidth_set(&dev_ctx, LSM6DSM_XL_LP1_ODR_DIV_4);
   /* Accelerometer - LPF1 + LPF2 path */
   lsm6dsm_xl_lp2_bandwidth_set(&dev_ctx,
-                               LSM6DSM_XL_LOW_NOISE_LP_ODR_DIV_100);
+                               LSM6DSM_XL_LOW_LAT_LP_ODR_DIV_400);
   /* Accelerometer - High Pass / Slope path */
   //lsm6dsm_xl_reference_mode_set(&dev_ctx, PROPERTY_DISABLE);
   //lsm6dsm_xl_hp_bandwidth_set(&dev_ctx, LSM6DSM_XL_HP_ODR_DIV_100);
   /* Gyroscope - filtering chain */
-  lsm6dsm_gy_band_pass_set(&dev_ctx, LSM6DSM_HP_260mHz_LP1_STRONG);
+  lsm6dsm_gy_band_pass_set(&dev_ctx, LSM6DSM_HP_DISABLE_LP1_AGGRESSIVE);
   // update the offset bias of acceleration
   //create a while loop that gets 5 sample of acceleration and calculate the average, then set the offset weight and write it to the sensor taking to account the above
   int16_t acc_bias[3] = {0, 0, 0};
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 10; i++) {
     lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
     acc_bias[0] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
     acc_bias[1] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
     acc_bias[2] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
     platform_delay(100);
   } 
-  acc_bias[0] /= 5;
-  acc_bias[1] /= 5;
-  acc_bias[2] /= 5;
+  acc_bias[0] /= 10;
+  acc_bias[1] /= 10;
+  acc_bias[2] /= 10;
 
-  lsm6dsm_xl_usr_offset_set(&dev_ctx, (uint8_t*)acc_bias);
+  // lsm6dsm_xl_usr_offset_set(&dev_ctx, (uint8_t*)acc_bias);
+
+  // do the same for gyro
+  int16_t gyro_bias[3] = {0, 0, 0};
+  for (int i = 0; i < 10; i++) {
+    lsm6dsm_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate);
+    gyro_bias[0] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]);
+    gyro_bias[1] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]);
+    gyro_bias[2] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]);
+    platform_delay(100);
+  }
+  gyro_bias[0] /= 10;
+  gyro_bias[1] /= 10;
+  gyro_bias[2] /= 10;
 
   // LORA MODULE CONFIGURATION
   // platform_delay(100);
@@ -253,11 +266,11 @@ int main(void)
 	      memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
 	      lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
 	      acceleration_mg[0] =
-	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
+	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]) - acc_bias[0];
 	      acceleration_mg[1] =
-	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
+	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]) - acc_bias[1];
 	      acceleration_mg[2] =
-	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
+	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]) - acc_bias[2];
 	      // printf("Acceleration [mg]:%4.2f\t%4.2f\t%4.2f\r\n",
 	      //         acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
         printf("%4.2f,%4.2f,%4.2f,", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
@@ -268,11 +281,11 @@ int main(void)
 	      memset(data_raw_angular_rate, 0x00, 3 * sizeof(int16_t));
 	      lsm6dsm_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate);
 	      angular_rate_mdps[0] =
-	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]);
+	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]) - gyro_bias[0];
 	      angular_rate_mdps[1] =
-	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]);
+	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]) - gyro_bias[1];
 	      angular_rate_mdps[2] =
-	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]);
+	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]) - gyro_bias[2];
 	      // printf("Angular rate [mdps]:%4.2f\t%4.2f\t%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
 	      printf("%4.2f,%4.2f,%4.2f,", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
 	    }

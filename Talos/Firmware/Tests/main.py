@@ -58,14 +58,14 @@ def draw_cube():
 def read_serial_rotation(serial_port):
     try:
         line = serial_port.readline().decode('utf-8').strip()
-        x, y, z = map(float, line.split(','))
-        return x, y, z  # Raw mdps (millidegrees per second)
+        accel_x, accl_y, accel_z, angle_x, angle_y, angle_z, temp, s = map(float, line.split(','))
+        return angle_x, angle_y, angle_z
     except Exception as e:
         print(f"Error reading serial data: {e}")
         return 0.0, 0.0, 0.0
 
 def main():
-    serial_port = serial.Serial('COM6', 115200)  # Adjust to your serial port
+    serial_port = serial.Serial('COM7', 115200)  # Adjust to your serial port
 
     pygame.init()
     display = (800, 600)

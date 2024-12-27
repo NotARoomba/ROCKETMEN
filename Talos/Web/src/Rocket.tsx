@@ -6,9 +6,8 @@ Source: https://sketchfab.com/3d-models/saturn-v-nasa-7a2c9709ff8144c8b3b18ec84b
 Title: Saturn V - NASA
 */
 
-import * as THREE from "three";
-import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
 type GLTFResult = GLTF & {
@@ -149,7 +148,7 @@ type GLTFResult = GLTF & {
 };
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/rocket.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF("/assets/rocket.glb") as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group

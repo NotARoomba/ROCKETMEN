@@ -15,9 +15,11 @@ struct ClientData {
     accel_x: f32,
     accel_y: f32,
     accel_z: f32,
+    avg_accel: f32,
     vel_x: f32,
     vel_y: f32,
     vel_z: f32,
+    avg_vel: f32,
     pos_x: f32,
     pos_y: f32,
     pos_z: f32,
@@ -29,7 +31,6 @@ struct ClientData {
 #[tokio::main]
 async fn main() {
     dotenv().ok();
-
     println!("Talos Client");
 
     let api_url: String = std::env::var("API_URL").expect("API_URL must be set.");
@@ -41,7 +42,7 @@ async fn main() {
     } else if ports.len() == 1 {
         println!("Found 1 port: {}", ports[0].port_name);
         let port = serialport
-            ::new("COM6", 115_200)
+            ::new(ports[0].port_name.clone(), 115_200)
             .timeout(Duration::from_millis(1000))
             .open()
             .expect("Failed to open port");
@@ -57,9 +58,11 @@ async fn main() {
             accel_x: 0.0,
             accel_y: 0.0,
             accel_z: 0.0,
+            avg_accel: 0.0,
             vel_x: 0.0,
             vel_y: 0.0,
             vel_z: 0.0,
+            avg_vel: 0.0,
             pos_x: 0.0,
             pos_y: 0.0,
             pos_z: 0.0,
@@ -96,15 +99,15 @@ async fn main() {
                 // the data should be in the format of accel_x, accel_y, accel_z, angle_x, angle_y, angle_z, temp, pressure
                 // the angle data is in the format of mdps, the acceleration data in the format of mg/LSB, the temperature in the format of degrees C, and the pressure in the format of hPa
                 //the data is tellign us the change in angle, so we need to add the change to the current angle taking into account the time with the current timestamp
-                data[0] = (data[0] * 9.8) / 1000.0;
-                data[1] = (data[1] * 9.8) / 1000.0;
-                data[2] = (data[2] * 9.8) / 1000.0;
+                data[0] = data[0] / 1000.0;
+                data[1] = data[1] / 1000.0;
+                data[2] = data[2] / 1000.0;
                 data[3] = data[3] / 1000.0;
                 data[4] = data[4] / 1000.0;
                 data[5] = data[5] / 1000.0;
 
                 // acceleration z is facing down so should cancel out gravity
-                data[2] = data[2] - 9.8;
+                data[2] = data[2] / 16.384;
                 // the data is in the format of degrees C, so we need to convert it to C
                 data[6] = data[6];
 
@@ -116,7 +119,7 @@ async fn main() {
                 let dt =
                     ((chrono::Utc::now().timestamp_micros() - current_data.time) as f32) /
                     1000000.0;
-                println!("dt: {}", dt);
+                println!("dt: {}", data[2]);
                 // println!("{:?}", data);
                 current_data.accel_x += data[0] * (dt as f32);
                 current_data.accel_y += data[1] * (dt as f32);
@@ -127,6 +130,10 @@ async fn main() {
                 current_data.vel_x += current_data.accel_x * dt;
                 current_data.vel_y += current_data.accel_y * dt;
                 current_data.vel_z += current_data.accel_z * dt;
+                current_data.avg_accel =
+                    (current_data.accel_x + current_data.accel_y + current_data.accel_z) / 3.0;
+                current_data.avg_vel =
+                    (current_data.vel_x + current_data.vel_y + current_data.vel_z) / 3.0;
                 current_data.pos_x += current_data.vel_x * dt;
                 current_data.pos_y += current_data.vel_y * dt;
                 current_data.pos_z += current_data.vel_z * dt;
