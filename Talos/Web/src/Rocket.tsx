@@ -1190,4 +1190,4 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/rocket.glb");
+useGLTF.preload("/assets/rocket.glb");
