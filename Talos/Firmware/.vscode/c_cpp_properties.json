@@ -5,7 +5,8 @@
       "includePath": [
         "${workspaceFolder}/**",
         "${workspaceFolder}/Drivers/STM32F4xx_HAL_Driver/Inc",
-        "${workspaceFolder}/Drivers/LSM6DSM/Inc"
+        "${workspaceFolder}/Drivers/LSM6DSM/Inc",
+        "${workspaceFolder}/Drivers/BMP580/Inc"
       ],
       "defines": [
         "STM32F405xx",
@@ -24,6 +25,7 @@
       "name": "STM32",
       "includePath": [
         "Core/Inc",
+        "Drivers/BMP580/Inc",
         "Drivers/CMSIS/Device/ST/STM32F4xx/Include",
         "Drivers/CMSIS/Include",
         "Drivers/LLCC68/Inc",

@@ -104,7 +104,8 @@ def main():
         rotation_x += (delta_x / 1000.0) * elapsed_time
         rotation_y += (delta_z / 1000.0) * elapsed_time
         rotation_z += (delta_y / 1000.0) * elapsed_time
-        print(f"Rotation: ({rotation_x}, {rotation_y}, {rotation_z})")
+        # print(f"Rotation: ({rotation_x}, {rotation_y}, {rotation_z})")
+        print(elapsed_time)
         glPushMatrix()
         glRotatef(rotation_x, 1, 0, 0) if abs(rotation_x) > 0.01 else None
         glRotatef(rotation_y, 0, 1, 0) if abs(rotation_y) > 0.1 else None

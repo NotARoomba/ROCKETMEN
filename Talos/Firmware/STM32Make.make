@@ -81,6 +81,7 @@ Core/Src/stm32f4xx_it.c \
 Core/Src/syscalls.c \
 Core/Src/sysmem.c \
 Core/Src/system_stm32f4xx.c \
+Drivers/BMP580/Src/bmp5.c \
 Drivers/LLCC68/Src/llcc68.c \
 Drivers/LSM6DSM/Src/lsm6dsm_reg.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
@@ -194,6 +195,7 @@ AS_INCLUDES = \
 # C includes
 C_INCLUDES =  \
 -ICore/Inc \
+-IDrivers/BMP580/Inc \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
 -IDrivers/CMSIS/Include \
 -IDrivers/LLCC68/Inc \

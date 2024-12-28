@@ -110,6 +110,26 @@ async fn main() {
                 data[3] = data[3] / 1000.0;
                 data[4] = data[4] / 1000.0;
                 data[5] = data[5] / 1000.0;
+                //if the absolute angle or acceleration is less than 0.01, we can assume it is 0
+                let limit = 0.1;
+                if data[0].abs() < limit {
+                    data[0] = 0.0;
+                }
+                if data[1].abs() < limit {
+                    data[1] = 0.0;
+                }
+                if data[2].abs() < limit {
+                    data[2] = 0.0;
+                }
+                if data[3].abs() < limit {
+                    data[3] = 0.0;
+                }
+                if data[4].abs() < limit {
+                    data[4] = 0.0;
+                }
+                if data[5].abs() < limit {
+                    data[5] = 0.0;
+                }
 
                 // acceleration z is facing down so should cancel out gravity
                 // data[2] = data[2] / 16.384;
@@ -124,21 +144,27 @@ async fn main() {
                 let dt =
                     ((chrono::Utc::now().timestamp_micros() - current_data.time) as f32) /
                     1000000.0;
-                println!("dt: {}", data[2]);
+                println!("dt: {}", dt);
                 // println!("{:?}", data);
-                current_data.accel_x += data[0] * (dt as f32);
-                current_data.accel_y += data[1] * (dt as f32);
-                current_data.accel_z += data[2] * (dt as f32);
+                current_data.accel_x = data[0] * (dt as f32);
+                current_data.accel_y = data[1] * (dt as f32);
+                current_data.accel_z = data[2] * (dt as f32);
                 current_data.angle_x += data[3] * (dt as f32);
                 current_data.angle_y += data[4] * (dt as f32);
                 current_data.angle_z += data[5] * (dt as f32);
                 current_data.vel_x += current_data.accel_x * dt;
                 current_data.vel_y += current_data.accel_y * dt;
                 current_data.vel_z += current_data.accel_z * dt;
-                current_data.avg_accel =
-                    (current_data.accel_x + current_data.accel_y + current_data.accel_z) / 3.0;
-                current_data.avg_vel =
-                    (current_data.vel_x + current_data.vel_y + current_data.vel_z) / 3.0;
+                current_data.avg_accel = f32::sqrt(
+                    current_data.accel_x.powi(2) +
+                        current_data.accel_y.powi(2) +
+                        current_data.accel_z.powi(2)
+                );
+                current_data.avg_vel = f32::sqrt(
+                    current_data.vel_x.powi(2) +
+                        current_data.vel_y.powi(2) +
+                        current_data.vel_z.powi(2)
+                );
                 current_data.pos_x += current_data.vel_x * dt;
                 current_data.pos_y += current_data.vel_y * dt;
                 current_data.pos_z += current_data.vel_z * dt;

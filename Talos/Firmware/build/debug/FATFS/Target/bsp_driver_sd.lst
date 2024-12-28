@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
   28:FATFS/Target/bsp_driver_sd.c **** 
   29:FATFS/Target/bsp_driver_sd.c **** /* USER CODE END 0 */
   30:FATFS/Target/bsp_driver_sd.c **** #else
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 2
 
 
   31:FATFS/Target/bsp_driver_sd.c **** /* USER CODE BEGIN FirstSection */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
   38              		.cfi_endproc
   39              	.LFE135:
   41              		.section	.text.BSP_SD_DetectIT,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 3
 
 
   42              		.align	1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
   77              		.cfi_offset 14, -4
   78 0002 83B0     		sub	sp, sp, #12
   79              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 4
 
 
   98:FATFS/Target/bsp_driver_sd.c ****   uint8_t sd_state = MSD_OK;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  127              	.LFB138:
  107:FATFS/Target/bsp_driver_sd.c **** 
  108:FATFS/Target/bsp_driver_sd.c **** /* USER CODE BEGIN BeforeWriteBlocksSection */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 5
 
 
  109:FATFS/Target/bsp_driver_sd.c **** /* can be used to modify previous code / undefine following code / add code */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  128:FATFS/Target/bsp_driver_sd.c ****   return sd_state;
  163              		.loc 1 128 3 is_stmt 1 view .LVU29
  129:FATFS/Target/bsp_driver_sd.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 6
 
 
  164              		.loc 1 129 1 is_stmt 0 view .LVU30
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  203 0006 0146     		mov	r1, r0
  204              	.LVL19:
  205              		.loc 1 146 7 view .LVU37
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 7
 
 
  206 0008 0248     		ldr	r0, .L19
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  243              		.cfi_def_cfa_offset 8
  244              		.cfi_offset 3, -8
  245              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 8
 
 
  246 0002 1346     		mov	r3, r2
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  180:FATFS/Target/bsp_driver_sd.c **** /**
  181:FATFS/Target/bsp_driver_sd.c ****   * @brief  Erases the specified memory area of the given SD card.
  182:FATFS/Target/bsp_driver_sd.c ****   * @param  StartAddr: Start byte address
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 9
 
 
  183:FATFS/Target/bsp_driver_sd.c ****   * @param  EndAddr: End byte address
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  329              		.syntax unified
  330              		.thumb
  331              		.thumb_func
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 10
 
 
  333              	BSP_SD_GetCardState:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  216:FATFS/Target/bsp_driver_sd.c **** __weak void BSP_SD_GetCardInfo(HAL_SD_CardInfoTypeDef *CardInfo)
  217:FATFS/Target/bsp_driver_sd.c **** {
  370              		.loc 1 217 1 is_stmt 1 view -0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 11
 
 
  371              		.cfi_startproc
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  241:FATFS/Target/bsp_driver_sd.c **** {
  242:FATFS/Target/bsp_driver_sd.c ****   BSP_SD_WriteCpltCallback();
  243:FATFS/Target/bsp_driver_sd.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 12
 
 
  244:FATFS/Target/bsp_driver_sd.c **** 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  233:FATFS/Target/bsp_driver_sd.c **** 
  436              		.loc 1 233 1 is_stmt 0 view .LVU80
  437 0006 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 13
 
 
  438              		.cfi_endproc
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  482              		.loc 1 243 1 is_stmt 0 view .LVU86
  483 0006 08BD     		pop	{r3, pc}
  484              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 14
 
 
  485              	.LFE145:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  529 0006 08BD     		pop	{r3, pc}
  530              		.cfi_endproc
  531              	.LFE146:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 15
 
 
  533              		.section	.text.BSP_SD_IsDetected,"ax",%progbits
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  569              		.loc 1 303 1 view .LVU103
  570 001a 03B0     		add	sp, sp, #12
  571              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 16
 
 
  572              		@ sp needed
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  617              		.loc 1 59 10 is_stmt 0 view .LVU114
  618 0014 FAE7     		b	.L54
  619              	.L59:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 17
 
 
  620 0016 00BF     		.align	2
@@ -976,53 +976,53 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 1
  633              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_sdmmc.h"
  634              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sd.h"
  635              		.file 9 "FATFS/Target/fatfs_platform.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 bsp_driver_sd.c
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:21     .text.BSP_SD_ITConfig:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:27     .text.BSP_SD_ITConfig:00000000 BSP_SD_ITConfig
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:42     .text.BSP_SD_DetectIT:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:48     .text.BSP_SD_DetectIT:00000000 BSP_SD_DetectIT
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:61     .text.BSP_SD_ReadBlocks:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:67     .text.BSP_SD_ReadBlocks:00000000 BSP_SD_ReadBlocks
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:114    .text.BSP_SD_ReadBlocks:0000001c $d
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:119    .text.BSP_SD_WriteBlocks:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:125    .text.BSP_SD_WriteBlocks:00000000 BSP_SD_WriteBlocks
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:172    .text.BSP_SD_WriteBlocks:0000001c $d
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:177    .text.BSP_SD_ReadBlocks_DMA:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:183    .text.BSP_SD_ReadBlocks_DMA:00000000 BSP_SD_ReadBlocks_DMA
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:223    .text.BSP_SD_ReadBlocks_DMA:00000014 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:228    .text.BSP_SD_WriteBlocks_DMA:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:234    .text.BSP_SD_WriteBlocks_DMA:00000000 BSP_SD_WriteBlocks_DMA
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:274    .text.BSP_SD_WriteBlocks_DMA:00000014 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:279    .text.BSP_SD_Erase:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:285    .text.BSP_SD_Erase:00000000 BSP_SD_Erase
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:322    .text.BSP_SD_Erase:00000014 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:327    .text.BSP_SD_GetCardState:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:333    .text.BSP_SD_GetCardState:00000000 BSP_SD_GetCardState
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:356    .text.BSP_SD_GetCardState:00000010 $d
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:361    .text.BSP_SD_GetCardInfo:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:367    .text.BSP_SD_GetCardInfo:00000000 BSP_SD_GetCardInfo
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:391    .text.BSP_SD_GetCardInfo:0000000c $d
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:396    .text.BSP_SD_AbortCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:402    .text.BSP_SD_AbortCallback:00000000 BSP_SD_AbortCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:415    .text.HAL_SD_AbortCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:421    .text.HAL_SD_AbortCallback:00000000 HAL_SD_AbortCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:442    .text.BSP_SD_WriteCpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:448    .text.BSP_SD_WriteCpltCallback:00000000 BSP_SD_WriteCpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:461    .text.HAL_SD_TxCpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:467    .text.HAL_SD_TxCpltCallback:00000000 HAL_SD_TxCpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:488    .text.BSP_SD_ReadCpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:494    .text.BSP_SD_ReadCpltCallback:00000000 BSP_SD_ReadCpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:507    .text.HAL_SD_RxCpltCallback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:513    .text.HAL_SD_RxCpltCallback:00000000 HAL_SD_RxCpltCallback
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:534    .text.BSP_SD_IsDetected:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:540    .text.BSP_SD_IsDetected:00000000 BSP_SD_IsDetected
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:578    .text.BSP_SD_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:584    .text.BSP_SD_Init:00000000 BSP_SD_Init
-C:\Users\Nathan\AppData\Local\Temp\ccgo91Z2.s:622    .text.BSP_SD_Init:00000018 $d
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:21     .text.BSP_SD_ITConfig:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:27     .text.BSP_SD_ITConfig:00000000 BSP_SD_ITConfig
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:42     .text.BSP_SD_DetectIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:48     .text.BSP_SD_DetectIT:00000000 BSP_SD_DetectIT
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:61     .text.BSP_SD_ReadBlocks:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:67     .text.BSP_SD_ReadBlocks:00000000 BSP_SD_ReadBlocks
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:114    .text.BSP_SD_ReadBlocks:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:119    .text.BSP_SD_WriteBlocks:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:125    .text.BSP_SD_WriteBlocks:00000000 BSP_SD_WriteBlocks
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:172    .text.BSP_SD_WriteBlocks:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:177    .text.BSP_SD_ReadBlocks_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:183    .text.BSP_SD_ReadBlocks_DMA:00000000 BSP_SD_ReadBlocks_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:223    .text.BSP_SD_ReadBlocks_DMA:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:228    .text.BSP_SD_WriteBlocks_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:234    .text.BSP_SD_WriteBlocks_DMA:00000000 BSP_SD_WriteBlocks_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:274    .text.BSP_SD_WriteBlocks_DMA:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:279    .text.BSP_SD_Erase:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:285    .text.BSP_SD_Erase:00000000 BSP_SD_Erase
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:322    .text.BSP_SD_Erase:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:327    .text.BSP_SD_GetCardState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:333    .text.BSP_SD_GetCardState:00000000 BSP_SD_GetCardState
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:356    .text.BSP_SD_GetCardState:00000010 $d
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:361    .text.BSP_SD_GetCardInfo:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:367    .text.BSP_SD_GetCardInfo:00000000 BSP_SD_GetCardInfo
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:391    .text.BSP_SD_GetCardInfo:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:396    .text.BSP_SD_AbortCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:402    .text.BSP_SD_AbortCallback:00000000 BSP_SD_AbortCallback
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:415    .text.HAL_SD_AbortCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:421    .text.HAL_SD_AbortCallback:00000000 HAL_SD_AbortCallback
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:442    .text.BSP_SD_WriteCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:448    .text.BSP_SD_WriteCpltCallback:00000000 BSP_SD_WriteCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:461    .text.HAL_SD_TxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:467    .text.HAL_SD_TxCpltCallback:00000000 HAL_SD_TxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:488    .text.BSP_SD_ReadCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:494    .text.BSP_SD_ReadCpltCallback:00000000 BSP_SD_ReadCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:507    .text.HAL_SD_RxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:513    .text.HAL_SD_RxCpltCallback:00000000 HAL_SD_RxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:534    .text.BSP_SD_IsDetected:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:540    .text.BSP_SD_IsDetected:00000000 BSP_SD_IsDetected
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:578    .text.BSP_SD_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:584    .text.BSP_SD_Init:00000000 BSP_SD_Init
+C:\Users\Nathan\AppData\Local\Temp\ccxwIwGC.s:622    .text.BSP_SD_Init:00000018 $d
 
 UNDEFINED SYMBOLS
 HAL_SD_ReadBlocks

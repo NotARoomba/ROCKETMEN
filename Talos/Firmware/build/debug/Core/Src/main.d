@@ -36,7 +36,8 @@ build/debug/Core/Src/main.o: Core/Src/main.c Core/Inc/main.h \
  Middlewares/Third_Party/FatFs/src/ff.h FATFS/Target/sd_diskio.h \
  Drivers/LSM6DSM/Inc/lsm6dsm_reg.h \
  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h \
- Drivers/LLCC68/Inc/llcc68_hal.h Drivers/LLCC68/Inc/llcc68.h
+ Drivers/LLCC68/Inc/llcc68_hal.h Drivers/LLCC68/Inc/llcc68.h \
+ Drivers/BMP580/Inc/bmp5.h Drivers/BMP580/Inc/bmp5_defs.h
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Inc/stm32f4xx_hal_conf.h:
@@ -83,3 +84,5 @@ Drivers/LSM6DSM/Inc/lsm6dsm_reg.h:
 Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h:
 Drivers/LLCC68/Inc/llcc68_hal.h:
 Drivers/LLCC68/Inc/llcc68.h:
+Drivers/BMP580/Inc/bmp5.h:
+Drivers/BMP580/Inc/bmp5_defs.h:

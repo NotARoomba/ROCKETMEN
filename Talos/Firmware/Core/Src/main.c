@@ -26,6 +26,7 @@
 #include <stm32f405xx.h>
 #include <llcc68_hal.h>
 #include <llcc68.h>
+#include <bmp5.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,6 +75,11 @@ static void platform_delay(uint32_t ms);
 static int32_t llcc68_platform_write_read(void *handle, const uint8_t *command, uint16_t command_length,
                                           uint8_t *data, uint16_t data_length);
 static int32_t llcc68_platform_reset(void *handle);
+static int32_t bmp5_read(uint8_t reg_addr, uint8_t *read_data, uint32_t len, void *intf_ptr);
+static int32_t bmp5_write(uint8_t reg_addr,
+  const uint8_t * reg_data, uint32_t len, void *intf_ptr);
+  void bmp5_error_codes_print_result(const char api_name[], int8_t rslt);
+  static int8_t bmp5_set_config(struct bmp5_osr_odr_press_config *osr_odr_press_cfg, struct bmp5_dev *dev);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -139,8 +145,27 @@ int main(void)
   radio_ctx.reset = llcc68_platform_reset;
   radio_ctx.handle = &hspi1;
 
+  // int8_t rslt;
+  // struct bmp5_dev bmp5_ctx;
+  // bmp5_ctx.intf = BMP5_SPI_INTF;
+  // bmp5_ctx.intf_ptr = &hspi1;
+  // bmp5_ctx.read = (bmp5_read_fptr_t) &bmp5_read;
+  // bmp5_ctx.write = (bmp5_write_fptr_t) &bmp5_write;
+  // bmp5_ctx.delay_us = (bmp5_delay_us_fptr_t) &platform_delay;
+  // struct bmp5_osr_odr_press_config osr_odr_press_cfg = { 0 };
+
   /* Wait sensor boot time */
-  platform_delay(100);
+  platform_delay(1000);
+
+  // PRESSURE SENSOR CONFIGURATION
+  // bmp5_read(BMP5_REG_CHIP_ID, &whoamI, 1, &hspi1);
+  // printf("Pressure sensor who am I: %d\n", whoamI);
+  // rslt = bmp5_init(&bmp5_ctx);
+  // bmp5_error_codes_print_result("bmp5_init", rslt);
+  // if (rslt == BMP5_OK) {
+  //   rslt = bmp5_set_config(&osr_odr_press_cfg, &bmp5_ctx);
+  //   bmp5_error_codes_print_result("set_config", rslt);
+  // }
 
   // IMU CONFIGURATION
 
@@ -168,8 +193,8 @@ int main(void)
   /*  Enable Block Data Update */
   lsm6dsm_block_data_update_set(&dev_ctx, PROPERTY_ENABLE);
   /* Set Output Data Rate for Acc and Gyro */
-  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_6k66Hz);
-  lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_6k66Hz);
+  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_52Hz);
+  lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_52Hz);
   /* Set full scale */
   lsm6dsm_xl_full_scale_set(&dev_ctx, LSM6DSM_2g);
   lsm6dsm_gy_full_scale_set(&dev_ctx, LSM6DSM_2000dps);
@@ -188,24 +213,46 @@ int main(void)
   /* Gyroscope - filtering chain */
   lsm6dsm_gy_band_pass_set(&dev_ctx, LSM6DSM_HP_DISABLE_LP1_AGGRESSIVE);
   // update the offset bias of acceleration
+  platform_delay(1000);
+
+  const int SAMPLE_SIZE = 5;
   //create a while loop that gets 5 sample of acceleration and calculate the average, then set the offset weight and write it to the sensor taking to account the above
   int16_t acc_bias[3] = {0, 0, 0};
-  for (int i = 0; i < 10; i++) {
-    lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
-    acc_bias[0] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
-    acc_bias[1] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
-    acc_bias[2] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
-    platform_delay(100);
-  } 
-  acc_bias[0] /= 10;
-  acc_bias[1] /= 10;
-  acc_bias[2] /= 10;
+  int i = 0;
+  do {
+    lsm6dsm_reg_t reg;
+      /* Read output only if new value is available */
+      lsm6dsm_status_reg_get(&dev_ctx, &reg.status_reg);
+      if (reg.status_reg.xlda) {
+        /* Read acceleration field data */
+        memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
+        lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
+        acc_bias[0] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
+        acc_bias[1] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
+        acc_bias[2] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
+        platform_delay(100);
+        i++;
+      }
+  } while (i < SAMPLE_SIZE);
+  acc_bias[0] /= SAMPLE_SIZE;
+  acc_bias[1] /= SAMPLE_SIZE;
+  acc_bias[2] /= SAMPLE_SIZE;
+  // for (int i = 0; i < 10; i++) {
+  //   lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
+  //   acc_bias[0] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
+  //   acc_bias[1] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
+  //   acc_bias[2] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
+  //   platform_delay(100);
+  // } 
+  // acc_bias[0] /= 10;
+  // acc_bias[1] /= 10;
+  // acc_bias[2] /= 10;
 
   // lsm6dsm_xl_usr_offset_set(&dev_ctx, (uint8_t*)acc_bias);
 
   // do the same for gyro
   int16_t gyro_bias[3] = {0, 0, 0};
-  int i = 0;
+  i = 0;
   do {
     lsm6dsm_reg_t reg;
 	    /* Read output only if new value is available */
@@ -220,10 +267,10 @@ int main(void)
         platform_delay(100);
         i++;
       }
-  } while (i < 10);
-  gyro_bias[0] /= (i+1);
-  gyro_bias[1] /= (i+1);
-  gyro_bias[2] /= (i+1);
+  } while (i < SAMPLE_SIZE);
+  gyro_bias[0] /= SAMPLE_SIZE;
+  gyro_bias[1] /= SAMPLE_SIZE;
+  gyro_bias[2] /= SAMPLE_SIZE;
 
   // LORA MODULE CONFIGURATION
   // platform_delay(100);
@@ -306,8 +353,24 @@ int main(void)
 	                           data_raw_temperature);
 	      // printf("Temperature [degC]:%6.2f\r\n",
 	      //         temperature_degC);
-        printf("%.2f,25.25\r\n", temperature_degC);
+        printf("%.2f,101.325\r\n", temperature_degC);
 	    }
+
+      // uint8_t int_status;
+      // struct bmp5_sensor_data bmp5_data;
+      //   rslt = bmp5_get_interrupt_status(&int_status, &bmp5_ctx);
+      //   bmp5_error_codes_print_result("bmp5_get_interrupt_status", rslt);
+
+      //   if (int_status & BMP5_INT_ASSERTED_DRDY)
+      //   {
+      //       rslt = bmp5_get_sensor_data(&bmp5_data, &osr_odr_press_cfg, &bmp5_ctx);
+      //       bmp5_error_codes_print_result("bmp5_get_sensor_data", rslt);
+
+      //       if (rslt == BMP5_OK)
+      //       {
+      //           printf("%f\r\n", bmp5_data.pressure);
+      //       }
+      //   }
     //   llcc68_set_buffer_base_address(&radio_ctx, 0x00, 0x00);
     // llcc68_write_buffer(&radio_ctx, 0x00, (uint8_t*)"Hello World!\r\n", 14);
     // llcc68_set_lora_mod_params(&radio_ctx, &mod_params);
@@ -642,6 +705,131 @@ static int32_t llcc68_platform_reset(void *handle) {
   HAL_Delay(1);
   return 0;
 }
+
+static int32_t bmp5_read(uint8_t reg_addr, uint8_t * reg_data, uint32_t len, void *intf_ptr) {
+  HAL_GPIO_WritePin(CS_PRESSURE_GPIO_Port, CS_PRESSURE_Pin, GPIO_PIN_RESET);
+  HAL_SPI_Transmit(&hspi1, &reg_addr, 1, 1000);
+	  HAL_SPI_Receive(&hspi1, reg_data, len, 1000);
+	  HAL_GPIO_WritePin(CS_PRESSURE_GPIO_Port, CS_PRESSURE_Pin, GPIO_PIN_SET);
+  return 0;
+}
+
+static int32_t bmp5_write(uint8_t reg_addr,
+  const uint8_t * reg_data, uint32_t len, void *intf_ptr) {
+  HAL_GPIO_WritePin(CS_PRESSURE_GPIO_Port, CS_PRESSURE_Pin, GPIO_PIN_RESET);
+  HAL_SPI_Transmit(&hspi1, &reg_addr, 1, 1000);
+	HAL_SPI_Transmit(&hspi1, (uint8_t*) reg_data, len, 1000);
+  HAL_GPIO_WritePin(CS_PRESSURE_GPIO_Port, CS_PRESSURE_Pin, GPIO_PIN_SET);
+  return 0;
+}
+
+/*!
+ *  @brief Prints the execution status of the APIs.
+ */
+void bmp5_error_codes_print_result(const char api_name[], int8_t rslt)
+{
+    if (rslt != BMP5_OK)
+    {
+        printf("%s\t", api_name);
+        if (rslt == BMP5_E_NULL_PTR)
+        {
+            printf("Error [%d] : Null pointer\r\n", rslt);
+        }
+        else if (rslt == BMP5_E_COM_FAIL)
+        {
+            printf("Error [%d] : Communication failure\r\n", rslt);
+        }
+        else if (rslt == BMP5_E_DEV_NOT_FOUND)
+        {
+            printf("Error [%d] : Device not found\r\n", rslt);
+        }
+        else if (rslt == BMP5_E_INVALID_CHIP_ID)
+        {
+            printf("Error [%d] : Invalid chip id\r\n", rslt);
+        }
+        else if (rslt == BMP5_E_POWER_UP)
+        {
+            printf("Error [%d] : Power up error\r\n", rslt);
+        }
+        else if (rslt == BMP5_E_POR_SOFTRESET)
+        {
+            printf("Error [%d] : Power-on reset/softreset failure\r\n", rslt);
+        }
+        else if (rslt == BMP5_E_INVALID_POWERMODE)
+        {
+            printf("Error [%d] : Invalid powermode\r\n", rslt);
+        }
+        else
+        {
+            /* For more error codes refer "*_defs.h" */
+            printf("Error [%d] : Unknown error code\r\n", rslt);
+        }
+    }
+}
+static int8_t bmp5_set_config(struct bmp5_osr_odr_press_config *osr_odr_press_cfg, struct bmp5_dev *dev)
+{
+    int8_t rslt;
+    struct bmp5_iir_config set_iir_cfg;
+    struct bmp5_int_source_select int_source_select;
+
+    rslt = bmp5_set_power_mode(BMP5_POWERMODE_STANDBY, dev);
+    bmp5_error_codes_print_result("bmp5_set_power_mode1", rslt);
+
+    if (rslt == BMP5_OK)
+    {
+        /* Get default odr */
+        rslt = bmp5_get_osr_odr_press_config(osr_odr_press_cfg, dev);
+        bmp5_error_codes_print_result("bmp5_get_osr_odr_press_config", rslt);
+
+        if (rslt == BMP5_OK)
+        {
+            /* Set ODR as 50Hz */
+            osr_odr_press_cfg->odr = BMP5_ODR_50_HZ;
+
+            /* Enable pressure */
+            osr_odr_press_cfg->press_en = BMP5_ENABLE;
+
+            /* Set Over-sampling rate with respect to odr */
+            osr_odr_press_cfg->osr_t = BMP5_OVERSAMPLING_64X;
+            osr_odr_press_cfg->osr_p = BMP5_OVERSAMPLING_4X;
+
+            rslt = bmp5_set_osr_odr_press_config(osr_odr_press_cfg, dev);
+            bmp5_error_codes_print_result("bmp5_set_osr_odr_press_config", rslt);
+        }
+
+        if (rslt == BMP5_OK)
+        {
+            set_iir_cfg.set_iir_t = BMP5_IIR_FILTER_COEFF_1;
+            set_iir_cfg.set_iir_p = BMP5_IIR_FILTER_COEFF_1;
+            set_iir_cfg.shdw_set_iir_t = BMP5_ENABLE;
+            set_iir_cfg.shdw_set_iir_p = BMP5_ENABLE;
+
+            rslt = bmp5_set_iir_config(&set_iir_cfg, dev);
+            bmp5_error_codes_print_result("bmp5_set_iir_config", rslt);
+        }
+
+        if (rslt == BMP5_OK)
+        {
+            rslt = bmp5_configure_interrupt(BMP5_PULSED, BMP5_ACTIVE_HIGH, BMP5_INTR_PUSH_PULL, BMP5_INTR_ENABLE, dev);
+            bmp5_error_codes_print_result("bmp5_configure_interrupt", rslt);
+
+            if (rslt == BMP5_OK)
+            {
+                /* Note : Select INT_SOURCE after configuring interrupt */
+                int_source_select.drdy_en = BMP5_ENABLE;
+                rslt = bmp5_int_source_select(&int_source_select, dev);
+                bmp5_error_codes_print_result("bmp5_int_source_select", rslt);
+            }
+        }
+
+        /* Set powermode as normal */
+        rslt = bmp5_set_power_mode(BMP5_POWERMODE_NORMAL, dev);
+        bmp5_error_codes_print_result("bmp5_set_power_mode", rslt);
+    }
+
+    return rslt;
+}
+
 
 /*
  * @brief  platform specific delay (platform dependent)
