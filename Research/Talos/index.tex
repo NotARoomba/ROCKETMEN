@@ -72,13 +72,13 @@ We decided to utilize the LSM6DM IMU sensor for the Talos project. This sensor c
       \includegraphics[width=\textwidth]{ldsm6m.png}
 \end{figure}
 \subsubsection*{Pressure Sensor}
+For the pressure sensor, we decided to use the BMP580 (see figure \ref{fig:bmp580}).
 \begin{figure}[p]
       \caption{BMP580 Pressure Sensor\cite{BMP580}}
       \label{fig:bmp580}
       \centering
       \includegraphics[width=\textwidth]{bmp580.jpg}
-\end{figure}
-For the pressure sensor, we decided to use the BMP580 (see figure \ref{fig:bmp580}). This sensor is capable of measuring pressure and temperature, which can be used to calculate the rocket's altitude and airspeed. It is also very accurate, more so than the more commonly used BMP280. \cite{Bosch_Sensortec_2024}
+\end{figure}This sensor is capable of measuring pressure and temperature, which can be used to calculate the rocket's altitude and airspeed. It is also very accurate, more so than the more commonly used BMP280. \cite{Bosch_Sensortec_2024}
 
 \subsubsection{Communication Module}
 For the telemetry system, we decided to use the LLCC68 LoRa module and more specifically the DL-LLCC68-S-433 package. We use this package specifically because it transmits at 433 MHz, whose frequency is used for long range communication.
@@ -101,8 +101,40 @@ After meticulously choosing parts, we decided to embark on the design phase. Thi
       \item Pull-up and Pull-down resistors, resistors that are used to set the default state of a pin. Pull-up resistors are used to set the default state of a pin to high, while pull-down resistors are used to set the default state of a pin to low.
       \item Pull-up and Pull-down capacitors, capacitors that are used to filter out noise in a circuit. Pull-up capacitors are used to filter out noise in a high state, while pull-down capacitors are used to filter out noise in a low state.
       \item Decoupling capacitors, capacitors that are used to filter out noise in a circuit. These capacitors are used to filter out noise in the power supply.
-\end{itemize}
+      \item Cross-talk, a phenomenon where signals from one circuit interfere with signals from another circuit. This can cause errors in the data being transmitted.
 
+
+\end{itemize}
+Finally after reading all the datasheets for each component we created the schematic for the Talos project. The microcontroler schematic is shown in figure \ref{fig:talos_microcontroller_schematic}.
+\begin{figure}[h]
+      \caption{Talos Microcontroller Schematic}
+      \label{fig:talos_microcontroller_schematic}
+      \centering
+      \includegraphics[width=\textwidth]{Microcontroller.png}
+\end{figure}
+\begin{figure}[h]
+      \caption{Talos I/O Schematic}
+      \label{fig:talos_io_schematic}
+      \centering
+      \includegraphics[width=\textwidth]{IO.png}
+\end{figure}
+and the I/O schematic is shown in figure \ref{fig:talos_io_schematic}.
+\begin{figure}[h!]
+      \caption{Talos PCB Layout}
+      \label{fig:talos_pcb_layout}
+      \centering
+      \includegraphics[width=0.5\textwidth]{PCB.png}
+\end{figure}
+
+\subsubsection{PCB Layout}
+After designing the schematics, we moved on to the PCB layout. This involved placing the components on the board and routing the traces to connect them. We had to consider factors such as signal integrity, power distribution, and thermal management. We also had to ensure that the board was compact enough to fit inside the rocket. This was a challenging task as we had to learn how to use the PCB design software and understand the constraints of the board. We had to learn how to route traces, place components, and not make any mistakes (which we did). Here is the final PCB layout for the Talos project (see figure \ref{fig:talos_pcb_layout}).
+
+
+We decided to put the microcontroller in the center of the board, with the sensors and communication modules around it. This was done to minimize the length of the traces and reduce the risk of interference. We also added decoupling capacitors near the power supply pins of each component to filter out noise. We also added pull-up and pull-down resistors to set the default state of the pins. Finally, we added a USB-C port for programming and debugging the board. Along the sides we took out pins to control tha parachute and vector thrusting system. We also added a battery connector to power the board with a 3.3V battery. Just in case, we exposed the serial lins so we could program the board in the event that the USB-C port failed.
+
+\subsection{Implementation}
+After designing th PCB, we moved on to the implementation phase. This phase consisted of ordering the PCB through JLCPCB and later programming the board. Although we talked with various professors before sending the board to be made, we still made small but critical errors. When we first recived the board, we encountered the first errors which was that firstly, the microcontroller would not turn on, and secondly, the serial lines were switchd up. Looking at the schematic in figure \ref{fig:talos_io_schematic}, in the USB/Serial section ther is a chip with the label CH340N. This chip is responsible for the USB to Serial convrsion. Part of that serial conversion is to swap the lines RXD and TXD because the output of the USB is the input to the Microcontroller. After reading the datasheet more carefully we discovered that we crossed the lines on the CH340N chip as well as the mictrocontroller, which resulted in the USB-C port not functioning correctly. We also missed two decoupling capacitors that were essential for a correct boot-up of the chip. After soldering the capacitors and crossing the RXD/TXD pins, the board booted up correctly. We then proceeded to program the board using the STM32CubeIDE, a free IDE provided by STMicroelectronics\cite{STM32CubeIDE}. We had to learn how to use the IDE, how to program the microcontroller, and how to interface with the sensors.
+\newpage
 
 \printbibliography
 
