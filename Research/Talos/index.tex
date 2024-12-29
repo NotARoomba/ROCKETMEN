@@ -1,0 +1,56 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{csquotes}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+\title{Talos: A Beginner's Exploration of Flight Control and Telemetry for Model Rockets}
+\author{Nathan D. Alspaugh, Samuel J. Correa}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+      This paper documents the process of learning to design and build Talos, an avionics and telemetry system for model rockets. From a beginners persepective, this project explores key concepts in pcb design, embedded systems, and telemetry.
+\end{abstract}
+
+\section{Introduction}
+
+The avionics and telemetry systems are critical components of modern rocketry as they enable precise navigation, monitoring, and allow for the collection of data to later undergo optimizations. Being students with a passion for aerospace and mechanical engineering, we decided to explore these topics by building an avionics and telemetry system for model rockets. Talos, named after the mythical giant bronze automaton, is a project that aims to provide a beginner's perspective on the design and implementation of such systems. This paper documents the process of learning to design and build Talos, from the initial planning phase to the final implementation and testing.
+
+\section{Background Research}
+
+The term Avionics refers to the electronic systems used in aircraft and spacecraft. Avionics systems are responsible for navigation, communication, flight control, and monitoring. In the context of model rockets, avionics systems are used to control the flight path, collect data, and transmit telemetry to the ground station. This is made possible using a combination of Flight Control Systems, Air Data Systems, and Inertial Sensor Systems.
+
+
+The Flight Control System employed in Talos is based off of the auto stabilization (or stability augmentation) system described in \cite{Collinson_2012}. This system uses a combination of sensors to measure the vehicle's orientation and adjust the control surfaces to maintain a desired flight path.
+
+
+The Air Data System is responsible for measuring the vehicle's altitude and airspeed. The system should compute these values from a combination of pressure and temperature sensors.
+
+The Inertial Sensor System is used to measure the vehicle's orientation and acceleration. This is achieved using gyroscopes and accelerometers. In conjunction with the Air Data System, the INS can be used to compute the vehicle's velocity vector information.
+
+\section{Methodology}
+
+The Talos project was divided into three main phases: Planning, Design, and Implementation. Each phase involved a series of tasks and challenges that needed to be addressed.
+
+\subsection{Planning}
+
+The planning phase involved defining the project scope, setting goals, and identifying the components needed. We started by researching existing avionics systems and telemetry solutions to understand the requirements and challenges involved. We then defined the key features of Talos, such as flight control, telemetry, and data logging. We also identified the components needed, such as sensors, microcontrollers, and communication modules.
+\subsubsection{Breakout Board or Custom PCB?}
+After thorough research, we decided to create our own custom PCB for the Talos project. This was heavily impacted by the space constraints of the rocket, as well as the need for a powerful microcontroller with custom sensors that normal breakout boards (Arduino or ESP32) do not have. When we started the project, we had no experience with PCB design so we had to learn how to use EasyEDA, a free online PCB design tool.
+\subsubsection{Microcontroller Selection}
+We decided to use the STM32F405 microcontroller for the Talos project. This microcontroller has a powerful ARM Cortex-M4 core (180 mHz), plenty of I/O pins, and built-in support for various communication protocols. We chose this microcontroller because of its speed and versatility, as well as the availability of development tools and libraries. The STM32 Family has also been used in other aerospace applications, such as the CubeSat project \cite{Yost_2023}.
+
+\printbibliography
+
+\end{document}

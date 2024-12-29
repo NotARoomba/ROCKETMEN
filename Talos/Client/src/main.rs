@@ -152,9 +152,9 @@ async fn main() {
                 current_data.angle_x += data[3] * (dt as f32);
                 current_data.angle_y += data[4] * (dt as f32);
                 current_data.angle_z += data[5] * (dt as f32);
-                current_data.vel_x += current_data.accel_x * dt;
-                current_data.vel_y += current_data.accel_y * dt;
-                current_data.vel_z += current_data.accel_z * dt;
+                current_data.vel_x = current_data.accel_x * dt;
+                current_data.vel_y = current_data.accel_y * dt;
+                current_data.vel_z = current_data.accel_z * dt;
                 current_data.avg_accel = f32::sqrt(
                     current_data.accel_x.powi(2) +
                         current_data.accel_y.powi(2) +
