@@ -54,7 +54,7 @@ The planning phase involved defining the project scope, setting goals, and ident
 \subsubsection{Breakout Board or Custom Printed Circuit Board (PCB)?}
 After thorough research, we decided to create our own custom PCB for the Talos project. This was heavily impacted by the space constraints of the rocket, as well as the need for a powerful microcontroller with custom sensors that normal breakout boards (Arduino or ESP32) do not have. When we started the project, we had no experience with PCB design so we had to learn how to use EasyEDA, a free online PCB design tool.
 \subsubsection{Microcontroller Selection}
-We decided to use the STM32F405 microcontroller for the Talos project. This microcontroller has a powerful ARM Cortex-M4 core (180 mHz), plenty of I/O pins, and built-in support for various communication protocols. We chose this microcontroller because of its speed and versatility (see figure \ref{fig:microcontrollers}), as well as the availability of development tools and libraries. The STM32 Family has also been used in other aerospace applications, such as the CubeSat project \cite{Yost_2023}.
+We decided to use the STM32F405 microcontroller for the Talos project. This microcontroller has a powerful ARM Cortex-M4 core (180 mHz), plenty of I/O pins, and built-in support for various communication protocols. We chose this microcontroller because of its speed and versatility (see figure \ref{fig:microcontrollers}), as well as the availability of development tools and libraries. The STM32 Family has also been used in other aerospace applications, such as the CubeSat project\cite{Yost_2023}.
 \begin{figure}[p]
       \caption{Table of STM32 Microcontrollers\cite{STM32_Table}}
       \label{fig:microcontrollers}
@@ -78,12 +78,13 @@ For the pressure sensor, we decided to use the BMP580 (see figure \ref{fig:bmp58
       \label{fig:bmp580}
       \centering
       \includegraphics[width=\textwidth]{bmp580.jpg}
-\end{figure}This sensor is capable of measuring pressure and temperature, which can be used to calculate the rocket's altitude and airspeed. It is also very accurate, more so than the more commonly used BMP280. \cite{Bosch_Sensortec_2024}
+\end{figure}This sensor is capable of measuring pressure and temperature, which can be used to calculate the rocket's altitude and airspeed. It is also very accurate, more so than the more commonly used BMP280.\cite{Bosch_Sensortec_2024}
 
 \subsubsection{Communication Module}
 For the telemetry system, we decided to use the LLCC68 LoRa module and more specifically the DL-LLCC68-S-433 package. We use this package specifically because it transmits at 433 MHz, whose frequency is used for long range communication.
 
 \subsection{Design}
+
 After meticulously choosing parts, we decided to embark on the design phase. This phase involved creating the schematics and PCB layout for Talos. We started by designing the schematics in EasyEDA, which involved connecting the microcontroller, sensors, and communication modules. This was a huge challenge as we did not know how to connect each of the sensors. We had to learn how to read datasheets and understand the electrical characteristics of each component. Taking into account figure \ref{fig:lsm6dm}, we knew the basics of electronics, GND means ground, VDD means power, but the other pins were a complete mystery. Here are some terms that we had to learn:
 \begin{itemize}
       \item Resistor: A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element.
@@ -105,26 +106,25 @@ After meticulously choosing parts, we decided to embark on the design phase. Thi
 
 
 \end{itemize}
-Finally after reading all the datasheets for each component we created the schematic for the Talos project. The microcontroler schematic is shown in figure \ref{fig:talos_microcontroller_schematic}.
-\begin{figure}[h]
-      \caption{Talos Microcontroller Schematic}
-      \label{fig:talos_microcontroller_schematic}
-      \centering
-      \includegraphics[width=\textwidth]{Microcontroller.png}
-\end{figure}
-\begin{figure}[h]
-      \caption{Talos I/O Schematic}
-      \label{fig:talos_io_schematic}
-      \centering
-      \includegraphics[width=\textwidth]{IO.png}
-\end{figure}
-and the I/O schematic is shown in figure \ref{fig:talos_io_schematic}.
 \begin{figure}[h!]
       \caption{Talos PCB Layout}
       \label{fig:talos_pcb_layout}
       \centering
       \includegraphics[width=0.5\textwidth]{PCB.png}
 \end{figure}
+\begin{figure}[h]
+      \caption{Talos Microcontroller Schematic}
+      \label{fig:talos_microcontroller_schematic}
+      \centering
+      \includegraphics[width=\textwidth]{Microcontroller.png}
+      \caption{Talos I/O Schematic}
+      \label{fig:talos_io_schematic}
+      \centering
+      \includegraphics[width=\textwidth]{IO.png}
+\end{figure}
+Finally after reading all the datasheets for each component we created the schematic for the Talos project. The microcontroler schematic is shown in figure \ref{fig:talos_microcontroller_schematic}.
+
+and the I/O schematic is shown in figure \ref{fig:talos_io_schematic}.
 
 \subsubsection{PCB Layout}
 After designing the schematics, we moved on to the PCB layout. This involved placing the components on the board and routing the traces to connect them. We had to consider factors such as signal integrity, power distribution, and thermal management. We also had to ensure that the board was compact enough to fit inside the rocket. This was a challenging task as we had to learn how to use the PCB design software and understand the constraints of the board. We had to learn how to route traces, place components, and not make any mistakes (which we did). Here is the final PCB layout for the Talos project (see figure \ref{fig:talos_pcb_layout}).
@@ -133,9 +133,26 @@ After designing the schematics, we moved on to the PCB layout. This involved pla
 We decided to put the microcontroller in the center of the board, with the sensors and communication modules around it. This was done to minimize the length of the traces and reduce the risk of interference. We also added decoupling capacitors near the power supply pins of each component to filter out noise. We also added pull-up and pull-down resistors to set the default state of the pins. Finally, we added a USB-C port for programming and debugging the board. Along the sides we took out pins to control tha parachute and vector thrusting system. We also added a battery connector to power the board with a 3.3V battery. Just in case, we exposed the serial lins so we could program the board in the event that the USB-C port failed.
 
 \subsection{Implementation}
-After designing th PCB, we moved on to the implementation phase. This phase consisted of ordering the PCB through JLCPCB and later programming the board. Although we talked with various professors before sending the board to be made, we still made small but critical errors. When we first recived the board, we encountered the first errors which was that firstly, the microcontroller would not turn on, and secondly, the serial lines were switchd up. Looking at the schematic in figure \ref{fig:talos_io_schematic}, in the USB/Serial section ther is a chip with the label CH340N. This chip is responsible for the USB to Serial convrsion. Part of that serial conversion is to swap the lines RXD and TXD because the output of the USB is the input to the Microcontroller. After reading the datasheet more carefully we discovered that we crossed the lines on the CH340N chip as well as the mictrocontroller, which resulted in the USB-C port not functioning correctly. We also missed two decoupling capacitors that were essential for a correct boot-up of the chip. After soldering the capacitors and crossing the RXD/TXD pins, the board booted up correctly. We then proceeded to program the board using the STM32CubeIDE, a free IDE provided by STMicroelectronics\cite{STM32CubeIDE}. We had to learn how to use the IDE, how to program the microcontroller, and how to interface with the sensors.
-\newpage
+After designing the PCB, we moved on to the implementation phase. This phase consisted of ordering the PCB through JLCPCB and later programming the board. Although we talked with various professors before sending the board to be made, we still made small but critical errors. When we first recived the board, we encountered the first errors which was that firstly, the microcontroller would not turn on, and secondly, the serial lines were switchd up. Looking at the schematic in figure \ref{fig:talos_io_schematic}, in the USB/Serial section ther is a chip with the label CH340N. This chip is responsible for the USB to Serial convrsion. Part of that serial conversion is to swap the lines RXD and TXD because the output of the USB is the input to the Microcontroller. After reading the datasheet more carefully we discovered that we crossed the lines on the CH340N chip as well as the mictrocontroller, which resulted in the USB-C port not functioning correctly. We also missed two decoupling capacitors that were essential for a correct boot-up of the chip. After soldering the capacitors and crossing the RXD/TXD pins, the board booted up correctly.
+\begin{figure}[h]
+      \caption{Website with no data}
+      \label{fig:website_no_data}
+      \centering
+      \includegraphics[width=\textwidth]{website_no_data.png}
+      \caption{Website with data}
+      \label{fig:website_data}
+      \includegraphics[width=\textwidth]{website_data.png}
+\end{figure}
+\subsubsection{Programming}
+We then proceeded to program the board using the STM32CubeIDE, a free IDE provided by STMicroelectronics\cite{STM32CubeIDE}. We had to learn how to use the IDE, how to program the microcontroller, and how to interface with the sensors al in the C programming language. This was acheived throught the use of open source drivers that we ported to the STM32 MCU. After configuring all the drivers for the various sensors, we discovered another error. In the BMP540 we forgot two more decoupling capacitors that impeded the sensor from starting up. We are currently working on a resolution to this problem as the soldering technique required to fix the issue is very precise.
+\subsubsection{Testing}
+To tst the board, we designed and created an interactive web page that would display the data from the sensors in real time. We used the serial port to send the data through websockets to a web server written in Rust. We chose Rust because of its speed and low memory usage which is essential in any real-time application. We then used the websockets to send the data to the web page. The web page was written in React, Typescript, and TailwindCSS. We used React for the front-end because of its ease of use and the ability to create interactive web pages. We used Typescript for the back-end because of its type safety and the ability to catch errors at compile time. We used TailwindCSS for the styling because of its utility-first approach and the ability to create responsive designs. The web page displayed the data from the sensors in real time, including the rocket's orientation, altitude, airspeed, and temperature. The website is shown in figures \ref{fig:website_no_data} and \ref{fig:website_data} , and it can be accessed at \texttt{https://talos.notaroomba.dev}.
 
+\section{Results}
+After starting the project in August of 2024, we were surprised at how much we learned in such a short time. We learned how to design a PCB, how to program a microcontroller, and how to interface with sensors. We also learned how to use various tools and libraries, such as EasyEDA, STM32CubeIDE, Rust, C, and WebSockets. We also learned how to work as a team, how to communicate effectively, and how to solve problems together. We also learned how to manage our time, how to set goals, and how to achieve them. We also learned how to document our progress, how to write reports, and how to present our work. We also learned how to learn, how to research, and how to teach ourselves new things. We also learned how to fail, how to make mistakes, and how to learn from them. We also learned how to succeed, how to achieve our goals, and how to be proud of our work. We also learned how to inspire others, how to share our knowledge, and how to make a difference. We also learned how to dream, how to imagine, and how to create. We also learned how to explore, how to discover, and how to innovate. We also learned how to be curious, how to ask questions, and how to seek answers. We also learned how to be passionate, how to be dedicated, and how to be relentless. We also learned how to be Talos.
+
+\section{Future Work}
+In the future, we plan to continue working on the Talos project and improve the avionics and telemetry systems. We plan to add more sensors, such as a GPS module, a magnetometer, and a barometer. We also plan on re-doing the layout of the PCB and place the IMU sensor in the center of the board. The sensors we chose could also be improved as new versions come out. For anyone who also wants to towk on this project, we recommend that you have a basic understanding of electronics, programming, and engineering design principles. Don't forget to double check your work and \textbf{ALWAYS} read through the datasheets.
 \printbibliography
 
 \end{document}
