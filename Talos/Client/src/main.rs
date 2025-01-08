@@ -76,6 +76,7 @@ async fn main() {
         };
 
         let (mut ws_stream, _) = connect_async(api_url).await.expect("Failed to connect");
+
         loop {
             // Read data from the serial port
             received_text.clear();
@@ -144,14 +145,16 @@ async fn main() {
                 let dt =
                     ((chrono::Utc::now().timestamp_micros() - current_data.time) as f32) /
                     1000000.0;
+
                 println!("dt: {}", dt);
+
                 // println!("{:?}", data);
-                current_data.accel_x = data[0] * (dt as f32);
-                current_data.accel_y = data[1] * (dt as f32);
-                current_data.accel_z = data[2] * (dt as f32);
-                current_data.angle_x += data[3] * (dt as f32);
-                current_data.angle_y += data[4] * (dt as f32);
-                current_data.angle_z += data[5] * (dt as f32);
+                current_data.accel_x = data[0] * (dt as f32) - biases[0];
+                current_data.accel_y = data[1] * (dt as f32) - biases[1];
+                current_data.accel_z = data[2] * (dt as f32) - biases[2];
+                current_data.angle_x += data[3] * (dt as f32) - biases[3];
+                current_data.angle_y += data[4] * (dt as f32) - biases[4];
+                current_data.angle_z += data[5] * (dt as f32) - biases[5];
                 current_data.vel_x = current_data.accel_x * dt;
                 current_data.vel_y = current_data.accel_y * dt;
                 current_data.vel_z = current_data.accel_z * dt;

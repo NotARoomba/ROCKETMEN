@@ -40,7 +40,7 @@
         "STM32F405xx",
         "USE_HAL_DRIVER"
       ],
-      "compilerPath": "C:\\PROGRAM FILES (X86)\\ARM GNU TOOLCHAIN ARM-NONE-EABI\\13.3 REL1\\BIN\\ARM-NONE-EABI-GCC.EXE"
+      "compilerPath": "C:\\PROGRAM FILES (X86)\\ARM GNU TOOLCHAIN ARM-NONE-EABI\\13.3 REL1\\BIN\\arm-none-eabi-gcc.EXE"
     }
   ],
   "version": 4

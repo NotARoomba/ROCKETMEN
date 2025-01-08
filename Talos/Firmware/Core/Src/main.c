@@ -61,9 +61,9 @@ UART_HandleTypeDef huart1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SDIO_SD_Init(void);
-static void MX_SPI1_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
 // function prototype
 static int32_t lsm6dsm_platform_write(void *handle, uint8_t reg, const uint8_t *bufp,
@@ -74,6 +74,10 @@ static void platform_delay(uint32_t ms);
 
 static int32_t llcc68_platform_write_read(void *handle, const uint8_t *command, uint16_t command_length,
                                           uint8_t *data, uint16_t data_length);
+                                          static int32_t llcc68_platform_read(void *handle, const uint8_t *command, uint16_t command_length,
+                                          uint8_t *data, uint16_t data_length);
+                                          static int32_t llcc68_platform_write(void *handle, const uint8_t *command, uint16_t command_length,
+                                          const uint8_t *data, uint16_t data_length);
 static int32_t llcc68_platform_reset(void *handle);
 static int32_t bmp5_read(uint8_t reg_addr, uint8_t *read_data, uint32_t len, void *intf_ptr);
 static int32_t bmp5_write(uint8_t reg_addr,
@@ -125,10 +129,10 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SDIO_SD_Init();
-  MX_SPI1_Init();
   MX_USART1_UART_Init();
   MX_I2C1_Init();
   MX_FATFS_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
   //  HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, GPIO_PIN_SET);
@@ -140,10 +144,11 @@ int main(void)
   dev_ctx.handle = &hspi1;
 
   llcc68_ctx_t radio_ctx;
-  radio_ctx.write_reg = llcc68_platform_write_read;
-  radio_ctx.read_reg = llcc68_platform_write_read;
+  radio_ctx.write_reg = llcc68_platform_write;
+  radio_ctx.read_reg = llcc68_platform_read;
   radio_ctx.reset = llcc68_platform_reset;
   radio_ctx.handle = &hspi1;
+  radio_ctx.gpio = CS_WIRELESS_GPIO_Port;
 
   // int8_t rslt;
   // struct bmp5_dev bmp5_ctx;
@@ -193,8 +198,8 @@ int main(void)
   /*  Enable Block Data Update */
   lsm6dsm_block_data_update_set(&dev_ctx, PROPERTY_ENABLE);
   /* Set Output Data Rate for Acc and Gyro */
-  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_52Hz);
-  lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_52Hz);
+  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_6k66Hz);
+  lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_6k66Hz);
   /* Set full scale */
   lsm6dsm_xl_full_scale_set(&dev_ctx, LSM6DSM_2g);
   lsm6dsm_gy_full_scale_set(&dev_ctx, LSM6DSM_2000dps);
@@ -215,7 +220,7 @@ int main(void)
   // update the offset bias of acceleration
   platform_delay(1000);
 
-  const int SAMPLE_SIZE = 5;
+  const int SAMPLE_SIZE = 1000;
   //create a while loop that gets 5 sample of acceleration and calculate the average, then set the offset weight and write it to the sensor taking to account the above
   int16_t acc_bias[3] = {0, 0, 0};
   int i = 0;
@@ -230,7 +235,7 @@ int main(void)
         acc_bias[0] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
         acc_bias[1] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]);
         acc_bias[2] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]);
-        platform_delay(100);
+        // platform_delay(100);
         i++;
       }
   } while (i < SAMPLE_SIZE);
@@ -264,7 +269,7 @@ int main(void)
         gyro_bias[0] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]);
         gyro_bias[1] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]);
         gyro_bias[2] += lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]);
-        platform_delay(100);
+        // platform_delay(100);
         i++;
       }
   } while (i < SAMPLE_SIZE);
@@ -273,12 +278,13 @@ int main(void)
   gyro_bias[2] /= SAMPLE_SIZE;
 
   // LORA MODULE CONFIGURATION
+  // llcc68_reset(&radio_ctx);
   // platform_delay(100);
   //   llcc68_set_standby(&radio_ctx, LLCC68_STANDBY_CFG_RC);
   //   llcc68_set_pkt_type(&radio_ctx, LLCC68_PKT_TYPE_LORA);
   //   llcc68_set_rf_freq(&radio_ctx, 433000000);
-  //   // // 17dBm
-  //   // // {0x03, 0x05, 0x00, 0x01}
+  // //   // // 17dBm
+  // //   // // {0x03, 0x05, 0x00, 0x01}
   //   const llcc68_pa_cfg_params_t pa_cfg = {0x03,
   //     0x05,
   //    0x00,
@@ -286,9 +292,11 @@ int main(void)
   //   };
   //   const llcc68_pkt_params_lora_t pkt_params = {14, LLCC68_LORA_PKT_EXPLICIT, 14, true, false};
   //   const llcc68_mod_params_lora_t mod_params = {LLCC68_LORA_SF11, LLCC68_LORA_BW_250, LLCC68_LORA_CR_4_5, 0};
-  //   llcc68_set_pa_cfg(&radio_ctx, (llcc68_pa_cfg_params_t*) &pa_cfg);
+  //   llcc68_set_pa_cfg(&radio_ctx, &pa_cfg);
   //   // //The output power is defined as power in dBm in a range of - 9 (0xF7) to +22 (0x16) dBm by step of 1 dB
   //   llcc68_set_tx_params(&radio_ctx, 0x16, LLCC68_RAMP_200_US);
+  //   // llcc68_set_lora_mod_params(&radio_ctx, &mod_params);
+  //   // llcc68_set_lora_pkt_params(&radio_ctx, &pkt_params);
   //    platform_delay(100);
 
   /* USER CODE END 2 */
@@ -316,7 +324,6 @@ int main(void)
      lsm6dsm_reg_t reg;
 	    /* Read output only if new value is available */
 	    lsm6dsm_status_reg_get(&dev_ctx, &reg.status_reg);
-
 	    if (reg.status_reg.xlda) {
 	      /* Read acceleration field data */
 	      memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
@@ -329,7 +336,7 @@ int main(void)
 	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]) - acc_bias[2];
 	      // printf("Acceleration [mg]:%4.2f\t%4.2f\t%4.2f\r\n",
 	      //         acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
-        printf("%4.2f,%4.2f,%4.2f,", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
+        // printf("%4.2f,%4.2f,%4.2f,", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
 	    }
 
 	    if (reg.status_reg.gda) {
@@ -343,7 +350,7 @@ int main(void)
 	      angular_rate_mdps[2] =
 	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]) - gyro_bias[2];
 	      // printf("Angular rate [mdps]:%4.2f\t%4.2f\t%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
-	      printf("%4.2f,%4.2f,%4.2f,", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
+	      // printf("%4.2f,%4.2f,%4.2f,", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
 	    }
 	    if (reg.status_reg.tda) {
 	      /* Read temperature data */
@@ -353,8 +360,9 @@ int main(void)
 	                           data_raw_temperature);
 	      // printf("Temperature [degC]:%6.2f\r\n",
 	      //         temperature_degC);
-        printf("%.2f,101.325\r\n", temperature_degC);
+        // printf("%.2f,101.325\r\n", temperature_degC);
 	    }
+      printf("%4.2f,%4.2f,%4.2f,%4.2f,%4.2f,%4.2f,%.2f,101.325\r\n", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2], angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2], temperature_degC);
 
       // uint8_t int_status;
       // struct bmp5_sensor_data bmp5_data;
@@ -386,14 +394,15 @@ int main(void)
     // llcc68_write_register(&radio_ctx, 0x06C6, (uint8_t)0x78, 1);
     // llcc68_write_register(&radio_ctx, 0x06C7, (uint8_t)0x89, 1);
 
-    // llcc68_set_tx(&radio_ctx, 0);
+    // llcc68_set_tx(&radio_ctx, 100);
+    // platform_delay(100);
+    // //  llcc68_set_standby(&radio_ctx, LLCC68_STANDBY_CFG_RC);
     //   llcc68_chip_status_t chip_status;
-    //   llcc68_status_t lora_status = llcc68_get_status(&radio_ctx, &chip_status);
-    //   printf("LoRa Status: %d, Chip Status: %d\r\n", lora_status, chip_status.cmd_status);
-    //  llcc68_set_standby(&radio_ctx, LLCC68_STANDBY_CFG_RC);
-    //  ///print if busy or not with busy gpio pin
+    //   llcc68_get_status(&radio_ctx, &chip_status);
+    //   printf("Chip Mode: %d, Chip Status: %d\r\n", chip_status.chip_mode, chip_status.cmd_status);
+     ///print if busy or not with busy gpio pin
     //  HAL_GPIO_ReadPin(BUSY_GPIO_Port, BUSY_Pin) == GPIO_PIN_SET ? printf("Busy\r\n") : printf("Not Busy\r\n");
-      platform_delay(100);
+      // platform_delay(100);
   }
   /* USER CODE END 3 */
 }
@@ -532,7 +541,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi1.Init.NSS = SPI_NSS_HARD_OUTPUT;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
@@ -654,6 +663,16 @@ static void MX_GPIO_Init(void)
 int _write(int fd, char* ptr, int len) {
 	HAL_UART_Transmit(&huart1, (uint8_t*) ptr, len, 0xffffff);
 	return len;
+}
+
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if(GPIO_Pin == ANTENNA_IRQ_Pin) {
+    printf("IRQ HANDLEDDD FORM THE ANTENAAAAAAA");
+  } else {
+      __NOP();
+  }
 }
 
 
@@ -840,6 +859,24 @@ static int8_t bmp5_set_config(struct bmp5_osr_odr_press_config *osr_odr_press_cf
 static void platform_delay(uint32_t ms)
 {
   HAL_Delay(ms);
+}
+
+static int32_t llcc68_platform_read(void *handle, const uint8_t* command, const uint16_t command_length,
+                                     uint8_t* data, const uint16_t data_length ) {
+  HAL_GPIO_WritePin(CS_WIRELESS_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_RESET);
+  HAL_SPI_Transmit(&hspi1, command, command_length, 1000);
+	  HAL_SPI_Receive(&hspi1, data, data_length, 1000);
+	  HAL_GPIO_WritePin(CS_WIRELESS_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_SET);
+  return 0;
+}
+
+static int32_t llcc68_platform_write(void *handle, const uint8_t* command, const uint16_t command_length,
+                                     const uint8_t* data, const uint16_t data_length ) {
+  HAL_GPIO_WritePin(CS_WIRELESS_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_RESET);
+  HAL_SPI_Transmit(&hspi1, command, command_length, 1000);
+  HAL_SPI_Transmit(&hspi1, data, data_length, 1000);
+  HAL_GPIO_WritePin(CS_WIRELESS_GPIO_Port, CS_WIRELESS_Pin, GPIO_PIN_SET);
+  return 0;
 }
 
 static int32_t llcc68_platform_write_read(void *handle, const uint8_t* command, const uint16_t command_length,

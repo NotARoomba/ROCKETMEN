@@ -1,0 +1,1267 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"custom_bus.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/custom_bus.c"
+  20              		.section	.text.SPI1_MspInit,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	SPI1_MspInit:
+  27              	.LVL0:
+  28              	.LFB141:
+   1:Core/Src/custom_bus.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/custom_bus.c **** /**
+   3:Core/Src/custom_bus.c ****   ******************************************************************************
+   4:Core/Src/custom_bus.c ****   * @file           : custom_bus.c
+   5:Core/Src/custom_bus.c ****   * @brief          : source file for the BSP BUS IO driver
+   6:Core/Src/custom_bus.c ****   ******************************************************************************
+   7:Core/Src/custom_bus.c ****   * @attention
+   8:Core/Src/custom_bus.c ****   *
+   9:Core/Src/custom_bus.c ****   * Copyright (c) 2025 STMicroelectronics.
+  10:Core/Src/custom_bus.c ****   * All rights reserved.
+  11:Core/Src/custom_bus.c ****   *
+  12:Core/Src/custom_bus.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/custom_bus.c ****   * in the root directory of this software component.
+  14:Core/Src/custom_bus.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/custom_bus.c ****   *
+  16:Core/Src/custom_bus.c ****   ******************************************************************************
+  17:Core/Src/custom_bus.c **** */
+  18:Core/Src/custom_bus.c **** /* USER CODE END Header */
+  19:Core/Src/custom_bus.c **** 
+  20:Core/Src/custom_bus.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/custom_bus.c **** #include "custom_bus.h"
+  22:Core/Src/custom_bus.c **** 
+  23:Core/Src/custom_bus.c **** __weak HAL_StatusTypeDef MX_SPI1_Init(SPI_HandleTypeDef* hspi);
+  24:Core/Src/custom_bus.c **** 
+  25:Core/Src/custom_bus.c **** /** @addtogroup BSP
+  26:Core/Src/custom_bus.c ****   * @{
+  27:Core/Src/custom_bus.c ****   */
+  28:Core/Src/custom_bus.c **** 
+  29:Core/Src/custom_bus.c **** /** @addtogroup CUSTOM
+  30:Core/Src/custom_bus.c ****   * @{
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 2
+
+
+  31:Core/Src/custom_bus.c ****   */
+  32:Core/Src/custom_bus.c **** 
+  33:Core/Src/custom_bus.c **** /** @defgroup CUSTOM_BUS CUSTOM BUS
+  34:Core/Src/custom_bus.c ****   * @{
+  35:Core/Src/custom_bus.c ****   */
+  36:Core/Src/custom_bus.c **** 
+  37:Core/Src/custom_bus.c **** /** @defgroup CUSTOM_BUS_Exported_Variables BUS Exported Variables
+  38:Core/Src/custom_bus.c ****   * @{
+  39:Core/Src/custom_bus.c ****   */
+  40:Core/Src/custom_bus.c **** 
+  41:Core/Src/custom_bus.c **** SPI_HandleTypeDef hspi1;
+  42:Core/Src/custom_bus.c **** /**
+  43:Core/Src/custom_bus.c ****   * @}
+  44:Core/Src/custom_bus.c ****   */
+  45:Core/Src/custom_bus.c **** 
+  46:Core/Src/custom_bus.c **** /** @defgroup CUSTOM_BUS_Private_Variables BUS Private Variables
+  47:Core/Src/custom_bus.c ****   * @{
+  48:Core/Src/custom_bus.c ****   */
+  49:Core/Src/custom_bus.c **** 
+  50:Core/Src/custom_bus.c **** #if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
+  51:Core/Src/custom_bus.c **** static uint32_t IsSPI1MspCbValid = 0;
+  52:Core/Src/custom_bus.c **** #endif /* USE_HAL_SPI_REGISTER_CALLBACKS */
+  53:Core/Src/custom_bus.c **** static uint32_t SPI1InitCounter = 0;
+  54:Core/Src/custom_bus.c **** 
+  55:Core/Src/custom_bus.c **** /**
+  56:Core/Src/custom_bus.c ****   * @}
+  57:Core/Src/custom_bus.c ****   */
+  58:Core/Src/custom_bus.c **** 
+  59:Core/Src/custom_bus.c **** /** @defgroup CUSTOM_BUS_Private_FunctionPrototypes  BUS Private Function
+  60:Core/Src/custom_bus.c ****   * @{
+  61:Core/Src/custom_bus.c ****   */
+  62:Core/Src/custom_bus.c **** 
+  63:Core/Src/custom_bus.c **** static void SPI1_MspInit(SPI_HandleTypeDef* hSPI);
+  64:Core/Src/custom_bus.c **** static void SPI1_MspDeInit(SPI_HandleTypeDef* hSPI);
+  65:Core/Src/custom_bus.c **** #if (USE_CUBEMX_BSP_V2 == 1)
+  66:Core/Src/custom_bus.c **** static uint32_t SPI_GetPrescaler( uint32_t clk_src_hz, uint32_t baudrate_mbps );
+  67:Core/Src/custom_bus.c **** #endif
+  68:Core/Src/custom_bus.c **** 
+  69:Core/Src/custom_bus.c **** /**
+  70:Core/Src/custom_bus.c ****   * @}
+  71:Core/Src/custom_bus.c ****   */
+  72:Core/Src/custom_bus.c **** 
+  73:Core/Src/custom_bus.c **** /** @defgroup CUSTOM_LOW_LEVEL_Private_Functions CUSTOM LOW LEVEL Private Functions
+  74:Core/Src/custom_bus.c ****   * @{
+  75:Core/Src/custom_bus.c ****   */
+  76:Core/Src/custom_bus.c **** 
+  77:Core/Src/custom_bus.c **** /** @defgroup CUSTOM_BUS_Exported_Functions CUSTOM_BUS Exported Functions
+  78:Core/Src/custom_bus.c ****   * @{
+  79:Core/Src/custom_bus.c ****   */
+  80:Core/Src/custom_bus.c **** 
+  81:Core/Src/custom_bus.c **** /* BUS IO driver over SPI Peripheral */
+  82:Core/Src/custom_bus.c **** /*******************************************************************************
+  83:Core/Src/custom_bus.c ****                             BUS OPERATIONS OVER SPI
+  84:Core/Src/custom_bus.c **** *******************************************************************************/
+  85:Core/Src/custom_bus.c **** /**
+  86:Core/Src/custom_bus.c ****   * @brief  Initializes SPI HAL.
+  87:Core/Src/custom_bus.c ****   * @retval BSP status
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 3
+
+
+  88:Core/Src/custom_bus.c ****   */
+  89:Core/Src/custom_bus.c **** int32_t BSP_SPI1_Init(void)
+  90:Core/Src/custom_bus.c **** {
+  91:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+  92:Core/Src/custom_bus.c **** 
+  93:Core/Src/custom_bus.c ****   hspi1.Instance  = SPI1;
+  94:Core/Src/custom_bus.c **** 
+  95:Core/Src/custom_bus.c ****   if(SPI1InitCounter++ == 0)
+  96:Core/Src/custom_bus.c ****   {
+  97:Core/Src/custom_bus.c ****     if (HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_RESET)
+  98:Core/Src/custom_bus.c ****     {
+  99:Core/Src/custom_bus.c **** #if (USE_HAL_SPI_REGISTER_CALLBACKS == 0U)
+ 100:Core/Src/custom_bus.c ****         /* Init the SPI Msp */
+ 101:Core/Src/custom_bus.c ****         SPI1_MspInit(&hspi1);
+ 102:Core/Src/custom_bus.c **** #else
+ 103:Core/Src/custom_bus.c ****         if(IsSPI1MspCbValid == 0U)
+ 104:Core/Src/custom_bus.c ****         {
+ 105:Core/Src/custom_bus.c ****             if(BSP_SPI1_RegisterDefaultMspCallbacks() != BSP_ERROR_NONE)
+ 106:Core/Src/custom_bus.c ****             {
+ 107:Core/Src/custom_bus.c ****                 return BSP_ERROR_MSP_FAILURE;
+ 108:Core/Src/custom_bus.c ****             }
+ 109:Core/Src/custom_bus.c ****         }
+ 110:Core/Src/custom_bus.c **** #endif
+ 111:Core/Src/custom_bus.c ****         if(ret == BSP_ERROR_NONE)
+ 112:Core/Src/custom_bus.c ****         {
+ 113:Core/Src/custom_bus.c ****             /* Init the SPI */
+ 114:Core/Src/custom_bus.c ****             if (MX_SPI1_Init(&hspi1) != HAL_OK)
+ 115:Core/Src/custom_bus.c ****             {
+ 116:Core/Src/custom_bus.c ****                 ret = BSP_ERROR_BUS_FAILURE;
+ 117:Core/Src/custom_bus.c ****             }
+ 118:Core/Src/custom_bus.c ****         }
+ 119:Core/Src/custom_bus.c ****     }
+ 120:Core/Src/custom_bus.c ****   }
+ 121:Core/Src/custom_bus.c **** 
+ 122:Core/Src/custom_bus.c ****   return ret;
+ 123:Core/Src/custom_bus.c **** }
+ 124:Core/Src/custom_bus.c **** 
+ 125:Core/Src/custom_bus.c **** /**
+ 126:Core/Src/custom_bus.c ****   * @brief  DeInitializes SPI HAL.
+ 127:Core/Src/custom_bus.c ****   * @retval None
+ 128:Core/Src/custom_bus.c ****   * @retval BSP status
+ 129:Core/Src/custom_bus.c ****   */
+ 130:Core/Src/custom_bus.c **** int32_t BSP_SPI1_DeInit(void)
+ 131:Core/Src/custom_bus.c **** {
+ 132:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_BUS_FAILURE;
+ 133:Core/Src/custom_bus.c ****   if (SPI1InitCounter > 0)
+ 134:Core/Src/custom_bus.c ****   {
+ 135:Core/Src/custom_bus.c ****     if (--SPI1InitCounter == 0)
+ 136:Core/Src/custom_bus.c ****     {
+ 137:Core/Src/custom_bus.c **** #if (USE_HAL_SPI_REGISTER_CALLBACKS == 0U)
+ 138:Core/Src/custom_bus.c ****       SPI1_MspDeInit(&hspi1);
+ 139:Core/Src/custom_bus.c **** #endif
+ 140:Core/Src/custom_bus.c ****       /* DeInit the SPI*/
+ 141:Core/Src/custom_bus.c ****       if (HAL_SPI_DeInit(&hspi1) == HAL_OK)
+ 142:Core/Src/custom_bus.c ****       {
+ 143:Core/Src/custom_bus.c ****         ret = BSP_ERROR_NONE;
+ 144:Core/Src/custom_bus.c ****       }
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 4
+
+
+ 145:Core/Src/custom_bus.c ****     }
+ 146:Core/Src/custom_bus.c ****   }
+ 147:Core/Src/custom_bus.c ****   return ret;
+ 148:Core/Src/custom_bus.c **** }
+ 149:Core/Src/custom_bus.c **** 
+ 150:Core/Src/custom_bus.c **** /**
+ 151:Core/Src/custom_bus.c ****   * @brief  Write Data through SPI BUS.
+ 152:Core/Src/custom_bus.c ****   * @param  pData: Pointer to data buffer to send
+ 153:Core/Src/custom_bus.c ****   * @param  Length: Length of data in byte
+ 154:Core/Src/custom_bus.c ****   * @retval BSP status
+ 155:Core/Src/custom_bus.c ****   */
+ 156:Core/Src/custom_bus.c **** int32_t BSP_SPI1_Send(uint8_t *pData, uint16_t Length)
+ 157:Core/Src/custom_bus.c **** {
+ 158:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 159:Core/Src/custom_bus.c **** 
+ 160:Core/Src/custom_bus.c ****   if(HAL_SPI_Transmit(&hspi1, pData, Length, BUS_SPI1_POLL_TIMEOUT) != HAL_OK)
+ 161:Core/Src/custom_bus.c ****   {
+ 162:Core/Src/custom_bus.c ****       ret = BSP_ERROR_UNKNOWN_FAILURE;
+ 163:Core/Src/custom_bus.c ****   }
+ 164:Core/Src/custom_bus.c ****   return ret;
+ 165:Core/Src/custom_bus.c **** }
+ 166:Core/Src/custom_bus.c **** 
+ 167:Core/Src/custom_bus.c **** /**
+ 168:Core/Src/custom_bus.c ****   * @brief  Receive Data from SPI BUS
+ 169:Core/Src/custom_bus.c ****   * @param  pData: Pointer to data buffer to receive
+ 170:Core/Src/custom_bus.c ****   * @param  Length: Length of data in byte
+ 171:Core/Src/custom_bus.c ****   * @retval BSP status
+ 172:Core/Src/custom_bus.c ****   */
+ 173:Core/Src/custom_bus.c **** int32_t  BSP_SPI1_Recv(uint8_t *pData, uint16_t Length)
+ 174:Core/Src/custom_bus.c **** {
+ 175:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 176:Core/Src/custom_bus.c **** 
+ 177:Core/Src/custom_bus.c ****   if(HAL_SPI_Receive(&hspi1, pData, Length, BUS_SPI1_POLL_TIMEOUT) != HAL_OK)
+ 178:Core/Src/custom_bus.c ****   {
+ 179:Core/Src/custom_bus.c ****       ret = BSP_ERROR_UNKNOWN_FAILURE;
+ 180:Core/Src/custom_bus.c ****   }
+ 181:Core/Src/custom_bus.c ****   return ret;
+ 182:Core/Src/custom_bus.c **** }
+ 183:Core/Src/custom_bus.c **** 
+ 184:Core/Src/custom_bus.c **** /**
+ 185:Core/Src/custom_bus.c ****   * @brief  Send and Receive data to/from SPI BUS (Full duplex)
+ 186:Core/Src/custom_bus.c ****   * @param  pData: Pointer to data buffer to send/receive
+ 187:Core/Src/custom_bus.c ****   * @param  Length: Length of data in byte
+ 188:Core/Src/custom_bus.c ****   * @retval BSP status
+ 189:Core/Src/custom_bus.c ****   */
+ 190:Core/Src/custom_bus.c **** int32_t BSP_SPI1_SendRecv(uint8_t *pTxData, uint8_t *pRxData, uint16_t Length)
+ 191:Core/Src/custom_bus.c **** {
+ 192:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 193:Core/Src/custom_bus.c **** 
+ 194:Core/Src/custom_bus.c ****   if(HAL_SPI_TransmitReceive(&hspi1, pTxData, pRxData, Length, BUS_SPI1_POLL_TIMEOUT) != HAL_OK)
+ 195:Core/Src/custom_bus.c ****   {
+ 196:Core/Src/custom_bus.c ****       ret = BSP_ERROR_UNKNOWN_FAILURE;
+ 197:Core/Src/custom_bus.c ****   }
+ 198:Core/Src/custom_bus.c ****   return ret;
+ 199:Core/Src/custom_bus.c **** }
+ 200:Core/Src/custom_bus.c **** 
+ 201:Core/Src/custom_bus.c **** #if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 5
+
+
+ 202:Core/Src/custom_bus.c **** /**
+ 203:Core/Src/custom_bus.c ****   * @brief Register Default BSP SPI1 Bus Msp Callbacks
+ 204:Core/Src/custom_bus.c ****   * @retval BSP status
+ 205:Core/Src/custom_bus.c ****   */
+ 206:Core/Src/custom_bus.c **** int32_t BSP_SPI1_RegisterDefaultMspCallbacks (void)
+ 207:Core/Src/custom_bus.c **** {
+ 208:Core/Src/custom_bus.c **** 
+ 209:Core/Src/custom_bus.c ****   __HAL_SPI_RESET_HANDLE_STATE(&hspi1);
+ 210:Core/Src/custom_bus.c **** 
+ 211:Core/Src/custom_bus.c ****   /* Register MspInit Callback */
+ 212:Core/Src/custom_bus.c ****   if (HAL_SPI_RegisterCallback(&hspi1, HAL_SPI_MSPINIT_CB_ID, SPI1_MspInit)  != HAL_OK)
+ 213:Core/Src/custom_bus.c ****   {
+ 214:Core/Src/custom_bus.c ****     return BSP_ERROR_PERIPH_FAILURE;
+ 215:Core/Src/custom_bus.c ****   }
+ 216:Core/Src/custom_bus.c **** 
+ 217:Core/Src/custom_bus.c ****   /* Register MspDeInit Callback */
+ 218:Core/Src/custom_bus.c ****   if (HAL_SPI_RegisterCallback(&hspi1, HAL_SPI_MSPDEINIT_CB_ID, SPI1_MspDeInit) != HAL_OK)
+ 219:Core/Src/custom_bus.c ****   {
+ 220:Core/Src/custom_bus.c ****     return BSP_ERROR_PERIPH_FAILURE;
+ 221:Core/Src/custom_bus.c ****   }
+ 222:Core/Src/custom_bus.c ****   IsSPI1MspCbValid = 1;
+ 223:Core/Src/custom_bus.c **** 
+ 224:Core/Src/custom_bus.c ****   return BSP_ERROR_NONE;
+ 225:Core/Src/custom_bus.c **** }
+ 226:Core/Src/custom_bus.c **** 
+ 227:Core/Src/custom_bus.c **** /**
+ 228:Core/Src/custom_bus.c ****   * @brief BSP SPI1 Bus Msp Callback registering
+ 229:Core/Src/custom_bus.c ****   * @param Callbacks     pointer to SPI1 MspInit/MspDeInit callback functions
+ 230:Core/Src/custom_bus.c ****   * @retval BSP status
+ 231:Core/Src/custom_bus.c ****   */
+ 232:Core/Src/custom_bus.c **** int32_t BSP_SPI1_RegisterMspCallbacks (BSP_SPI_Cb_t *Callbacks)
+ 233:Core/Src/custom_bus.c **** {
+ 234:Core/Src/custom_bus.c ****   /* Prevent unused argument(s) compilation warning */
+ 235:Core/Src/custom_bus.c ****   __HAL_SPI_RESET_HANDLE_STATE(&hspi1);
+ 236:Core/Src/custom_bus.c **** 
+ 237:Core/Src/custom_bus.c ****    /* Register MspInit Callback */
+ 238:Core/Src/custom_bus.c ****   if (HAL_SPI_RegisterCallback(&hspi1, HAL_SPI_MSPINIT_CB_ID, Callbacks->pMspInitCb)  != HAL_OK)
+ 239:Core/Src/custom_bus.c ****   {
+ 240:Core/Src/custom_bus.c ****     return BSP_ERROR_PERIPH_FAILURE;
+ 241:Core/Src/custom_bus.c ****   }
+ 242:Core/Src/custom_bus.c **** 
+ 243:Core/Src/custom_bus.c ****   /* Register MspDeInit Callback */
+ 244:Core/Src/custom_bus.c ****   if (HAL_SPI_RegisterCallback(&hspi1, HAL_SPI_MSPDEINIT_CB_ID, Callbacks->pMspDeInitCb) != HAL_OK)
+ 245:Core/Src/custom_bus.c ****   {
+ 246:Core/Src/custom_bus.c ****     return BSP_ERROR_PERIPH_FAILURE;
+ 247:Core/Src/custom_bus.c ****   }
+ 248:Core/Src/custom_bus.c **** 
+ 249:Core/Src/custom_bus.c ****   IsSPI1MspCbValid = 1;
+ 250:Core/Src/custom_bus.c **** 
+ 251:Core/Src/custom_bus.c ****   return BSP_ERROR_NONE;
+ 252:Core/Src/custom_bus.c **** }
+ 253:Core/Src/custom_bus.c **** #endif /* USE_HAL_SPI_REGISTER_CALLBACKS */
+ 254:Core/Src/custom_bus.c **** 
+ 255:Core/Src/custom_bus.c **** /**
+ 256:Core/Src/custom_bus.c ****   * @brief  Return system tick in ms
+ 257:Core/Src/custom_bus.c ****   * @retval Current HAL time base time stamp
+ 258:Core/Src/custom_bus.c ****   */
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 6
+
+
+ 259:Core/Src/custom_bus.c **** int32_t BSP_GetTick(void) {
+ 260:Core/Src/custom_bus.c ****   return HAL_GetTick();
+ 261:Core/Src/custom_bus.c **** }
+ 262:Core/Src/custom_bus.c **** 
+ 263:Core/Src/custom_bus.c **** /* SPI1 init function */
+ 264:Core/Src/custom_bus.c **** 
+ 265:Core/Src/custom_bus.c **** __weak HAL_StatusTypeDef MX_SPI1_Init(SPI_HandleTypeDef* hspi)
+ 266:Core/Src/custom_bus.c **** {
+ 267:Core/Src/custom_bus.c ****   HAL_StatusTypeDef ret = HAL_OK;
+ 268:Core/Src/custom_bus.c **** 
+ 269:Core/Src/custom_bus.c ****   hspi->Instance = SPI1;
+ 270:Core/Src/custom_bus.c ****   hspi->Init.Mode = SPI_MODE_MASTER;
+ 271:Core/Src/custom_bus.c ****   hspi->Init.Direction = SPI_DIRECTION_2LINES;
+ 272:Core/Src/custom_bus.c ****   hspi->Init.DataSize = SPI_DATASIZE_8BIT;
+ 273:Core/Src/custom_bus.c ****   hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
+ 274:Core/Src/custom_bus.c ****   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
+ 275:Core/Src/custom_bus.c ****   hspi->Init.NSS = SPI_NSS_HARD_OUTPUT;
+ 276:Core/Src/custom_bus.c ****   hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+ 277:Core/Src/custom_bus.c ****   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
+ 278:Core/Src/custom_bus.c ****   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
+ 279:Core/Src/custom_bus.c ****   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+ 280:Core/Src/custom_bus.c ****   hspi->Init.CRCPolynomial = 10;
+ 281:Core/Src/custom_bus.c ****   if (HAL_SPI_Init(hspi) != HAL_OK)
+ 282:Core/Src/custom_bus.c ****   {
+ 283:Core/Src/custom_bus.c ****     ret = HAL_ERROR;
+ 284:Core/Src/custom_bus.c ****   }
+ 285:Core/Src/custom_bus.c **** 
+ 286:Core/Src/custom_bus.c ****   return ret;
+ 287:Core/Src/custom_bus.c **** }
+ 288:Core/Src/custom_bus.c **** 
+ 289:Core/Src/custom_bus.c **** static void SPI1_MspInit(SPI_HandleTypeDef* spiHandle)
+ 290:Core/Src/custom_bus.c **** {
+  29              		.loc 1 290 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 32
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 290 1 is_stmt 0 view .LVU1
+  34 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  35              		.cfi_def_cfa_offset 24
+  36              		.cfi_offset 4, -24
+  37              		.cfi_offset 5, -20
+  38              		.cfi_offset 6, -16
+  39              		.cfi_offset 7, -12
+  40              		.cfi_offset 8, -8
+  41              		.cfi_offset 14, -4
+  42 0004 88B0     		sub	sp, sp, #32
+  43              		.cfi_def_cfa_offset 56
+ 291:Core/Src/custom_bus.c ****   GPIO_InitTypeDef GPIO_InitStruct;
+  44              		.loc 1 291 3 is_stmt 1 view .LVU2
+ 292:Core/Src/custom_bus.c ****   /* USER CODE BEGIN SPI1_MspInit 0 */
+ 293:Core/Src/custom_bus.c **** 
+ 294:Core/Src/custom_bus.c ****   /* USER CODE END SPI1_MspInit 0 */
+ 295:Core/Src/custom_bus.c ****     /* Enable Peripheral clock */
+ 296:Core/Src/custom_bus.c ****     __HAL_RCC_SPI1_CLK_ENABLE();
+  45              		.loc 1 296 5 view .LVU3
+  46              	.LBB2:
+  47              		.loc 1 296 5 view .LVU4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 7
+
+
+  48 0006 0024     		movs	r4, #0
+  49 0008 0194     		str	r4, [sp, #4]
+  50              		.loc 1 296 5 view .LVU5
+  51 000a 244B     		ldr	r3, .L3
+  52 000c 5A6C     		ldr	r2, [r3, #68]
+  53 000e 42F48052 		orr	r2, r2, #4096
+  54 0012 5A64     		str	r2, [r3, #68]
+  55              		.loc 1 296 5 view .LVU6
+  56 0014 5A6C     		ldr	r2, [r3, #68]
+  57 0016 02F48052 		and	r2, r2, #4096
+  58 001a 0192     		str	r2, [sp, #4]
+  59              		.loc 1 296 5 view .LVU7
+  60 001c 019A     		ldr	r2, [sp, #4]
+  61              	.LBE2:
+  62              		.loc 1 296 5 view .LVU8
+ 297:Core/Src/custom_bus.c **** 
+ 298:Core/Src/custom_bus.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+  63              		.loc 1 298 5 view .LVU9
+  64              	.LBB3:
+  65              		.loc 1 298 5 view .LVU10
+  66 001e 0294     		str	r4, [sp, #8]
+  67              		.loc 1 298 5 view .LVU11
+  68 0020 1A6B     		ldr	r2, [r3, #48]
+  69 0022 42F00102 		orr	r2, r2, #1
+  70 0026 1A63     		str	r2, [r3, #48]
+  71              		.loc 1 298 5 view .LVU12
+  72 0028 1B6B     		ldr	r3, [r3, #48]
+  73 002a 03F00103 		and	r3, r3, #1
+  74 002e 0293     		str	r3, [sp, #8]
+  75              		.loc 1 298 5 view .LVU13
+  76 0030 029B     		ldr	r3, [sp, #8]
+  77              	.LBE3:
+  78              		.loc 1 298 5 view .LVU14
+ 299:Core/Src/custom_bus.c ****     /**SPI1 GPIO Configuration
+ 300:Core/Src/custom_bus.c ****     PA5     ------> SPI1_SCK
+ 301:Core/Src/custom_bus.c ****     PA6     ------> SPI1_MISO
+ 302:Core/Src/custom_bus.c ****     PA7     ------> SPI1_MOSI
+ 303:Core/Src/custom_bus.c ****     PA15     ------> SPI1_NSS
+ 304:Core/Src/custom_bus.c ****     */
+ 305:Core/Src/custom_bus.c ****     GPIO_InitStruct.Pin = BUS_SPI1_SCK_GPIO_PIN;
+  79              		.loc 1 305 5 view .LVU15
+  80              		.loc 1 305 25 is_stmt 0 view .LVU16
+  81 0032 2023     		movs	r3, #32
+  82 0034 0393     		str	r3, [sp, #12]
+ 306:Core/Src/custom_bus.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  83              		.loc 1 306 5 is_stmt 1 view .LVU17
+  84              		.loc 1 306 26 is_stmt 0 view .LVU18
+  85 0036 4FF00208 		mov	r8, #2
+  86 003a CDF81080 		str	r8, [sp, #16]
+ 307:Core/Src/custom_bus.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+  87              		.loc 1 307 5 is_stmt 1 view .LVU19
+  88              		.loc 1 307 26 is_stmt 0 view .LVU20
+  89 003e 0594     		str	r4, [sp, #20]
+ 308:Core/Src/custom_bus.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  90              		.loc 1 308 5 is_stmt 1 view .LVU21
+  91              		.loc 1 308 27 is_stmt 0 view .LVU22
+  92 0040 0327     		movs	r7, #3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 8
+
+
+  93 0042 0697     		str	r7, [sp, #24]
+ 309:Core/Src/custom_bus.c ****     GPIO_InitStruct.Alternate = BUS_SPI1_SCK_GPIO_AF;
+  94              		.loc 1 309 5 is_stmt 1 view .LVU23
+  95              		.loc 1 309 31 is_stmt 0 view .LVU24
+  96 0044 0526     		movs	r6, #5
+  97 0046 0796     		str	r6, [sp, #28]
+ 310:Core/Src/custom_bus.c ****     HAL_GPIO_Init(BUS_SPI1_SCK_GPIO_PORT, &GPIO_InitStruct);
+  98              		.loc 1 310 5 is_stmt 1 view .LVU25
+  99 0048 154D     		ldr	r5, .L3+4
+ 100 004a 03A9     		add	r1, sp, #12
+ 101 004c 2846     		mov	r0, r5
+ 102              	.LVL1:
+ 103              		.loc 1 310 5 is_stmt 0 view .LVU26
+ 104 004e FFF7FEFF 		bl	HAL_GPIO_Init
+ 105              	.LVL2:
+ 311:Core/Src/custom_bus.c **** 
+ 312:Core/Src/custom_bus.c ****     GPIO_InitStruct.Pin = BUS_SPI1_MISO_GPIO_PIN;
+ 106              		.loc 1 312 5 is_stmt 1 view .LVU27
+ 107              		.loc 1 312 25 is_stmt 0 view .LVU28
+ 108 0052 4023     		movs	r3, #64
+ 109 0054 0393     		str	r3, [sp, #12]
+ 313:Core/Src/custom_bus.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 110              		.loc 1 313 5 is_stmt 1 view .LVU29
+ 111              		.loc 1 313 26 is_stmt 0 view .LVU30
+ 112 0056 CDF81080 		str	r8, [sp, #16]
+ 314:Core/Src/custom_bus.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 113              		.loc 1 314 5 is_stmt 1 view .LVU31
+ 114              		.loc 1 314 26 is_stmt 0 view .LVU32
+ 115 005a 0594     		str	r4, [sp, #20]
+ 315:Core/Src/custom_bus.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 116              		.loc 1 315 5 is_stmt 1 view .LVU33
+ 117              		.loc 1 315 27 is_stmt 0 view .LVU34
+ 118 005c 0697     		str	r7, [sp, #24]
+ 316:Core/Src/custom_bus.c ****     GPIO_InitStruct.Alternate = BUS_SPI1_MISO_GPIO_AF;
+ 119              		.loc 1 316 5 is_stmt 1 view .LVU35
+ 120              		.loc 1 316 31 is_stmt 0 view .LVU36
+ 121 005e 0796     		str	r6, [sp, #28]
+ 317:Core/Src/custom_bus.c ****     HAL_GPIO_Init(BUS_SPI1_MISO_GPIO_PORT, &GPIO_InitStruct);
+ 122              		.loc 1 317 5 is_stmt 1 view .LVU37
+ 123 0060 03A9     		add	r1, sp, #12
+ 124 0062 2846     		mov	r0, r5
+ 125 0064 FFF7FEFF 		bl	HAL_GPIO_Init
+ 126              	.LVL3:
+ 318:Core/Src/custom_bus.c **** 
+ 319:Core/Src/custom_bus.c ****     GPIO_InitStruct.Pin = BUS_SPI1_MOSI_GPIO_PIN;
+ 127              		.loc 1 319 5 view .LVU38
+ 128              		.loc 1 319 25 is_stmt 0 view .LVU39
+ 129 0068 8023     		movs	r3, #128
+ 130 006a 0393     		str	r3, [sp, #12]
+ 320:Core/Src/custom_bus.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 131              		.loc 1 320 5 is_stmt 1 view .LVU40
+ 132              		.loc 1 320 26 is_stmt 0 view .LVU41
+ 133 006c CDF81080 		str	r8, [sp, #16]
+ 321:Core/Src/custom_bus.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 134              		.loc 1 321 5 is_stmt 1 view .LVU42
+ 135              		.loc 1 321 26 is_stmt 0 view .LVU43
+ 136 0070 0594     		str	r4, [sp, #20]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 9
+
+
+ 322:Core/Src/custom_bus.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 137              		.loc 1 322 5 is_stmt 1 view .LVU44
+ 138              		.loc 1 322 27 is_stmt 0 view .LVU45
+ 139 0072 0697     		str	r7, [sp, #24]
+ 323:Core/Src/custom_bus.c ****     GPIO_InitStruct.Alternate = BUS_SPI1_MOSI_GPIO_AF;
+ 140              		.loc 1 323 5 is_stmt 1 view .LVU46
+ 141              		.loc 1 323 31 is_stmt 0 view .LVU47
+ 142 0074 0796     		str	r6, [sp, #28]
+ 324:Core/Src/custom_bus.c ****     HAL_GPIO_Init(BUS_SPI1_MOSI_GPIO_PORT, &GPIO_InitStruct);
+ 143              		.loc 1 324 5 is_stmt 1 view .LVU48
+ 144 0076 03A9     		add	r1, sp, #12
+ 145 0078 2846     		mov	r0, r5
+ 146 007a FFF7FEFF 		bl	HAL_GPIO_Init
+ 147              	.LVL4:
+ 325:Core/Src/custom_bus.c **** 
+ 326:Core/Src/custom_bus.c ****     GPIO_InitStruct.Pin = BUS_SPI1_NSS_GPIO_PIN;
+ 148              		.loc 1 326 5 view .LVU49
+ 149              		.loc 1 326 25 is_stmt 0 view .LVU50
+ 150 007e 4FF40043 		mov	r3, #32768
+ 151 0082 0393     		str	r3, [sp, #12]
+ 327:Core/Src/custom_bus.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 152              		.loc 1 327 5 is_stmt 1 view .LVU51
+ 153              		.loc 1 327 26 is_stmt 0 view .LVU52
+ 154 0084 CDF81080 		str	r8, [sp, #16]
+ 328:Core/Src/custom_bus.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 155              		.loc 1 328 5 is_stmt 1 view .LVU53
+ 156              		.loc 1 328 26 is_stmt 0 view .LVU54
+ 157 0088 0594     		str	r4, [sp, #20]
+ 329:Core/Src/custom_bus.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 158              		.loc 1 329 5 is_stmt 1 view .LVU55
+ 159              		.loc 1 329 27 is_stmt 0 view .LVU56
+ 160 008a 0697     		str	r7, [sp, #24]
+ 330:Core/Src/custom_bus.c ****     GPIO_InitStruct.Alternate = BUS_SPI1_NSS_GPIO_AF;
+ 161              		.loc 1 330 5 is_stmt 1 view .LVU57
+ 162              		.loc 1 330 31 is_stmt 0 view .LVU58
+ 163 008c 0796     		str	r6, [sp, #28]
+ 331:Core/Src/custom_bus.c ****     HAL_GPIO_Init(BUS_SPI1_NSS_GPIO_PORT, &GPIO_InitStruct);
+ 164              		.loc 1 331 5 is_stmt 1 view .LVU59
+ 165 008e 03A9     		add	r1, sp, #12
+ 166 0090 2846     		mov	r0, r5
+ 167 0092 FFF7FEFF 		bl	HAL_GPIO_Init
+ 168              	.LVL5:
+ 332:Core/Src/custom_bus.c **** 
+ 333:Core/Src/custom_bus.c ****   /* USER CODE BEGIN SPI1_MspInit 1 */
+ 334:Core/Src/custom_bus.c **** 
+ 335:Core/Src/custom_bus.c ****   /* USER CODE END SPI1_MspInit 1 */
+ 336:Core/Src/custom_bus.c **** }
+ 169              		.loc 1 336 1 is_stmt 0 view .LVU60
+ 170 0096 08B0     		add	sp, sp, #32
+ 171              		.cfi_def_cfa_offset 24
+ 172              		@ sp needed
+ 173 0098 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 174              	.L4:
+ 175              		.align	2
+ 176              	.L3:
+ 177 009c 00380240 		.word	1073887232
+ 178 00a0 00000240 		.word	1073872896
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 10
+
+
+ 179              		.cfi_endproc
+ 180              	.LFE141:
+ 182              		.section	.text.SPI1_MspDeInit,"ax",%progbits
+ 183              		.align	1
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ 188              	SPI1_MspDeInit:
+ 189              	.LVL6:
+ 190              	.LFB142:
+ 337:Core/Src/custom_bus.c **** 
+ 338:Core/Src/custom_bus.c **** static void SPI1_MspDeInit(SPI_HandleTypeDef* spiHandle)
+ 339:Core/Src/custom_bus.c **** {
+ 191              		.loc 1 339 1 is_stmt 1 view -0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195              		.loc 1 339 1 is_stmt 0 view .LVU62
+ 196 0000 10B5     		push	{r4, lr}
+ 197              		.cfi_def_cfa_offset 8
+ 198              		.cfi_offset 4, -8
+ 199              		.cfi_offset 14, -4
+ 340:Core/Src/custom_bus.c ****   /* USER CODE BEGIN SPI1_MspDeInit 0 */
+ 341:Core/Src/custom_bus.c **** 
+ 342:Core/Src/custom_bus.c ****   /* USER CODE END SPI1_MspDeInit 0 */
+ 343:Core/Src/custom_bus.c ****     /* Peripheral clock disable */
+ 344:Core/Src/custom_bus.c ****     __HAL_RCC_SPI1_CLK_DISABLE();
+ 200              		.loc 1 344 5 is_stmt 1 view .LVU63
+ 201 0002 0C4A     		ldr	r2, .L7
+ 202 0004 536C     		ldr	r3, [r2, #68]
+ 203 0006 23F48053 		bic	r3, r3, #4096
+ 204 000a 5364     		str	r3, [r2, #68]
+ 345:Core/Src/custom_bus.c **** 
+ 346:Core/Src/custom_bus.c ****     /**SPI1 GPIO Configuration
+ 347:Core/Src/custom_bus.c ****     PA5     ------> SPI1_SCK
+ 348:Core/Src/custom_bus.c ****     PA6     ------> SPI1_MISO
+ 349:Core/Src/custom_bus.c ****     PA7     ------> SPI1_MOSI
+ 350:Core/Src/custom_bus.c ****     PA15     ------> SPI1_NSS
+ 351:Core/Src/custom_bus.c ****     */
+ 352:Core/Src/custom_bus.c ****     HAL_GPIO_DeInit(BUS_SPI1_SCK_GPIO_PORT, BUS_SPI1_SCK_GPIO_PIN);
+ 205              		.loc 1 352 5 view .LVU64
+ 206 000c 0A4C     		ldr	r4, .L7+4
+ 207 000e 2021     		movs	r1, #32
+ 208 0010 2046     		mov	r0, r4
+ 209              	.LVL7:
+ 210              		.loc 1 352 5 is_stmt 0 view .LVU65
+ 211 0012 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 212              	.LVL8:
+ 353:Core/Src/custom_bus.c **** 
+ 354:Core/Src/custom_bus.c ****     HAL_GPIO_DeInit(BUS_SPI1_MISO_GPIO_PORT, BUS_SPI1_MISO_GPIO_PIN);
+ 213              		.loc 1 354 5 is_stmt 1 view .LVU66
+ 214 0016 4021     		movs	r1, #64
+ 215 0018 2046     		mov	r0, r4
+ 216 001a FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 217              	.LVL9:
+ 355:Core/Src/custom_bus.c **** 
+ 356:Core/Src/custom_bus.c ****     HAL_GPIO_DeInit(BUS_SPI1_MOSI_GPIO_PORT, BUS_SPI1_MOSI_GPIO_PIN);
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 11
+
+
+ 218              		.loc 1 356 5 view .LVU67
+ 219 001e 8021     		movs	r1, #128
+ 220 0020 2046     		mov	r0, r4
+ 221 0022 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 222              	.LVL10:
+ 357:Core/Src/custom_bus.c **** 
+ 358:Core/Src/custom_bus.c ****     HAL_GPIO_DeInit(BUS_SPI1_NSS_GPIO_PORT, BUS_SPI1_NSS_GPIO_PIN);
+ 223              		.loc 1 358 5 view .LVU68
+ 224 0026 4FF40041 		mov	r1, #32768
+ 225 002a 2046     		mov	r0, r4
+ 226 002c FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 227              	.LVL11:
+ 359:Core/Src/custom_bus.c **** 
+ 360:Core/Src/custom_bus.c ****   /* USER CODE BEGIN SPI1_MspDeInit 1 */
+ 361:Core/Src/custom_bus.c **** 
+ 362:Core/Src/custom_bus.c ****   /* USER CODE END SPI1_MspDeInit 1 */
+ 363:Core/Src/custom_bus.c **** }
+ 228              		.loc 1 363 1 is_stmt 0 view .LVU69
+ 229 0030 10BD     		pop	{r4, pc}
+ 230              	.L8:
+ 231 0032 00BF     		.align	2
+ 232              	.L7:
+ 233 0034 00380240 		.word	1073887232
+ 234 0038 00000240 		.word	1073872896
+ 235              		.cfi_endproc
+ 236              	.LFE142:
+ 238              		.section	.text.BSP_SPI1_DeInit,"ax",%progbits
+ 239              		.align	1
+ 240              		.global	BSP_SPI1_DeInit
+ 241              		.syntax unified
+ 242              		.thumb
+ 243              		.thumb_func
+ 245              	BSP_SPI1_DeInit:
+ 246              	.LFB135:
+ 131:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_BUS_FAILURE;
+ 247              		.loc 1 131 1 is_stmt 1 view -0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132:Core/Src/custom_bus.c ****   if (SPI1InitCounter > 0)
+ 251              		.loc 1 132 3 view .LVU71
+ 252              	.LVL12:
+ 133:Core/Src/custom_bus.c ****   {
+ 253              		.loc 1 133 3 view .LVU72
+ 133:Core/Src/custom_bus.c ****   {
+ 254              		.loc 1 133 23 is_stmt 0 view .LVU73
+ 255 0000 0D4B     		ldr	r3, .L19
+ 256 0002 1B68     		ldr	r3, [r3]
+ 133:Core/Src/custom_bus.c ****   {
+ 257              		.loc 1 133 6 view .LVU74
+ 258 0004 8BB1     		cbz	r3, .L11
+ 135:Core/Src/custom_bus.c ****     {
+ 259              		.loc 1 135 5 is_stmt 1 view .LVU75
+ 135:Core/Src/custom_bus.c ****     {
+ 260              		.loc 1 135 9 is_stmt 0 view .LVU76
+ 261 0006 013B     		subs	r3, r3, #1
+ 135:Core/Src/custom_bus.c ****     {
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 12
+
+
+ 262              		.loc 1 135 8 view .LVU77
+ 263 0008 0B4A     		ldr	r2, .L19
+ 264 000a 1360     		str	r3, [r2]
+ 265 000c 83B9     		cbnz	r3, .L12
+ 131:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_BUS_FAILURE;
+ 266              		.loc 1 131 1 view .LVU78
+ 267 000e 10B5     		push	{r4, lr}
+ 268              		.cfi_def_cfa_offset 8
+ 269              		.cfi_offset 4, -8
+ 270              		.cfi_offset 14, -4
+ 138:Core/Src/custom_bus.c **** #endif
+ 271              		.loc 1 138 7 is_stmt 1 view .LVU79
+ 272 0010 0A4C     		ldr	r4, .L19+4
+ 273 0012 2046     		mov	r0, r4
+ 274 0014 FFF7FEFF 		bl	SPI1_MspDeInit
+ 275              	.LVL13:
+ 141:Core/Src/custom_bus.c ****       {
+ 276              		.loc 1 141 7 view .LVU80
+ 141:Core/Src/custom_bus.c ****       {
+ 277              		.loc 1 141 11 is_stmt 0 view .LVU81
+ 278 0018 2046     		mov	r0, r4
+ 279 001a FFF7FEFF 		bl	HAL_SPI_DeInit
+ 280              	.LVL14:
+ 141:Core/Src/custom_bus.c ****       {
+ 281              		.loc 1 141 10 discriminator 1 view .LVU82
+ 282 001e 08B9     		cbnz	r0, .L18
+ 143:Core/Src/custom_bus.c ****       }
+ 283              		.loc 1 143 13 view .LVU83
+ 284 0020 0020     		movs	r0, #0
+ 285              	.LVL15:
+ 147:Core/Src/custom_bus.c **** }
+ 286              		.loc 1 147 3 is_stmt 1 view .LVU84
+ 287              	.L9:
+ 148:Core/Src/custom_bus.c **** 
+ 288              		.loc 1 148 1 is_stmt 0 view .LVU85
+ 289 0022 10BD     		pop	{r4, pc}
+ 290              	.LVL16:
+ 291              	.L18:
+ 132:Core/Src/custom_bus.c ****   if (SPI1InitCounter > 0)
+ 292              		.loc 1 132 11 view .LVU86
+ 293 0024 6FF00700 		mvn	r0, #7
+ 294 0028 FBE7     		b	.L9
+ 295              	.L11:
+ 296              		.cfi_def_cfa_offset 0
+ 297              		.cfi_restore 4
+ 298              		.cfi_restore 14
+ 299 002a 6FF00700 		mvn	r0, #7
+ 300 002e 7047     		bx	lr
+ 301              	.L12:
+ 302 0030 6FF00700 		mvn	r0, #7
+ 148:Core/Src/custom_bus.c **** 
+ 303              		.loc 1 148 1 view .LVU87
+ 304 0034 7047     		bx	lr
+ 305              	.L20:
+ 306 0036 00BF     		.align	2
+ 307              	.L19:
+ 308 0038 00000000 		.word	SPI1InitCounter
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 13
+
+
+ 309 003c 00000000 		.word	hspi1
+ 310              		.cfi_endproc
+ 311              	.LFE135:
+ 313              		.section	.text.BSP_SPI1_Send,"ax",%progbits
+ 314              		.align	1
+ 315              		.global	BSP_SPI1_Send
+ 316              		.syntax unified
+ 317              		.thumb
+ 318              		.thumb_func
+ 320              	BSP_SPI1_Send:
+ 321              	.LVL17:
+ 322              	.LFB136:
+ 157:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 323              		.loc 1 157 1 is_stmt 1 view -0
+ 324              		.cfi_startproc
+ 325              		@ args = 0, pretend = 0, frame = 0
+ 326              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 327              		.loc 1 157 1 is_stmt 0 view .LVU89
+ 328 0000 08B5     		push	{r3, lr}
+ 329              		.cfi_def_cfa_offset 8
+ 330              		.cfi_offset 3, -8
+ 331              		.cfi_offset 14, -4
+ 332 0002 0A46     		mov	r2, r1
+ 158:Core/Src/custom_bus.c **** 
+ 333              		.loc 1 158 3 is_stmt 1 view .LVU90
+ 334              	.LVL18:
+ 160:Core/Src/custom_bus.c ****   {
+ 335              		.loc 1 160 3 view .LVU91
+ 160:Core/Src/custom_bus.c ****   {
+ 336              		.loc 1 160 6 is_stmt 0 view .LVU92
+ 337 0004 4FF48053 		mov	r3, #4096
+ 338 0008 0146     		mov	r1, r0
+ 339              	.LVL19:
+ 160:Core/Src/custom_bus.c ****   {
+ 340              		.loc 1 160 6 view .LVU93
+ 341 000a 0448     		ldr	r0, .L26
+ 342              	.LVL20:
+ 160:Core/Src/custom_bus.c ****   {
+ 343              		.loc 1 160 6 view .LVU94
+ 344 000c FFF7FEFF 		bl	HAL_SPI_Transmit
+ 345              	.LVL21:
+ 160:Core/Src/custom_bus.c ****   {
+ 346              		.loc 1 160 5 discriminator 1 view .LVU95
+ 347 0010 00B9     		cbnz	r0, .L25
+ 348              	.LVL22:
+ 349              	.L21:
+ 165:Core/Src/custom_bus.c **** 
+ 350              		.loc 1 165 1 view .LVU96
+ 351 0012 08BD     		pop	{r3, pc}
+ 352              	.LVL23:
+ 353              	.L25:
+ 162:Core/Src/custom_bus.c ****   }
+ 354              		.loc 1 162 11 view .LVU97
+ 355 0014 6FF00500 		mvn	r0, #5
+ 356              	.LVL24:
+ 164:Core/Src/custom_bus.c **** }
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 14
+
+
+ 357              		.loc 1 164 3 is_stmt 1 view .LVU98
+ 164:Core/Src/custom_bus.c **** }
+ 358              		.loc 1 164 10 is_stmt 0 view .LVU99
+ 359 0018 FBE7     		b	.L21
+ 360              	.L27:
+ 361 001a 00BF     		.align	2
+ 362              	.L26:
+ 363 001c 00000000 		.word	hspi1
+ 364              		.cfi_endproc
+ 365              	.LFE136:
+ 367              		.section	.text.BSP_SPI1_Recv,"ax",%progbits
+ 368              		.align	1
+ 369              		.global	BSP_SPI1_Recv
+ 370              		.syntax unified
+ 371              		.thumb
+ 372              		.thumb_func
+ 374              	BSP_SPI1_Recv:
+ 375              	.LVL25:
+ 376              	.LFB137:
+ 174:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 377              		.loc 1 174 1 is_stmt 1 view -0
+ 378              		.cfi_startproc
+ 379              		@ args = 0, pretend = 0, frame = 0
+ 380              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 381              		.loc 1 174 1 is_stmt 0 view .LVU101
+ 382 0000 08B5     		push	{r3, lr}
+ 383              		.cfi_def_cfa_offset 8
+ 384              		.cfi_offset 3, -8
+ 385              		.cfi_offset 14, -4
+ 386 0002 0A46     		mov	r2, r1
+ 175:Core/Src/custom_bus.c **** 
+ 387              		.loc 1 175 3 is_stmt 1 view .LVU102
+ 388              	.LVL26:
+ 177:Core/Src/custom_bus.c ****   {
+ 389              		.loc 1 177 3 view .LVU103
+ 177:Core/Src/custom_bus.c ****   {
+ 390              		.loc 1 177 6 is_stmt 0 view .LVU104
+ 391 0004 4FF48053 		mov	r3, #4096
+ 392 0008 0146     		mov	r1, r0
+ 393              	.LVL27:
+ 177:Core/Src/custom_bus.c ****   {
+ 394              		.loc 1 177 6 view .LVU105
+ 395 000a 0448     		ldr	r0, .L33
+ 396              	.LVL28:
+ 177:Core/Src/custom_bus.c ****   {
+ 397              		.loc 1 177 6 view .LVU106
+ 398 000c FFF7FEFF 		bl	HAL_SPI_Receive
+ 399              	.LVL29:
+ 177:Core/Src/custom_bus.c ****   {
+ 400              		.loc 1 177 5 discriminator 1 view .LVU107
+ 401 0010 00B9     		cbnz	r0, .L32
+ 402              	.LVL30:
+ 403              	.L28:
+ 182:Core/Src/custom_bus.c **** 
+ 404              		.loc 1 182 1 view .LVU108
+ 405 0012 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 15
+
+
+ 406              	.LVL31:
+ 407              	.L32:
+ 179:Core/Src/custom_bus.c ****   }
+ 408              		.loc 1 179 11 view .LVU109
+ 409 0014 6FF00500 		mvn	r0, #5
+ 410              	.LVL32:
+ 181:Core/Src/custom_bus.c **** }
+ 411              		.loc 1 181 3 is_stmt 1 view .LVU110
+ 181:Core/Src/custom_bus.c **** }
+ 412              		.loc 1 181 10 is_stmt 0 view .LVU111
+ 413 0018 FBE7     		b	.L28
+ 414              	.L34:
+ 415 001a 00BF     		.align	2
+ 416              	.L33:
+ 417 001c 00000000 		.word	hspi1
+ 418              		.cfi_endproc
+ 419              	.LFE137:
+ 421              		.section	.text.BSP_SPI1_SendRecv,"ax",%progbits
+ 422              		.align	1
+ 423              		.global	BSP_SPI1_SendRecv
+ 424              		.syntax unified
+ 425              		.thumb
+ 426              		.thumb_func
+ 428              	BSP_SPI1_SendRecv:
+ 429              	.LVL33:
+ 430              	.LFB138:
+ 191:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 431              		.loc 1 191 1 is_stmt 1 view -0
+ 432              		.cfi_startproc
+ 433              		@ args = 0, pretend = 0, frame = 0
+ 434              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 435              		.loc 1 191 1 is_stmt 0 view .LVU113
+ 436 0000 00B5     		push	{lr}
+ 437              		.cfi_def_cfa_offset 4
+ 438              		.cfi_offset 14, -4
+ 439 0002 83B0     		sub	sp, sp, #12
+ 440              		.cfi_def_cfa_offset 16
+ 441 0004 1346     		mov	r3, r2
+ 192:Core/Src/custom_bus.c **** 
+ 442              		.loc 1 192 3 is_stmt 1 view .LVU114
+ 443              	.LVL34:
+ 194:Core/Src/custom_bus.c ****   {
+ 444              		.loc 1 194 3 view .LVU115
+ 194:Core/Src/custom_bus.c ****   {
+ 445              		.loc 1 194 6 is_stmt 0 view .LVU116
+ 446 0006 4FF48052 		mov	r2, #4096
+ 447              	.LVL35:
+ 194:Core/Src/custom_bus.c ****   {
+ 448              		.loc 1 194 6 view .LVU117
+ 449 000a 0092     		str	r2, [sp]
+ 450 000c 0A46     		mov	r2, r1
+ 451 000e 0146     		mov	r1, r0
+ 452              	.LVL36:
+ 194:Core/Src/custom_bus.c ****   {
+ 453              		.loc 1 194 6 view .LVU118
+ 454 0010 0448     		ldr	r0, .L40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 16
+
+
+ 455              	.LVL37:
+ 194:Core/Src/custom_bus.c ****   {
+ 456              		.loc 1 194 6 view .LVU119
+ 457 0012 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 458              	.LVL38:
+ 194:Core/Src/custom_bus.c ****   {
+ 459              		.loc 1 194 5 discriminator 1 view .LVU120
+ 460 0016 10B9     		cbnz	r0, .L39
+ 461              	.LVL39:
+ 462              	.L35:
+ 199:Core/Src/custom_bus.c **** 
+ 463              		.loc 1 199 1 view .LVU121
+ 464 0018 03B0     		add	sp, sp, #12
+ 465              		.cfi_remember_state
+ 466              		.cfi_def_cfa_offset 4
+ 467              		@ sp needed
+ 468 001a 5DF804FB 		ldr	pc, [sp], #4
+ 469              	.LVL40:
+ 470              	.L39:
+ 471              		.cfi_restore_state
+ 196:Core/Src/custom_bus.c ****   }
+ 472              		.loc 1 196 11 view .LVU122
+ 473 001e 6FF00500 		mvn	r0, #5
+ 474              	.LVL41:
+ 198:Core/Src/custom_bus.c **** }
+ 475              		.loc 1 198 3 is_stmt 1 view .LVU123
+ 198:Core/Src/custom_bus.c **** }
+ 476              		.loc 1 198 10 is_stmt 0 view .LVU124
+ 477 0022 F9E7     		b	.L35
+ 478              	.L41:
+ 479              		.align	2
+ 480              	.L40:
+ 481 0024 00000000 		.word	hspi1
+ 482              		.cfi_endproc
+ 483              	.LFE138:
+ 485              		.section	.text.BSP_GetTick,"ax",%progbits
+ 486              		.align	1
+ 487              		.global	BSP_GetTick
+ 488              		.syntax unified
+ 489              		.thumb
+ 490              		.thumb_func
+ 492              	BSP_GetTick:
+ 493              	.LFB139:
+ 259:Core/Src/custom_bus.c ****   return HAL_GetTick();
+ 494              		.loc 1 259 27 is_stmt 1 view -0
+ 495              		.cfi_startproc
+ 496              		@ args = 0, pretend = 0, frame = 0
+ 497              		@ frame_needed = 0, uses_anonymous_args = 0
+ 498 0000 08B5     		push	{r3, lr}
+ 499              		.cfi_def_cfa_offset 8
+ 500              		.cfi_offset 3, -8
+ 501              		.cfi_offset 14, -4
+ 260:Core/Src/custom_bus.c **** }
+ 502              		.loc 1 260 3 view .LVU126
+ 260:Core/Src/custom_bus.c **** }
+ 503              		.loc 1 260 10 is_stmt 0 view .LVU127
+ 504 0002 FFF7FEFF 		bl	HAL_GetTick
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 17
+
+
+ 505              	.LVL42:
+ 261:Core/Src/custom_bus.c **** 
+ 506              		.loc 1 261 1 view .LVU128
+ 507 0006 08BD     		pop	{r3, pc}
+ 508              		.cfi_endproc
+ 509              	.LFE139:
+ 511              		.section	.text.MX_SPI1_Init,"ax",%progbits
+ 512              		.align	1
+ 513              		.weak	MX_SPI1_Init
+ 514              		.syntax unified
+ 515              		.thumb
+ 516              		.thumb_func
+ 518              	MX_SPI1_Init:
+ 519              	.LVL43:
+ 520              	.LFB140:
+ 266:Core/Src/custom_bus.c ****   HAL_StatusTypeDef ret = HAL_OK;
+ 521              		.loc 1 266 1 is_stmt 1 view -0
+ 522              		.cfi_startproc
+ 523              		@ args = 0, pretend = 0, frame = 0
+ 524              		@ frame_needed = 0, uses_anonymous_args = 0
+ 266:Core/Src/custom_bus.c ****   HAL_StatusTypeDef ret = HAL_OK;
+ 525              		.loc 1 266 1 is_stmt 0 view .LVU130
+ 526 0000 08B5     		push	{r3, lr}
+ 527              		.cfi_def_cfa_offset 8
+ 528              		.cfi_offset 3, -8
+ 529              		.cfi_offset 14, -4
+ 267:Core/Src/custom_bus.c **** 
+ 530              		.loc 1 267 3 is_stmt 1 view .LVU131
+ 531              	.LVL44:
+ 269:Core/Src/custom_bus.c ****   hspi->Init.Mode = SPI_MODE_MASTER;
+ 532              		.loc 1 269 3 view .LVU132
+ 269:Core/Src/custom_bus.c ****   hspi->Init.Mode = SPI_MODE_MASTER;
+ 533              		.loc 1 269 18 is_stmt 0 view .LVU133
+ 534 0002 0C4A     		ldr	r2, .L48
+ 535 0004 0260     		str	r2, [r0]
+ 270:Core/Src/custom_bus.c ****   hspi->Init.Direction = SPI_DIRECTION_2LINES;
+ 536              		.loc 1 270 3 is_stmt 1 view .LVU134
+ 270:Core/Src/custom_bus.c ****   hspi->Init.Direction = SPI_DIRECTION_2LINES;
+ 537              		.loc 1 270 19 is_stmt 0 view .LVU135
+ 538 0006 4FF48272 		mov	r2, #260
+ 539 000a 4260     		str	r2, [r0, #4]
+ 271:Core/Src/custom_bus.c ****   hspi->Init.DataSize = SPI_DATASIZE_8BIT;
+ 540              		.loc 1 271 3 is_stmt 1 view .LVU136
+ 271:Core/Src/custom_bus.c ****   hspi->Init.DataSize = SPI_DATASIZE_8BIT;
+ 541              		.loc 1 271 24 is_stmt 0 view .LVU137
+ 542 000c 0022     		movs	r2, #0
+ 543 000e 8260     		str	r2, [r0, #8]
+ 272:Core/Src/custom_bus.c ****   hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
+ 544              		.loc 1 272 3 is_stmt 1 view .LVU138
+ 272:Core/Src/custom_bus.c ****   hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
+ 545              		.loc 1 272 23 is_stmt 0 view .LVU139
+ 546 0010 C260     		str	r2, [r0, #12]
+ 273:Core/Src/custom_bus.c ****   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
+ 547              		.loc 1 273 3 is_stmt 1 view .LVU140
+ 273:Core/Src/custom_bus.c ****   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
+ 548              		.loc 1 273 26 is_stmt 0 view .LVU141
+ 549 0012 0261     		str	r2, [r0, #16]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 18
+
+
+ 274:Core/Src/custom_bus.c ****   hspi->Init.NSS = SPI_NSS_HARD_OUTPUT;
+ 550              		.loc 1 274 3 is_stmt 1 view .LVU142
+ 274:Core/Src/custom_bus.c ****   hspi->Init.NSS = SPI_NSS_HARD_OUTPUT;
+ 551              		.loc 1 274 23 is_stmt 0 view .LVU143
+ 552 0014 4261     		str	r2, [r0, #20]
+ 275:Core/Src/custom_bus.c ****   hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+ 553              		.loc 1 275 3 is_stmt 1 view .LVU144
+ 275:Core/Src/custom_bus.c ****   hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+ 554              		.loc 1 275 18 is_stmt 0 view .LVU145
+ 555 0016 4FF48021 		mov	r1, #262144
+ 556 001a 8161     		str	r1, [r0, #24]
+ 276:Core/Src/custom_bus.c ****   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
+ 557              		.loc 1 276 3 is_stmt 1 view .LVU146
+ 276:Core/Src/custom_bus.c ****   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
+ 558              		.loc 1 276 32 is_stmt 0 view .LVU147
+ 559 001c C261     		str	r2, [r0, #28]
+ 277:Core/Src/custom_bus.c ****   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
+ 560              		.loc 1 277 3 is_stmt 1 view .LVU148
+ 277:Core/Src/custom_bus.c ****   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
+ 561              		.loc 1 277 23 is_stmt 0 view .LVU149
+ 562 001e 0262     		str	r2, [r0, #32]
+ 278:Core/Src/custom_bus.c ****   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+ 563              		.loc 1 278 3 is_stmt 1 view .LVU150
+ 278:Core/Src/custom_bus.c ****   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+ 564              		.loc 1 278 21 is_stmt 0 view .LVU151
+ 565 0020 4262     		str	r2, [r0, #36]
+ 279:Core/Src/custom_bus.c ****   hspi->Init.CRCPolynomial = 10;
+ 566              		.loc 1 279 3 is_stmt 1 view .LVU152
+ 279:Core/Src/custom_bus.c ****   hspi->Init.CRCPolynomial = 10;
+ 567              		.loc 1 279 29 is_stmt 0 view .LVU153
+ 568 0022 8262     		str	r2, [r0, #40]
+ 280:Core/Src/custom_bus.c ****   if (HAL_SPI_Init(hspi) != HAL_OK)
+ 569              		.loc 1 280 3 is_stmt 1 view .LVU154
+ 280:Core/Src/custom_bus.c ****   if (HAL_SPI_Init(hspi) != HAL_OK)
+ 570              		.loc 1 280 28 is_stmt 0 view .LVU155
+ 571 0024 0A22     		movs	r2, #10
+ 572 0026 C262     		str	r2, [r0, #44]
+ 281:Core/Src/custom_bus.c ****   {
+ 573              		.loc 1 281 3 is_stmt 1 view .LVU156
+ 281:Core/Src/custom_bus.c ****   {
+ 574              		.loc 1 281 7 is_stmt 0 view .LVU157
+ 575 0028 FFF7FEFF 		bl	HAL_SPI_Init
+ 576              	.LVL45:
+ 281:Core/Src/custom_bus.c ****   {
+ 577              		.loc 1 281 6 discriminator 1 view .LVU158
+ 578 002c 00B1     		cbz	r0, .L45
+ 283:Core/Src/custom_bus.c ****   }
+ 579              		.loc 1 283 9 view .LVU159
+ 580 002e 0120     		movs	r0, #1
+ 581              	.L45:
+ 582              	.LVL46:
+ 286:Core/Src/custom_bus.c **** }
+ 583              		.loc 1 286 3 is_stmt 1 view .LVU160
+ 287:Core/Src/custom_bus.c **** 
+ 584              		.loc 1 287 1 is_stmt 0 view .LVU161
+ 585 0030 08BD     		pop	{r3, pc}
+ 586              	.L49:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 19
+
+
+ 587 0032 00BF     		.align	2
+ 588              	.L48:
+ 589 0034 00300140 		.word	1073819648
+ 590              		.cfi_endproc
+ 591              	.LFE140:
+ 593              		.section	.text.BSP_SPI1_Init,"ax",%progbits
+ 594              		.align	1
+ 595              		.global	BSP_SPI1_Init
+ 596              		.syntax unified
+ 597              		.thumb
+ 598              		.thumb_func
+ 600              	BSP_SPI1_Init:
+ 601              	.LFB134:
+  90:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 602              		.loc 1 90 1 is_stmt 1 view -0
+ 603              		.cfi_startproc
+ 604              		@ args = 0, pretend = 0, frame = 0
+ 605              		@ frame_needed = 0, uses_anonymous_args = 0
+  91:Core/Src/custom_bus.c **** 
+ 606              		.loc 1 91 3 view .LVU163
+ 607              	.LVL47:
+  93:Core/Src/custom_bus.c **** 
+ 608              		.loc 1 93 3 view .LVU164
+  93:Core/Src/custom_bus.c **** 
+ 609              		.loc 1 93 19 is_stmt 0 view .LVU165
+ 610 0000 0E4B     		ldr	r3, .L61
+ 611 0002 0F4A     		ldr	r2, .L61+4
+ 612 0004 1A60     		str	r2, [r3]
+  95:Core/Src/custom_bus.c ****   {
+ 613              		.loc 1 95 3 is_stmt 1 view .LVU166
+  95:Core/Src/custom_bus.c ****   {
+ 614              		.loc 1 95 21 is_stmt 0 view .LVU167
+ 615 0006 0F4A     		ldr	r2, .L61+8
+ 616 0008 1368     		ldr	r3, [r2]
+ 617 000a 591C     		adds	r1, r3, #1
+ 618 000c 1160     		str	r1, [r2]
+  95:Core/Src/custom_bus.c ****   {
+ 619              		.loc 1 95 5 view .LVU168
+ 620 000e 0BB1     		cbz	r3, .L59
+  91:Core/Src/custom_bus.c **** 
+ 621              		.loc 1 91 11 view .LVU169
+ 622 0010 0020     		movs	r0, #0
+ 123:Core/Src/custom_bus.c **** 
+ 623              		.loc 1 123 1 view .LVU170
+ 624 0012 7047     		bx	lr
+ 625              	.L59:
+  90:Core/Src/custom_bus.c ****   int32_t ret = BSP_ERROR_NONE;
+ 626              		.loc 1 90 1 view .LVU171
+ 627 0014 10B5     		push	{r4, lr}
+ 628              		.cfi_def_cfa_offset 8
+ 629              		.cfi_offset 4, -8
+ 630              		.cfi_offset 14, -4
+  97:Core/Src/custom_bus.c ****     {
+ 631              		.loc 1 97 5 is_stmt 1 view .LVU172
+  97:Core/Src/custom_bus.c ****     {
+ 632              		.loc 1 97 9 is_stmt 0 view .LVU173
+ 633 0016 0948     		ldr	r0, .L61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 20
+
+
+ 634 0018 FFF7FEFF 		bl	HAL_SPI_GetState
+ 635              	.LVL48:
+  97:Core/Src/custom_bus.c ****     {
+ 636              		.loc 1 97 8 discriminator 1 view .LVU174
+ 637 001c 08B1     		cbz	r0, .L60
+  91:Core/Src/custom_bus.c **** 
+ 638              		.loc 1 91 11 view .LVU175
+ 639 001e 0020     		movs	r0, #0
+ 640              	.LVL49:
+ 641              	.L50:
+ 123:Core/Src/custom_bus.c **** 
+ 642              		.loc 1 123 1 view .LVU176
+ 643 0020 10BD     		pop	{r4, pc}
+ 644              	.LVL50:
+ 645              	.L60:
+ 101:Core/Src/custom_bus.c **** #else
+ 646              		.loc 1 101 9 is_stmt 1 view .LVU177
+ 647 0022 064C     		ldr	r4, .L61
+ 648 0024 2046     		mov	r0, r4
+ 649 0026 FFF7FEFF 		bl	SPI1_MspInit
+ 650              	.LVL51:
+ 111:Core/Src/custom_bus.c ****         {
+ 651              		.loc 1 111 9 view .LVU178
+ 114:Core/Src/custom_bus.c ****             {
+ 652              		.loc 1 114 13 view .LVU179
+ 114:Core/Src/custom_bus.c ****             {
+ 653              		.loc 1 114 17 is_stmt 0 view .LVU180
+ 654 002a 2046     		mov	r0, r4
+ 655 002c FFF7FEFF 		bl	MX_SPI1_Init
+ 656              	.LVL52:
+ 114:Core/Src/custom_bus.c ****             {
+ 657              		.loc 1 114 16 discriminator 1 view .LVU181
+ 658 0030 0028     		cmp	r0, #0
+ 659 0032 F5D0     		beq	.L50
+ 116:Core/Src/custom_bus.c ****             }
+ 660              		.loc 1 116 21 view .LVU182
+ 661 0034 6FF00700 		mvn	r0, #7
+ 662              	.LVL53:
+ 122:Core/Src/custom_bus.c **** }
+ 663              		.loc 1 122 3 is_stmt 1 view .LVU183
+ 122:Core/Src/custom_bus.c **** }
+ 664              		.loc 1 122 10 is_stmt 0 view .LVU184
+ 665 0038 F2E7     		b	.L50
+ 666              	.L62:
+ 667 003a 00BF     		.align	2
+ 668              	.L61:
+ 669 003c 00000000 		.word	hspi1
+ 670 0040 00300140 		.word	1073819648
+ 671 0044 00000000 		.word	SPI1InitCounter
+ 672              		.cfi_endproc
+ 673              	.LFE134:
+ 675              		.section	.bss.SPI1InitCounter,"aw",%nobits
+ 676              		.align	2
+ 679              	SPI1InitCounter:
+ 680 0000 00000000 		.space	4
+ 681              		.global	hspi1
+ 682              		.section	.bss.hspi1,"aw",%nobits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 21
+
+
+ 683              		.align	2
+ 686              	hspi1:
+ 687 0000 00000000 		.space	88
+ 687      00000000 
+ 687      00000000 
+ 687      00000000 
+ 687      00000000 
+ 688              		.text
+ 689              	.Letext0:
+ 690              		.file 2 "C:/PROGRAM FILES (X86)/ARM GNU TOOLCHAIN ARM-NONE-EABI/13.3 REL1/arm-none-eabi/include/ma
+ 691              		.file 3 "C:/PROGRAM FILES (X86)/ARM GNU TOOLCHAIN ARM-NONE-EABI/13.3 REL1/arm-none-eabi/include/sy
+ 692              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 693              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 694              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 695              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 696              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 697              		.file 9 "Core/Inc/custom_bus.h"
+ 698              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s 			page 22
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 custom_bus.c
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:21     .text.SPI1_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:26     .text.SPI1_MspInit:00000000 SPI1_MspInit
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:177    .text.SPI1_MspInit:0000009c $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:183    .text.SPI1_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:188    .text.SPI1_MspDeInit:00000000 SPI1_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:233    .text.SPI1_MspDeInit:00000034 $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:239    .text.BSP_SPI1_DeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:245    .text.BSP_SPI1_DeInit:00000000 BSP_SPI1_DeInit
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:308    .text.BSP_SPI1_DeInit:00000038 $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:679    .bss.SPI1InitCounter:00000000 SPI1InitCounter
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:686    .bss.hspi1:00000000 hspi1
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:314    .text.BSP_SPI1_Send:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:320    .text.BSP_SPI1_Send:00000000 BSP_SPI1_Send
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:363    .text.BSP_SPI1_Send:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:368    .text.BSP_SPI1_Recv:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:374    .text.BSP_SPI1_Recv:00000000 BSP_SPI1_Recv
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:417    .text.BSP_SPI1_Recv:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:422    .text.BSP_SPI1_SendRecv:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:428    .text.BSP_SPI1_SendRecv:00000000 BSP_SPI1_SendRecv
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:481    .text.BSP_SPI1_SendRecv:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:486    .text.BSP_GetTick:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:492    .text.BSP_GetTick:00000000 BSP_GetTick
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:512    .text.MX_SPI1_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:518    .text.MX_SPI1_Init:00000000 MX_SPI1_Init
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:589    .text.MX_SPI1_Init:00000034 $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:594    .text.BSP_SPI1_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:600    .text.BSP_SPI1_Init:00000000 BSP_SPI1_Init
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:669    .text.BSP_SPI1_Init:0000003c $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:676    .bss.SPI1InitCounter:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\cchMiOpH.s:683    .bss.hspi1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+HAL_GPIO_DeInit
+HAL_SPI_DeInit
+HAL_SPI_Transmit
+HAL_SPI_Receive
+HAL_SPI_TransmitReceive
+HAL_GetTick
+HAL_SPI_Init
+HAL_SPI_GetState
