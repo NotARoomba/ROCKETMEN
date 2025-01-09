@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://talos.notaroomba.dev"><img src="https://raw.githubusercontent.com/notaroomba/ROCKETMEN/master/Talos/Web/public/assets/icon.png" alt="ROCKETMEN" width="200"></a>
+  <a href="https://talos.notaroomba.dev"><img src="https://raw.githubusercontent.com/NotARoomba/ROCKETMEN/master/Talos/Web/public/assets/icon.png" alt="ROCKETMEN" width="200"></a>
   <br>
   ROCKETMEN
   <br>
@@ -25,7 +25,7 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/notaroomba/ROCKETMEN/master\Research\Talos\images\website_data.png)
+![screenshot](https://raw.githubusercontent.com/NotARoomba/ROCKETMEN/master\Research\Talos\images\website_data.png)
 
 ## Key Features
 
