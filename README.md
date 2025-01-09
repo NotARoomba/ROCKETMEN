@@ -25,7 +25,7 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/NotARoomba/ROCKETMEN/master\Research\Talos\images\website_data.png)
+![screenshot](https://raw.githubusercontent.com/NotARoomba/ROCKETMEN/master/Research/Talos/images/website_data.png)
 
 ## Key Features
 
