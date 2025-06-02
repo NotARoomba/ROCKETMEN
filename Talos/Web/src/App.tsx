@@ -57,7 +57,13 @@ export default function App() {
     const subscription = buffered$.subscribe((bufferedData) => {
       if (bufferedData.length > 0) {
         console.log(bufferedData);
-        setData((prevData) => [...prevData, ...bufferedData]);
+        // setData((prevData) => [...prevData, ...bufferedData]);
+        setData((prevData) => {
+          const newData = [...prevData, ...bufferedData];
+          return newData.length > 50000
+            ? newData.slice(newData.length - 500000)
+            : newData;
+        });
       }
     });
 

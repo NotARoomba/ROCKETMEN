@@ -1,0 +1,392 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"bsp_driver_sd.c"
+  16              		.text
+  17              		.section	.text.BSP_SD_ITConfig,"ax",%progbits
+  18              		.align	1
+  19              		.weak	BSP_SD_ITConfig
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	BSP_SD_ITConfig:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 0020     		movs	r0, #0
+  29 0002 7047     		bx	lr
+  31              		.section	.text.BSP_SD_DetectIT,"ax",%progbits
+  32              		.align	1
+  33              		.weak	BSP_SD_DetectIT
+  34              		.syntax unified
+  35              		.thumb
+  36              		.thumb_func
+  38              	BSP_SD_DetectIT:
+  39              		@ args = 0, pretend = 0, frame = 0
+  40              		@ frame_needed = 0, uses_anonymous_args = 0
+  41              		@ link register save eliminated.
+  42 0000 7047     		bx	lr
+  44              		.section	.text.BSP_SD_ReadBlocks,"ax",%progbits
+  45              		.align	1
+  46              		.weak	BSP_SD_ReadBlocks
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	BSP_SD_ReadBlocks:
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54 0000 00B5     		push	{lr}
+  55 0002 83B0     		sub	sp, sp, #12
+  56 0004 0093     		str	r3, [sp]
+  57 0006 1346     		mov	r3, r2
+  58 0008 0A46     		mov	r2, r1
+  59 000a 0146     		mov	r1, r0
+  60 000c 0348     		ldr	r0, .L7
+  61 000e FFF7FEFF 		bl	HAL_SD_ReadBlocks
+  62 0012 00B1     		cbz	r0, .L4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s 			page 2
+
+
+  63 0014 0120     		movs	r0, #1
+  64              	.L4:
+  65 0016 03B0     		add	sp, sp, #12
+  66              		@ sp needed
+  67 0018 5DF804FB 		ldr	pc, [sp], #4
+  68              	.L8:
+  69              		.align	2
+  70              	.L7:
+  71 001c 00000000 		.word	hsd
+  73              		.section	.text.BSP_SD_WriteBlocks,"ax",%progbits
+  74              		.align	1
+  75              		.weak	BSP_SD_WriteBlocks
+  76              		.syntax unified
+  77              		.thumb
+  78              		.thumb_func
+  80              	BSP_SD_WriteBlocks:
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83 0000 00B5     		push	{lr}
+  84 0002 83B0     		sub	sp, sp, #12
+  85 0004 0093     		str	r3, [sp]
+  86 0006 1346     		mov	r3, r2
+  87 0008 0A46     		mov	r2, r1
+  88 000a 0146     		mov	r1, r0
+  89 000c 0348     		ldr	r0, .L13
+  90 000e FFF7FEFF 		bl	HAL_SD_WriteBlocks
+  91 0012 00B1     		cbz	r0, .L10
+  92 0014 0120     		movs	r0, #1
+  93              	.L10:
+  94 0016 03B0     		add	sp, sp, #12
+  95              		@ sp needed
+  96 0018 5DF804FB 		ldr	pc, [sp], #4
+  97              	.L14:
+  98              		.align	2
+  99              	.L13:
+ 100 001c 00000000 		.word	hsd
+ 102              		.section	.text.BSP_SD_ReadBlocks_DMA,"ax",%progbits
+ 103              		.align	1
+ 104              		.weak	BSP_SD_ReadBlocks_DMA
+ 105              		.syntax unified
+ 106              		.thumb
+ 107              		.thumb_func
+ 109              	BSP_SD_ReadBlocks_DMA:
+ 110              		@ args = 0, pretend = 0, frame = 0
+ 111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 112 0000 08B5     		push	{r3, lr}
+ 113 0002 1346     		mov	r3, r2
+ 114 0004 0A46     		mov	r2, r1
+ 115 0006 0146     		mov	r1, r0
+ 116 0008 0248     		ldr	r0, .L19
+ 117 000a FFF7FEFF 		bl	HAL_SD_ReadBlocks_DMA
+ 118 000e 00B1     		cbz	r0, .L16
+ 119 0010 0120     		movs	r0, #1
+ 120              	.L16:
+ 121 0012 08BD     		pop	{r3, pc}
+ 122              	.L20:
+ 123              		.align	2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s 			page 3
+
+
+ 124              	.L19:
+ 125 0014 00000000 		.word	hsd
+ 127              		.section	.text.BSP_SD_WriteBlocks_DMA,"ax",%progbits
+ 128              		.align	1
+ 129              		.weak	BSP_SD_WriteBlocks_DMA
+ 130              		.syntax unified
+ 131              		.thumb
+ 132              		.thumb_func
+ 134              	BSP_SD_WriteBlocks_DMA:
+ 135              		@ args = 0, pretend = 0, frame = 0
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137 0000 08B5     		push	{r3, lr}
+ 138 0002 1346     		mov	r3, r2
+ 139 0004 0A46     		mov	r2, r1
+ 140 0006 0146     		mov	r1, r0
+ 141 0008 0248     		ldr	r0, .L25
+ 142 000a FFF7FEFF 		bl	HAL_SD_WriteBlocks_DMA
+ 143 000e 00B1     		cbz	r0, .L22
+ 144 0010 0120     		movs	r0, #1
+ 145              	.L22:
+ 146 0012 08BD     		pop	{r3, pc}
+ 147              	.L26:
+ 148              		.align	2
+ 149              	.L25:
+ 150 0014 00000000 		.word	hsd
+ 152              		.section	.text.BSP_SD_Erase,"ax",%progbits
+ 153              		.align	1
+ 154              		.weak	BSP_SD_Erase
+ 155              		.syntax unified
+ 156              		.thumb
+ 157              		.thumb_func
+ 159              	BSP_SD_Erase:
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162 0000 08B5     		push	{r3, lr}
+ 163 0002 0A46     		mov	r2, r1
+ 164 0004 0146     		mov	r1, r0
+ 165 0006 0348     		ldr	r0, .L31
+ 166 0008 FFF7FEFF 		bl	HAL_SD_Erase
+ 167 000c 00B1     		cbz	r0, .L28
+ 168 000e 0120     		movs	r0, #1
+ 169              	.L28:
+ 170 0010 08BD     		pop	{r3, pc}
+ 171              	.L32:
+ 172 0012 00BF     		.align	2
+ 173              	.L31:
+ 174 0014 00000000 		.word	hsd
+ 176              		.section	.text.BSP_SD_GetCardState,"ax",%progbits
+ 177              		.align	1
+ 178              		.weak	BSP_SD_GetCardState
+ 179              		.syntax unified
+ 180              		.thumb
+ 181              		.thumb_func
+ 183              	BSP_SD_GetCardState:
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s 			page 4
+
+
+ 187 0002 0348     		ldr	r0, .L35
+ 188 0004 FFF7FEFF 		bl	HAL_SD_GetCardState
+ 189 0008 0438     		subs	r0, r0, #4
+ 190 000a 18BF     		it	ne
+ 191 000c 0120     		movne	r0, #1
+ 192 000e 08BD     		pop	{r3, pc}
+ 193              	.L36:
+ 194              		.align	2
+ 195              	.L35:
+ 196 0010 00000000 		.word	hsd
+ 198              		.section	.text.BSP_SD_GetCardInfo,"ax",%progbits
+ 199              		.align	1
+ 200              		.weak	BSP_SD_GetCardInfo
+ 201              		.syntax unified
+ 202              		.thumb
+ 203              		.thumb_func
+ 205              	BSP_SD_GetCardInfo:
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208 0000 08B5     		push	{r3, lr}
+ 209 0002 0146     		mov	r1, r0
+ 210 0004 0148     		ldr	r0, .L39
+ 211 0006 FFF7FEFF 		bl	HAL_SD_GetCardInfo
+ 212 000a 08BD     		pop	{r3, pc}
+ 213              	.L40:
+ 214              		.align	2
+ 215              	.L39:
+ 216 000c 00000000 		.word	hsd
+ 218              		.section	.text.BSP_SD_AbortCallback,"ax",%progbits
+ 219              		.align	1
+ 220              		.weak	BSP_SD_AbortCallback
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 225              	BSP_SD_AbortCallback:
+ 226              		@ args = 0, pretend = 0, frame = 0
+ 227              		@ frame_needed = 0, uses_anonymous_args = 0
+ 228              		@ link register save eliminated.
+ 229 0000 7047     		bx	lr
+ 231              		.section	.text.HAL_SD_AbortCallback,"ax",%progbits
+ 232              		.align	1
+ 233              		.global	HAL_SD_AbortCallback
+ 234              		.syntax unified
+ 235              		.thumb
+ 236              		.thumb_func
+ 238              	HAL_SD_AbortCallback:
+ 239              		@ args = 0, pretend = 0, frame = 0
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241 0000 08B5     		push	{r3, lr}
+ 242 0002 FFF7FEFF 		bl	BSP_SD_AbortCallback
+ 243 0006 08BD     		pop	{r3, pc}
+ 245              		.section	.text.BSP_SD_WriteCpltCallback,"ax",%progbits
+ 246              		.align	1
+ 247              		.weak	BSP_SD_WriteCpltCallback
+ 248              		.syntax unified
+ 249              		.thumb
+ 250              		.thumb_func
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s 			page 5
+
+
+ 252              	BSP_SD_WriteCpltCallback:
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255              		@ link register save eliminated.
+ 256 0000 7047     		bx	lr
+ 258              		.section	.text.HAL_SD_TxCpltCallback,"ax",%progbits
+ 259              		.align	1
+ 260              		.global	HAL_SD_TxCpltCallback
+ 261              		.syntax unified
+ 262              		.thumb
+ 263              		.thumb_func
+ 265              	HAL_SD_TxCpltCallback:
+ 266              		@ args = 0, pretend = 0, frame = 0
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 268 0000 08B5     		push	{r3, lr}
+ 269 0002 FFF7FEFF 		bl	BSP_SD_WriteCpltCallback
+ 270 0006 08BD     		pop	{r3, pc}
+ 272              		.section	.text.BSP_SD_ReadCpltCallback,"ax",%progbits
+ 273              		.align	1
+ 274              		.weak	BSP_SD_ReadCpltCallback
+ 275              		.syntax unified
+ 276              		.thumb
+ 277              		.thumb_func
+ 279              	BSP_SD_ReadCpltCallback:
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282              		@ link register save eliminated.
+ 283 0000 7047     		bx	lr
+ 285              		.section	.text.HAL_SD_RxCpltCallback,"ax",%progbits
+ 286              		.align	1
+ 287              		.global	HAL_SD_RxCpltCallback
+ 288              		.syntax unified
+ 289              		.thumb
+ 290              		.thumb_func
+ 292              	HAL_SD_RxCpltCallback:
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295 0000 08B5     		push	{r3, lr}
+ 296 0002 FFF7FEFF 		bl	BSP_SD_ReadCpltCallback
+ 297 0006 08BD     		pop	{r3, pc}
+ 299              		.section	.text.BSP_SD_IsDetected,"ax",%progbits
+ 300              		.align	1
+ 301              		.weak	BSP_SD_IsDetected
+ 302              		.syntax unified
+ 303              		.thumb
+ 304              		.thumb_func
+ 306              	BSP_SD_IsDetected:
+ 307              		@ args = 0, pretend = 0, frame = 8
+ 308              		@ frame_needed = 0, uses_anonymous_args = 0
+ 309 0000 00B5     		push	{lr}
+ 310 0002 83B0     		sub	sp, sp, #12
+ 311 0004 0123     		movs	r3, #1
+ 312 0006 8DF80730 		strb	r3, [sp, #7]
+ 313 000a FFF7FEFF 		bl	BSP_PlatformIsDetected
+ 314 000e 10B9     		cbnz	r0, .L51
+ 315 0010 0023     		movs	r3, #0
+ 316 0012 8DF80730 		strb	r3, [sp, #7]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s 			page 6
+
+
+ 317              	.L51:
+ 318 0016 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 319 001a 03B0     		add	sp, sp, #12
+ 320              		@ sp needed
+ 321 001c 5DF804FB 		ldr	pc, [sp], #4
+ 323              		.section	.text.BSP_SD_Init,"ax",%progbits
+ 324              		.align	1
+ 325              		.weak	BSP_SD_Init
+ 326              		.syntax unified
+ 327              		.thumb
+ 328              		.thumb_func
+ 330              	BSP_SD_Init:
+ 331              		@ args = 0, pretend = 0, frame = 0
+ 332              		@ frame_needed = 0, uses_anonymous_args = 0
+ 333 0000 08B5     		push	{r3, lr}
+ 334 0002 FFF7FEFF 		bl	BSP_SD_IsDetected
+ 335 0006 0128     		cmp	r0, #1
+ 336 0008 01D0     		beq	.L57
+ 337 000a 0120     		movs	r0, #1
+ 338              	.L54:
+ 339 000c 08BD     		pop	{r3, pc}
+ 340              	.L57:
+ 341 000e 0248     		ldr	r0, .L58
+ 342 0010 FFF7FEFF 		bl	HAL_SD_Init
+ 343 0014 FAE7     		b	.L54
+ 344              	.L59:
+ 345 0016 00BF     		.align	2
+ 346              	.L58:
+ 347 0018 00000000 		.word	hsd
+ 349              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 bsp_driver_sd.c
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:18     .text.BSP_SD_ITConfig:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:24     .text.BSP_SD_ITConfig:00000000 BSP_SD_ITConfig
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:32     .text.BSP_SD_DetectIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:38     .text.BSP_SD_DetectIT:00000000 BSP_SD_DetectIT
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:45     .text.BSP_SD_ReadBlocks:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:51     .text.BSP_SD_ReadBlocks:00000000 BSP_SD_ReadBlocks
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:71     .text.BSP_SD_ReadBlocks:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:74     .text.BSP_SD_WriteBlocks:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:80     .text.BSP_SD_WriteBlocks:00000000 BSP_SD_WriteBlocks
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:100    .text.BSP_SD_WriteBlocks:0000001c $d
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:103    .text.BSP_SD_ReadBlocks_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:109    .text.BSP_SD_ReadBlocks_DMA:00000000 BSP_SD_ReadBlocks_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:125    .text.BSP_SD_ReadBlocks_DMA:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:128    .text.BSP_SD_WriteBlocks_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:134    .text.BSP_SD_WriteBlocks_DMA:00000000 BSP_SD_WriteBlocks_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:150    .text.BSP_SD_WriteBlocks_DMA:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:153    .text.BSP_SD_Erase:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:159    .text.BSP_SD_Erase:00000000 BSP_SD_Erase
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:174    .text.BSP_SD_Erase:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:177    .text.BSP_SD_GetCardState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:183    .text.BSP_SD_GetCardState:00000000 BSP_SD_GetCardState
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:196    .text.BSP_SD_GetCardState:00000010 $d
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:199    .text.BSP_SD_GetCardInfo:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:205    .text.BSP_SD_GetCardInfo:00000000 BSP_SD_GetCardInfo
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:216    .text.BSP_SD_GetCardInfo:0000000c $d
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:219    .text.BSP_SD_AbortCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:225    .text.BSP_SD_AbortCallback:00000000 BSP_SD_AbortCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:232    .text.HAL_SD_AbortCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:238    .text.HAL_SD_AbortCallback:00000000 HAL_SD_AbortCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:246    .text.BSP_SD_WriteCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:252    .text.BSP_SD_WriteCpltCallback:00000000 BSP_SD_WriteCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:259    .text.HAL_SD_TxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:265    .text.HAL_SD_TxCpltCallback:00000000 HAL_SD_TxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:273    .text.BSP_SD_ReadCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:279    .text.BSP_SD_ReadCpltCallback:00000000 BSP_SD_ReadCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:286    .text.HAL_SD_RxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:292    .text.HAL_SD_RxCpltCallback:00000000 HAL_SD_RxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:300    .text.BSP_SD_IsDetected:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:306    .text.BSP_SD_IsDetected:00000000 BSP_SD_IsDetected
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:324    .text.BSP_SD_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:330    .text.BSP_SD_Init:00000000 BSP_SD_Init
+C:\Users\Nathan\AppData\Local\Temp\ccVlBRh6.s:347    .text.BSP_SD_Init:00000018 $d
+
+UNDEFINED SYMBOLS
+HAL_SD_ReadBlocks
+hsd
+HAL_SD_WriteBlocks
+HAL_SD_ReadBlocks_DMA
+HAL_SD_WriteBlocks_DMA
+HAL_SD_Erase
+HAL_SD_GetCardState
+HAL_SD_GetCardInfo
+BSP_PlatformIsDetected
+HAL_SD_Init

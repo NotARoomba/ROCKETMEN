@@ -1,0 +1,3771 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32f4xx_hal_spi.c"
+  16              		.text
+  17              		.section	.text.SPI_AbortRx_ISR,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	SPI_AbortRx_ISR:
+  24              		@ args = 0, pretend = 0, frame = 8
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 82B0     		sub	sp, sp, #8
+  28 0002 0023     		movs	r3, #0
+  29 0004 0193     		str	r3, [sp, #4]
+  30 0006 164B     		ldr	r3, .L7
+  31 0008 1B68     		ldr	r3, [r3]
+  32 000a 164A     		ldr	r2, .L7+4
+  33 000c A2FB0323 		umull	r2, r3, r2, r3
+  34 0010 5B0A     		lsrs	r3, r3, #9
+  35 0012 6422     		movs	r2, #100
+  36 0014 02FB03F3 		mul	r3, r2, r3
+  37 0018 0093     		str	r3, [sp]
+  38              	.L4:
+  39 001a 009B     		ldr	r3, [sp]
+  40 001c 43B1     		cbz	r3, .L6
+  41 001e 009B     		ldr	r3, [sp]
+  42 0020 013B     		subs	r3, r3, #1
+  43 0022 0093     		str	r3, [sp]
+  44 0024 0368     		ldr	r3, [r0]
+  45 0026 9B68     		ldr	r3, [r3, #8]
+  46 0028 13F0020F 		tst	r3, #2
+  47 002c F5D0     		beq	.L4
+  48 002e 03E0     		b	.L3
+  49              	.L6:
+  50 0030 436D     		ldr	r3, [r0, #84]
+  51 0032 43F04003 		orr	r3, r3, #64
+  52 0036 4365     		str	r3, [r0, #84]
+  53              	.L3:
+  54 0038 0268     		ldr	r2, [r0]
+  55 003a 1368     		ldr	r3, [r2]
+  56 003c 23F04003 		bic	r3, r3, #64
+  57 0040 1360     		str	r3, [r2]
+  58 0042 0268     		ldr	r2, [r0]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 2
+
+
+  59 0044 5368     		ldr	r3, [r2, #4]
+  60 0046 23F0E003 		bic	r3, r3, #224
+  61 004a 5360     		str	r3, [r2, #4]
+  62 004c 0368     		ldr	r3, [r0]
+  63 004e DB68     		ldr	r3, [r3, #12]
+  64 0050 0193     		str	r3, [sp, #4]
+  65 0052 019B     		ldr	r3, [sp, #4]
+  66 0054 0723     		movs	r3, #7
+  67 0056 80F85130 		strb	r3, [r0, #81]
+  68 005a 02B0     		add	sp, sp, #8
+  69              		@ sp needed
+  70 005c 7047     		bx	lr
+  71              	.L8:
+  72 005e 00BF     		.align	2
+  73              	.L7:
+  74 0060 00000000 		.word	SystemCoreClock
+  75 0064 F1197605 		.word	91625969
+  77              		.section	.text.SPI_AbortTx_ISR,"ax",%progbits
+  78              		.align	1
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  83              	SPI_AbortTx_ISR:
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86              		@ link register save eliminated.
+  87 0000 0268     		ldr	r2, [r0]
+  88 0002 5368     		ldr	r3, [r2, #4]
+  89 0004 23F08003 		bic	r3, r3, #128
+  90 0008 5360     		str	r3, [r2, #4]
+  91 000a 0268     		ldr	r2, [r0]
+  92 000c 1368     		ldr	r3, [r2]
+  93 000e 23F04003 		bic	r3, r3, #64
+  94 0012 1360     		str	r3, [r2]
+  95 0014 0723     		movs	r3, #7
+  96 0016 80F85130 		strb	r3, [r0, #81]
+  97 001a 7047     		bx	lr
+  99              		.section	.text.SPI_WaitFlagStateUntilTimeout,"ax",%progbits
+ 100              		.align	1
+ 101              		.syntax unified
+ 102              		.thumb
+ 103              		.thumb_func
+ 105              	SPI_WaitFlagStateUntilTimeout:
+ 106              		@ args = 4, pretend = 0, frame = 8
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 109 0004 82B0     		sub	sp, sp, #8
+ 110 0006 0546     		mov	r5, r0
+ 111 0008 8846     		mov	r8, r1
+ 112 000a 1746     		mov	r7, r2
+ 113 000c 1E46     		mov	r6, r3
+ 114 000e FFF7FEFF 		bl	HAL_GetTick
+ 115 0012 0A9B     		ldr	r3, [sp, #40]
+ 116 0014 1B1A     		subs	r3, r3, r0
+ 117 0016 03EB0609 		add	r9, r3, r6
+ 118 001a FFF7FEFF 		bl	HAL_GetTick
+ 119 001e 8246     		mov	r10, r0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 3
+
+
+ 120 0020 284B     		ldr	r3, .L25
+ 121 0022 1B68     		ldr	r3, [r3]
+ 122 0024 C3F3CB33 		ubfx	r3, r3, #15, #12
+ 123 0028 09FB03F3 		mul	r3, r9, r3
+ 124 002c 0193     		str	r3, [sp, #4]
+ 125              	.L12:
+ 126 002e 2B68     		ldr	r3, [r5]
+ 127 0030 9C68     		ldr	r4, [r3, #8]
+ 128 0032 38EA0404 		bics	r4, r8, r4
+ 129 0036 0CBF     		ite	eq
+ 130 0038 0123     		moveq	r3, #1
+ 131 003a 0023     		movne	r3, #0
+ 132 003c BB42     		cmp	r3, r7
+ 133 003e 3DD0     		beq	.L21
+ 134 0040 B6F1FF3F 		cmp	r6, #-1
+ 135 0044 F3D0     		beq	.L12
+ 136 0046 FFF7FEFF 		bl	HAL_GetTick
+ 137 004a A0EB0A00 		sub	r0, r0, r10
+ 138 004e 4845     		cmp	r0, r9
+ 139 0050 07D2     		bcs	.L22
+ 140 0052 019A     		ldr	r2, [sp, #4]
+ 141 0054 02B1     		cbz	r2, .L18
+ 142 0056 4A46     		mov	r2, r9
+ 143              	.L18:
+ 144 0058 019B     		ldr	r3, [sp, #4]
+ 145 005a 013B     		subs	r3, r3, #1
+ 146 005c 0193     		str	r3, [sp, #4]
+ 147 005e 9146     		mov	r9, r2
+ 148 0060 E5E7     		b	.L12
+ 149              	.L22:
+ 150 0062 2A68     		ldr	r2, [r5]
+ 151 0064 5368     		ldr	r3, [r2, #4]
+ 152 0066 23F0E003 		bic	r3, r3, #224
+ 153 006a 5360     		str	r3, [r2, #4]
+ 154 006c 6B68     		ldr	r3, [r5, #4]
+ 155 006e B3F5827F 		cmp	r3, #260
+ 156 0072 0BD0     		beq	.L23
+ 157              	.L14:
+ 158 0074 AB6A     		ldr	r3, [r5, #40]
+ 159 0076 B3F5005F 		cmp	r3, #8192
+ 160 007a 14D0     		beq	.L24
+ 161              	.L16:
+ 162 007c 0123     		movs	r3, #1
+ 163 007e 85F85130 		strb	r3, [r5, #81]
+ 164 0082 0023     		movs	r3, #0
+ 165 0084 85F85030 		strb	r3, [r5, #80]
+ 166 0088 0320     		movs	r0, #3
+ 167 008a 18E0     		b	.L17
+ 168              	.L23:
+ 169 008c AB68     		ldr	r3, [r5, #8]
+ 170 008e B3F5004F 		cmp	r3, #32768
+ 171 0092 02D0     		beq	.L15
+ 172 0094 B3F5806F 		cmp	r3, #1024
+ 173 0098 ECD1     		bne	.L14
+ 174              	.L15:
+ 175 009a 2A68     		ldr	r2, [r5]
+ 176 009c 1368     		ldr	r3, [r2]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 4
+
+
+ 177 009e 23F04003 		bic	r3, r3, #64
+ 178 00a2 1360     		str	r3, [r2]
+ 179 00a4 E6E7     		b	.L14
+ 180              	.L24:
+ 181 00a6 2A68     		ldr	r2, [r5]
+ 182 00a8 1368     		ldr	r3, [r2]
+ 183 00aa 23F40053 		bic	r3, r3, #8192
+ 184 00ae 1360     		str	r3, [r2]
+ 185 00b0 2A68     		ldr	r2, [r5]
+ 186 00b2 1368     		ldr	r3, [r2]
+ 187 00b4 43F40053 		orr	r3, r3, #8192
+ 188 00b8 1360     		str	r3, [r2]
+ 189 00ba DFE7     		b	.L16
+ 190              	.L21:
+ 191 00bc 0020     		movs	r0, #0
+ 192              	.L17:
+ 193 00be 02B0     		add	sp, sp, #8
+ 194              		@ sp needed
+ 195 00c0 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 196              	.L26:
+ 197              		.align	2
+ 198              	.L25:
+ 199 00c4 00000000 		.word	SystemCoreClock
+ 201              		.section	.text.SPI_EndRxTxTransaction,"ax",%progbits
+ 202              		.align	1
+ 203              		.syntax unified
+ 204              		.thumb
+ 205              		.thumb_func
+ 207              	SPI_EndRxTxTransaction:
+ 208              		@ args = 0, pretend = 0, frame = 8
+ 209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 210 0000 70B5     		push	{r4, r5, r6, lr}
+ 211 0002 84B0     		sub	sp, sp, #16
+ 212 0004 0446     		mov	r4, r0
+ 213 0006 0D46     		mov	r5, r1
+ 214 0008 1646     		mov	r6, r2
+ 215 000a 0092     		str	r2, [sp]
+ 216 000c 0B46     		mov	r3, r1
+ 217 000e 0122     		movs	r2, #1
+ 218 0010 0221     		movs	r1, #2
+ 219 0012 FFF7FEFF 		bl	SPI_WaitFlagStateUntilTimeout
+ 220 0016 D0B9     		cbnz	r0, .L32
+ 221 0018 174B     		ldr	r3, .L34
+ 222 001a 1B68     		ldr	r3, [r3]
+ 223 001c 174A     		ldr	r2, .L34+4
+ 224 001e A2FB0323 		umull	r2, r3, r2, r3
+ 225 0022 5B0D     		lsrs	r3, r3, #21
+ 226 0024 4FF47A72 		mov	r2, #1000
+ 227 0028 02FB03F3 		mul	r3, r2, r3
+ 228 002c 0393     		str	r3, [sp, #12]
+ 229 002e 6368     		ldr	r3, [r4, #4]
+ 230 0030 B3F5827F 		cmp	r3, #260
+ 231 0034 11D0     		beq	.L33
+ 232              	.L30:
+ 233 0036 039B     		ldr	r3, [sp, #12]
+ 234 0038 3BB1     		cbz	r3, .L29
+ 235 003a 039B     		ldr	r3, [sp, #12]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 5
+
+
+ 236 003c 013B     		subs	r3, r3, #1
+ 237 003e 0393     		str	r3, [sp, #12]
+ 238 0040 2368     		ldr	r3, [r4]
+ 239 0042 9B68     		ldr	r3, [r3, #8]
+ 240 0044 13F0800F 		tst	r3, #128
+ 241 0048 F5D1     		bne	.L30
+ 242              	.L29:
+ 243 004a 04B0     		add	sp, sp, #16
+ 244              		@ sp needed
+ 245 004c 70BD     		pop	{r4, r5, r6, pc}
+ 246              	.L32:
+ 247 004e 636D     		ldr	r3, [r4, #84]
+ 248 0050 43F02003 		orr	r3, r3, #32
+ 249 0054 6365     		str	r3, [r4, #84]
+ 250 0056 0320     		movs	r0, #3
+ 251 0058 F7E7     		b	.L29
+ 252              	.L33:
+ 253 005a 0096     		str	r6, [sp]
+ 254 005c 2B46     		mov	r3, r5
+ 255 005e 0022     		movs	r2, #0
+ 256 0060 8021     		movs	r1, #128
+ 257 0062 2046     		mov	r0, r4
+ 258 0064 FFF7FEFF 		bl	SPI_WaitFlagStateUntilTimeout
+ 259 0068 0028     		cmp	r0, #0
+ 260 006a EED0     		beq	.L29
+ 261 006c 636D     		ldr	r3, [r4, #84]
+ 262 006e 43F02003 		orr	r3, r3, #32
+ 263 0072 6365     		str	r3, [r4, #84]
+ 264 0074 0320     		movs	r0, #3
+ 265 0076 E8E7     		b	.L29
+ 266              	.L35:
+ 267              		.align	2
+ 268              	.L34:
+ 269 0078 00000000 		.word	SystemCoreClock
+ 270 007c 819F5E16 		.word	375299969
+ 272              		.section	.text.SPI_EndRxTransaction,"ax",%progbits
+ 273              		.align	1
+ 274              		.syntax unified
+ 275              		.thumb
+ 276              		.thumb_func
+ 278              	SPI_EndRxTransaction:
+ 279              		@ args = 0, pretend = 0, frame = 0
+ 280              		@ frame_needed = 0, uses_anonymous_args = 0
+ 281 0000 10B5     		push	{r4, lr}
+ 282 0002 82B0     		sub	sp, sp, #8
+ 283 0004 0446     		mov	r4, r0
+ 284 0006 0B46     		mov	r3, r1
+ 285 0008 4168     		ldr	r1, [r0, #4]
+ 286 000a B1F5827F 		cmp	r1, #260
+ 287 000e 14D0     		beq	.L43
+ 288              	.L37:
+ 289 0010 6168     		ldr	r1, [r4, #4]
+ 290 0012 B1F5827F 		cmp	r1, #260
+ 291 0016 2AD1     		bne	.L39
+ 292 0018 A168     		ldr	r1, [r4, #8]
+ 293 001a B1F5806F 		cmp	r1, #1024
+ 294 001e 19D0     		beq	.L40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 6
+
+
+ 295 0020 0092     		str	r2, [sp]
+ 296 0022 0022     		movs	r2, #0
+ 297 0024 8021     		movs	r1, #128
+ 298 0026 2046     		mov	r0, r4
+ 299 0028 FFF7FEFF 		bl	SPI_WaitFlagStateUntilTimeout
+ 300 002c 30B3     		cbz	r0, .L41
+ 301 002e 636D     		ldr	r3, [r4, #84]
+ 302 0030 43F02003 		orr	r3, r3, #32
+ 303 0034 6365     		str	r3, [r4, #84]
+ 304 0036 0320     		movs	r0, #3
+ 305 0038 20E0     		b	.L41
+ 306              	.L43:
+ 307 003a 8168     		ldr	r1, [r0, #8]
+ 308 003c B1F5004F 		cmp	r1, #32768
+ 309 0040 02D0     		beq	.L38
+ 310 0042 B1F5806F 		cmp	r1, #1024
+ 311 0046 E3D1     		bne	.L37
+ 312              	.L38:
+ 313 0048 2068     		ldr	r0, [r4]
+ 314 004a 0168     		ldr	r1, [r0]
+ 315 004c 21F04001 		bic	r1, r1, #64
+ 316 0050 0160     		str	r1, [r0]
+ 317 0052 DDE7     		b	.L37
+ 318              	.L40:
+ 319 0054 0092     		str	r2, [sp]
+ 320 0056 0022     		movs	r2, #0
+ 321 0058 0121     		movs	r1, #1
+ 322 005a 2046     		mov	r0, r4
+ 323 005c FFF7FEFF 		bl	SPI_WaitFlagStateUntilTimeout
+ 324 0060 60B1     		cbz	r0, .L41
+ 325 0062 636D     		ldr	r3, [r4, #84]
+ 326 0064 43F02003 		orr	r3, r3, #32
+ 327 0068 6365     		str	r3, [r4, #84]
+ 328 006a 0320     		movs	r0, #3
+ 329 006c 06E0     		b	.L41
+ 330              	.L39:
+ 331 006e 0092     		str	r2, [sp]
+ 332 0070 0022     		movs	r2, #0
+ 333 0072 0121     		movs	r1, #1
+ 334 0074 2046     		mov	r0, r4
+ 335 0076 FFF7FEFF 		bl	SPI_WaitFlagStateUntilTimeout
+ 336 007a 08B9     		cbnz	r0, .L44
+ 337              	.L41:
+ 338 007c 02B0     		add	sp, sp, #8
+ 339              		@ sp needed
+ 340 007e 10BD     		pop	{r4, pc}
+ 341              	.L44:
+ 342 0080 636D     		ldr	r3, [r4, #84]
+ 343 0082 43F02003 		orr	r3, r3, #32
+ 344 0086 6365     		str	r3, [r4, #84]
+ 345 0088 0320     		movs	r0, #3
+ 346 008a F7E7     		b	.L41
+ 348              		.section	.text.HAL_SPI_MspInit,"ax",%progbits
+ 349              		.align	1
+ 350              		.weak	HAL_SPI_MspInit
+ 351              		.syntax unified
+ 352              		.thumb
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 7
+
+
+ 353              		.thumb_func
+ 355              	HAL_SPI_MspInit:
+ 356              		@ args = 0, pretend = 0, frame = 0
+ 357              		@ frame_needed = 0, uses_anonymous_args = 0
+ 358              		@ link register save eliminated.
+ 359 0000 7047     		bx	lr
+ 361              		.section	.text.HAL_SPI_Init,"ax",%progbits
+ 362              		.align	1
+ 363              		.global	HAL_SPI_Init
+ 364              		.syntax unified
+ 365              		.thumb
+ 366              		.thumb_func
+ 368              	HAL_SPI_Init:
+ 369              		@ args = 0, pretend = 0, frame = 0
+ 370              		@ frame_needed = 0, uses_anonymous_args = 0
+ 371 0000 0028     		cmp	r0, #0
+ 372 0002 5AD0     		beq	.L51
+ 373 0004 10B5     		push	{r4, lr}
+ 374 0006 0446     		mov	r4, r0
+ 375 0008 436A     		ldr	r3, [r0, #36]
+ 376 000a 33B9     		cbnz	r3, .L48
+ 377 000c 4368     		ldr	r3, [r0, #4]
+ 378 000e B3F5827F 		cmp	r3, #260
+ 379 0012 05D0     		beq	.L49
+ 380 0014 0023     		movs	r3, #0
+ 381 0016 C361     		str	r3, [r0, #28]
+ 382 0018 02E0     		b	.L49
+ 383              	.L48:
+ 384 001a 0023     		movs	r3, #0
+ 385 001c 0361     		str	r3, [r0, #16]
+ 386 001e 4361     		str	r3, [r0, #20]
+ 387              	.L49:
+ 388 0020 0023     		movs	r3, #0
+ 389 0022 A362     		str	r3, [r4, #40]
+ 390 0024 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 391 0028 002B     		cmp	r3, #0
+ 392 002a 40D0     		beq	.L56
+ 393              	.L50:
+ 394 002c 0223     		movs	r3, #2
+ 395 002e 84F85130 		strb	r3, [r4, #81]
+ 396 0032 2268     		ldr	r2, [r4]
+ 397 0034 1368     		ldr	r3, [r2]
+ 398 0036 23F04003 		bic	r3, r3, #64
+ 399 003a 1360     		str	r3, [r2]
+ 400 003c 6368     		ldr	r3, [r4, #4]
+ 401 003e 03F48273 		and	r3, r3, #260
+ 402 0042 A268     		ldr	r2, [r4, #8]
+ 403 0044 02F40442 		and	r2, r2, #33792
+ 404 0048 1343     		orrs	r3, r3, r2
+ 405 004a E268     		ldr	r2, [r4, #12]
+ 406 004c 02F40062 		and	r2, r2, #2048
+ 407 0050 1343     		orrs	r3, r3, r2
+ 408 0052 2269     		ldr	r2, [r4, #16]
+ 409 0054 02F00202 		and	r2, r2, #2
+ 410 0058 1343     		orrs	r3, r3, r2
+ 411 005a 6269     		ldr	r2, [r4, #20]
+ 412 005c 02F00102 		and	r2, r2, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 8
+
+
+ 413 0060 1343     		orrs	r3, r3, r2
+ 414 0062 A269     		ldr	r2, [r4, #24]
+ 415 0064 02F40072 		and	r2, r2, #512
+ 416 0068 1343     		orrs	r3, r3, r2
+ 417 006a E269     		ldr	r2, [r4, #28]
+ 418 006c 02F03802 		and	r2, r2, #56
+ 419 0070 1343     		orrs	r3, r3, r2
+ 420 0072 226A     		ldr	r2, [r4, #32]
+ 421 0074 02F08002 		and	r2, r2, #128
+ 422 0078 1343     		orrs	r3, r3, r2
+ 423 007a A26A     		ldr	r2, [r4, #40]
+ 424 007c 02F40052 		and	r2, r2, #8192
+ 425 0080 2168     		ldr	r1, [r4]
+ 426 0082 1343     		orrs	r3, r3, r2
+ 427 0084 0B60     		str	r3, [r1]
+ 428 0086 638B     		ldrh	r3, [r4, #26]
+ 429 0088 03F00403 		and	r3, r3, #4
+ 430 008c 626A     		ldr	r2, [r4, #36]
+ 431 008e 02F01002 		and	r2, r2, #16
+ 432 0092 2168     		ldr	r1, [r4]
+ 433 0094 1343     		orrs	r3, r3, r2
+ 434 0096 4B60     		str	r3, [r1, #4]
+ 435 0098 2268     		ldr	r2, [r4]
+ 436 009a D369     		ldr	r3, [r2, #28]
+ 437 009c 23F40063 		bic	r3, r3, #2048
+ 438 00a0 D361     		str	r3, [r2, #28]
+ 439 00a2 0020     		movs	r0, #0
+ 440 00a4 6065     		str	r0, [r4, #84]
+ 441 00a6 0123     		movs	r3, #1
+ 442 00a8 84F85130 		strb	r3, [r4, #81]
+ 443 00ac 10BD     		pop	{r4, pc}
+ 444              	.L56:
+ 445 00ae 84F85030 		strb	r3, [r4, #80]
+ 446 00b2 2046     		mov	r0, r4
+ 447 00b4 FFF7FEFF 		bl	HAL_SPI_MspInit
+ 448 00b8 B8E7     		b	.L50
+ 449              	.L51:
+ 450 00ba 0120     		movs	r0, #1
+ 451 00bc 7047     		bx	lr
+ 453              		.section	.text.HAL_SPI_MspDeInit,"ax",%progbits
+ 454              		.align	1
+ 455              		.weak	HAL_SPI_MspDeInit
+ 456              		.syntax unified
+ 457              		.thumb
+ 458              		.thumb_func
+ 460              	HAL_SPI_MspDeInit:
+ 461              		@ args = 0, pretend = 0, frame = 0
+ 462              		@ frame_needed = 0, uses_anonymous_args = 0
+ 463              		@ link register save eliminated.
+ 464 0000 7047     		bx	lr
+ 466              		.section	.text.HAL_SPI_DeInit,"ax",%progbits
+ 467              		.align	1
+ 468              		.global	HAL_SPI_DeInit
+ 469              		.syntax unified
+ 470              		.thumb
+ 471              		.thumb_func
+ 473              	HAL_SPI_DeInit:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 9
+
+
+ 474              		@ args = 0, pretend = 0, frame = 0
+ 475              		@ frame_needed = 0, uses_anonymous_args = 0
+ 476 0000 90B1     		cbz	r0, .L60
+ 477 0002 10B5     		push	{r4, lr}
+ 478 0004 0446     		mov	r4, r0
+ 479 0006 0223     		movs	r3, #2
+ 480 0008 80F85130 		strb	r3, [r0, #81]
+ 481 000c 0268     		ldr	r2, [r0]
+ 482 000e 1368     		ldr	r3, [r2]
+ 483 0010 23F04003 		bic	r3, r3, #64
+ 484 0014 1360     		str	r3, [r2]
+ 485 0016 FFF7FEFF 		bl	HAL_SPI_MspDeInit
+ 486 001a 0020     		movs	r0, #0
+ 487 001c 6065     		str	r0, [r4, #84]
+ 488 001e 84F85100 		strb	r0, [r4, #81]
+ 489 0022 84F85000 		strb	r0, [r4, #80]
+ 490 0026 10BD     		pop	{r4, pc}
+ 491              	.L60:
+ 492 0028 0120     		movs	r0, #1
+ 493 002a 7047     		bx	lr
+ 495              		.section	.text.HAL_SPI_Transmit,"ax",%progbits
+ 496              		.align	1
+ 497              		.global	HAL_SPI_Transmit
+ 498              		.syntax unified
+ 499              		.thumb
+ 500              		.thumb_func
+ 502              	HAL_SPI_Transmit:
+ 503              		@ args = 0, pretend = 0, frame = 8
+ 504              		@ frame_needed = 0, uses_anonymous_args = 0
+ 505 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 506 0004 83B0     		sub	sp, sp, #12
+ 507 0006 0446     		mov	r4, r0
+ 508 0008 8946     		mov	r9, r1
+ 509 000a 9046     		mov	r8, r2
+ 510 000c 1D46     		mov	r5, r3
+ 511 000e FFF7FEFF 		bl	HAL_GetTick
+ 512 0012 94F85160 		ldrb	r6, [r4, #81]	@ zero_extendqisi2
+ 513 0016 F6B2     		uxtb	r6, r6
+ 514 0018 012E     		cmp	r6, #1
+ 515 001a 40F0CC80 		bne	.L89
+ 516 001e 0746     		mov	r7, r0
+ 517 0020 B9F1000F 		cmp	r9, #0
+ 518 0024 00F0C880 		beq	.L66
+ 519 0028 B8F1000F 		cmp	r8, #0
+ 520 002c 00F0C480 		beq	.L66
+ 521 0030 94F85030 		ldrb	r3, [r4, #80]	@ zero_extendqisi2
+ 522 0034 012B     		cmp	r3, #1
+ 523 0036 00F0C380 		beq	.L90
+ 524 003a 0123     		movs	r3, #1
+ 525 003c 84F85030 		strb	r3, [r4, #80]
+ 526 0040 0323     		movs	r3, #3
+ 527 0042 84F85130 		strb	r3, [r4, #81]
+ 528 0046 0023     		movs	r3, #0
+ 529 0048 6365     		str	r3, [r4, #84]
+ 530 004a C4F83090 		str	r9, [r4, #48]
+ 531 004e A4F83480 		strh	r8, [r4, #52]	@ movhi
+ 532 0052 A4F83680 		strh	r8, [r4, #54]	@ movhi
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 10
+
+
+ 533 0056 A363     		str	r3, [r4, #56]
+ 534 0058 A387     		strh	r3, [r4, #60]	@ movhi
+ 535 005a E387     		strh	r3, [r4, #62]	@ movhi
+ 536 005c 6364     		str	r3, [r4, #68]
+ 537 005e 2364     		str	r3, [r4, #64]
+ 538 0060 A368     		ldr	r3, [r4, #8]
+ 539 0062 B3F5004F 		cmp	r3, #32768
+ 540 0066 1ED0     		beq	.L93
+ 541              	.L67:
+ 542 0068 2368     		ldr	r3, [r4]
+ 543 006a 1A68     		ldr	r2, [r3]
+ 544 006c 12F0400F 		tst	r2, #64
+ 545 0070 03D1     		bne	.L68
+ 546 0072 1A68     		ldr	r2, [r3]
+ 547 0074 42F04002 		orr	r2, r2, #64
+ 548 0078 1A60     		str	r2, [r3]
+ 549              	.L68:
+ 550 007a E368     		ldr	r3, [r4, #12]
+ 551 007c B3F5006F 		cmp	r3, #2048
+ 552 0080 1CD0     		beq	.L94
+ 553 0082 6368     		ldr	r3, [r4, #4]
+ 554 0084 13B1     		cbz	r3, .L79
+ 555 0086 B8F1010F 		cmp	r8, #1
+ 556 008a 5FD1     		bne	.L81
+ 557              	.L79:
+ 558 008c 226B     		ldr	r2, [r4, #48]
+ 559 008e 2368     		ldr	r3, [r4]
+ 560 0090 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 561 0092 1A73     		strb	r2, [r3, #12]
+ 562 0094 236B     		ldr	r3, [r4, #48]
+ 563 0096 0133     		adds	r3, r3, #1
+ 564 0098 2363     		str	r3, [r4, #48]
+ 565 009a E38E     		ldrh	r3, [r4, #54]
+ 566 009c 9BB2     		uxth	r3, r3
+ 567 009e 013B     		subs	r3, r3, #1
+ 568 00a0 9BB2     		uxth	r3, r3
+ 569 00a2 E386     		strh	r3, [r4, #54]	@ movhi
+ 570 00a4 52E0     		b	.L81
+ 571              	.L93:
+ 572 00a6 2268     		ldr	r2, [r4]
+ 573 00a8 1368     		ldr	r3, [r2]
+ 574 00aa 23F04003 		bic	r3, r3, #64
+ 575 00ae 1360     		str	r3, [r2]
+ 576 00b0 2268     		ldr	r2, [r4]
+ 577 00b2 1368     		ldr	r3, [r2]
+ 578 00b4 43F48043 		orr	r3, r3, #16384
+ 579 00b8 1360     		str	r3, [r2]
+ 580 00ba D5E7     		b	.L67
+ 581              	.L94:
+ 582 00bc 6368     		ldr	r3, [r4, #4]
+ 583 00be 13B1     		cbz	r3, .L70
+ 584 00c0 B8F1010F 		cmp	r8, #1
+ 585 00c4 15D1     		bne	.L72
+ 586              	.L70:
+ 587 00c6 226B     		ldr	r2, [r4, #48]
+ 588 00c8 2368     		ldr	r3, [r4]
+ 589 00ca 1288     		ldrh	r2, [r2]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 11
+
+
+ 590 00cc DA60     		str	r2, [r3, #12]
+ 591 00ce 236B     		ldr	r3, [r4, #48]
+ 592 00d0 0233     		adds	r3, r3, #2
+ 593 00d2 2363     		str	r3, [r4, #48]
+ 594 00d4 E38E     		ldrh	r3, [r4, #54]
+ 595 00d6 9BB2     		uxth	r3, r3
+ 596 00d8 013B     		subs	r3, r3, #1
+ 597 00da 9BB2     		uxth	r3, r3
+ 598 00dc E386     		strh	r3, [r4, #54]	@ movhi
+ 599 00de 08E0     		b	.L72
+ 600              	.L73:
+ 601 00e0 FFF7FEFF 		bl	HAL_GetTick
+ 602 00e4 C01B     		subs	r0, r0, r7
+ 603 00e6 A842     		cmp	r0, r5
+ 604 00e8 02D3     		bcc	.L75
+ 605 00ea B5F1FF3F 		cmp	r5, #-1
+ 606 00ee 15D1     		bne	.L76
+ 607              	.L75:
+ 608 00f0 A5B1     		cbz	r5, .L76
+ 609              	.L72:
+ 610 00f2 E38E     		ldrh	r3, [r4, #54]
+ 611 00f4 9BB2     		uxth	r3, r3
+ 612 00f6 002B     		cmp	r3, #0
+ 613 00f8 42D0     		beq	.L78
+ 614 00fa 2368     		ldr	r3, [r4]
+ 615 00fc 9A68     		ldr	r2, [r3, #8]
+ 616 00fe 12F0020F 		tst	r2, #2
+ 617 0102 EDD0     		beq	.L73
+ 618 0104 226B     		ldr	r2, [r4, #48]
+ 619 0106 1288     		ldrh	r2, [r2]
+ 620 0108 DA60     		str	r2, [r3, #12]
+ 621 010a 236B     		ldr	r3, [r4, #48]
+ 622 010c 0233     		adds	r3, r3, #2
+ 623 010e 2363     		str	r3, [r4, #48]
+ 624 0110 E38E     		ldrh	r3, [r4, #54]
+ 625 0112 9BB2     		uxth	r3, r3
+ 626 0114 013B     		subs	r3, r3, #1
+ 627 0116 9BB2     		uxth	r3, r3
+ 628 0118 E386     		strh	r3, [r4, #54]	@ movhi
+ 629 011a EAE7     		b	.L72
+ 630              	.L76:
+ 631 011c 0123     		movs	r3, #1
+ 632 011e 84F85130 		strb	r3, [r4, #81]
+ 633 0122 0023     		movs	r3, #0
+ 634 0124 84F85030 		strb	r3, [r4, #80]
+ 635 0128 0326     		movs	r6, #3
+ 636 012a 45E0     		b	.L66
+ 637              	.L95:
+ 638 012c 226B     		ldr	r2, [r4, #48]
+ 639 012e 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 640 0130 1A73     		strb	r2, [r3, #12]
+ 641 0132 236B     		ldr	r3, [r4, #48]
+ 642 0134 0133     		adds	r3, r3, #1
+ 643 0136 2363     		str	r3, [r4, #48]
+ 644 0138 B4F836C0 		ldrh	ip, [r4, #54]
+ 645 013c 1FFA8CFC 		uxth	ip, ip
+ 646 0140 0CF1FF3C 		add	ip, ip, #-1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 12
+
+
+ 647 0144 1FFA8CFC 		uxth	ip, ip
+ 648 0148 A4F836C0 		strh	ip, [r4, #54]	@ movhi
+ 649              	.L81:
+ 650 014c E38E     		ldrh	r3, [r4, #54]
+ 651 014e 9BB2     		uxth	r3, r3
+ 652 0150 B3B1     		cbz	r3, .L78
+ 653 0152 2368     		ldr	r3, [r4]
+ 654 0154 9A68     		ldr	r2, [r3, #8]
+ 655 0156 12F0020F 		tst	r2, #2
+ 656 015a E7D1     		bne	.L95
+ 657 015c FFF7FEFF 		bl	HAL_GetTick
+ 658 0160 C01B     		subs	r0, r0, r7
+ 659 0162 A842     		cmp	r0, r5
+ 660 0164 02D3     		bcc	.L84
+ 661 0166 B5F1FF3F 		cmp	r5, #-1
+ 662 016a 01D1     		bne	.L85
+ 663              	.L84:
+ 664 016c 002D     		cmp	r5, #0
+ 665 016e EDD1     		bne	.L81
+ 666              	.L85:
+ 667 0170 0123     		movs	r3, #1
+ 668 0172 84F85130 		strb	r3, [r4, #81]
+ 669 0176 0023     		movs	r3, #0
+ 670 0178 84F85030 		strb	r3, [r4, #80]
+ 671 017c 0326     		movs	r6, #3
+ 672 017e 1BE0     		b	.L66
+ 673              	.L78:
+ 674 0180 3A46     		mov	r2, r7
+ 675 0182 2946     		mov	r1, r5
+ 676 0184 2046     		mov	r0, r4
+ 677 0186 FFF7FEFF 		bl	SPI_EndRxTxTransaction
+ 678 018a 08B1     		cbz	r0, .L87
+ 679 018c 2023     		movs	r3, #32
+ 680 018e 6365     		str	r3, [r4, #84]
+ 681              	.L87:
+ 682 0190 A368     		ldr	r3, [r4, #8]
+ 683 0192 33B9     		cbnz	r3, .L88
+ 684 0194 0193     		str	r3, [sp, #4]
+ 685 0196 2368     		ldr	r3, [r4]
+ 686 0198 DA68     		ldr	r2, [r3, #12]
+ 687 019a 0192     		str	r2, [sp, #4]
+ 688 019c 9B68     		ldr	r3, [r3, #8]
+ 689 019e 0193     		str	r3, [sp, #4]
+ 690 01a0 019B     		ldr	r3, [sp, #4]
+ 691              	.L88:
+ 692 01a2 0123     		movs	r3, #1
+ 693 01a4 84F85130 		strb	r3, [r4, #81]
+ 694 01a8 0023     		movs	r3, #0
+ 695 01aa 84F85030 		strb	r3, [r4, #80]
+ 696 01ae 636D     		ldr	r3, [r4, #84]
+ 697 01b0 13B9     		cbnz	r3, .L66
+ 698 01b2 0026     		movs	r6, #0
+ 699 01b4 00E0     		b	.L66
+ 700              	.L89:
+ 701 01b6 0226     		movs	r6, #2
+ 702              	.L66:
+ 703 01b8 3046     		mov	r0, r6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 13
+
+
+ 704 01ba 03B0     		add	sp, sp, #12
+ 705              		@ sp needed
+ 706 01bc BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 707              	.L90:
+ 708 01c0 0226     		movs	r6, #2
+ 709 01c2 F9E7     		b	.L66
+ 711              		.section	.text.HAL_SPI_TransmitReceive,"ax",%progbits
+ 712              		.align	1
+ 713              		.global	HAL_SPI_TransmitReceive
+ 714              		.syntax unified
+ 715              		.thumb
+ 716              		.thumb_func
+ 718              	HAL_SPI_TransmitReceive:
+ 719              		@ args = 4, pretend = 0, frame = 8
+ 720              		@ frame_needed = 0, uses_anonymous_args = 0
+ 721 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 722 0004 83B0     		sub	sp, sp, #12
+ 723 0006 0446     		mov	r4, r0
+ 724 0008 8846     		mov	r8, r1
+ 725 000a 9146     		mov	r9, r2
+ 726 000c 1F46     		mov	r7, r3
+ 727 000e 0A9D     		ldr	r5, [sp, #40]
+ 728 0010 FFF7FEFF 		bl	HAL_GetTick
+ 729 0014 0646     		mov	r6, r0
+ 730 0016 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 731 001a DBB2     		uxtb	r3, r3
+ 732 001c 6268     		ldr	r2, [r4, #4]
+ 733 001e 012B     		cmp	r3, #1
+ 734 0020 0AD0     		beq	.L97
+ 735 0022 B2F5827F 		cmp	r2, #260
+ 736 0026 40F00581 		bne	.L119
+ 737 002a A268     		ldr	r2, [r4, #8]
+ 738 002c 002A     		cmp	r2, #0
+ 739 002e 40F00581 		bne	.L120
+ 740 0032 042B     		cmp	r3, #4
+ 741 0034 40F00481 		bne	.L121
+ 742              	.L97:
+ 743 0038 B8F1000F 		cmp	r8, #0
+ 744 003c 00F00281 		beq	.L122
+ 745 0040 B9F1000F 		cmp	r9, #0
+ 746 0044 00F00081 		beq	.L123
+ 747 0048 002F     		cmp	r7, #0
+ 748 004a 00F0FF80 		beq	.L124
+ 749 004e 94F85030 		ldrb	r3, [r4, #80]	@ zero_extendqisi2
+ 750 0052 012B     		cmp	r3, #1
+ 751 0054 00F0FC80 		beq	.L125
+ 752 0058 0123     		movs	r3, #1
+ 753 005a 84F85030 		strb	r3, [r4, #80]
+ 754 005e 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 755 0062 DBB2     		uxtb	r3, r3
+ 756 0064 042B     		cmp	r3, #4
+ 757 0066 02D0     		beq	.L99
+ 758 0068 0523     		movs	r3, #5
+ 759 006a 84F85130 		strb	r3, [r4, #81]
+ 760              	.L99:
+ 761 006e 0023     		movs	r3, #0
+ 762 0070 6365     		str	r3, [r4, #84]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 14
+
+
+ 763 0072 C4F83890 		str	r9, [r4, #56]
+ 764 0076 E787     		strh	r7, [r4, #62]	@ movhi
+ 765 0078 A787     		strh	r7, [r4, #60]	@ movhi
+ 766 007a C4F83080 		str	r8, [r4, #48]
+ 767 007e E786     		strh	r7, [r4, #54]	@ movhi
+ 768 0080 A786     		strh	r7, [r4, #52]	@ movhi
+ 769 0082 2364     		str	r3, [r4, #64]
+ 770 0084 6364     		str	r3, [r4, #68]
+ 771 0086 2368     		ldr	r3, [r4]
+ 772 0088 1A68     		ldr	r2, [r3]
+ 773 008a 12F0400F 		tst	r2, #64
+ 774 008e 03D1     		bne	.L100
+ 775 0090 1A68     		ldr	r2, [r3]
+ 776 0092 42F04002 		orr	r2, r2, #64
+ 777 0096 1A60     		str	r2, [r3]
+ 778              	.L100:
+ 779 0098 E368     		ldr	r3, [r4, #12]
+ 780 009a B3F5006F 		cmp	r3, #2048
+ 781 009e 11D0     		beq	.L127
+ 782 00a0 6368     		ldr	r3, [r4, #4]
+ 783 00a2 0BB1     		cbz	r3, .L109
+ 784 00a4 012F     		cmp	r7, #1
+ 785 00a6 0BD1     		bne	.L110
+ 786              	.L109:
+ 787 00a8 226B     		ldr	r2, [r4, #48]
+ 788 00aa 2368     		ldr	r3, [r4]
+ 789 00ac 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 790 00ae 1A73     		strb	r2, [r3, #12]
+ 791 00b0 236B     		ldr	r3, [r4, #48]
+ 792 00b2 0133     		adds	r3, r3, #1
+ 793 00b4 2363     		str	r3, [r4, #48]
+ 794 00b6 E38E     		ldrh	r3, [r4, #54]
+ 795 00b8 9BB2     		uxth	r3, r3
+ 796 00ba 013B     		subs	r3, r3, #1
+ 797 00bc 9BB2     		uxth	r3, r3
+ 798 00be E386     		strh	r3, [r4, #54]	@ movhi
+ 799              	.L110:
+ 800 00c0 0127     		movs	r7, #1
+ 801 00c2 71E0     		b	.L115
+ 802              	.L127:
+ 803 00c4 6368     		ldr	r3, [r4, #4]
+ 804 00c6 0BB1     		cbz	r3, .L102
+ 805 00c8 012F     		cmp	r7, #1
+ 806 00ca 0BD1     		bne	.L103
+ 807              	.L102:
+ 808 00cc 226B     		ldr	r2, [r4, #48]
+ 809 00ce 2368     		ldr	r3, [r4]
+ 810 00d0 1288     		ldrh	r2, [r2]
+ 811 00d2 DA60     		str	r2, [r3, #12]
+ 812 00d4 236B     		ldr	r3, [r4, #48]
+ 813 00d6 0233     		adds	r3, r3, #2
+ 814 00d8 2363     		str	r3, [r4, #48]
+ 815 00da E38E     		ldrh	r3, [r4, #54]
+ 816 00dc 9BB2     		uxth	r3, r3
+ 817 00de 013B     		subs	r3, r3, #1
+ 818 00e0 9BB2     		uxth	r3, r3
+ 819 00e2 E386     		strh	r3, [r4, #54]	@ movhi
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 15
+
+
+ 820              	.L103:
+ 821 00e4 0127     		movs	r7, #1
+ 822 00e6 1BE0     		b	.L104
+ 823              	.L105:
+ 824 00e8 2368     		ldr	r3, [r4]
+ 825 00ea 9A68     		ldr	r2, [r3, #8]
+ 826 00ec 12F0010F 		tst	r2, #1
+ 827 00f0 0ED0     		beq	.L106
+ 828 00f2 E28F     		ldrh	r2, [r4, #62]
+ 829 00f4 92B2     		uxth	r2, r2
+ 830 00f6 5AB1     		cbz	r2, .L106
+ 831 00f8 DA68     		ldr	r2, [r3, #12]
+ 832 00fa A36B     		ldr	r3, [r4, #56]
+ 833 00fc 1A80     		strh	r2, [r3]	@ movhi
+ 834 00fe A36B     		ldr	r3, [r4, #56]
+ 835 0100 0233     		adds	r3, r3, #2
+ 836 0102 A363     		str	r3, [r4, #56]
+ 837 0104 E38F     		ldrh	r3, [r4, #62]
+ 838 0106 9BB2     		uxth	r3, r3
+ 839 0108 013B     		subs	r3, r3, #1
+ 840 010a 9BB2     		uxth	r3, r3
+ 841 010c E387     		strh	r3, [r4, #62]	@ movhi
+ 842 010e 0127     		movs	r7, #1
+ 843              	.L106:
+ 844 0110 FFF7FEFF 		bl	HAL_GetTick
+ 845 0114 801B     		subs	r0, r0, r6
+ 846 0116 A842     		cmp	r0, r5
+ 847 0118 02D3     		bcc	.L104
+ 848 011a B5F1FF3F 		cmp	r5, #-1
+ 849 011e 1ED1     		bne	.L128
+ 850              	.L104:
+ 851 0120 E38E     		ldrh	r3, [r4, #54]
+ 852 0122 9BB2     		uxth	r3, r3
+ 853 0124 1BB9     		cbnz	r3, .L107
+ 854 0126 E38F     		ldrh	r3, [r4, #62]
+ 855 0128 9BB2     		uxth	r3, r3
+ 856 012a 002B     		cmp	r3, #0
+ 857 012c 62D0     		beq	.L108
+ 858              	.L107:
+ 859 012e 2368     		ldr	r3, [r4]
+ 860 0130 9A68     		ldr	r2, [r3, #8]
+ 861 0132 12F0020F 		tst	r2, #2
+ 862 0136 D7D0     		beq	.L105
+ 863 0138 E28E     		ldrh	r2, [r4, #54]
+ 864 013a 92B2     		uxth	r2, r2
+ 865 013c 002A     		cmp	r2, #0
+ 866 013e D3D0     		beq	.L105
+ 867 0140 002F     		cmp	r7, #0
+ 868 0142 D1D0     		beq	.L105
+ 869 0144 226B     		ldr	r2, [r4, #48]
+ 870 0146 1288     		ldrh	r2, [r2]
+ 871 0148 DA60     		str	r2, [r3, #12]
+ 872 014a 236B     		ldr	r3, [r4, #48]
+ 873 014c 0233     		adds	r3, r3, #2
+ 874 014e 2363     		str	r3, [r4, #48]
+ 875 0150 E38E     		ldrh	r3, [r4, #54]
+ 876 0152 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 16
+
+
+ 877 0154 013B     		subs	r3, r3, #1
+ 878 0156 9BB2     		uxth	r3, r3
+ 879 0158 E386     		strh	r3, [r4, #54]	@ movhi
+ 880 015a 0027     		movs	r7, #0
+ 881 015c C4E7     		b	.L105
+ 882              	.L128:
+ 883 015e 0123     		movs	r3, #1
+ 884 0160 84F85130 		strb	r3, [r4, #81]
+ 885 0164 0023     		movs	r3, #0
+ 886 0166 84F85030 		strb	r3, [r4, #80]
+ 887 016a 0320     		movs	r0, #3
+ 888 016c 63E0     		b	.L98
+ 889              	.L111:
+ 890 016e 2368     		ldr	r3, [r4]
+ 891 0170 9A68     		ldr	r2, [r3, #8]
+ 892 0172 12F0010F 		tst	r2, #1
+ 893 0176 0ED0     		beq	.L112
+ 894 0178 E28F     		ldrh	r2, [r4, #62]
+ 895 017a 92B2     		uxth	r2, r2
+ 896 017c 5AB1     		cbz	r2, .L112
+ 897 017e DA68     		ldr	r2, [r3, #12]
+ 898 0180 A36B     		ldr	r3, [r4, #56]
+ 899 0182 1A70     		strb	r2, [r3]
+ 900 0184 A36B     		ldr	r3, [r4, #56]
+ 901 0186 0133     		adds	r3, r3, #1
+ 902 0188 A363     		str	r3, [r4, #56]
+ 903 018a E38F     		ldrh	r3, [r4, #62]
+ 904 018c 9BB2     		uxth	r3, r3
+ 905 018e 013B     		subs	r3, r3, #1
+ 906 0190 9BB2     		uxth	r3, r3
+ 907 0192 E387     		strh	r3, [r4, #62]	@ movhi
+ 908 0194 0127     		movs	r7, #1
+ 909              	.L112:
+ 910 0196 FFF7FEFF 		bl	HAL_GetTick
+ 911 019a 831B     		subs	r3, r0, r6
+ 912 019c AB42     		cmp	r3, r5
+ 913 019e 02D3     		bcc	.L113
+ 914 01a0 B5F1FF3F 		cmp	r5, #-1
+ 915 01a4 1ED1     		bne	.L114
+ 916              	.L113:
+ 917 01a6 EDB1     		cbz	r5, .L114
+ 918              	.L115:
+ 919 01a8 E38E     		ldrh	r3, [r4, #54]
+ 920 01aa 9BB2     		uxth	r3, r3
+ 921 01ac 13B9     		cbnz	r3, .L116
+ 922 01ae E38F     		ldrh	r3, [r4, #62]
+ 923 01b0 9BB2     		uxth	r3, r3
+ 924 01b2 FBB1     		cbz	r3, .L108
+ 925              	.L116:
+ 926 01b4 2368     		ldr	r3, [r4]
+ 927 01b6 9A68     		ldr	r2, [r3, #8]
+ 928 01b8 12F0020F 		tst	r2, #2
+ 929 01bc D7D0     		beq	.L111
+ 930 01be E28E     		ldrh	r2, [r4, #54]
+ 931 01c0 92B2     		uxth	r2, r2
+ 932 01c2 002A     		cmp	r2, #0
+ 933 01c4 D3D0     		beq	.L111
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 17
+
+
+ 934 01c6 002F     		cmp	r7, #0
+ 935 01c8 D1D0     		beq	.L111
+ 936 01ca 226B     		ldr	r2, [r4, #48]
+ 937 01cc 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 938 01ce 1A73     		strb	r2, [r3, #12]
+ 939 01d0 236B     		ldr	r3, [r4, #48]
+ 940 01d2 0133     		adds	r3, r3, #1
+ 941 01d4 2363     		str	r3, [r4, #48]
+ 942 01d6 E38E     		ldrh	r3, [r4, #54]
+ 943 01d8 9BB2     		uxth	r3, r3
+ 944 01da 013B     		subs	r3, r3, #1
+ 945 01dc 9BB2     		uxth	r3, r3
+ 946 01de E386     		strh	r3, [r4, #54]	@ movhi
+ 947 01e0 0027     		movs	r7, #0
+ 948 01e2 C4E7     		b	.L111
+ 949              	.L114:
+ 950 01e4 0123     		movs	r3, #1
+ 951 01e6 84F85130 		strb	r3, [r4, #81]
+ 952 01ea 0023     		movs	r3, #0
+ 953 01ec 84F85030 		strb	r3, [r4, #80]
+ 954 01f0 0320     		movs	r0, #3
+ 955 01f2 20E0     		b	.L98
+ 956              	.L108:
+ 957 01f4 3246     		mov	r2, r6
+ 958 01f6 2946     		mov	r1, r5
+ 959 01f8 2046     		mov	r0, r4
+ 960 01fa FFF7FEFF 		bl	SPI_EndRxTxTransaction
+ 961 01fe 90B9     		cbnz	r0, .L129
+ 962 0200 A368     		ldr	r3, [r4, #8]
+ 963 0202 33B9     		cbnz	r3, .L118
+ 964 0204 0193     		str	r3, [sp, #4]
+ 965 0206 2368     		ldr	r3, [r4]
+ 966 0208 DA68     		ldr	r2, [r3, #12]
+ 967 020a 0192     		str	r2, [sp, #4]
+ 968 020c 9B68     		ldr	r3, [r3, #8]
+ 969 020e 0193     		str	r3, [sp, #4]
+ 970 0210 019B     		ldr	r3, [sp, #4]
+ 971              	.L118:
+ 972 0212 0123     		movs	r3, #1
+ 973 0214 84F85130 		strb	r3, [r4, #81]
+ 974 0218 0023     		movs	r3, #0
+ 975 021a 84F85030 		strb	r3, [r4, #80]
+ 976 021e 636D     		ldr	r3, [r4, #84]
+ 977 0220 4BB1     		cbz	r3, .L98
+ 978 0222 0120     		movs	r0, #1
+ 979 0224 07E0     		b	.L98
+ 980              	.L129:
+ 981 0226 2023     		movs	r3, #32
+ 982 0228 6365     		str	r3, [r4, #84]
+ 983 022a 0023     		movs	r3, #0
+ 984 022c 84F85030 		strb	r3, [r4, #80]
+ 985 0230 0120     		movs	r0, #1
+ 986 0232 00E0     		b	.L98
+ 987              	.L119:
+ 988 0234 0220     		movs	r0, #2
+ 989              	.L98:
+ 990 0236 03B0     		add	sp, sp, #12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 18
+
+
+ 991              		@ sp needed
+ 992 0238 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 993              	.L120:
+ 994 023c 0220     		movs	r0, #2
+ 995 023e FAE7     		b	.L98
+ 996              	.L121:
+ 997 0240 0220     		movs	r0, #2
+ 998 0242 F8E7     		b	.L98
+ 999              	.L122:
+ 1000 0244 0120     		movs	r0, #1
+ 1001 0246 F6E7     		b	.L98
+ 1002              	.L123:
+ 1003 0248 0120     		movs	r0, #1
+ 1004 024a F4E7     		b	.L98
+ 1005              	.L124:
+ 1006 024c 0120     		movs	r0, #1
+ 1007 024e F2E7     		b	.L98
+ 1008              	.L125:
+ 1009 0250 0220     		movs	r0, #2
+ 1010 0252 F0E7     		b	.L98
+ 1012              		.section	.text.HAL_SPI_Receive,"ax",%progbits
+ 1013              		.align	1
+ 1014              		.global	HAL_SPI_Receive
+ 1015              		.syntax unified
+ 1016              		.thumb
+ 1017              		.thumb_func
+ 1019              	HAL_SPI_Receive:
+ 1020              		@ args = 0, pretend = 0, frame = 0
+ 1021              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1022 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 1023 0004 83B0     		sub	sp, sp, #12
+ 1024 0006 90F85160 		ldrb	r6, [r0, #81]	@ zero_extendqisi2
+ 1025 000a F6B2     		uxtb	r6, r6
+ 1026 000c 012E     		cmp	r6, #1
+ 1027 000e 40F0B480 		bne	.L149
+ 1028 0012 0446     		mov	r4, r0
+ 1029 0014 8946     		mov	r9, r1
+ 1030 0016 9046     		mov	r8, r2
+ 1031 0018 1D46     		mov	r5, r3
+ 1032 001a 4368     		ldr	r3, [r0, #4]
+ 1033 001c B3F5827F 		cmp	r3, #260
+ 1034 0020 01D1     		bne	.L132
+ 1035 0022 8368     		ldr	r3, [r0, #8]
+ 1036 0024 93B3     		cbz	r3, .L153
+ 1037              	.L132:
+ 1038 0026 FFF7FEFF 		bl	HAL_GetTick
+ 1039 002a 0746     		mov	r7, r0
+ 1040 002c B9F1000F 		cmp	r9, #0
+ 1041 0030 00F0A480 		beq	.L131
+ 1042 0034 B8F1000F 		cmp	r8, #0
+ 1043 0038 00F0A080 		beq	.L131
+ 1044 003c 94F85030 		ldrb	r3, [r4, #80]	@ zero_extendqisi2
+ 1045 0040 012B     		cmp	r3, #1
+ 1046 0042 00F09F80 		beq	.L150
+ 1047 0046 0123     		movs	r3, #1
+ 1048 0048 84F85030 		strb	r3, [r4, #80]
+ 1049 004c 0423     		movs	r3, #4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 19
+
+
+ 1050 004e 84F85130 		strb	r3, [r4, #81]
+ 1051 0052 0023     		movs	r3, #0
+ 1052 0054 6365     		str	r3, [r4, #84]
+ 1053 0056 C4F83890 		str	r9, [r4, #56]
+ 1054 005a A4F83C80 		strh	r8, [r4, #60]	@ movhi
+ 1055 005e A4F83E80 		strh	r8, [r4, #62]	@ movhi
+ 1056 0062 2363     		str	r3, [r4, #48]
+ 1057 0064 A386     		strh	r3, [r4, #52]	@ movhi
+ 1058 0066 E386     		strh	r3, [r4, #54]	@ movhi
+ 1059 0068 2364     		str	r3, [r4, #64]
+ 1060 006a 6364     		str	r3, [r4, #68]
+ 1061 006c A368     		ldr	r3, [r4, #8]
+ 1062 006e B3F5004F 		cmp	r3, #32768
+ 1063 0072 15D0     		beq	.L154
+ 1064              	.L133:
+ 1065 0074 2368     		ldr	r3, [r4]
+ 1066 0076 1A68     		ldr	r2, [r3]
+ 1067 0078 12F0400F 		tst	r2, #64
+ 1068 007c 03D1     		bne	.L134
+ 1069 007e 1A68     		ldr	r2, [r3]
+ 1070 0080 42F04002 		orr	r2, r2, #64
+ 1071 0084 1A60     		str	r2, [r3]
+ 1072              	.L134:
+ 1073 0086 E368     		ldr	r3, [r4, #12]
+ 1074 0088 F3B1     		cbz	r3, .L135
+ 1075 008a 43E0     		b	.L136
+ 1076              	.L153:
+ 1077 008c 0423     		movs	r3, #4
+ 1078 008e 80F85130 		strb	r3, [r0, #81]
+ 1079 0092 0095     		str	r5, [sp]
+ 1080 0094 1346     		mov	r3, r2
+ 1081 0096 0A46     		mov	r2, r1
+ 1082 0098 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 1083 009c 0646     		mov	r6, r0
+ 1084 009e 6DE0     		b	.L131
+ 1085              	.L154:
+ 1086 00a0 2268     		ldr	r2, [r4]
+ 1087 00a2 1368     		ldr	r3, [r2]
+ 1088 00a4 23F04003 		bic	r3, r3, #64
+ 1089 00a8 1360     		str	r3, [r2]
+ 1090 00aa 2268     		ldr	r2, [r4]
+ 1091 00ac 1368     		ldr	r3, [r2]
+ 1092 00ae 23F48043 		bic	r3, r3, #16384
+ 1093 00b2 1360     		str	r3, [r2]
+ 1094 00b4 DEE7     		b	.L133
+ 1095              	.L137:
+ 1096 00b6 FFF7FEFF 		bl	HAL_GetTick
+ 1097 00ba C01B     		subs	r0, r0, r7
+ 1098 00bc A842     		cmp	r0, r5
+ 1099 00be 02D3     		bcc	.L139
+ 1100 00c0 B5F1FF3F 		cmp	r5, #-1
+ 1101 00c4 15D1     		bne	.L140
+ 1102              	.L139:
+ 1103 00c6 A5B1     		cbz	r5, .L140
+ 1104              	.L135:
+ 1105 00c8 E38F     		ldrh	r3, [r4, #62]
+ 1106 00ca 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 20
+
+
+ 1107 00cc 002B     		cmp	r3, #0
+ 1108 00ce 42D0     		beq	.L142
+ 1109 00d0 2368     		ldr	r3, [r4]
+ 1110 00d2 9A68     		ldr	r2, [r3, #8]
+ 1111 00d4 12F0010F 		tst	r2, #1
+ 1112 00d8 EDD0     		beq	.L137
+ 1113 00da A26B     		ldr	r2, [r4, #56]
+ 1114 00dc 1B7B     		ldrb	r3, [r3, #12]	@ zero_extendqisi2
+ 1115 00de 1370     		strb	r3, [r2]
+ 1116 00e0 A36B     		ldr	r3, [r4, #56]
+ 1117 00e2 0133     		adds	r3, r3, #1
+ 1118 00e4 A363     		str	r3, [r4, #56]
+ 1119 00e6 E38F     		ldrh	r3, [r4, #62]
+ 1120 00e8 9BB2     		uxth	r3, r3
+ 1121 00ea 013B     		subs	r3, r3, #1
+ 1122 00ec 9BB2     		uxth	r3, r3
+ 1123 00ee E387     		strh	r3, [r4, #62]	@ movhi
+ 1124 00f0 EAE7     		b	.L135
+ 1125              	.L140:
+ 1126 00f2 0123     		movs	r3, #1
+ 1127 00f4 84F85130 		strb	r3, [r4, #81]
+ 1128 00f8 0023     		movs	r3, #0
+ 1129 00fa 84F85030 		strb	r3, [r4, #80]
+ 1130 00fe 0326     		movs	r6, #3
+ 1131 0100 3CE0     		b	.L131
+ 1132              	.L143:
+ 1133 0102 FFF7FEFF 		bl	HAL_GetTick
+ 1134 0106 C01B     		subs	r0, r0, r7
+ 1135 0108 A842     		cmp	r0, r5
+ 1136 010a 02D3     		bcc	.L145
+ 1137 010c B5F1FF3F 		cmp	r5, #-1
+ 1138 0110 19D1     		bne	.L146
+ 1139              	.L145:
+ 1140 0112 C5B1     		cbz	r5, .L146
+ 1141              	.L136:
+ 1142 0114 E38F     		ldrh	r3, [r4, #62]
+ 1143 0116 9BB2     		uxth	r3, r3
+ 1144 0118 EBB1     		cbz	r3, .L142
+ 1145 011a 2368     		ldr	r3, [r4]
+ 1146 011c 9A68     		ldr	r2, [r3, #8]
+ 1147 011e 12F0010F 		tst	r2, #1
+ 1148 0122 EED0     		beq	.L143
+ 1149 0124 DA68     		ldr	r2, [r3, #12]
+ 1150 0126 A36B     		ldr	r3, [r4, #56]
+ 1151 0128 1A80     		strh	r2, [r3]	@ movhi
+ 1152 012a A36B     		ldr	r3, [r4, #56]
+ 1153 012c 0233     		adds	r3, r3, #2
+ 1154 012e A363     		str	r3, [r4, #56]
+ 1155 0130 B4F83EC0 		ldrh	ip, [r4, #62]
+ 1156 0134 1FFA8CFC 		uxth	ip, ip
+ 1157 0138 0CF1FF3C 		add	ip, ip, #-1
+ 1158 013c 1FFA8CFC 		uxth	ip, ip
+ 1159 0140 A4F83EC0 		strh	ip, [r4, #62]	@ movhi
+ 1160 0144 E6E7     		b	.L136
+ 1161              	.L146:
+ 1162 0146 0123     		movs	r3, #1
+ 1163 0148 84F85130 		strb	r3, [r4, #81]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 21
+
+
+ 1164 014c 0023     		movs	r3, #0
+ 1165 014e 84F85030 		strb	r3, [r4, #80]
+ 1166 0152 0326     		movs	r6, #3
+ 1167 0154 12E0     		b	.L131
+ 1168              	.L142:
+ 1169 0156 3A46     		mov	r2, r7
+ 1170 0158 2946     		mov	r1, r5
+ 1171 015a 2046     		mov	r0, r4
+ 1172 015c FFF7FEFF 		bl	SPI_EndRxTransaction
+ 1173 0160 08B1     		cbz	r0, .L148
+ 1174 0162 2023     		movs	r3, #32
+ 1175 0164 6365     		str	r3, [r4, #84]
+ 1176              	.L148:
+ 1177 0166 0123     		movs	r3, #1
+ 1178 0168 84F85130 		strb	r3, [r4, #81]
+ 1179 016c 0023     		movs	r3, #0
+ 1180 016e 84F85030 		strb	r3, [r4, #80]
+ 1181 0172 636D     		ldr	r3, [r4, #84]
+ 1182 0174 13B9     		cbnz	r3, .L131
+ 1183 0176 0026     		movs	r6, #0
+ 1184 0178 00E0     		b	.L131
+ 1185              	.L149:
+ 1186 017a 0226     		movs	r6, #2
+ 1187              	.L131:
+ 1188 017c 3046     		mov	r0, r6
+ 1189 017e 03B0     		add	sp, sp, #12
+ 1190              		@ sp needed
+ 1191 0180 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 1192              	.L150:
+ 1193 0184 0226     		movs	r6, #2
+ 1194 0186 F9E7     		b	.L131
+ 1196              		.section	.text.HAL_SPI_Transmit_IT,"ax",%progbits
+ 1197              		.align	1
+ 1198              		.global	HAL_SPI_Transmit_IT
+ 1199              		.syntax unified
+ 1200              		.thumb
+ 1201              		.thumb_func
+ 1203              	HAL_SPI_Transmit_IT:
+ 1204              		@ args = 0, pretend = 0, frame = 0
+ 1205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1206              		@ link register save eliminated.
+ 1207 0000 0029     		cmp	r1, #0
+ 1208 0002 45D0     		beq	.L161
+ 1209 0004 10B4     		push	{r4}
+ 1210 0006 002A     		cmp	r2, #0
+ 1211 0008 44D0     		beq	.L162
+ 1212 000a 90F85130 		ldrb	r3, [r0, #81]	@ zero_extendqisi2
+ 1213 000e DBB2     		uxtb	r3, r3
+ 1214 0010 012B     		cmp	r3, #1
+ 1215 0012 41D1     		bne	.L163
+ 1216 0014 90F85030 		ldrb	r3, [r0, #80]	@ zero_extendqisi2
+ 1217 0018 012B     		cmp	r3, #1
+ 1218 001a 3FD0     		beq	.L164
+ 1219 001c 0123     		movs	r3, #1
+ 1220 001e 80F85030 		strb	r3, [r0, #80]
+ 1221 0022 0323     		movs	r3, #3
+ 1222 0024 80F85130 		strb	r3, [r0, #81]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 22
+
+
+ 1223 0028 0023     		movs	r3, #0
+ 1224 002a 4365     		str	r3, [r0, #84]
+ 1225 002c 0163     		str	r1, [r0, #48]
+ 1226 002e 8286     		strh	r2, [r0, #52]	@ movhi
+ 1227 0030 C286     		strh	r2, [r0, #54]	@ movhi
+ 1228 0032 8363     		str	r3, [r0, #56]
+ 1229 0034 8387     		strh	r3, [r0, #60]	@ movhi
+ 1230 0036 C387     		strh	r3, [r0, #62]	@ movhi
+ 1231 0038 0364     		str	r3, [r0, #64]
+ 1232 003a C368     		ldr	r3, [r0, #12]
+ 1233 003c D3B1     		cbz	r3, .L157
+ 1234 003e 184B     		ldr	r3, .L170
+ 1235 0040 4364     		str	r3, [r0, #68]
+ 1236              	.L158:
+ 1237 0042 8368     		ldr	r3, [r0, #8]
+ 1238 0044 B3F5004F 		cmp	r3, #32768
+ 1239 0048 17D0     		beq	.L169
+ 1240              	.L159:
+ 1241 004a 0368     		ldr	r3, [r0]
+ 1242 004c 1A68     		ldr	r2, [r3]
+ 1243 004e 12F0400F 		tst	r2, #64
+ 1244 0052 03D1     		bne	.L160
+ 1245 0054 1A68     		ldr	r2, [r3]
+ 1246 0056 42F04002 		orr	r2, r2, #64
+ 1247 005a 1A60     		str	r2, [r3]
+ 1248              	.L160:
+ 1249 005c 0023     		movs	r3, #0
+ 1250 005e 80F85030 		strb	r3, [r0, #80]
+ 1251 0062 0168     		ldr	r1, [r0]
+ 1252 0064 4A68     		ldr	r2, [r1, #4]
+ 1253 0066 42F0A002 		orr	r2, r2, #160
+ 1254 006a 4A60     		str	r2, [r1, #4]
+ 1255 006c 1846     		mov	r0, r3
+ 1256              	.L156:
+ 1257 006e 5DF8044B 		ldr	r4, [sp], #4
+ 1258 0072 7047     		bx	lr
+ 1259              	.L157:
+ 1260 0074 0B4B     		ldr	r3, .L170+4
+ 1261 0076 4364     		str	r3, [r0, #68]
+ 1262 0078 E3E7     		b	.L158
+ 1263              	.L169:
+ 1264 007a 0268     		ldr	r2, [r0]
+ 1265 007c 1368     		ldr	r3, [r2]
+ 1266 007e 23F04003 		bic	r3, r3, #64
+ 1267 0082 1360     		str	r3, [r2]
+ 1268 0084 0268     		ldr	r2, [r0]
+ 1269 0086 1368     		ldr	r3, [r2]
+ 1270 0088 43F48043 		orr	r3, r3, #16384
+ 1271 008c 1360     		str	r3, [r2]
+ 1272 008e DCE7     		b	.L159
+ 1273              	.L161:
+ 1274 0090 0120     		movs	r0, #1
+ 1275 0092 7047     		bx	lr
+ 1276              	.L162:
+ 1277 0094 0120     		movs	r0, #1
+ 1278 0096 EAE7     		b	.L156
+ 1279              	.L163:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 23
+
+
+ 1280 0098 0220     		movs	r0, #2
+ 1281 009a E8E7     		b	.L156
+ 1282              	.L164:
+ 1283 009c 0220     		movs	r0, #2
+ 1284 009e E6E7     		b	.L156
+ 1285              	.L171:
+ 1286              		.align	2
+ 1287              	.L170:
+ 1288 00a0 00000000 		.word	SPI_TxISR_16BIT
+ 1289 00a4 00000000 		.word	SPI_TxISR_8BIT
+ 1291              		.section	.text.HAL_SPI_TransmitReceive_IT,"ax",%progbits
+ 1292              		.align	1
+ 1293              		.global	HAL_SPI_TransmitReceive_IT
+ 1294              		.syntax unified
+ 1295              		.thumb
+ 1296              		.thumb_func
+ 1298              	HAL_SPI_TransmitReceive_IT:
+ 1299              		@ args = 0, pretend = 0, frame = 0
+ 1300              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1301              		@ link register save eliminated.
+ 1302 0000 10B4     		push	{r4}
+ 1303 0002 90F851C0 		ldrb	ip, [r0, #81]	@ zero_extendqisi2
+ 1304 0006 5FFA8CFC 		uxtb	ip, ip
+ 1305 000a 4468     		ldr	r4, [r0, #4]
+ 1306 000c BCF1010F 		cmp	ip, #1
+ 1307 0010 08D0     		beq	.L173
+ 1308 0012 B4F5827F 		cmp	r4, #260
+ 1309 0016 40D1     		bne	.L179
+ 1310 0018 8468     		ldr	r4, [r0, #8]
+ 1311 001a 002C     		cmp	r4, #0
+ 1312 001c 41D1     		bne	.L180
+ 1313 001e BCF1040F 		cmp	ip, #4
+ 1314 0022 40D1     		bne	.L181
+ 1315              	.L173:
+ 1316 0024 0029     		cmp	r1, #0
+ 1317 0026 40D0     		beq	.L182
+ 1318 0028 002A     		cmp	r2, #0
+ 1319 002a 40D0     		beq	.L183
+ 1320 002c 002B     		cmp	r3, #0
+ 1321 002e 40D0     		beq	.L184
+ 1322 0030 90F85040 		ldrb	r4, [r0, #80]	@ zero_extendqisi2
+ 1323 0034 012C     		cmp	r4, #1
+ 1324 0036 3ED0     		beq	.L185
+ 1325 0038 0124     		movs	r4, #1
+ 1326 003a 80F85040 		strb	r4, [r0, #80]
+ 1327 003e 90F85140 		ldrb	r4, [r0, #81]	@ zero_extendqisi2
+ 1328 0042 E4B2     		uxtb	r4, r4
+ 1329 0044 042C     		cmp	r4, #4
+ 1330 0046 02D0     		beq	.L175
+ 1331 0048 0524     		movs	r4, #5
+ 1332 004a 80F85140 		strb	r4, [r0, #81]
+ 1333              	.L175:
+ 1334 004e 0024     		movs	r4, #0
+ 1335 0050 4465     		str	r4, [r0, #84]
+ 1336 0052 0163     		str	r1, [r0, #48]
+ 1337 0054 8386     		strh	r3, [r0, #52]	@ movhi
+ 1338 0056 C386     		strh	r3, [r0, #54]	@ movhi
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 24
+
+
+ 1339 0058 8263     		str	r2, [r0, #56]
+ 1340 005a 8387     		strh	r3, [r0, #60]	@ movhi
+ 1341 005c C387     		strh	r3, [r0, #62]	@ movhi
+ 1342 005e C368     		ldr	r3, [r0, #12]
+ 1343 0060 B3B1     		cbz	r3, .L176
+ 1344 0062 164B     		ldr	r3, .L187
+ 1345 0064 0364     		str	r3, [r0, #64]
+ 1346 0066 164B     		ldr	r3, .L187+4
+ 1347 0068 4364     		str	r3, [r0, #68]
+ 1348              	.L177:
+ 1349 006a 0368     		ldr	r3, [r0]
+ 1350 006c 1A68     		ldr	r2, [r3]
+ 1351 006e 12F0400F 		tst	r2, #64
+ 1352 0072 03D1     		bne	.L178
+ 1353 0074 1A68     		ldr	r2, [r3]
+ 1354 0076 42F04002 		orr	r2, r2, #64
+ 1355 007a 1A60     		str	r2, [r3]
+ 1356              	.L178:
+ 1357 007c 0023     		movs	r3, #0
+ 1358 007e 80F85030 		strb	r3, [r0, #80]
+ 1359 0082 0168     		ldr	r1, [r0]
+ 1360 0084 4A68     		ldr	r2, [r1, #4]
+ 1361 0086 42F0E002 		orr	r2, r2, #224
+ 1362 008a 4A60     		str	r2, [r1, #4]
+ 1363 008c 1846     		mov	r0, r3
+ 1364 008e 05E0     		b	.L174
+ 1365              	.L176:
+ 1366 0090 0C4B     		ldr	r3, .L187+8
+ 1367 0092 0364     		str	r3, [r0, #64]
+ 1368 0094 0C4B     		ldr	r3, .L187+12
+ 1369 0096 4364     		str	r3, [r0, #68]
+ 1370 0098 E7E7     		b	.L177
+ 1371              	.L179:
+ 1372 009a 0220     		movs	r0, #2
+ 1373              	.L174:
+ 1374 009c 5DF8044B 		ldr	r4, [sp], #4
+ 1375 00a0 7047     		bx	lr
+ 1376              	.L180:
+ 1377 00a2 0220     		movs	r0, #2
+ 1378 00a4 FAE7     		b	.L174
+ 1379              	.L181:
+ 1380 00a6 0220     		movs	r0, #2
+ 1381 00a8 F8E7     		b	.L174
+ 1382              	.L182:
+ 1383 00aa 0120     		movs	r0, #1
+ 1384 00ac F6E7     		b	.L174
+ 1385              	.L183:
+ 1386 00ae 0120     		movs	r0, #1
+ 1387 00b0 F4E7     		b	.L174
+ 1388              	.L184:
+ 1389 00b2 0120     		movs	r0, #1
+ 1390 00b4 F2E7     		b	.L174
+ 1391              	.L185:
+ 1392 00b6 0220     		movs	r0, #2
+ 1393 00b8 F0E7     		b	.L174
+ 1394              	.L188:
+ 1395 00ba 00BF     		.align	2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 25
+
+
+ 1396              	.L187:
+ 1397 00bc 00000000 		.word	SPI_2linesRxISR_16BIT
+ 1398 00c0 00000000 		.word	SPI_2linesTxISR_16BIT
+ 1399 00c4 00000000 		.word	SPI_2linesRxISR_8BIT
+ 1400 00c8 00000000 		.word	SPI_2linesTxISR_8BIT
+ 1402              		.section	.text.HAL_SPI_Receive_IT,"ax",%progbits
+ 1403              		.align	1
+ 1404              		.global	HAL_SPI_Receive_IT
+ 1405              		.syntax unified
+ 1406              		.thumb
+ 1407              		.thumb_func
+ 1409              	HAL_SPI_Receive_IT:
+ 1410              		@ args = 0, pretend = 0, frame = 0
+ 1411              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1412 0000 8446     		mov	ip, r0
+ 1413 0002 90F85100 		ldrb	r0, [r0, #81]	@ zero_extendqisi2
+ 1414 0006 C0B2     		uxtb	r0, r0
+ 1415 0008 0128     		cmp	r0, #1
+ 1416 000a 5CD1     		bne	.L196
+ 1417 000c 10B5     		push	{r4, lr}
+ 1418 000e DCF80840 		ldr	r4, [ip, #8]
+ 1419 0012 24B9     		cbnz	r4, .L191
+ 1420 0014 DCF80430 		ldr	r3, [ip, #4]
+ 1421 0018 B3F5827F 		cmp	r3, #260
+ 1422 001c 39D0     		beq	.L202
+ 1423              	.L191:
+ 1424 001e B9B3     		cbz	r1, .L190
+ 1425 0020 B2B3     		cbz	r2, .L190
+ 1426 0022 9CF85030 		ldrb	r3, [ip, #80]	@ zero_extendqisi2
+ 1427 0026 012B     		cmp	r3, #1
+ 1428 0028 4FD0     		beq	.L197
+ 1429 002a 0123     		movs	r3, #1
+ 1430 002c 8CF85030 		strb	r3, [ip, #80]
+ 1431 0030 0423     		movs	r3, #4
+ 1432 0032 8CF85130 		strb	r3, [ip, #81]
+ 1433 0036 0023     		movs	r3, #0
+ 1434 0038 CCF85430 		str	r3, [ip, #84]
+ 1435 003c CCF83810 		str	r1, [ip, #56]
+ 1436 0040 ACF83C20 		strh	r2, [ip, #60]	@ movhi
+ 1437 0044 ACF83E20 		strh	r2, [ip, #62]	@ movhi
+ 1438 0048 CCF83030 		str	r3, [ip, #48]
+ 1439 004c ACF83430 		strh	r3, [ip, #52]	@ movhi
+ 1440 0050 ACF83630 		strh	r3, [ip, #54]	@ movhi
+ 1441 0054 CCF84430 		str	r3, [ip, #68]
+ 1442 0058 DCF80C30 		ldr	r3, [ip, #12]
+ 1443 005c 13B3     		cbz	r3, .L192
+ 1444 005e 1C4B     		ldr	r3, .L204
+ 1445 0060 CCF84030 		str	r3, [ip, #64]
+ 1446              	.L193:
+ 1447 0064 B4F5004F 		cmp	r4, #32768
+ 1448 0068 20D0     		beq	.L203
+ 1449              	.L194:
+ 1450 006a DCF80030 		ldr	r3, [ip]
+ 1451 006e 1A68     		ldr	r2, [r3]
+ 1452 0070 12F0400F 		tst	r2, #64
+ 1453 0074 03D1     		bne	.L195
+ 1454 0076 1A68     		ldr	r2, [r3]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 26
+
+
+ 1455 0078 42F04002 		orr	r2, r2, #64
+ 1456 007c 1A60     		str	r2, [r3]
+ 1457              	.L195:
+ 1458 007e 0020     		movs	r0, #0
+ 1459 0080 8CF85000 		strb	r0, [ip, #80]
+ 1460 0084 DCF80020 		ldr	r2, [ip]
+ 1461 0088 5368     		ldr	r3, [r2, #4]
+ 1462 008a 43F06003 		orr	r3, r3, #96
+ 1463 008e 5360     		str	r3, [r2, #4]
+ 1464              	.L190:
+ 1465 0090 10BD     		pop	{r4, pc}
+ 1466              	.L202:
+ 1467 0092 0423     		movs	r3, #4
+ 1468 0094 8CF85130 		strb	r3, [ip, #81]
+ 1469 0098 1346     		mov	r3, r2
+ 1470 009a 0A46     		mov	r2, r1
+ 1471 009c 6046     		mov	r0, ip
+ 1472 009e FFF7FEFF 		bl	HAL_SPI_TransmitReceive_IT
+ 1473 00a2 F5E7     		b	.L190
+ 1474              	.L192:
+ 1475 00a4 0B4B     		ldr	r3, .L204+4
+ 1476 00a6 CCF84030 		str	r3, [ip, #64]
+ 1477 00aa DBE7     		b	.L193
+ 1478              	.L203:
+ 1479 00ac DCF80020 		ldr	r2, [ip]
+ 1480 00b0 1368     		ldr	r3, [r2]
+ 1481 00b2 23F04003 		bic	r3, r3, #64
+ 1482 00b6 1360     		str	r3, [r2]
+ 1483 00b8 DCF80020 		ldr	r2, [ip]
+ 1484 00bc 1368     		ldr	r3, [r2]
+ 1485 00be 23F48043 		bic	r3, r3, #16384
+ 1486 00c2 1360     		str	r3, [r2]
+ 1487 00c4 D1E7     		b	.L194
+ 1488              	.L196:
+ 1489 00c6 0220     		movs	r0, #2
+ 1490 00c8 7047     		bx	lr
+ 1491              	.L197:
+ 1492 00ca 0220     		movs	r0, #2
+ 1493 00cc E0E7     		b	.L190
+ 1494              	.L205:
+ 1495 00ce 00BF     		.align	2
+ 1496              	.L204:
+ 1497 00d0 00000000 		.word	SPI_RxISR_16BIT
+ 1498 00d4 00000000 		.word	SPI_RxISR_8BIT
+ 1500              		.section	.text.HAL_SPI_Transmit_DMA,"ax",%progbits
+ 1501              		.align	1
+ 1502              		.global	HAL_SPI_Transmit_DMA
+ 1503              		.syntax unified
+ 1504              		.thumb
+ 1505              		.thumb_func
+ 1507              	HAL_SPI_Transmit_DMA:
+ 1508              		@ args = 0, pretend = 0, frame = 0
+ 1509              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1510 0000 38B5     		push	{r3, r4, r5, lr}
+ 1511 0002 90F85150 		ldrb	r5, [r0, #81]	@ zero_extendqisi2
+ 1512 0006 EDB2     		uxtb	r5, r5
+ 1513 0008 012D     		cmp	r5, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 27
+
+
+ 1514 000a 5DD1     		bne	.L211
+ 1515 000c 0446     		mov	r4, r0
+ 1516 000e 0029     		cmp	r1, #0
+ 1517 0010 5BD0     		beq	.L207
+ 1518 0012 002A     		cmp	r2, #0
+ 1519 0014 59D0     		beq	.L207
+ 1520 0016 90F85030 		ldrb	r3, [r0, #80]	@ zero_extendqisi2
+ 1521 001a 012B     		cmp	r3, #1
+ 1522 001c 57D0     		beq	.L212
+ 1523 001e 0123     		movs	r3, #1
+ 1524 0020 80F85030 		strb	r3, [r0, #80]
+ 1525 0024 0323     		movs	r3, #3
+ 1526 0026 80F85130 		strb	r3, [r0, #81]
+ 1527 002a 0023     		movs	r3, #0
+ 1528 002c 4365     		str	r3, [r0, #84]
+ 1529 002e 0163     		str	r1, [r0, #48]
+ 1530 0030 8286     		strh	r2, [r0, #52]	@ movhi
+ 1531 0032 C286     		strh	r2, [r0, #54]	@ movhi
+ 1532 0034 8363     		str	r3, [r0, #56]
+ 1533 0036 4364     		str	r3, [r0, #68]
+ 1534 0038 0364     		str	r3, [r0, #64]
+ 1535 003a 8387     		strh	r3, [r0, #60]	@ movhi
+ 1536 003c C387     		strh	r3, [r0, #62]	@ movhi
+ 1537 003e 8368     		ldr	r3, [r0, #8]
+ 1538 0040 B3F5004F 		cmp	r3, #32768
+ 1539 0044 2DD0     		beq	.L214
+ 1540              	.L208:
+ 1541 0046 A36C     		ldr	r3, [r4, #72]
+ 1542 0048 224A     		ldr	r2, .L216
+ 1543 004a 1A64     		str	r2, [r3, #64]
+ 1544 004c A36C     		ldr	r3, [r4, #72]
+ 1545 004e 224A     		ldr	r2, .L216+4
+ 1546 0050 DA63     		str	r2, [r3, #60]
+ 1547 0052 A36C     		ldr	r3, [r4, #72]
+ 1548 0054 214A     		ldr	r2, .L216+8
+ 1549 0056 DA64     		str	r2, [r3, #76]
+ 1550 0058 A36C     		ldr	r3, [r4, #72]
+ 1551 005a 0022     		movs	r2, #0
+ 1552 005c 1A65     		str	r2, [r3, #80]
+ 1553 005e 2268     		ldr	r2, [r4]
+ 1554 0060 E38E     		ldrh	r3, [r4, #54]
+ 1555 0062 9BB2     		uxth	r3, r3
+ 1556 0064 0C32     		adds	r2, r2, #12
+ 1557 0066 216B     		ldr	r1, [r4, #48]
+ 1558 0068 A06C     		ldr	r0, [r4, #72]
+ 1559 006a FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 1560 006e 0146     		mov	r1, r0
+ 1561 0070 10BB     		cbnz	r0, .L215
+ 1562 0072 2368     		ldr	r3, [r4]
+ 1563 0074 1A68     		ldr	r2, [r3]
+ 1564 0076 12F0400F 		tst	r2, #64
+ 1565 007a 03D1     		bne	.L210
+ 1566 007c 1A68     		ldr	r2, [r3]
+ 1567 007e 42F04002 		orr	r2, r2, #64
+ 1568 0082 1A60     		str	r2, [r3]
+ 1569              	.L210:
+ 1570 0084 0023     		movs	r3, #0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 28
+
+
+ 1571 0086 84F85030 		strb	r3, [r4, #80]
+ 1572 008a 2268     		ldr	r2, [r4]
+ 1573 008c 5368     		ldr	r3, [r2, #4]
+ 1574 008e 43F02003 		orr	r3, r3, #32
+ 1575 0092 5360     		str	r3, [r2, #4]
+ 1576 0094 2268     		ldr	r2, [r4]
+ 1577 0096 5368     		ldr	r3, [r2, #4]
+ 1578 0098 43F00203 		orr	r3, r3, #2
+ 1579 009c 5360     		str	r3, [r2, #4]
+ 1580 009e 0D46     		mov	r5, r1
+ 1581 00a0 13E0     		b	.L207
+ 1582              	.L214:
+ 1583 00a2 0268     		ldr	r2, [r0]
+ 1584 00a4 1368     		ldr	r3, [r2]
+ 1585 00a6 23F04003 		bic	r3, r3, #64
+ 1586 00aa 1360     		str	r3, [r2]
+ 1587 00ac 0268     		ldr	r2, [r0]
+ 1588 00ae 1368     		ldr	r3, [r2]
+ 1589 00b0 43F48043 		orr	r3, r3, #16384
+ 1590 00b4 1360     		str	r3, [r2]
+ 1591 00b6 C6E7     		b	.L208
+ 1592              	.L215:
+ 1593 00b8 636D     		ldr	r3, [r4, #84]
+ 1594 00ba 43F01003 		orr	r3, r3, #16
+ 1595 00be 6365     		str	r3, [r4, #84]
+ 1596 00c0 0023     		movs	r3, #0
+ 1597 00c2 84F85030 		strb	r3, [r4, #80]
+ 1598 00c6 00E0     		b	.L207
+ 1599              	.L211:
+ 1600 00c8 0225     		movs	r5, #2
+ 1601              	.L207:
+ 1602 00ca 2846     		mov	r0, r5
+ 1603 00cc 38BD     		pop	{r3, r4, r5, pc}
+ 1604              	.L212:
+ 1605 00ce 0225     		movs	r5, #2
+ 1606 00d0 FBE7     		b	.L207
+ 1607              	.L217:
+ 1608 00d2 00BF     		.align	2
+ 1609              	.L216:
+ 1610 00d4 00000000 		.word	SPI_DMAHalfTransmitCplt
+ 1611 00d8 00000000 		.word	SPI_DMATransmitCplt
+ 1612 00dc 00000000 		.word	SPI_DMAError
+ 1614              		.section	.text.HAL_SPI_TransmitReceive_DMA,"ax",%progbits
+ 1615              		.align	1
+ 1616              		.global	HAL_SPI_TransmitReceive_DMA
+ 1617              		.syntax unified
+ 1618              		.thumb
+ 1619              		.thumb_func
+ 1621              	HAL_SPI_TransmitReceive_DMA:
+ 1622              		@ args = 0, pretend = 0, frame = 0
+ 1623              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1624 0000 38B5     		push	{r3, r4, r5, lr}
+ 1625 0002 0446     		mov	r4, r0
+ 1626 0004 90F85100 		ldrb	r0, [r0, #81]	@ zero_extendqisi2
+ 1627 0008 C0B2     		uxtb	r0, r0
+ 1628 000a 6568     		ldr	r5, [r4, #4]
+ 1629 000c 0128     		cmp	r0, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 29
+
+
+ 1630 000e 0AD0     		beq	.L219
+ 1631 0010 B5F5827F 		cmp	r5, #260
+ 1632 0014 40F08B80 		bne	.L227
+ 1633 0018 A568     		ldr	r5, [r4, #8]
+ 1634 001a 002D     		cmp	r5, #0
+ 1635 001c 40F08980 		bne	.L228
+ 1636 0020 0428     		cmp	r0, #4
+ 1637 0022 40F08880 		bne	.L229
+ 1638              	.L219:
+ 1639 0026 0029     		cmp	r1, #0
+ 1640 0028 00F08780 		beq	.L230
+ 1641 002c 002A     		cmp	r2, #0
+ 1642 002e 00F08680 		beq	.L231
+ 1643 0032 002B     		cmp	r3, #0
+ 1644 0034 00F08580 		beq	.L232
+ 1645 0038 94F85000 		ldrb	r0, [r4, #80]	@ zero_extendqisi2
+ 1646 003c 0128     		cmp	r0, #1
+ 1647 003e 00F08280 		beq	.L233
+ 1648 0042 0120     		movs	r0, #1
+ 1649 0044 84F85000 		strb	r0, [r4, #80]
+ 1650 0048 94F85100 		ldrb	r0, [r4, #81]	@ zero_extendqisi2
+ 1651 004c C0B2     		uxtb	r0, r0
+ 1652 004e 0428     		cmp	r0, #4
+ 1653 0050 02D0     		beq	.L221
+ 1654 0052 0520     		movs	r0, #5
+ 1655 0054 84F85100 		strb	r0, [r4, #81]
+ 1656              	.L221:
+ 1657 0058 0020     		movs	r0, #0
+ 1658 005a 6065     		str	r0, [r4, #84]
+ 1659 005c 2163     		str	r1, [r4, #48]
+ 1660 005e A386     		strh	r3, [r4, #52]	@ movhi
+ 1661 0060 E386     		strh	r3, [r4, #54]	@ movhi
+ 1662 0062 A263     		str	r2, [r4, #56]
+ 1663 0064 A387     		strh	r3, [r4, #60]	@ movhi
+ 1664 0066 E387     		strh	r3, [r4, #62]	@ movhi
+ 1665 0068 2064     		str	r0, [r4, #64]
+ 1666 006a 6064     		str	r0, [r4, #68]
+ 1667 006c 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 1668 0070 DBB2     		uxtb	r3, r3
+ 1669 0072 042B     		cmp	r3, #4
+ 1670 0074 1DD0     		beq	.L235
+ 1671 0076 E36C     		ldr	r3, [r4, #76]
+ 1672 0078 344A     		ldr	r2, .L237
+ 1673 007a 1A64     		str	r2, [r3, #64]
+ 1674 007c E36C     		ldr	r3, [r4, #76]
+ 1675 007e 344A     		ldr	r2, .L237+4
+ 1676 0080 DA63     		str	r2, [r3, #60]
+ 1677              	.L223:
+ 1678 0082 E36C     		ldr	r3, [r4, #76]
+ 1679 0084 334A     		ldr	r2, .L237+8
+ 1680 0086 DA64     		str	r2, [r3, #76]
+ 1681 0088 E36C     		ldr	r3, [r4, #76]
+ 1682 008a 0022     		movs	r2, #0
+ 1683 008c 1A65     		str	r2, [r3, #80]
+ 1684 008e 2168     		ldr	r1, [r4]
+ 1685 0090 E38F     		ldrh	r3, [r4, #62]
+ 1686 0092 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 30
+
+
+ 1687 0094 A26B     		ldr	r2, [r4, #56]
+ 1688 0096 0C31     		adds	r1, r1, #12
+ 1689 0098 E06C     		ldr	r0, [r4, #76]
+ 1690 009a FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 1691 009e 78B1     		cbz	r0, .L224
+ 1692 00a0 636D     		ldr	r3, [r4, #84]
+ 1693 00a2 43F01003 		orr	r3, r3, #16
+ 1694 00a6 6365     		str	r3, [r4, #84]
+ 1695 00a8 0023     		movs	r3, #0
+ 1696 00aa 84F85030 		strb	r3, [r4, #80]
+ 1697 00ae 0120     		movs	r0, #1
+ 1698 00b0 3EE0     		b	.L220
+ 1699              	.L235:
+ 1700 00b2 E36C     		ldr	r3, [r4, #76]
+ 1701 00b4 284A     		ldr	r2, .L237+12
+ 1702 00b6 1A64     		str	r2, [r3, #64]
+ 1703 00b8 E36C     		ldr	r3, [r4, #76]
+ 1704 00ba 284A     		ldr	r2, .L237+16
+ 1705 00bc DA63     		str	r2, [r3, #60]
+ 1706 00be E0E7     		b	.L223
+ 1707              	.L224:
+ 1708 00c0 2268     		ldr	r2, [r4]
+ 1709 00c2 5368     		ldr	r3, [r2, #4]
+ 1710 00c4 43F00103 		orr	r3, r3, #1
+ 1711 00c8 5360     		str	r3, [r2, #4]
+ 1712 00ca A26C     		ldr	r2, [r4, #72]
+ 1713 00cc 0023     		movs	r3, #0
+ 1714 00ce 1364     		str	r3, [r2, #64]
+ 1715 00d0 A26C     		ldr	r2, [r4, #72]
+ 1716 00d2 D363     		str	r3, [r2, #60]
+ 1717 00d4 A26C     		ldr	r2, [r4, #72]
+ 1718 00d6 D364     		str	r3, [r2, #76]
+ 1719 00d8 A26C     		ldr	r2, [r4, #72]
+ 1720 00da 1365     		str	r3, [r2, #80]
+ 1721 00dc 2268     		ldr	r2, [r4]
+ 1722 00de E38E     		ldrh	r3, [r4, #54]
+ 1723 00e0 9BB2     		uxth	r3, r3
+ 1724 00e2 0C32     		adds	r2, r2, #12
+ 1725 00e4 216B     		ldr	r1, [r4, #48]
+ 1726 00e6 A06C     		ldr	r0, [r4, #72]
+ 1727 00e8 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 1728 00ec B0B9     		cbnz	r0, .L236
+ 1729 00ee 2368     		ldr	r3, [r4]
+ 1730 00f0 1A68     		ldr	r2, [r3]
+ 1731 00f2 12F0400F 		tst	r2, #64
+ 1732 00f6 03D1     		bne	.L226
+ 1733 00f8 1A68     		ldr	r2, [r3]
+ 1734 00fa 42F04002 		orr	r2, r2, #64
+ 1735 00fe 1A60     		str	r2, [r3]
+ 1736              	.L226:
+ 1737 0100 0023     		movs	r3, #0
+ 1738 0102 84F85030 		strb	r3, [r4, #80]
+ 1739 0106 2268     		ldr	r2, [r4]
+ 1740 0108 5368     		ldr	r3, [r2, #4]
+ 1741 010a 43F02003 		orr	r3, r3, #32
+ 1742 010e 5360     		str	r3, [r2, #4]
+ 1743 0110 2268     		ldr	r2, [r4]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 31
+
+
+ 1744 0112 5368     		ldr	r3, [r2, #4]
+ 1745 0114 43F00203 		orr	r3, r3, #2
+ 1746 0118 5360     		str	r3, [r2, #4]
+ 1747 011a 09E0     		b	.L220
+ 1748              	.L236:
+ 1749 011c 636D     		ldr	r3, [r4, #84]
+ 1750 011e 43F01003 		orr	r3, r3, #16
+ 1751 0122 6365     		str	r3, [r4, #84]
+ 1752 0124 0023     		movs	r3, #0
+ 1753 0126 84F85030 		strb	r3, [r4, #80]
+ 1754 012a 0120     		movs	r0, #1
+ 1755 012c 00E0     		b	.L220
+ 1756              	.L227:
+ 1757 012e 0220     		movs	r0, #2
+ 1758              	.L220:
+ 1759 0130 38BD     		pop	{r3, r4, r5, pc}
+ 1760              	.L228:
+ 1761 0132 0220     		movs	r0, #2
+ 1762 0134 FCE7     		b	.L220
+ 1763              	.L229:
+ 1764 0136 0220     		movs	r0, #2
+ 1765 0138 FAE7     		b	.L220
+ 1766              	.L230:
+ 1767 013a 0120     		movs	r0, #1
+ 1768 013c F8E7     		b	.L220
+ 1769              	.L231:
+ 1770 013e 0120     		movs	r0, #1
+ 1771 0140 F6E7     		b	.L220
+ 1772              	.L232:
+ 1773 0142 0120     		movs	r0, #1
+ 1774 0144 F4E7     		b	.L220
+ 1775              	.L233:
+ 1776 0146 0220     		movs	r0, #2
+ 1777 0148 F2E7     		b	.L220
+ 1778              	.L238:
+ 1779 014a 00BF     		.align	2
+ 1780              	.L237:
+ 1781 014c 00000000 		.word	SPI_DMAHalfTransmitReceiveCplt
+ 1782 0150 00000000 		.word	SPI_DMATransmitReceiveCplt
+ 1783 0154 00000000 		.word	SPI_DMAError
+ 1784 0158 00000000 		.word	SPI_DMAHalfReceiveCplt
+ 1785 015c 00000000 		.word	SPI_DMAReceiveCplt
+ 1787              		.section	.text.HAL_SPI_Receive_DMA,"ax",%progbits
+ 1788              		.align	1
+ 1789              		.global	HAL_SPI_Receive_DMA
+ 1790              		.syntax unified
+ 1791              		.thumb
+ 1792              		.thumb_func
+ 1794              	HAL_SPI_Receive_DMA:
+ 1795              		@ args = 0, pretend = 0, frame = 0
+ 1796              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1797 0000 38B5     		push	{r3, r4, r5, lr}
+ 1798 0002 90F85150 		ldrb	r5, [r0, #81]	@ zero_extendqisi2
+ 1799 0006 EDB2     		uxtb	r5, r5
+ 1800 0008 012D     		cmp	r5, #1
+ 1801 000a 6BD1     		bne	.L245
+ 1802 000c 0446     		mov	r4, r0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 32
+
+
+ 1803 000e 8068     		ldr	r0, [r0, #8]
+ 1804 0010 18B9     		cbnz	r0, .L241
+ 1805 0012 6368     		ldr	r3, [r4, #4]
+ 1806 0014 B3F5827F 		cmp	r3, #260
+ 1807 0018 47D0     		beq	.L248
+ 1808              	.L241:
+ 1809 001a 0029     		cmp	r1, #0
+ 1810 001c 63D0     		beq	.L240
+ 1811 001e 002A     		cmp	r2, #0
+ 1812 0020 61D0     		beq	.L240
+ 1813 0022 94F85030 		ldrb	r3, [r4, #80]	@ zero_extendqisi2
+ 1814 0026 012B     		cmp	r3, #1
+ 1815 0028 5FD0     		beq	.L246
+ 1816 002a 0123     		movs	r3, #1
+ 1817 002c 84F85030 		strb	r3, [r4, #80]
+ 1818 0030 0423     		movs	r3, #4
+ 1819 0032 84F85130 		strb	r3, [r4, #81]
+ 1820 0036 0023     		movs	r3, #0
+ 1821 0038 6365     		str	r3, [r4, #84]
+ 1822 003a A163     		str	r1, [r4, #56]
+ 1823 003c A287     		strh	r2, [r4, #60]	@ movhi
+ 1824 003e E287     		strh	r2, [r4, #62]	@ movhi
+ 1825 0040 2364     		str	r3, [r4, #64]
+ 1826 0042 6364     		str	r3, [r4, #68]
+ 1827 0044 A386     		strh	r3, [r4, #52]	@ movhi
+ 1828 0046 E386     		strh	r3, [r4, #54]	@ movhi
+ 1829 0048 B0F5004F 		cmp	r0, #32768
+ 1830 004c 37D0     		beq	.L249
+ 1831              	.L242:
+ 1832 004e E36C     		ldr	r3, [r4, #76]
+ 1833 0050 274A     		ldr	r2, .L251
+ 1834 0052 1A64     		str	r2, [r3, #64]
+ 1835 0054 E36C     		ldr	r3, [r4, #76]
+ 1836 0056 274A     		ldr	r2, .L251+4
+ 1837 0058 DA63     		str	r2, [r3, #60]
+ 1838 005a E36C     		ldr	r3, [r4, #76]
+ 1839 005c 264A     		ldr	r2, .L251+8
+ 1840 005e DA64     		str	r2, [r3, #76]
+ 1841 0060 E36C     		ldr	r3, [r4, #76]
+ 1842 0062 0022     		movs	r2, #0
+ 1843 0064 1A65     		str	r2, [r3, #80]
+ 1844 0066 2168     		ldr	r1, [r4]
+ 1845 0068 E38F     		ldrh	r3, [r4, #62]
+ 1846 006a 9BB2     		uxth	r3, r3
+ 1847 006c A26B     		ldr	r2, [r4, #56]
+ 1848 006e 0C31     		adds	r1, r1, #12
+ 1849 0070 E06C     		ldr	r0, [r4, #76]
+ 1850 0072 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 1851 0076 0146     		mov	r1, r0
+ 1852 0078 60BB     		cbnz	r0, .L250
+ 1853 007a 2368     		ldr	r3, [r4]
+ 1854 007c 1A68     		ldr	r2, [r3]
+ 1855 007e 12F0400F 		tst	r2, #64
+ 1856 0082 03D1     		bne	.L244
+ 1857 0084 1A68     		ldr	r2, [r3]
+ 1858 0086 42F04002 		orr	r2, r2, #64
+ 1859 008a 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 33
+
+
+ 1860              	.L244:
+ 1861 008c 0023     		movs	r3, #0
+ 1862 008e 84F85030 		strb	r3, [r4, #80]
+ 1863 0092 2268     		ldr	r2, [r4]
+ 1864 0094 5368     		ldr	r3, [r2, #4]
+ 1865 0096 43F02003 		orr	r3, r3, #32
+ 1866 009a 5360     		str	r3, [r2, #4]
+ 1867 009c 2268     		ldr	r2, [r4]
+ 1868 009e 5368     		ldr	r3, [r2, #4]
+ 1869 00a0 43F00103 		orr	r3, r3, #1
+ 1870 00a4 5360     		str	r3, [r2, #4]
+ 1871 00a6 0D46     		mov	r5, r1
+ 1872 00a8 1DE0     		b	.L240
+ 1873              	.L248:
+ 1874 00aa 0423     		movs	r3, #4
+ 1875 00ac 84F85130 		strb	r3, [r4, #81]
+ 1876 00b0 1346     		mov	r3, r2
+ 1877 00b2 0A46     		mov	r2, r1
+ 1878 00b4 2046     		mov	r0, r4
+ 1879 00b6 FFF7FEFF 		bl	HAL_SPI_TransmitReceive_DMA
+ 1880 00ba 0546     		mov	r5, r0
+ 1881 00bc 13E0     		b	.L240
+ 1882              	.L249:
+ 1883 00be 2268     		ldr	r2, [r4]
+ 1884 00c0 1368     		ldr	r3, [r2]
+ 1885 00c2 23F04003 		bic	r3, r3, #64
+ 1886 00c6 1360     		str	r3, [r2]
+ 1887 00c8 2268     		ldr	r2, [r4]
+ 1888 00ca 1368     		ldr	r3, [r2]
+ 1889 00cc 23F48043 		bic	r3, r3, #16384
+ 1890 00d0 1360     		str	r3, [r2]
+ 1891 00d2 BCE7     		b	.L242
+ 1892              	.L250:
+ 1893 00d4 636D     		ldr	r3, [r4, #84]
+ 1894 00d6 43F01003 		orr	r3, r3, #16
+ 1895 00da 6365     		str	r3, [r4, #84]
+ 1896 00dc 0023     		movs	r3, #0
+ 1897 00de 84F85030 		strb	r3, [r4, #80]
+ 1898 00e2 00E0     		b	.L240
+ 1899              	.L245:
+ 1900 00e4 0225     		movs	r5, #2
+ 1901              	.L240:
+ 1902 00e6 2846     		mov	r0, r5
+ 1903 00e8 38BD     		pop	{r3, r4, r5, pc}
+ 1904              	.L246:
+ 1905 00ea 0225     		movs	r5, #2
+ 1906 00ec FBE7     		b	.L240
+ 1907              	.L252:
+ 1908 00ee 00BF     		.align	2
+ 1909              	.L251:
+ 1910 00f0 00000000 		.word	SPI_DMAHalfReceiveCplt
+ 1911 00f4 00000000 		.word	SPI_DMAReceiveCplt
+ 1912 00f8 00000000 		.word	SPI_DMAError
+ 1914              		.section	.text.HAL_SPI_Abort,"ax",%progbits
+ 1915              		.align	1
+ 1916              		.global	HAL_SPI_Abort
+ 1917              		.syntax unified
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 34
+
+
+ 1918              		.thumb
+ 1919              		.thumb_func
+ 1921              	HAL_SPI_Abort:
+ 1922              		@ args = 0, pretend = 0, frame = 16
+ 1923              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1924 0000 10B5     		push	{r4, lr}
+ 1925 0002 84B0     		sub	sp, sp, #16
+ 1926 0004 0446     		mov	r4, r0
+ 1927 0006 4B4B     		ldr	r3, .L274
+ 1928 0008 1B68     		ldr	r3, [r3]
+ 1929 000a 4B4A     		ldr	r2, .L274+4
+ 1930 000c A2FB0323 		umull	r2, r3, r2, r3
+ 1931 0010 5B0A     		lsrs	r3, r3, #9
+ 1932 0012 6422     		movs	r2, #100
+ 1933 0014 02FB03F3 		mul	r3, r2, r3
+ 1934 0018 0293     		str	r3, [sp, #8]
+ 1935 001a 029B     		ldr	r3, [sp, #8]
+ 1936 001c 0393     		str	r3, [sp, #12]
+ 1937 001e 0268     		ldr	r2, [r0]
+ 1938 0020 5368     		ldr	r3, [r2, #4]
+ 1939 0022 23F02003 		bic	r3, r3, #32
+ 1940 0026 5360     		str	r3, [r2, #4]
+ 1941 0028 0268     		ldr	r2, [r0]
+ 1942 002a 5368     		ldr	r3, [r2, #4]
+ 1943 002c 13F0800F 		tst	r3, #128
+ 1944 0030 12D0     		beq	.L254
+ 1945 0032 424B     		ldr	r3, .L274+8
+ 1946 0034 4364     		str	r3, [r0, #68]
+ 1947              	.L257:
+ 1948 0036 039B     		ldr	r3, [sp, #12]
+ 1949 0038 43B1     		cbz	r3, .L271
+ 1950 003a 039B     		ldr	r3, [sp, #12]
+ 1951 003c 013B     		subs	r3, r3, #1
+ 1952 003e 0393     		str	r3, [sp, #12]
+ 1953 0040 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 1954 0044 DBB2     		uxtb	r3, r3
+ 1955 0046 072B     		cmp	r3, #7
+ 1956 0048 F5D1     		bne	.L257
+ 1957 004a 03E0     		b	.L256
+ 1958              	.L271:
+ 1959 004c 636D     		ldr	r3, [r4, #84]
+ 1960 004e 43F04003 		orr	r3, r3, #64
+ 1961 0052 6365     		str	r3, [r4, #84]
+ 1962              	.L256:
+ 1963 0054 029B     		ldr	r3, [sp, #8]
+ 1964 0056 0393     		str	r3, [sp, #12]
+ 1965              	.L254:
+ 1966 0058 5368     		ldr	r3, [r2, #4]
+ 1967 005a 13F0400F 		tst	r3, #64
+ 1968 005e 12D0     		beq	.L258
+ 1969 0060 374B     		ldr	r3, .L274+12
+ 1970 0062 2364     		str	r3, [r4, #64]
+ 1971              	.L261:
+ 1972 0064 039B     		ldr	r3, [sp, #12]
+ 1973 0066 43B1     		cbz	r3, .L272
+ 1974 0068 039B     		ldr	r3, [sp, #12]
+ 1975 006a 013B     		subs	r3, r3, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 35
+
+
+ 1976 006c 0393     		str	r3, [sp, #12]
+ 1977 006e 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 1978 0072 DBB2     		uxtb	r3, r3
+ 1979 0074 072B     		cmp	r3, #7
+ 1980 0076 F5D1     		bne	.L261
+ 1981 0078 03E0     		b	.L260
+ 1982              	.L272:
+ 1983 007a 636D     		ldr	r3, [r4, #84]
+ 1984 007c 43F04003 		orr	r3, r3, #64
+ 1985 0080 6365     		str	r3, [r4, #84]
+ 1986              	.L260:
+ 1987 0082 029B     		ldr	r3, [sp, #8]
+ 1988 0084 0393     		str	r3, [sp, #12]
+ 1989              	.L258:
+ 1990 0086 5368     		ldr	r3, [r2, #4]
+ 1991 0088 13F0020F 		tst	r3, #2
+ 1992 008c 1DD0     		beq	.L262
+ 1993 008e A36C     		ldr	r3, [r4, #72]
+ 1994 0090 DBB1     		cbz	r3, .L262
+ 1995 0092 0022     		movs	r2, #0
+ 1996 0094 1A65     		str	r2, [r3, #80]
+ 1997 0096 A06C     		ldr	r0, [r4, #72]
+ 1998 0098 FFF7FEFF 		bl	HAL_DMA_Abort
+ 1999 009c 08B1     		cbz	r0, .L263
+ 2000 009e 4023     		movs	r3, #64
+ 2001 00a0 6365     		str	r3, [r4, #84]
+ 2002              	.L263:
+ 2003 00a2 2268     		ldr	r2, [r4]
+ 2004 00a4 5368     		ldr	r3, [r2, #4]
+ 2005 00a6 23F00203 		bic	r3, r3, #2
+ 2006 00aa 5360     		str	r3, [r2, #4]
+ 2007              	.L265:
+ 2008 00ac 039B     		ldr	r3, [sp, #12]
+ 2009 00ae 43B1     		cbz	r3, .L273
+ 2010 00b0 039B     		ldr	r3, [sp, #12]
+ 2011 00b2 013B     		subs	r3, r3, #1
+ 2012 00b4 0393     		str	r3, [sp, #12]
+ 2013 00b6 2368     		ldr	r3, [r4]
+ 2014 00b8 9B68     		ldr	r3, [r3, #8]
+ 2015 00ba 13F0020F 		tst	r3, #2
+ 2016 00be F5D0     		beq	.L265
+ 2017 00c0 03E0     		b	.L262
+ 2018              	.L273:
+ 2019 00c2 636D     		ldr	r3, [r4, #84]
+ 2020 00c4 43F04003 		orr	r3, r3, #64
+ 2021 00c8 6365     		str	r3, [r4, #84]
+ 2022              	.L262:
+ 2023 00ca 2368     		ldr	r3, [r4]
+ 2024 00cc 5B68     		ldr	r3, [r3, #4]
+ 2025 00ce 13F0010F 		tst	r3, #1
+ 2026 00d2 13D0     		beq	.L266
+ 2027 00d4 E36C     		ldr	r3, [r4, #76]
+ 2028 00d6 8BB1     		cbz	r3, .L266
+ 2029 00d8 0022     		movs	r2, #0
+ 2030 00da 1A65     		str	r2, [r3, #80]
+ 2031 00dc E06C     		ldr	r0, [r4, #76]
+ 2032 00de FFF7FEFF 		bl	HAL_DMA_Abort
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 36
+
+
+ 2033 00e2 08B1     		cbz	r0, .L267
+ 2034 00e4 4023     		movs	r3, #64
+ 2035 00e6 6365     		str	r3, [r4, #84]
+ 2036              	.L267:
+ 2037 00e8 2268     		ldr	r2, [r4]
+ 2038 00ea 1368     		ldr	r3, [r2]
+ 2039 00ec 23F04003 		bic	r3, r3, #64
+ 2040 00f0 1360     		str	r3, [r2]
+ 2041 00f2 2268     		ldr	r2, [r4]
+ 2042 00f4 5368     		ldr	r3, [r2, #4]
+ 2043 00f6 23F00103 		bic	r3, r3, #1
+ 2044 00fa 5360     		str	r3, [r2, #4]
+ 2045              	.L266:
+ 2046 00fc 0023     		movs	r3, #0
+ 2047 00fe E387     		strh	r3, [r4, #62]	@ movhi
+ 2048 0100 E386     		strh	r3, [r4, #54]	@ movhi
+ 2049 0102 636D     		ldr	r3, [r4, #84]
+ 2050 0104 402B     		cmp	r3, #64
+ 2051 0106 12D0     		beq	.L269
+ 2052 0108 0020     		movs	r0, #0
+ 2053 010a 6065     		str	r0, [r4, #84]
+ 2054              	.L268:
+ 2055 010c 0022     		movs	r2, #0
+ 2056 010e 0092     		str	r2, [sp]
+ 2057 0110 2368     		ldr	r3, [r4]
+ 2058 0112 D968     		ldr	r1, [r3, #12]
+ 2059 0114 0091     		str	r1, [sp]
+ 2060 0116 9968     		ldr	r1, [r3, #8]
+ 2061 0118 0091     		str	r1, [sp]
+ 2062 011a 0099     		ldr	r1, [sp]
+ 2063 011c 0192     		str	r2, [sp, #4]
+ 2064 011e 9B68     		ldr	r3, [r3, #8]
+ 2065 0120 0193     		str	r3, [sp, #4]
+ 2066 0122 019B     		ldr	r3, [sp, #4]
+ 2067 0124 0123     		movs	r3, #1
+ 2068 0126 84F85130 		strb	r3, [r4, #81]
+ 2069 012a 04B0     		add	sp, sp, #16
+ 2070              		@ sp needed
+ 2071 012c 10BD     		pop	{r4, pc}
+ 2072              	.L269:
+ 2073 012e 0120     		movs	r0, #1
+ 2074 0130 ECE7     		b	.L268
+ 2075              	.L275:
+ 2076 0132 00BF     		.align	2
+ 2077              	.L274:
+ 2078 0134 00000000 		.word	SystemCoreClock
+ 2079 0138 F1197605 		.word	91625969
+ 2080 013c 00000000 		.word	SPI_AbortTx_ISR
+ 2081 0140 00000000 		.word	SPI_AbortRx_ISR
+ 2083              		.section	.text.HAL_SPI_DMAPause,"ax",%progbits
+ 2084              		.align	1
+ 2085              		.global	HAL_SPI_DMAPause
+ 2086              		.syntax unified
+ 2087              		.thumb
+ 2088              		.thumb_func
+ 2090              	HAL_SPI_DMAPause:
+ 2091              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 37
+
+
+ 2092              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2093              		@ link register save eliminated.
+ 2094 0000 90F85030 		ldrb	r3, [r0, #80]	@ zero_extendqisi2
+ 2095 0004 012B     		cmp	r3, #1
+ 2096 0006 0CD0     		beq	.L278
+ 2097 0008 0123     		movs	r3, #1
+ 2098 000a 80F85030 		strb	r3, [r0, #80]
+ 2099 000e 0268     		ldr	r2, [r0]
+ 2100 0010 5368     		ldr	r3, [r2, #4]
+ 2101 0012 23F00303 		bic	r3, r3, #3
+ 2102 0016 5360     		str	r3, [r2, #4]
+ 2103 0018 0023     		movs	r3, #0
+ 2104 001a 80F85030 		strb	r3, [r0, #80]
+ 2105 001e 1846     		mov	r0, r3
+ 2106 0020 7047     		bx	lr
+ 2107              	.L278:
+ 2108 0022 0220     		movs	r0, #2
+ 2109 0024 7047     		bx	lr
+ 2111              		.section	.text.HAL_SPI_DMAResume,"ax",%progbits
+ 2112              		.align	1
+ 2113              		.global	HAL_SPI_DMAResume
+ 2114              		.syntax unified
+ 2115              		.thumb
+ 2116              		.thumb_func
+ 2118              	HAL_SPI_DMAResume:
+ 2119              		@ args = 0, pretend = 0, frame = 0
+ 2120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2121              		@ link register save eliminated.
+ 2122 0000 90F85030 		ldrb	r3, [r0, #80]	@ zero_extendqisi2
+ 2123 0004 012B     		cmp	r3, #1
+ 2124 0006 0CD0     		beq	.L281
+ 2125 0008 0123     		movs	r3, #1
+ 2126 000a 80F85030 		strb	r3, [r0, #80]
+ 2127 000e 0268     		ldr	r2, [r0]
+ 2128 0010 5368     		ldr	r3, [r2, #4]
+ 2129 0012 43F00303 		orr	r3, r3, #3
+ 2130 0016 5360     		str	r3, [r2, #4]
+ 2131 0018 0023     		movs	r3, #0
+ 2132 001a 80F85030 		strb	r3, [r0, #80]
+ 2133 001e 1846     		mov	r0, r3
+ 2134 0020 7047     		bx	lr
+ 2135              	.L281:
+ 2136 0022 0220     		movs	r0, #2
+ 2137 0024 7047     		bx	lr
+ 2139              		.section	.text.HAL_SPI_DMAStop,"ax",%progbits
+ 2140              		.align	1
+ 2141              		.global	HAL_SPI_DMAStop
+ 2142              		.syntax unified
+ 2143              		.thumb
+ 2144              		.thumb_func
+ 2146              	HAL_SPI_DMAStop:
+ 2147              		@ args = 0, pretend = 0, frame = 0
+ 2148              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2149 0000 38B5     		push	{r3, r4, r5, lr}
+ 2150 0002 0446     		mov	r4, r0
+ 2151 0004 806C     		ldr	r0, [r0, #72]
+ 2152 0006 48B1     		cbz	r0, .L285
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 38
+
+
+ 2153 0008 FFF7FEFF 		bl	HAL_DMA_Abort
+ 2154 000c 0546     		mov	r5, r0
+ 2155 000e 30B1     		cbz	r0, .L283
+ 2156 0010 636D     		ldr	r3, [r4, #84]
+ 2157 0012 43F01003 		orr	r3, r3, #16
+ 2158 0016 6365     		str	r3, [r4, #84]
+ 2159 0018 0125     		movs	r5, #1
+ 2160 001a 00E0     		b	.L283
+ 2161              	.L285:
+ 2162 001c 0025     		movs	r5, #0
+ 2163              	.L283:
+ 2164 001e E06C     		ldr	r0, [r4, #76]
+ 2165 0020 38B1     		cbz	r0, .L284
+ 2166 0022 FFF7FEFF 		bl	HAL_DMA_Abort
+ 2167 0026 20B1     		cbz	r0, .L284
+ 2168 0028 636D     		ldr	r3, [r4, #84]
+ 2169 002a 43F01003 		orr	r3, r3, #16
+ 2170 002e 6365     		str	r3, [r4, #84]
+ 2171 0030 0125     		movs	r5, #1
+ 2172              	.L284:
+ 2173 0032 2268     		ldr	r2, [r4]
+ 2174 0034 5368     		ldr	r3, [r2, #4]
+ 2175 0036 23F00303 		bic	r3, r3, #3
+ 2176 003a 5360     		str	r3, [r2, #4]
+ 2177 003c 0123     		movs	r3, #1
+ 2178 003e 84F85130 		strb	r3, [r4, #81]
+ 2179 0042 2846     		mov	r0, r5
+ 2180 0044 38BD     		pop	{r3, r4, r5, pc}
+ 2182              		.section	.text.HAL_SPI_TxCpltCallback,"ax",%progbits
+ 2183              		.align	1
+ 2184              		.weak	HAL_SPI_TxCpltCallback
+ 2185              		.syntax unified
+ 2186              		.thumb
+ 2187              		.thumb_func
+ 2189              	HAL_SPI_TxCpltCallback:
+ 2190              		@ args = 0, pretend = 0, frame = 0
+ 2191              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2192              		@ link register save eliminated.
+ 2193 0000 7047     		bx	lr
+ 2195              		.section	.text.HAL_SPI_RxCpltCallback,"ax",%progbits
+ 2196              		.align	1
+ 2197              		.weak	HAL_SPI_RxCpltCallback
+ 2198              		.syntax unified
+ 2199              		.thumb
+ 2200              		.thumb_func
+ 2202              	HAL_SPI_RxCpltCallback:
+ 2203              		@ args = 0, pretend = 0, frame = 0
+ 2204              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2205              		@ link register save eliminated.
+ 2206 0000 7047     		bx	lr
+ 2208              		.section	.text.HAL_SPI_TxRxCpltCallback,"ax",%progbits
+ 2209              		.align	1
+ 2210              		.weak	HAL_SPI_TxRxCpltCallback
+ 2211              		.syntax unified
+ 2212              		.thumb
+ 2213              		.thumb_func
+ 2215              	HAL_SPI_TxRxCpltCallback:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 39
+
+
+ 2216              		@ args = 0, pretend = 0, frame = 0
+ 2217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2218              		@ link register save eliminated.
+ 2219 0000 7047     		bx	lr
+ 2221              		.section	.text.HAL_SPI_TxHalfCpltCallback,"ax",%progbits
+ 2222              		.align	1
+ 2223              		.weak	HAL_SPI_TxHalfCpltCallback
+ 2224              		.syntax unified
+ 2225              		.thumb
+ 2226              		.thumb_func
+ 2228              	HAL_SPI_TxHalfCpltCallback:
+ 2229              		@ args = 0, pretend = 0, frame = 0
+ 2230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2231              		@ link register save eliminated.
+ 2232 0000 7047     		bx	lr
+ 2234              		.section	.text.SPI_DMAHalfTransmitCplt,"ax",%progbits
+ 2235              		.align	1
+ 2236              		.syntax unified
+ 2237              		.thumb
+ 2238              		.thumb_func
+ 2240              	SPI_DMAHalfTransmitCplt:
+ 2241              		@ args = 0, pretend = 0, frame = 0
+ 2242              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2243 0000 08B5     		push	{r3, lr}
+ 2244 0002 806B     		ldr	r0, [r0, #56]
+ 2245 0004 FFF7FEFF 		bl	HAL_SPI_TxHalfCpltCallback
+ 2246 0008 08BD     		pop	{r3, pc}
+ 2248              		.section	.text.HAL_SPI_RxHalfCpltCallback,"ax",%progbits
+ 2249              		.align	1
+ 2250              		.weak	HAL_SPI_RxHalfCpltCallback
+ 2251              		.syntax unified
+ 2252              		.thumb
+ 2253              		.thumb_func
+ 2255              	HAL_SPI_RxHalfCpltCallback:
+ 2256              		@ args = 0, pretend = 0, frame = 0
+ 2257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2258              		@ link register save eliminated.
+ 2259 0000 7047     		bx	lr
+ 2261              		.section	.text.SPI_DMAHalfReceiveCplt,"ax",%progbits
+ 2262              		.align	1
+ 2263              		.syntax unified
+ 2264              		.thumb
+ 2265              		.thumb_func
+ 2267              	SPI_DMAHalfReceiveCplt:
+ 2268              		@ args = 0, pretend = 0, frame = 0
+ 2269              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2270 0000 08B5     		push	{r3, lr}
+ 2271 0002 806B     		ldr	r0, [r0, #56]
+ 2272 0004 FFF7FEFF 		bl	HAL_SPI_RxHalfCpltCallback
+ 2273 0008 08BD     		pop	{r3, pc}
+ 2275              		.section	.text.HAL_SPI_TxRxHalfCpltCallback,"ax",%progbits
+ 2276              		.align	1
+ 2277              		.weak	HAL_SPI_TxRxHalfCpltCallback
+ 2278              		.syntax unified
+ 2279              		.thumb
+ 2280              		.thumb_func
+ 2282              	HAL_SPI_TxRxHalfCpltCallback:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 40
+
+
+ 2283              		@ args = 0, pretend = 0, frame = 0
+ 2284              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2285              		@ link register save eliminated.
+ 2286 0000 7047     		bx	lr
+ 2288              		.section	.text.SPI_DMAHalfTransmitReceiveCplt,"ax",%progbits
+ 2289              		.align	1
+ 2290              		.syntax unified
+ 2291              		.thumb
+ 2292              		.thumb_func
+ 2294              	SPI_DMAHalfTransmitReceiveCplt:
+ 2295              		@ args = 0, pretend = 0, frame = 0
+ 2296              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2297 0000 08B5     		push	{r3, lr}
+ 2298 0002 806B     		ldr	r0, [r0, #56]
+ 2299 0004 FFF7FEFF 		bl	HAL_SPI_TxRxHalfCpltCallback
+ 2300 0008 08BD     		pop	{r3, pc}
+ 2302              		.section	.text.HAL_SPI_ErrorCallback,"ax",%progbits
+ 2303              		.align	1
+ 2304              		.weak	HAL_SPI_ErrorCallback
+ 2305              		.syntax unified
+ 2306              		.thumb
+ 2307              		.thumb_func
+ 2309              	HAL_SPI_ErrorCallback:
+ 2310              		@ args = 0, pretend = 0, frame = 0
+ 2311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2312              		@ link register save eliminated.
+ 2313 0000 7047     		bx	lr
+ 2315              		.section	.text.SPI_CloseTx_ISR,"ax",%progbits
+ 2316              		.align	1
+ 2317              		.syntax unified
+ 2318              		.thumb
+ 2319              		.thumb_func
+ 2321              	SPI_CloseTx_ISR:
+ 2322              		@ args = 0, pretend = 0, frame = 8
+ 2323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2324 0000 10B5     		push	{r4, lr}
+ 2325 0002 82B0     		sub	sp, sp, #8
+ 2326 0004 0446     		mov	r4, r0
+ 2327 0006 204B     		ldr	r3, .L310
+ 2328 0008 1B68     		ldr	r3, [r3]
+ 2329 000a 204A     		ldr	r2, .L310+4
+ 2330 000c A2FB0323 		umull	r2, r3, r2, r3
+ 2331 0010 5B0A     		lsrs	r3, r3, #9
+ 2332 0012 6422     		movs	r2, #100
+ 2333 0014 02FB03F3 		mul	r3, r2, r3
+ 2334 0018 0193     		str	r3, [sp, #4]
+ 2335 001a FFF7FEFF 		bl	HAL_GetTick
+ 2336 001e 0246     		mov	r2, r0
+ 2337              	.L303:
+ 2338 0020 019B     		ldr	r3, [sp, #4]
+ 2339 0022 43B1     		cbz	r3, .L309
+ 2340 0024 019B     		ldr	r3, [sp, #4]
+ 2341 0026 013B     		subs	r3, r3, #1
+ 2342 0028 0193     		str	r3, [sp, #4]
+ 2343 002a 2368     		ldr	r3, [r4]
+ 2344 002c 9B68     		ldr	r3, [r3, #8]
+ 2345 002e 13F0020F 		tst	r3, #2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 41
+
+
+ 2346 0032 F5D0     		beq	.L303
+ 2347 0034 03E0     		b	.L302
+ 2348              	.L309:
+ 2349 0036 636D     		ldr	r3, [r4, #84]
+ 2350 0038 43F02003 		orr	r3, r3, #32
+ 2351 003c 6365     		str	r3, [r4, #84]
+ 2352              	.L302:
+ 2353 003e 2168     		ldr	r1, [r4]
+ 2354 0040 4B68     		ldr	r3, [r1, #4]
+ 2355 0042 23F0A003 		bic	r3, r3, #160
+ 2356 0046 4B60     		str	r3, [r1, #4]
+ 2357 0048 6421     		movs	r1, #100
+ 2358 004a 2046     		mov	r0, r4
+ 2359 004c FFF7FEFF 		bl	SPI_EndRxTxTransaction
+ 2360 0050 18B1     		cbz	r0, .L304
+ 2361 0052 636D     		ldr	r3, [r4, #84]
+ 2362 0054 43F02003 		orr	r3, r3, #32
+ 2363 0058 6365     		str	r3, [r4, #84]
+ 2364              	.L304:
+ 2365 005a A368     		ldr	r3, [r4, #8]
+ 2366 005c 33B9     		cbnz	r3, .L305
+ 2367 005e 0093     		str	r3, [sp]
+ 2368 0060 2368     		ldr	r3, [r4]
+ 2369 0062 DA68     		ldr	r2, [r3, #12]
+ 2370 0064 0092     		str	r2, [sp]
+ 2371 0066 9B68     		ldr	r3, [r3, #8]
+ 2372 0068 0093     		str	r3, [sp]
+ 2373 006a 009B     		ldr	r3, [sp]
+ 2374              	.L305:
+ 2375 006c 0123     		movs	r3, #1
+ 2376 006e 84F85130 		strb	r3, [r4, #81]
+ 2377 0072 636D     		ldr	r3, [r4, #84]
+ 2378 0074 23B1     		cbz	r3, .L306
+ 2379 0076 2046     		mov	r0, r4
+ 2380 0078 FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 2381              	.L300:
+ 2382 007c 02B0     		add	sp, sp, #8
+ 2383              		@ sp needed
+ 2384 007e 10BD     		pop	{r4, pc}
+ 2385              	.L306:
+ 2386 0080 2046     		mov	r0, r4
+ 2387 0082 FFF7FEFF 		bl	HAL_SPI_TxCpltCallback
+ 2388 0086 F9E7     		b	.L300
+ 2389              	.L311:
+ 2390              		.align	2
+ 2391              	.L310:
+ 2392 0088 00000000 		.word	SystemCoreClock
+ 2393 008c F1197605 		.word	91625969
+ 2395              		.section	.text.SPI_TxISR_8BIT,"ax",%progbits
+ 2396              		.align	1
+ 2397              		.syntax unified
+ 2398              		.thumb
+ 2399              		.thumb_func
+ 2401              	SPI_TxISR_8BIT:
+ 2402              		@ args = 0, pretend = 0, frame = 0
+ 2403              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2404 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 42
+
+
+ 2405 0002 026B     		ldr	r2, [r0, #48]
+ 2406 0004 0368     		ldr	r3, [r0]
+ 2407 0006 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 2408 0008 1A73     		strb	r2, [r3, #12]
+ 2409 000a 036B     		ldr	r3, [r0, #48]
+ 2410 000c 0133     		adds	r3, r3, #1
+ 2411 000e 0363     		str	r3, [r0, #48]
+ 2412 0010 C38E     		ldrh	r3, [r0, #54]
+ 2413 0012 9BB2     		uxth	r3, r3
+ 2414 0014 013B     		subs	r3, r3, #1
+ 2415 0016 9BB2     		uxth	r3, r3
+ 2416 0018 C386     		strh	r3, [r0, #54]	@ movhi
+ 2417 001a C38E     		ldrh	r3, [r0, #54]
+ 2418 001c 9BB2     		uxth	r3, r3
+ 2419 001e 03B1     		cbz	r3, .L315
+ 2420              	.L312:
+ 2421 0020 08BD     		pop	{r3, pc}
+ 2422              	.L315:
+ 2423 0022 FFF7FEFF 		bl	SPI_CloseTx_ISR
+ 2424 0026 FBE7     		b	.L312
+ 2426              		.section	.text.SPI_TxISR_16BIT,"ax",%progbits
+ 2427              		.align	1
+ 2428              		.syntax unified
+ 2429              		.thumb
+ 2430              		.thumb_func
+ 2432              	SPI_TxISR_16BIT:
+ 2433              		@ args = 0, pretend = 0, frame = 0
+ 2434              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2435 0000 08B5     		push	{r3, lr}
+ 2436 0002 026B     		ldr	r2, [r0, #48]
+ 2437 0004 0368     		ldr	r3, [r0]
+ 2438 0006 1288     		ldrh	r2, [r2]
+ 2439 0008 DA60     		str	r2, [r3, #12]
+ 2440 000a 036B     		ldr	r3, [r0, #48]
+ 2441 000c 0233     		adds	r3, r3, #2
+ 2442 000e 0363     		str	r3, [r0, #48]
+ 2443 0010 C38E     		ldrh	r3, [r0, #54]
+ 2444 0012 9BB2     		uxth	r3, r3
+ 2445 0014 013B     		subs	r3, r3, #1
+ 2446 0016 9BB2     		uxth	r3, r3
+ 2447 0018 C386     		strh	r3, [r0, #54]	@ movhi
+ 2448 001a C38E     		ldrh	r3, [r0, #54]
+ 2449 001c 9BB2     		uxth	r3, r3
+ 2450 001e 03B1     		cbz	r3, .L319
+ 2451              	.L316:
+ 2452 0020 08BD     		pop	{r3, pc}
+ 2453              	.L319:
+ 2454 0022 FFF7FEFF 		bl	SPI_CloseTx_ISR
+ 2455 0026 FBE7     		b	.L316
+ 2457              		.section	.text.SPI_CloseRx_ISR,"ax",%progbits
+ 2458              		.align	1
+ 2459              		.syntax unified
+ 2460              		.thumb
+ 2461              		.thumb_func
+ 2463              	SPI_CloseRx_ISR:
+ 2464              		@ args = 0, pretend = 0, frame = 8
+ 2465              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 43
+
+
+ 2466 0000 10B5     		push	{r4, lr}
+ 2467 0002 82B0     		sub	sp, sp, #8
+ 2468 0004 0446     		mov	r4, r0
+ 2469 0006 0268     		ldr	r2, [r0]
+ 2470 0008 5368     		ldr	r3, [r2, #4]
+ 2471 000a 23F06003 		bic	r3, r3, #96
+ 2472 000e 5360     		str	r3, [r2, #4]
+ 2473 0010 FFF7FEFF 		bl	HAL_GetTick
+ 2474 0014 0246     		mov	r2, r0
+ 2475 0016 6421     		movs	r1, #100
+ 2476 0018 2046     		mov	r0, r4
+ 2477 001a FFF7FEFF 		bl	SPI_EndRxTransaction
+ 2478 001e 18B1     		cbz	r0, .L321
+ 2479 0020 636D     		ldr	r3, [r4, #84]
+ 2480 0022 43F02003 		orr	r3, r3, #32
+ 2481 0026 6365     		str	r3, [r4, #84]
+ 2482              	.L321:
+ 2483 0028 A368     		ldr	r3, [r4, #8]
+ 2484 002a 33B9     		cbnz	r3, .L322
+ 2485 002c 0193     		str	r3, [sp, #4]
+ 2486 002e 2368     		ldr	r3, [r4]
+ 2487 0030 DA68     		ldr	r2, [r3, #12]
+ 2488 0032 0192     		str	r2, [sp, #4]
+ 2489 0034 9B68     		ldr	r3, [r3, #8]
+ 2490 0036 0193     		str	r3, [sp, #4]
+ 2491 0038 019B     		ldr	r3, [sp, #4]
+ 2492              	.L322:
+ 2493 003a 0123     		movs	r3, #1
+ 2494 003c 84F85130 		strb	r3, [r4, #81]
+ 2495 0040 636D     		ldr	r3, [r4, #84]
+ 2496 0042 23B9     		cbnz	r3, .L323
+ 2497 0044 2046     		mov	r0, r4
+ 2498 0046 FFF7FEFF 		bl	HAL_SPI_RxCpltCallback
+ 2499              	.L320:
+ 2500 004a 02B0     		add	sp, sp, #8
+ 2501              		@ sp needed
+ 2502 004c 10BD     		pop	{r4, pc}
+ 2503              	.L323:
+ 2504 004e 2046     		mov	r0, r4
+ 2505 0050 FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 2506 0054 F9E7     		b	.L320
+ 2508              		.section	.text.SPI_RxISR_8BIT,"ax",%progbits
+ 2509              		.align	1
+ 2510              		.syntax unified
+ 2511              		.thumb
+ 2512              		.thumb_func
+ 2514              	SPI_RxISR_8BIT:
+ 2515              		@ args = 0, pretend = 0, frame = 0
+ 2516              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2517 0000 08B5     		push	{r3, lr}
+ 2518 0002 0268     		ldr	r2, [r0]
+ 2519 0004 836B     		ldr	r3, [r0, #56]
+ 2520 0006 127B     		ldrb	r2, [r2, #12]	@ zero_extendqisi2
+ 2521 0008 1A70     		strb	r2, [r3]
+ 2522 000a 836B     		ldr	r3, [r0, #56]
+ 2523 000c 0133     		adds	r3, r3, #1
+ 2524 000e 8363     		str	r3, [r0, #56]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 44
+
+
+ 2525 0010 C38F     		ldrh	r3, [r0, #62]
+ 2526 0012 9BB2     		uxth	r3, r3
+ 2527 0014 013B     		subs	r3, r3, #1
+ 2528 0016 9BB2     		uxth	r3, r3
+ 2529 0018 C387     		strh	r3, [r0, #62]	@ movhi
+ 2530 001a C38F     		ldrh	r3, [r0, #62]
+ 2531 001c 9BB2     		uxth	r3, r3
+ 2532 001e 03B1     		cbz	r3, .L329
+ 2533              	.L326:
+ 2534 0020 08BD     		pop	{r3, pc}
+ 2535              	.L329:
+ 2536 0022 FFF7FEFF 		bl	SPI_CloseRx_ISR
+ 2537 0026 FBE7     		b	.L326
+ 2539              		.section	.text.SPI_RxISR_16BIT,"ax",%progbits
+ 2540              		.align	1
+ 2541              		.syntax unified
+ 2542              		.thumb
+ 2543              		.thumb_func
+ 2545              	SPI_RxISR_16BIT:
+ 2546              		@ args = 0, pretend = 0, frame = 0
+ 2547              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2548 0000 08B5     		push	{r3, lr}
+ 2549 0002 0368     		ldr	r3, [r0]
+ 2550 0004 DA68     		ldr	r2, [r3, #12]
+ 2551 0006 836B     		ldr	r3, [r0, #56]
+ 2552 0008 1A80     		strh	r2, [r3]	@ movhi
+ 2553 000a 836B     		ldr	r3, [r0, #56]
+ 2554 000c 0233     		adds	r3, r3, #2
+ 2555 000e 8363     		str	r3, [r0, #56]
+ 2556 0010 C38F     		ldrh	r3, [r0, #62]
+ 2557 0012 9BB2     		uxth	r3, r3
+ 2558 0014 013B     		subs	r3, r3, #1
+ 2559 0016 9BB2     		uxth	r3, r3
+ 2560 0018 C387     		strh	r3, [r0, #62]	@ movhi
+ 2561 001a C38F     		ldrh	r3, [r0, #62]
+ 2562 001c 9BB2     		uxth	r3, r3
+ 2563 001e 03B1     		cbz	r3, .L333
+ 2564              	.L330:
+ 2565 0020 08BD     		pop	{r3, pc}
+ 2566              	.L333:
+ 2567 0022 FFF7FEFF 		bl	SPI_CloseRx_ISR
+ 2568 0026 FBE7     		b	.L330
+ 2570              		.section	.text.SPI_CloseRxTx_ISR,"ax",%progbits
+ 2571              		.align	1
+ 2572              		.syntax unified
+ 2573              		.thumb
+ 2574              		.thumb_func
+ 2576              	SPI_CloseRxTx_ISR:
+ 2577              		@ args = 0, pretend = 0, frame = 8
+ 2578              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2579 0000 10B5     		push	{r4, lr}
+ 2580 0002 82B0     		sub	sp, sp, #8
+ 2581 0004 0446     		mov	r4, r0
+ 2582 0006 284B     		ldr	r3, .L346
+ 2583 0008 1B68     		ldr	r3, [r3]
+ 2584 000a 284A     		ldr	r2, .L346+4
+ 2585 000c A2FB0323 		umull	r2, r3, r2, r3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 45
+
+
+ 2586 0010 5B0A     		lsrs	r3, r3, #9
+ 2587 0012 6422     		movs	r2, #100
+ 2588 0014 02FB03F3 		mul	r3, r2, r3
+ 2589 0018 0193     		str	r3, [sp, #4]
+ 2590 001a FFF7FEFF 		bl	HAL_GetTick
+ 2591 001e 0246     		mov	r2, r0
+ 2592 0020 2168     		ldr	r1, [r4]
+ 2593 0022 4B68     		ldr	r3, [r1, #4]
+ 2594 0024 23F02003 		bic	r3, r3, #32
+ 2595 0028 4B60     		str	r3, [r1, #4]
+ 2596              	.L337:
+ 2597 002a 019B     		ldr	r3, [sp, #4]
+ 2598 002c 43B1     		cbz	r3, .L344
+ 2599 002e 019B     		ldr	r3, [sp, #4]
+ 2600 0030 013B     		subs	r3, r3, #1
+ 2601 0032 0193     		str	r3, [sp, #4]
+ 2602 0034 2368     		ldr	r3, [r4]
+ 2603 0036 9B68     		ldr	r3, [r3, #8]
+ 2604 0038 13F0020F 		tst	r3, #2
+ 2605 003c F5D0     		beq	.L337
+ 2606 003e 03E0     		b	.L336
+ 2607              	.L344:
+ 2608 0040 636D     		ldr	r3, [r4, #84]
+ 2609 0042 43F02003 		orr	r3, r3, #32
+ 2610 0046 6365     		str	r3, [r4, #84]
+ 2611              	.L336:
+ 2612 0048 6421     		movs	r1, #100
+ 2613 004a 2046     		mov	r0, r4
+ 2614 004c FFF7FEFF 		bl	SPI_EndRxTxTransaction
+ 2615 0050 18B1     		cbz	r0, .L338
+ 2616 0052 636D     		ldr	r3, [r4, #84]
+ 2617 0054 43F02003 		orr	r3, r3, #32
+ 2618 0058 6365     		str	r3, [r4, #84]
+ 2619              	.L338:
+ 2620 005a A368     		ldr	r3, [r4, #8]
+ 2621 005c 33B9     		cbnz	r3, .L339
+ 2622 005e 0093     		str	r3, [sp]
+ 2623 0060 2368     		ldr	r3, [r4]
+ 2624 0062 DA68     		ldr	r2, [r3, #12]
+ 2625 0064 0092     		str	r2, [sp]
+ 2626 0066 9B68     		ldr	r3, [r3, #8]
+ 2627 0068 0093     		str	r3, [sp]
+ 2628 006a 009B     		ldr	r3, [sp]
+ 2629              	.L339:
+ 2630 006c 636D     		ldr	r3, [r4, #84]
+ 2631 006e 9BB9     		cbnz	r3, .L340
+ 2632 0070 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 2633 0074 DBB2     		uxtb	r3, r3
+ 2634 0076 042B     		cmp	r3, #4
+ 2635 0078 07D0     		beq	.L345
+ 2636 007a 0123     		movs	r3, #1
+ 2637 007c 84F85130 		strb	r3, [r4, #81]
+ 2638 0080 2046     		mov	r0, r4
+ 2639 0082 FFF7FEFF 		bl	HAL_SPI_TxRxCpltCallback
+ 2640              	.L334:
+ 2641 0086 02B0     		add	sp, sp, #8
+ 2642              		@ sp needed
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 46
+
+
+ 2643 0088 10BD     		pop	{r4, pc}
+ 2644              	.L345:
+ 2645 008a 0123     		movs	r3, #1
+ 2646 008c 84F85130 		strb	r3, [r4, #81]
+ 2647 0090 2046     		mov	r0, r4
+ 2648 0092 FFF7FEFF 		bl	HAL_SPI_RxCpltCallback
+ 2649 0096 F6E7     		b	.L334
+ 2650              	.L340:
+ 2651 0098 0123     		movs	r3, #1
+ 2652 009a 84F85130 		strb	r3, [r4, #81]
+ 2653 009e 2046     		mov	r0, r4
+ 2654 00a0 FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 2655 00a4 EFE7     		b	.L334
+ 2656              	.L347:
+ 2657 00a6 00BF     		.align	2
+ 2658              	.L346:
+ 2659 00a8 00000000 		.word	SystemCoreClock
+ 2660 00ac F1197605 		.word	91625969
+ 2662              		.section	.text.SPI_2linesTxISR_8BIT,"ax",%progbits
+ 2663              		.align	1
+ 2664              		.syntax unified
+ 2665              		.thumb
+ 2666              		.thumb_func
+ 2668              	SPI_2linesTxISR_8BIT:
+ 2669              		@ args = 0, pretend = 0, frame = 0
+ 2670              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2671 0000 08B5     		push	{r3, lr}
+ 2672 0002 026B     		ldr	r2, [r0, #48]
+ 2673 0004 0368     		ldr	r3, [r0]
+ 2674 0006 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 2675 0008 1A73     		strb	r2, [r3, #12]
+ 2676 000a 036B     		ldr	r3, [r0, #48]
+ 2677 000c 0133     		adds	r3, r3, #1
+ 2678 000e 0363     		str	r3, [r0, #48]
+ 2679 0010 C38E     		ldrh	r3, [r0, #54]
+ 2680 0012 9BB2     		uxth	r3, r3
+ 2681 0014 013B     		subs	r3, r3, #1
+ 2682 0016 9BB2     		uxth	r3, r3
+ 2683 0018 C386     		strh	r3, [r0, #54]	@ movhi
+ 2684 001a C38E     		ldrh	r3, [r0, #54]
+ 2685 001c 9BB2     		uxth	r3, r3
+ 2686 001e 3BB9     		cbnz	r3, .L348
+ 2687 0020 0268     		ldr	r2, [r0]
+ 2688 0022 5368     		ldr	r3, [r2, #4]
+ 2689 0024 23F08003 		bic	r3, r3, #128
+ 2690 0028 5360     		str	r3, [r2, #4]
+ 2691 002a C38F     		ldrh	r3, [r0, #62]
+ 2692 002c 9BB2     		uxth	r3, r3
+ 2693 002e 03B1     		cbz	r3, .L351
+ 2694              	.L348:
+ 2695 0030 08BD     		pop	{r3, pc}
+ 2696              	.L351:
+ 2697 0032 FFF7FEFF 		bl	SPI_CloseRxTx_ISR
+ 2698 0036 FBE7     		b	.L348
+ 2700              		.section	.text.SPI_2linesRxISR_8BIT,"ax",%progbits
+ 2701              		.align	1
+ 2702              		.syntax unified
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 47
+
+
+ 2703              		.thumb
+ 2704              		.thumb_func
+ 2706              	SPI_2linesRxISR_8BIT:
+ 2707              		@ args = 0, pretend = 0, frame = 0
+ 2708              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2709 0000 08B5     		push	{r3, lr}
+ 2710 0002 0268     		ldr	r2, [r0]
+ 2711 0004 836B     		ldr	r3, [r0, #56]
+ 2712 0006 127B     		ldrb	r2, [r2, #12]	@ zero_extendqisi2
+ 2713 0008 1A70     		strb	r2, [r3]
+ 2714 000a 836B     		ldr	r3, [r0, #56]
+ 2715 000c 0133     		adds	r3, r3, #1
+ 2716 000e 8363     		str	r3, [r0, #56]
+ 2717 0010 C38F     		ldrh	r3, [r0, #62]
+ 2718 0012 9BB2     		uxth	r3, r3
+ 2719 0014 013B     		subs	r3, r3, #1
+ 2720 0016 9BB2     		uxth	r3, r3
+ 2721 0018 C387     		strh	r3, [r0, #62]	@ movhi
+ 2722 001a C38F     		ldrh	r3, [r0, #62]
+ 2723 001c 9BB2     		uxth	r3, r3
+ 2724 001e 3BB9     		cbnz	r3, .L352
+ 2725 0020 0268     		ldr	r2, [r0]
+ 2726 0022 5368     		ldr	r3, [r2, #4]
+ 2727 0024 23F06003 		bic	r3, r3, #96
+ 2728 0028 5360     		str	r3, [r2, #4]
+ 2729 002a C38E     		ldrh	r3, [r0, #54]
+ 2730 002c 9BB2     		uxth	r3, r3
+ 2731 002e 03B1     		cbz	r3, .L355
+ 2732              	.L352:
+ 2733 0030 08BD     		pop	{r3, pc}
+ 2734              	.L355:
+ 2735 0032 FFF7FEFF 		bl	SPI_CloseRxTx_ISR
+ 2736 0036 FBE7     		b	.L352
+ 2738              		.section	.text.SPI_2linesTxISR_16BIT,"ax",%progbits
+ 2739              		.align	1
+ 2740              		.syntax unified
+ 2741              		.thumb
+ 2742              		.thumb_func
+ 2744              	SPI_2linesTxISR_16BIT:
+ 2745              		@ args = 0, pretend = 0, frame = 0
+ 2746              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2747 0000 08B5     		push	{r3, lr}
+ 2748 0002 026B     		ldr	r2, [r0, #48]
+ 2749 0004 0368     		ldr	r3, [r0]
+ 2750 0006 1288     		ldrh	r2, [r2]
+ 2751 0008 DA60     		str	r2, [r3, #12]
+ 2752 000a 036B     		ldr	r3, [r0, #48]
+ 2753 000c 0233     		adds	r3, r3, #2
+ 2754 000e 0363     		str	r3, [r0, #48]
+ 2755 0010 C38E     		ldrh	r3, [r0, #54]
+ 2756 0012 9BB2     		uxth	r3, r3
+ 2757 0014 013B     		subs	r3, r3, #1
+ 2758 0016 9BB2     		uxth	r3, r3
+ 2759 0018 C386     		strh	r3, [r0, #54]	@ movhi
+ 2760 001a C38E     		ldrh	r3, [r0, #54]
+ 2761 001c 9BB2     		uxth	r3, r3
+ 2762 001e 3BB9     		cbnz	r3, .L356
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 48
+
+
+ 2763 0020 0268     		ldr	r2, [r0]
+ 2764 0022 5368     		ldr	r3, [r2, #4]
+ 2765 0024 23F08003 		bic	r3, r3, #128
+ 2766 0028 5360     		str	r3, [r2, #4]
+ 2767 002a C38F     		ldrh	r3, [r0, #62]
+ 2768 002c 9BB2     		uxth	r3, r3
+ 2769 002e 03B1     		cbz	r3, .L359
+ 2770              	.L356:
+ 2771 0030 08BD     		pop	{r3, pc}
+ 2772              	.L359:
+ 2773 0032 FFF7FEFF 		bl	SPI_CloseRxTx_ISR
+ 2774 0036 FBE7     		b	.L356
+ 2776              		.section	.text.SPI_2linesRxISR_16BIT,"ax",%progbits
+ 2777              		.align	1
+ 2778              		.syntax unified
+ 2779              		.thumb
+ 2780              		.thumb_func
+ 2782              	SPI_2linesRxISR_16BIT:
+ 2783              		@ args = 0, pretend = 0, frame = 0
+ 2784              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2785 0000 08B5     		push	{r3, lr}
+ 2786 0002 0368     		ldr	r3, [r0]
+ 2787 0004 DA68     		ldr	r2, [r3, #12]
+ 2788 0006 836B     		ldr	r3, [r0, #56]
+ 2789 0008 1A80     		strh	r2, [r3]	@ movhi
+ 2790 000a 836B     		ldr	r3, [r0, #56]
+ 2791 000c 0233     		adds	r3, r3, #2
+ 2792 000e 8363     		str	r3, [r0, #56]
+ 2793 0010 C38F     		ldrh	r3, [r0, #62]
+ 2794 0012 9BB2     		uxth	r3, r3
+ 2795 0014 013B     		subs	r3, r3, #1
+ 2796 0016 9BB2     		uxth	r3, r3
+ 2797 0018 C387     		strh	r3, [r0, #62]	@ movhi
+ 2798 001a C38F     		ldrh	r3, [r0, #62]
+ 2799 001c 9BB2     		uxth	r3, r3
+ 2800 001e 3BB9     		cbnz	r3, .L360
+ 2801 0020 0268     		ldr	r2, [r0]
+ 2802 0022 5368     		ldr	r3, [r2, #4]
+ 2803 0024 23F04003 		bic	r3, r3, #64
+ 2804 0028 5360     		str	r3, [r2, #4]
+ 2805 002a C38E     		ldrh	r3, [r0, #54]
+ 2806 002c 9BB2     		uxth	r3, r3
+ 2807 002e 03B1     		cbz	r3, .L363
+ 2808              	.L360:
+ 2809 0030 08BD     		pop	{r3, pc}
+ 2810              	.L363:
+ 2811 0032 FFF7FEFF 		bl	SPI_CloseRxTx_ISR
+ 2812 0036 FBE7     		b	.L360
+ 2814              		.section	.text.SPI_DMAError,"ax",%progbits
+ 2815              		.align	1
+ 2816              		.syntax unified
+ 2817              		.thumb
+ 2818              		.thumb_func
+ 2820              	SPI_DMAError:
+ 2821              		@ args = 0, pretend = 0, frame = 0
+ 2822              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2823 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 49
+
+
+ 2824 0002 806B     		ldr	r0, [r0, #56]
+ 2825 0004 0268     		ldr	r2, [r0]
+ 2826 0006 5368     		ldr	r3, [r2, #4]
+ 2827 0008 23F00303 		bic	r3, r3, #3
+ 2828 000c 5360     		str	r3, [r2, #4]
+ 2829 000e 436D     		ldr	r3, [r0, #84]
+ 2830 0010 43F01003 		orr	r3, r3, #16
+ 2831 0014 4365     		str	r3, [r0, #84]
+ 2832 0016 0123     		movs	r3, #1
+ 2833 0018 80F85130 		strb	r3, [r0, #81]
+ 2834 001c FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 2835 0020 08BD     		pop	{r3, pc}
+ 2837              		.section	.text.SPI_DMATransmitCplt,"ax",%progbits
+ 2838              		.align	1
+ 2839              		.syntax unified
+ 2840              		.thumb
+ 2841              		.thumb_func
+ 2843              	SPI_DMATransmitCplt:
+ 2844              		@ args = 0, pretend = 0, frame = 8
+ 2845              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2846 0000 30B5     		push	{r4, r5, lr}
+ 2847 0002 83B0     		sub	sp, sp, #12
+ 2848 0004 0546     		mov	r5, r0
+ 2849 0006 846B     		ldr	r4, [r0, #56]
+ 2850 0008 FFF7FEFF 		bl	HAL_GetTick
+ 2851 000c 2B68     		ldr	r3, [r5]
+ 2852 000e 1B68     		ldr	r3, [r3]
+ 2853 0010 13F4807F 		tst	r3, #256
+ 2854 0014 23D1     		bne	.L367
+ 2855 0016 0246     		mov	r2, r0
+ 2856 0018 2168     		ldr	r1, [r4]
+ 2857 001a 4B68     		ldr	r3, [r1, #4]
+ 2858 001c 23F02003 		bic	r3, r3, #32
+ 2859 0020 4B60     		str	r3, [r1, #4]
+ 2860 0022 2168     		ldr	r1, [r4]
+ 2861 0024 4B68     		ldr	r3, [r1, #4]
+ 2862 0026 23F00203 		bic	r3, r3, #2
+ 2863 002a 4B60     		str	r3, [r1, #4]
+ 2864 002c 6421     		movs	r1, #100
+ 2865 002e 2046     		mov	r0, r4
+ 2866 0030 FFF7FEFF 		bl	SPI_EndRxTxTransaction
+ 2867 0034 18B1     		cbz	r0, .L368
+ 2868 0036 636D     		ldr	r3, [r4, #84]
+ 2869 0038 43F02003 		orr	r3, r3, #32
+ 2870 003c 6365     		str	r3, [r4, #84]
+ 2871              	.L368:
+ 2872 003e A368     		ldr	r3, [r4, #8]
+ 2873 0040 33B9     		cbnz	r3, .L369
+ 2874 0042 0193     		str	r3, [sp, #4]
+ 2875 0044 2368     		ldr	r3, [r4]
+ 2876 0046 DA68     		ldr	r2, [r3, #12]
+ 2877 0048 0192     		str	r2, [sp, #4]
+ 2878 004a 9B68     		ldr	r3, [r3, #8]
+ 2879 004c 0193     		str	r3, [sp, #4]
+ 2880 004e 019B     		ldr	r3, [sp, #4]
+ 2881              	.L369:
+ 2882 0050 0023     		movs	r3, #0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 50
+
+
+ 2883 0052 E386     		strh	r3, [r4, #54]	@ movhi
+ 2884 0054 0123     		movs	r3, #1
+ 2885 0056 84F85130 		strb	r3, [r4, #81]
+ 2886 005a 636D     		ldr	r3, [r4, #84]
+ 2887 005c 23B9     		cbnz	r3, .L372
+ 2888              	.L367:
+ 2889 005e 2046     		mov	r0, r4
+ 2890 0060 FFF7FEFF 		bl	HAL_SPI_TxCpltCallback
+ 2891              	.L366:
+ 2892 0064 03B0     		add	sp, sp, #12
+ 2893              		@ sp needed
+ 2894 0066 30BD     		pop	{r4, r5, pc}
+ 2895              	.L372:
+ 2896 0068 2046     		mov	r0, r4
+ 2897 006a FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 2898 006e F9E7     		b	.L366
+ 2900              		.section	.text.SPI_DMAReceiveCplt,"ax",%progbits
+ 2901              		.align	1
+ 2902              		.syntax unified
+ 2903              		.thumb
+ 2904              		.thumb_func
+ 2906              	SPI_DMAReceiveCplt:
+ 2907              		@ args = 0, pretend = 0, frame = 0
+ 2908              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2909 0000 38B5     		push	{r3, r4, r5, lr}
+ 2910 0002 0546     		mov	r5, r0
+ 2911 0004 846B     		ldr	r4, [r0, #56]
+ 2912 0006 FFF7FEFF 		bl	HAL_GetTick
+ 2913 000a 2B68     		ldr	r3, [r5]
+ 2914 000c 1B68     		ldr	r3, [r3]
+ 2915 000e 13F4807F 		tst	r3, #256
+ 2916 0012 1ED1     		bne	.L374
+ 2917 0014 0246     		mov	r2, r0
+ 2918 0016 2168     		ldr	r1, [r4]
+ 2919 0018 4B68     		ldr	r3, [r1, #4]
+ 2920 001a 23F02003 		bic	r3, r3, #32
+ 2921 001e 4B60     		str	r3, [r1, #4]
+ 2922 0020 A368     		ldr	r3, [r4, #8]
+ 2923 0022 1BB9     		cbnz	r3, .L375
+ 2924 0024 6368     		ldr	r3, [r4, #4]
+ 2925 0026 B3F5827F 		cmp	r3, #260
+ 2926 002a 16D0     		beq	.L380
+ 2927              	.L375:
+ 2928 002c 2168     		ldr	r1, [r4]
+ 2929 002e 4B68     		ldr	r3, [r1, #4]
+ 2930 0030 23F00103 		bic	r3, r3, #1
+ 2931 0034 4B60     		str	r3, [r1, #4]
+ 2932              	.L376:
+ 2933 0036 6421     		movs	r1, #100
+ 2934 0038 2046     		mov	r0, r4
+ 2935 003a FFF7FEFF 		bl	SPI_EndRxTransaction
+ 2936 003e 08B1     		cbz	r0, .L377
+ 2937 0040 2023     		movs	r3, #32
+ 2938 0042 6365     		str	r3, [r4, #84]
+ 2939              	.L377:
+ 2940 0044 0023     		movs	r3, #0
+ 2941 0046 E387     		strh	r3, [r4, #62]	@ movhi
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 51
+
+
+ 2942 0048 0123     		movs	r3, #1
+ 2943 004a 84F85130 		strb	r3, [r4, #81]
+ 2944 004e 636D     		ldr	r3, [r4, #84]
+ 2945 0050 4BB9     		cbnz	r3, .L381
+ 2946              	.L374:
+ 2947 0052 2046     		mov	r0, r4
+ 2948 0054 FFF7FEFF 		bl	HAL_SPI_RxCpltCallback
+ 2949              	.L373:
+ 2950 0058 38BD     		pop	{r3, r4, r5, pc}
+ 2951              	.L380:
+ 2952 005a 2168     		ldr	r1, [r4]
+ 2953 005c 4B68     		ldr	r3, [r1, #4]
+ 2954 005e 23F00303 		bic	r3, r3, #3
+ 2955 0062 4B60     		str	r3, [r1, #4]
+ 2956 0064 E7E7     		b	.L376
+ 2957              	.L381:
+ 2958 0066 2046     		mov	r0, r4
+ 2959 0068 FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 2960 006c F4E7     		b	.L373
+ 2962              		.section	.text.SPI_DMATransmitReceiveCplt,"ax",%progbits
+ 2963              		.align	1
+ 2964              		.syntax unified
+ 2965              		.thumb
+ 2966              		.thumb_func
+ 2968              	SPI_DMATransmitReceiveCplt:
+ 2969              		@ args = 0, pretend = 0, frame = 0
+ 2970              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2971 0000 38B5     		push	{r3, r4, r5, lr}
+ 2972 0002 0546     		mov	r5, r0
+ 2973 0004 846B     		ldr	r4, [r0, #56]
+ 2974 0006 FFF7FEFF 		bl	HAL_GetTick
+ 2975 000a 2B68     		ldr	r3, [r5]
+ 2976 000c 1B68     		ldr	r3, [r3]
+ 2977 000e 13F4807F 		tst	r3, #256
+ 2978 0012 1BD1     		bne	.L383
+ 2979 0014 0246     		mov	r2, r0
+ 2980 0016 2168     		ldr	r1, [r4]
+ 2981 0018 4B68     		ldr	r3, [r1, #4]
+ 2982 001a 23F02003 		bic	r3, r3, #32
+ 2983 001e 4B60     		str	r3, [r1, #4]
+ 2984 0020 6421     		movs	r1, #100
+ 2985 0022 2046     		mov	r0, r4
+ 2986 0024 FFF7FEFF 		bl	SPI_EndRxTxTransaction
+ 2987 0028 18B1     		cbz	r0, .L384
+ 2988 002a 636D     		ldr	r3, [r4, #84]
+ 2989 002c 43F02003 		orr	r3, r3, #32
+ 2990 0030 6365     		str	r3, [r4, #84]
+ 2991              	.L384:
+ 2992 0032 2268     		ldr	r2, [r4]
+ 2993 0034 5368     		ldr	r3, [r2, #4]
+ 2994 0036 23F00303 		bic	r3, r3, #3
+ 2995 003a 5360     		str	r3, [r2, #4]
+ 2996 003c 0023     		movs	r3, #0
+ 2997 003e E386     		strh	r3, [r4, #54]	@ movhi
+ 2998 0040 E387     		strh	r3, [r4, #62]	@ movhi
+ 2999 0042 0123     		movs	r3, #1
+ 3000 0044 84F85130 		strb	r3, [r4, #81]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 52
+
+
+ 3001 0048 636D     		ldr	r3, [r4, #84]
+ 3002 004a 1BB9     		cbnz	r3, .L387
+ 3003              	.L383:
+ 3004 004c 2046     		mov	r0, r4
+ 3005 004e FFF7FEFF 		bl	HAL_SPI_TxRxCpltCallback
+ 3006              	.L382:
+ 3007 0052 38BD     		pop	{r3, r4, r5, pc}
+ 3008              	.L387:
+ 3009 0054 2046     		mov	r0, r4
+ 3010 0056 FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 3011 005a FAE7     		b	.L382
+ 3013              		.section	.text.HAL_SPI_IRQHandler,"ax",%progbits
+ 3014              		.align	1
+ 3015              		.global	HAL_SPI_IRQHandler
+ 3016              		.syntax unified
+ 3017              		.thumb
+ 3018              		.thumb_func
+ 3020              	HAL_SPI_IRQHandler:
+ 3021              		@ args = 0, pretend = 0, frame = 16
+ 3022              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3023 0000 30B5     		push	{r4, r5, lr}
+ 3024 0002 85B0     		sub	sp, sp, #20
+ 3025 0004 0446     		mov	r4, r0
+ 3026 0006 0268     		ldr	r2, [r0]
+ 3027 0008 5168     		ldr	r1, [r2, #4]
+ 3028 000a 9368     		ldr	r3, [r2, #8]
+ 3029 000c C3F38010 		ubfx	r0, r3, #6, #1
+ 3030 0010 13F0400F 		tst	r3, #64
+ 3031 0014 05D1     		bne	.L389
+ 3032 0016 13F0010F 		tst	r3, #1
+ 3033 001a 02D0     		beq	.L389
+ 3034 001c 11F0400F 		tst	r1, #64
+ 3035 0020 69D1     		bne	.L401
+ 3036              	.L389:
+ 3037 0022 13F0020F 		tst	r3, #2
+ 3038 0026 02D0     		beq	.L391
+ 3039 0028 11F0800F 		tst	r1, #128
+ 3040 002c 67D1     		bne	.L402
+ 3041              	.L391:
+ 3042 002e C3F34015 		ubfx	r5, r3, #5, #1
+ 3043 0032 13F0200F 		tst	r3, #32
+ 3044 0036 03D1     		bne	.L392
+ 3045 0038 10B9     		cbnz	r0, .L392
+ 3046 003a 13F4807F 		tst	r3, #256
+ 3047 003e 61D0     		beq	.L388
+ 3048              	.L392:
+ 3049 0040 11F0200F 		tst	r1, #32
+ 3050 0044 5ED0     		beq	.L388
+ 3051 0046 78B1     		cbz	r0, .L393
+ 3052 0048 94F85100 		ldrb	r0, [r4, #81]	@ zero_extendqisi2
+ 3053 004c C0B2     		uxtb	r0, r0
+ 3054 004e 0328     		cmp	r0, #3
+ 3055 0050 5AD0     		beq	.L394
+ 3056 0052 606D     		ldr	r0, [r4, #84]
+ 3057 0054 40F00400 		orr	r0, r0, #4
+ 3058 0058 6065     		str	r0, [r4, #84]
+ 3059 005a 0020     		movs	r0, #0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 53
+
+
+ 3060 005c 0090     		str	r0, [sp]
+ 3061 005e D068     		ldr	r0, [r2, #12]
+ 3062 0060 0090     		str	r0, [sp]
+ 3063 0062 9068     		ldr	r0, [r2, #8]
+ 3064 0064 0090     		str	r0, [sp]
+ 3065 0066 0098     		ldr	r0, [sp]
+ 3066              	.L393:
+ 3067 0068 65B1     		cbz	r5, .L395
+ 3068 006a 606D     		ldr	r0, [r4, #84]
+ 3069 006c 40F00100 		orr	r0, r0, #1
+ 3070 0070 6065     		str	r0, [r4, #84]
+ 3071 0072 0020     		movs	r0, #0
+ 3072 0074 0290     		str	r0, [sp, #8]
+ 3073 0076 9068     		ldr	r0, [r2, #8]
+ 3074 0078 0290     		str	r0, [sp, #8]
+ 3075 007a 1068     		ldr	r0, [r2]
+ 3076 007c 20F04000 		bic	r0, r0, #64
+ 3077 0080 1060     		str	r0, [r2]
+ 3078 0082 029A     		ldr	r2, [sp, #8]
+ 3079              	.L395:
+ 3080 0084 13F4807F 		tst	r3, #256
+ 3081 0088 09D0     		beq	.L396
+ 3082 008a 636D     		ldr	r3, [r4, #84]
+ 3083 008c 43F00803 		orr	r3, r3, #8
+ 3084 0090 6365     		str	r3, [r4, #84]
+ 3085 0092 0023     		movs	r3, #0
+ 3086 0094 0393     		str	r3, [sp, #12]
+ 3087 0096 2368     		ldr	r3, [r4]
+ 3088 0098 9B68     		ldr	r3, [r3, #8]
+ 3089 009a 0393     		str	r3, [sp, #12]
+ 3090 009c 039B     		ldr	r3, [sp, #12]
+ 3091              	.L396:
+ 3092 009e 636D     		ldr	r3, [r4, #84]
+ 3093 00a0 002B     		cmp	r3, #0
+ 3094 00a2 2FD0     		beq	.L388
+ 3095 00a4 2268     		ldr	r2, [r4]
+ 3096 00a6 5368     		ldr	r3, [r2, #4]
+ 3097 00a8 23F0E003 		bic	r3, r3, #224
+ 3098 00ac 5360     		str	r3, [r2, #4]
+ 3099 00ae 0123     		movs	r3, #1
+ 3100 00b0 84F85130 		strb	r3, [r4, #81]
+ 3101 00b4 11F0030F 		tst	r1, #3
+ 3102 00b8 2ED0     		beq	.L398
+ 3103 00ba 2268     		ldr	r2, [r4]
+ 3104 00bc 5368     		ldr	r3, [r2, #4]
+ 3105 00be 23F00303 		bic	r3, r3, #3
+ 3106 00c2 5360     		str	r3, [r2, #4]
+ 3107 00c4 E36C     		ldr	r3, [r4, #76]
+ 3108 00c6 4BB1     		cbz	r3, .L399
+ 3109 00c8 154A     		ldr	r2, .L403
+ 3110 00ca 1A65     		str	r2, [r3, #80]
+ 3111 00cc E06C     		ldr	r0, [r4, #76]
+ 3112 00ce FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 3113 00d2 18B1     		cbz	r0, .L399
+ 3114 00d4 636D     		ldr	r3, [r4, #84]
+ 3115 00d6 43F04003 		orr	r3, r3, #64
+ 3116 00da 6365     		str	r3, [r4, #84]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 54
+
+
+ 3117              	.L399:
+ 3118 00dc A36C     		ldr	r3, [r4, #72]
+ 3119 00de 8BB1     		cbz	r3, .L388
+ 3120 00e0 0F4A     		ldr	r2, .L403
+ 3121 00e2 1A65     		str	r2, [r3, #80]
+ 3122 00e4 A06C     		ldr	r0, [r4, #72]
+ 3123 00e6 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 3124 00ea 58B1     		cbz	r0, .L388
+ 3125 00ec 636D     		ldr	r3, [r4, #84]
+ 3126 00ee 43F04003 		orr	r3, r3, #64
+ 3127 00f2 6365     		str	r3, [r4, #84]
+ 3128 00f4 06E0     		b	.L388
+ 3129              	.L401:
+ 3130 00f6 236C     		ldr	r3, [r4, #64]
+ 3131 00f8 2046     		mov	r0, r4
+ 3132 00fa 9847     		blx	r3
+ 3133 00fc 02E0     		b	.L388
+ 3134              	.L402:
+ 3135 00fe 636C     		ldr	r3, [r4, #68]
+ 3136 0100 2046     		mov	r0, r4
+ 3137 0102 9847     		blx	r3
+ 3138              	.L388:
+ 3139 0104 05B0     		add	sp, sp, #20
+ 3140              		@ sp needed
+ 3141 0106 30BD     		pop	{r4, r5, pc}
+ 3142              	.L394:
+ 3143 0108 0023     		movs	r3, #0
+ 3144 010a 0193     		str	r3, [sp, #4]
+ 3145 010c D368     		ldr	r3, [r2, #12]
+ 3146 010e 0193     		str	r3, [sp, #4]
+ 3147 0110 9368     		ldr	r3, [r2, #8]
+ 3148 0112 0193     		str	r3, [sp, #4]
+ 3149 0114 019B     		ldr	r3, [sp, #4]
+ 3150 0116 F5E7     		b	.L388
+ 3151              	.L398:
+ 3152 0118 2046     		mov	r0, r4
+ 3153 011a FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 3154 011e F1E7     		b	.L388
+ 3155              	.L404:
+ 3156              		.align	2
+ 3157              	.L403:
+ 3158 0120 00000000 		.word	SPI_DMAAbortOnError
+ 3160              		.section	.text.SPI_DMAAbortOnError,"ax",%progbits
+ 3161              		.align	1
+ 3162              		.syntax unified
+ 3163              		.thumb
+ 3164              		.thumb_func
+ 3166              	SPI_DMAAbortOnError:
+ 3167              		@ args = 0, pretend = 0, frame = 0
+ 3168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3169 0000 08B5     		push	{r3, lr}
+ 3170 0002 806B     		ldr	r0, [r0, #56]
+ 3171 0004 0023     		movs	r3, #0
+ 3172 0006 C387     		strh	r3, [r0, #62]	@ movhi
+ 3173 0008 C386     		strh	r3, [r0, #54]	@ movhi
+ 3174 000a FFF7FEFF 		bl	HAL_SPI_ErrorCallback
+ 3175 000e 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 55
+
+
+ 3177              		.section	.text.HAL_SPI_AbortCpltCallback,"ax",%progbits
+ 3178              		.align	1
+ 3179              		.weak	HAL_SPI_AbortCpltCallback
+ 3180              		.syntax unified
+ 3181              		.thumb
+ 3182              		.thumb_func
+ 3184              	HAL_SPI_AbortCpltCallback:
+ 3185              		@ args = 0, pretend = 0, frame = 0
+ 3186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3187              		@ link register save eliminated.
+ 3188 0000 7047     		bx	lr
+ 3190              		.section	.text.HAL_SPI_Abort_IT,"ax",%progbits
+ 3191              		.align	1
+ 3192              		.global	HAL_SPI_Abort_IT
+ 3193              		.syntax unified
+ 3194              		.thumb
+ 3195              		.thumb_func
+ 3197              	HAL_SPI_Abort_IT:
+ 3198              		@ args = 0, pretend = 0, frame = 16
+ 3199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3200 0000 70B5     		push	{r4, r5, r6, lr}
+ 3201 0002 84B0     		sub	sp, sp, #16
+ 3202 0004 0446     		mov	r4, r0
+ 3203 0006 4F4B     		ldr	r3, .L434
+ 3204 0008 1B68     		ldr	r3, [r3]
+ 3205 000a 4F4A     		ldr	r2, .L434+4
+ 3206 000c A2FB0323 		umull	r2, r3, r2, r3
+ 3207 0010 5B0A     		lsrs	r3, r3, #9
+ 3208 0012 6422     		movs	r2, #100
+ 3209 0014 02FB03F3 		mul	r3, r2, r3
+ 3210 0018 0293     		str	r3, [sp, #8]
+ 3211 001a 029B     		ldr	r3, [sp, #8]
+ 3212 001c 0393     		str	r3, [sp, #12]
+ 3213 001e 0268     		ldr	r2, [r0]
+ 3214 0020 5368     		ldr	r3, [r2, #4]
+ 3215 0022 23F02003 		bic	r3, r3, #32
+ 3216 0026 5360     		str	r3, [r2, #4]
+ 3217 0028 0268     		ldr	r2, [r0]
+ 3218 002a 5368     		ldr	r3, [r2, #4]
+ 3219 002c 13F0800F 		tst	r3, #128
+ 3220 0030 12D0     		beq	.L409
+ 3221 0032 464B     		ldr	r3, .L434+8
+ 3222 0034 4364     		str	r3, [r0, #68]
+ 3223              	.L412:
+ 3224 0036 039B     		ldr	r3, [sp, #12]
+ 3225 0038 43B1     		cbz	r3, .L431
+ 3226 003a 039B     		ldr	r3, [sp, #12]
+ 3227 003c 013B     		subs	r3, r3, #1
+ 3228 003e 0393     		str	r3, [sp, #12]
+ 3229 0040 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 3230 0044 DBB2     		uxtb	r3, r3
+ 3231 0046 072B     		cmp	r3, #7
+ 3232 0048 F5D1     		bne	.L412
+ 3233 004a 03E0     		b	.L411
+ 3234              	.L431:
+ 3235 004c 636D     		ldr	r3, [r4, #84]
+ 3236 004e 43F04003 		orr	r3, r3, #64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 56
+
+
+ 3237 0052 6365     		str	r3, [r4, #84]
+ 3238              	.L411:
+ 3239 0054 029B     		ldr	r3, [sp, #8]
+ 3240 0056 0393     		str	r3, [sp, #12]
+ 3241              	.L409:
+ 3242 0058 5368     		ldr	r3, [r2, #4]
+ 3243 005a 13F0400F 		tst	r3, #64
+ 3244 005e 12D0     		beq	.L413
+ 3245 0060 3B4B     		ldr	r3, .L434+12
+ 3246 0062 2364     		str	r3, [r4, #64]
+ 3247              	.L416:
+ 3248 0064 039B     		ldr	r3, [sp, #12]
+ 3249 0066 43B1     		cbz	r3, .L432
+ 3250 0068 039B     		ldr	r3, [sp, #12]
+ 3251 006a 013B     		subs	r3, r3, #1
+ 3252 006c 0393     		str	r3, [sp, #12]
+ 3253 006e 94F85130 		ldrb	r3, [r4, #81]	@ zero_extendqisi2
+ 3254 0072 DBB2     		uxtb	r3, r3
+ 3255 0074 072B     		cmp	r3, #7
+ 3256 0076 F5D1     		bne	.L416
+ 3257 0078 03E0     		b	.L415
+ 3258              	.L432:
+ 3259 007a 636D     		ldr	r3, [r4, #84]
+ 3260 007c 43F04003 		orr	r3, r3, #64
+ 3261 0080 6365     		str	r3, [r4, #84]
+ 3262              	.L415:
+ 3263 0082 029B     		ldr	r3, [sp, #8]
+ 3264 0084 0393     		str	r3, [sp, #12]
+ 3265              	.L413:
+ 3266 0086 A36C     		ldr	r3, [r4, #72]
+ 3267 0088 2BB1     		cbz	r3, .L417
+ 3268 008a 5268     		ldr	r2, [r2, #4]
+ 3269 008c 12F0020F 		tst	r2, #2
+ 3270 0090 1BD0     		beq	.L418
+ 3271 0092 304A     		ldr	r2, .L434+16
+ 3272 0094 1A65     		str	r2, [r3, #80]
+ 3273              	.L417:
+ 3274 0096 E36C     		ldr	r3, [r4, #76]
+ 3275 0098 33B1     		cbz	r3, .L419
+ 3276 009a 2268     		ldr	r2, [r4]
+ 3277 009c 5268     		ldr	r2, [r2, #4]
+ 3278 009e 12F0010F 		tst	r2, #1
+ 3279 00a2 15D0     		beq	.L420
+ 3280 00a4 2C4A     		ldr	r2, .L434+20
+ 3281 00a6 1A65     		str	r2, [r3, #80]
+ 3282              	.L419:
+ 3283 00a8 2368     		ldr	r3, [r4]
+ 3284 00aa 5B68     		ldr	r3, [r3, #4]
+ 3285 00ac 13F0020F 		tst	r3, #2
+ 3286 00b0 11D0     		beq	.L425
+ 3287 00b2 A06C     		ldr	r0, [r4, #72]
+ 3288 00b4 28B3     		cbz	r0, .L426
+ 3289 00b6 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 3290 00ba 20B3     		cbz	r0, .L427
+ 3291 00bc A36C     		ldr	r3, [r4, #72]
+ 3292 00be 0022     		movs	r2, #0
+ 3293 00c0 1A65     		str	r2, [r3, #80]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 57
+
+
+ 3294 00c2 4023     		movs	r3, #64
+ 3295 00c4 6365     		str	r3, [r4, #84]
+ 3296 00c6 0126     		movs	r6, #1
+ 3297 00c8 06E0     		b	.L421
+ 3298              	.L418:
+ 3299 00ca 0022     		movs	r2, #0
+ 3300 00cc 1A65     		str	r2, [r3, #80]
+ 3301 00ce E2E7     		b	.L417
+ 3302              	.L420:
+ 3303 00d0 0022     		movs	r2, #0
+ 3304 00d2 1A65     		str	r2, [r3, #80]
+ 3305 00d4 E8E7     		b	.L419
+ 3306              	.L425:
+ 3307 00d6 0126     		movs	r6, #1
+ 3308              	.L421:
+ 3309 00d8 2368     		ldr	r3, [r4]
+ 3310 00da 5B68     		ldr	r3, [r3, #4]
+ 3311 00dc 13F0010F 		tst	r3, #1
+ 3312 00e0 0AD0     		beq	.L422
+ 3313 00e2 E06C     		ldr	r0, [r4, #76]
+ 3314 00e4 40B1     		cbz	r0, .L422
+ 3315 00e6 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 3316 00ea 0546     		mov	r5, r0
+ 3317 00ec 30B1     		cbz	r0, .L423
+ 3318 00ee E36C     		ldr	r3, [r4, #76]
+ 3319 00f0 0022     		movs	r2, #0
+ 3320 00f2 1A65     		str	r2, [r3, #80]
+ 3321 00f4 4023     		movs	r3, #64
+ 3322 00f6 6365     		str	r3, [r4, #84]
+ 3323              	.L422:
+ 3324 00f8 3EB9     		cbnz	r6, .L433
+ 3325 00fa 0025     		movs	r5, #0
+ 3326              	.L423:
+ 3327 00fc 2846     		mov	r0, r5
+ 3328 00fe 04B0     		add	sp, sp, #16
+ 3329              		@ sp needed
+ 3330 0100 70BD     		pop	{r4, r5, r6, pc}
+ 3331              	.L426:
+ 3332 0102 0126     		movs	r6, #1
+ 3333 0104 E8E7     		b	.L421
+ 3334              	.L427:
+ 3335 0106 0026     		movs	r6, #0
+ 3336 0108 E6E7     		b	.L421
+ 3337              	.L433:
+ 3338 010a 0023     		movs	r3, #0
+ 3339 010c E387     		strh	r3, [r4, #62]	@ movhi
+ 3340 010e E386     		strh	r3, [r4, #54]	@ movhi
+ 3341 0110 636D     		ldr	r3, [r4, #84]
+ 3342 0112 402B     		cmp	r3, #64
+ 3343 0114 14D0     		beq	.L429
+ 3344 0116 0025     		movs	r5, #0
+ 3345 0118 6565     		str	r5, [r4, #84]
+ 3346              	.L424:
+ 3347 011a 0022     		movs	r2, #0
+ 3348 011c 0092     		str	r2, [sp]
+ 3349 011e 2368     		ldr	r3, [r4]
+ 3350 0120 D968     		ldr	r1, [r3, #12]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 58
+
+
+ 3351 0122 0091     		str	r1, [sp]
+ 3352 0124 9968     		ldr	r1, [r3, #8]
+ 3353 0126 0091     		str	r1, [sp]
+ 3354 0128 0099     		ldr	r1, [sp]
+ 3355 012a 0192     		str	r2, [sp, #4]
+ 3356 012c 9B68     		ldr	r3, [r3, #8]
+ 3357 012e 0193     		str	r3, [sp, #4]
+ 3358 0130 019B     		ldr	r3, [sp, #4]
+ 3359 0132 0123     		movs	r3, #1
+ 3360 0134 84F85130 		strb	r3, [r4, #81]
+ 3361 0138 2046     		mov	r0, r4
+ 3362 013a FFF7FEFF 		bl	HAL_SPI_AbortCpltCallback
+ 3363 013e DDE7     		b	.L423
+ 3364              	.L429:
+ 3365 0140 0125     		movs	r5, #1
+ 3366 0142 EAE7     		b	.L424
+ 3367              	.L435:
+ 3368              		.align	2
+ 3369              	.L434:
+ 3370 0144 00000000 		.word	SystemCoreClock
+ 3371 0148 F1197605 		.word	91625969
+ 3372 014c 00000000 		.word	SPI_AbortTx_ISR
+ 3373 0150 00000000 		.word	SPI_AbortRx_ISR
+ 3374 0154 00000000 		.word	SPI_DMATxAbortCallback
+ 3375 0158 00000000 		.word	SPI_DMARxAbortCallback
+ 3377              		.section	.text.SPI_DMARxAbortCallback,"ax",%progbits
+ 3378              		.align	1
+ 3379              		.syntax unified
+ 3380              		.thumb
+ 3381              		.thumb_func
+ 3383              	SPI_DMARxAbortCallback:
+ 3384              		@ args = 0, pretend = 0, frame = 8
+ 3385              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3386 0000 10B5     		push	{r4, lr}
+ 3387 0002 82B0     		sub	sp, sp, #8
+ 3388 0004 846B     		ldr	r4, [r0, #56]
+ 3389 0006 2268     		ldr	r2, [r4]
+ 3390 0008 1368     		ldr	r3, [r2]
+ 3391 000a 23F04003 		bic	r3, r3, #64
+ 3392 000e 1360     		str	r3, [r2]
+ 3393 0010 E36C     		ldr	r3, [r4, #76]
+ 3394 0012 0022     		movs	r2, #0
+ 3395 0014 1A65     		str	r2, [r3, #80]
+ 3396 0016 2268     		ldr	r2, [r4]
+ 3397 0018 5368     		ldr	r3, [r2, #4]
+ 3398 001a 23F00103 		bic	r3, r3, #1
+ 3399 001e 5360     		str	r3, [r2, #4]
+ 3400 0020 FFF7FEFF 		bl	HAL_GetTick
+ 3401 0024 0246     		mov	r2, r0
+ 3402 0026 6421     		movs	r1, #100
+ 3403 0028 2046     		mov	r0, r4
+ 3404 002a FFF7FEFF 		bl	SPI_EndRxTxTransaction
+ 3405 002e 18B1     		cbz	r0, .L437
+ 3406 0030 636D     		ldr	r3, [r4, #84]
+ 3407 0032 43F04003 		orr	r3, r3, #64
+ 3408 0036 6365     		str	r3, [r4, #84]
+ 3409              	.L437:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 59
+
+
+ 3410 0038 A36C     		ldr	r3, [r4, #72]
+ 3411 003a 0BB1     		cbz	r3, .L438
+ 3412 003c 1B6D     		ldr	r3, [r3, #80]
+ 3413 003e CBB9     		cbnz	r3, .L436
+ 3414              	.L438:
+ 3415 0040 0023     		movs	r3, #0
+ 3416 0042 E387     		strh	r3, [r4, #62]	@ movhi
+ 3417 0044 E386     		strh	r3, [r4, #54]	@ movhi
+ 3418 0046 636D     		ldr	r3, [r4, #84]
+ 3419 0048 402B     		cmp	r3, #64
+ 3420 004a 01D0     		beq	.L440
+ 3421 004c 0023     		movs	r3, #0
+ 3422 004e 6365     		str	r3, [r4, #84]
+ 3423              	.L440:
+ 3424 0050 0022     		movs	r2, #0
+ 3425 0052 0092     		str	r2, [sp]
+ 3426 0054 2368     		ldr	r3, [r4]
+ 3427 0056 D968     		ldr	r1, [r3, #12]
+ 3428 0058 0091     		str	r1, [sp]
+ 3429 005a 9968     		ldr	r1, [r3, #8]
+ 3430 005c 0091     		str	r1, [sp]
+ 3431 005e 0099     		ldr	r1, [sp]
+ 3432 0060 0192     		str	r2, [sp, #4]
+ 3433 0062 9B68     		ldr	r3, [r3, #8]
+ 3434 0064 0193     		str	r3, [sp, #4]
+ 3435 0066 019B     		ldr	r3, [sp, #4]
+ 3436 0068 0123     		movs	r3, #1
+ 3437 006a 84F85130 		strb	r3, [r4, #81]
+ 3438 006e 2046     		mov	r0, r4
+ 3439 0070 FFF7FEFF 		bl	HAL_SPI_AbortCpltCallback
+ 3440              	.L436:
+ 3441 0074 02B0     		add	sp, sp, #8
+ 3442              		@ sp needed
+ 3443 0076 10BD     		pop	{r4, pc}
+ 3445              		.section	.text.SPI_DMATxAbortCallback,"ax",%progbits
+ 3446              		.align	1
+ 3447              		.syntax unified
+ 3448              		.thumb
+ 3449              		.thumb_func
+ 3451              	SPI_DMATxAbortCallback:
+ 3452              		@ args = 0, pretend = 0, frame = 16
+ 3453              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3454 0000 00B5     		push	{lr}
+ 3455 0002 85B0     		sub	sp, sp, #20
+ 3456 0004 806B     		ldr	r0, [r0, #56]
+ 3457 0006 836C     		ldr	r3, [r0, #72]
+ 3458 0008 0022     		movs	r2, #0
+ 3459 000a 1A65     		str	r2, [r3, #80]
+ 3460 000c 1E4B     		ldr	r3, .L451
+ 3461 000e 1B68     		ldr	r3, [r3]
+ 3462 0010 1E4A     		ldr	r2, .L451+4
+ 3463 0012 A2FB0323 		umull	r2, r3, r2, r3
+ 3464 0016 5B0A     		lsrs	r3, r3, #9
+ 3465 0018 6422     		movs	r2, #100
+ 3466 001a 02FB03F3 		mul	r3, r2, r3
+ 3467 001e 0393     		str	r3, [sp, #12]
+ 3468 0020 0268     		ldr	r2, [r0]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 60
+
+
+ 3469 0022 5368     		ldr	r3, [r2, #4]
+ 3470 0024 23F00203 		bic	r3, r3, #2
+ 3471 0028 5360     		str	r3, [r2, #4]
+ 3472              	.L445:
+ 3473 002a 039B     		ldr	r3, [sp, #12]
+ 3474 002c 43B1     		cbz	r3, .L450
+ 3475 002e 039B     		ldr	r3, [sp, #12]
+ 3476 0030 013B     		subs	r3, r3, #1
+ 3477 0032 0393     		str	r3, [sp, #12]
+ 3478 0034 0368     		ldr	r3, [r0]
+ 3479 0036 9B68     		ldr	r3, [r3, #8]
+ 3480 0038 13F0020F 		tst	r3, #2
+ 3481 003c F5D0     		beq	.L445
+ 3482 003e 03E0     		b	.L444
+ 3483              	.L450:
+ 3484 0040 436D     		ldr	r3, [r0, #84]
+ 3485 0042 43F04003 		orr	r3, r3, #64
+ 3486 0046 4365     		str	r3, [r0, #84]
+ 3487              	.L444:
+ 3488 0048 C36C     		ldr	r3, [r0, #76]
+ 3489 004a 0BB1     		cbz	r3, .L446
+ 3490 004c 1B6D     		ldr	r3, [r3, #80]
+ 3491 004e C3B9     		cbnz	r3, .L442
+ 3492              	.L446:
+ 3493 0050 0023     		movs	r3, #0
+ 3494 0052 C387     		strh	r3, [r0, #62]	@ movhi
+ 3495 0054 C386     		strh	r3, [r0, #54]	@ movhi
+ 3496 0056 436D     		ldr	r3, [r0, #84]
+ 3497 0058 402B     		cmp	r3, #64
+ 3498 005a 01D0     		beq	.L448
+ 3499 005c 0023     		movs	r3, #0
+ 3500 005e 4365     		str	r3, [r0, #84]
+ 3501              	.L448:
+ 3502 0060 0022     		movs	r2, #0
+ 3503 0062 0192     		str	r2, [sp, #4]
+ 3504 0064 0368     		ldr	r3, [r0]
+ 3505 0066 D968     		ldr	r1, [r3, #12]
+ 3506 0068 0191     		str	r1, [sp, #4]
+ 3507 006a 9968     		ldr	r1, [r3, #8]
+ 3508 006c 0191     		str	r1, [sp, #4]
+ 3509 006e 0199     		ldr	r1, [sp, #4]
+ 3510 0070 0292     		str	r2, [sp, #8]
+ 3511 0072 9B68     		ldr	r3, [r3, #8]
+ 3512 0074 0293     		str	r3, [sp, #8]
+ 3513 0076 029B     		ldr	r3, [sp, #8]
+ 3514 0078 0123     		movs	r3, #1
+ 3515 007a 80F85130 		strb	r3, [r0, #81]
+ 3516 007e FFF7FEFF 		bl	HAL_SPI_AbortCpltCallback
+ 3517              	.L442:
+ 3518 0082 05B0     		add	sp, sp, #20
+ 3519              		@ sp needed
+ 3520 0084 5DF804FB 		ldr	pc, [sp], #4
+ 3521              	.L452:
+ 3522              		.align	2
+ 3523              	.L451:
+ 3524 0088 00000000 		.word	SystemCoreClock
+ 3525 008c F1197605 		.word	91625969
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 61
+
+
+ 3527              		.section	.text.HAL_SPI_GetState,"ax",%progbits
+ 3528              		.align	1
+ 3529              		.global	HAL_SPI_GetState
+ 3530              		.syntax unified
+ 3531              		.thumb
+ 3532              		.thumb_func
+ 3534              	HAL_SPI_GetState:
+ 3535              		@ args = 0, pretend = 0, frame = 0
+ 3536              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3537              		@ link register save eliminated.
+ 3538 0000 90F85100 		ldrb	r0, [r0, #81]	@ zero_extendqisi2
+ 3539 0004 7047     		bx	lr
+ 3541              		.section	.text.HAL_SPI_GetError,"ax",%progbits
+ 3542              		.align	1
+ 3543              		.global	HAL_SPI_GetError
+ 3544              		.syntax unified
+ 3545              		.thumb
+ 3546              		.thumb_func
+ 3548              	HAL_SPI_GetError:
+ 3549              		@ args = 0, pretend = 0, frame = 0
+ 3550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3551              		@ link register save eliminated.
+ 3552 0000 406D     		ldr	r0, [r0, #84]
+ 3553 0002 7047     		bx	lr
+ 3555              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 62
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_spi.c
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:18     .text.SPI_AbortRx_ISR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:23     .text.SPI_AbortRx_ISR:00000000 SPI_AbortRx_ISR
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:74     .text.SPI_AbortRx_ISR:00000060 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:78     .text.SPI_AbortTx_ISR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:83     .text.SPI_AbortTx_ISR:00000000 SPI_AbortTx_ISR
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:100    .text.SPI_WaitFlagStateUntilTimeout:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:105    .text.SPI_WaitFlagStateUntilTimeout:00000000 SPI_WaitFlagStateUntilTimeout
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:199    .text.SPI_WaitFlagStateUntilTimeout:000000c4 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:202    .text.SPI_EndRxTxTransaction:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:207    .text.SPI_EndRxTxTransaction:00000000 SPI_EndRxTxTransaction
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:269    .text.SPI_EndRxTxTransaction:00000078 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:273    .text.SPI_EndRxTransaction:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:278    .text.SPI_EndRxTransaction:00000000 SPI_EndRxTransaction
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:349    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:355    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:362    .text.HAL_SPI_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:368    .text.HAL_SPI_Init:00000000 HAL_SPI_Init
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:454    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:460    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:467    .text.HAL_SPI_DeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:473    .text.HAL_SPI_DeInit:00000000 HAL_SPI_DeInit
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:496    .text.HAL_SPI_Transmit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:502    .text.HAL_SPI_Transmit:00000000 HAL_SPI_Transmit
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:712    .text.HAL_SPI_TransmitReceive:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:718    .text.HAL_SPI_TransmitReceive:00000000 HAL_SPI_TransmitReceive
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1013   .text.HAL_SPI_Receive:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1019   .text.HAL_SPI_Receive:00000000 HAL_SPI_Receive
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1197   .text.HAL_SPI_Transmit_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1203   .text.HAL_SPI_Transmit_IT:00000000 HAL_SPI_Transmit_IT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1288   .text.HAL_SPI_Transmit_IT:000000a0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2432   .text.SPI_TxISR_16BIT:00000000 SPI_TxISR_16BIT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2401   .text.SPI_TxISR_8BIT:00000000 SPI_TxISR_8BIT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1292   .text.HAL_SPI_TransmitReceive_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1298   .text.HAL_SPI_TransmitReceive_IT:00000000 HAL_SPI_TransmitReceive_IT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1397   .text.HAL_SPI_TransmitReceive_IT:000000bc $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2782   .text.SPI_2linesRxISR_16BIT:00000000 SPI_2linesRxISR_16BIT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2744   .text.SPI_2linesTxISR_16BIT:00000000 SPI_2linesTxISR_16BIT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2706   .text.SPI_2linesRxISR_8BIT:00000000 SPI_2linesRxISR_8BIT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2668   .text.SPI_2linesTxISR_8BIT:00000000 SPI_2linesTxISR_8BIT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1403   .text.HAL_SPI_Receive_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1409   .text.HAL_SPI_Receive_IT:00000000 HAL_SPI_Receive_IT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1497   .text.HAL_SPI_Receive_IT:000000d0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2545   .text.SPI_RxISR_16BIT:00000000 SPI_RxISR_16BIT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2514   .text.SPI_RxISR_8BIT:00000000 SPI_RxISR_8BIT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1501   .text.HAL_SPI_Transmit_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1507   .text.HAL_SPI_Transmit_DMA:00000000 HAL_SPI_Transmit_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1610   .text.HAL_SPI_Transmit_DMA:000000d4 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2240   .text.SPI_DMAHalfTransmitCplt:00000000 SPI_DMAHalfTransmitCplt
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2843   .text.SPI_DMATransmitCplt:00000000 SPI_DMATransmitCplt
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2820   .text.SPI_DMAError:00000000 SPI_DMAError
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1615   .text.HAL_SPI_TransmitReceive_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1621   .text.HAL_SPI_TransmitReceive_DMA:00000000 HAL_SPI_TransmitReceive_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1781   .text.HAL_SPI_TransmitReceive_DMA:0000014c $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2294   .text.SPI_DMAHalfTransmitReceiveCplt:00000000 SPI_DMAHalfTransmitReceiveCplt
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2968   .text.SPI_DMATransmitReceiveCplt:00000000 SPI_DMATransmitReceiveCplt
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 63
+
+
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2267   .text.SPI_DMAHalfReceiveCplt:00000000 SPI_DMAHalfReceiveCplt
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2906   .text.SPI_DMAReceiveCplt:00000000 SPI_DMAReceiveCplt
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1788   .text.HAL_SPI_Receive_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1794   .text.HAL_SPI_Receive_DMA:00000000 HAL_SPI_Receive_DMA
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1910   .text.HAL_SPI_Receive_DMA:000000f0 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1915   .text.HAL_SPI_Abort:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:1921   .text.HAL_SPI_Abort:00000000 HAL_SPI_Abort
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2078   .text.HAL_SPI_Abort:00000134 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2084   .text.HAL_SPI_DMAPause:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2090   .text.HAL_SPI_DMAPause:00000000 HAL_SPI_DMAPause
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2112   .text.HAL_SPI_DMAResume:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2118   .text.HAL_SPI_DMAResume:00000000 HAL_SPI_DMAResume
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2140   .text.HAL_SPI_DMAStop:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2146   .text.HAL_SPI_DMAStop:00000000 HAL_SPI_DMAStop
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2183   .text.HAL_SPI_TxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2189   .text.HAL_SPI_TxCpltCallback:00000000 HAL_SPI_TxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2196   .text.HAL_SPI_RxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2202   .text.HAL_SPI_RxCpltCallback:00000000 HAL_SPI_RxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2209   .text.HAL_SPI_TxRxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2215   .text.HAL_SPI_TxRxCpltCallback:00000000 HAL_SPI_TxRxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2222   .text.HAL_SPI_TxHalfCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2228   .text.HAL_SPI_TxHalfCpltCallback:00000000 HAL_SPI_TxHalfCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2235   .text.SPI_DMAHalfTransmitCplt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2249   .text.HAL_SPI_RxHalfCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2255   .text.HAL_SPI_RxHalfCpltCallback:00000000 HAL_SPI_RxHalfCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2262   .text.SPI_DMAHalfReceiveCplt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2276   .text.HAL_SPI_TxRxHalfCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2282   .text.HAL_SPI_TxRxHalfCpltCallback:00000000 HAL_SPI_TxRxHalfCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2289   .text.SPI_DMAHalfTransmitReceiveCplt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2303   .text.HAL_SPI_ErrorCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2309   .text.HAL_SPI_ErrorCallback:00000000 HAL_SPI_ErrorCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2316   .text.SPI_CloseTx_ISR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2321   .text.SPI_CloseTx_ISR:00000000 SPI_CloseTx_ISR
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2392   .text.SPI_CloseTx_ISR:00000088 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2396   .text.SPI_TxISR_8BIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2427   .text.SPI_TxISR_16BIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2458   .text.SPI_CloseRx_ISR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2463   .text.SPI_CloseRx_ISR:00000000 SPI_CloseRx_ISR
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2509   .text.SPI_RxISR_8BIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2540   .text.SPI_RxISR_16BIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2571   .text.SPI_CloseRxTx_ISR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2576   .text.SPI_CloseRxTx_ISR:00000000 SPI_CloseRxTx_ISR
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2659   .text.SPI_CloseRxTx_ISR:000000a8 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2663   .text.SPI_2linesTxISR_8BIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2701   .text.SPI_2linesRxISR_8BIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2739   .text.SPI_2linesTxISR_16BIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2777   .text.SPI_2linesRxISR_16BIT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2815   .text.SPI_DMAError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2838   .text.SPI_DMATransmitCplt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2901   .text.SPI_DMAReceiveCplt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:2963   .text.SPI_DMATransmitReceiveCplt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3014   .text.HAL_SPI_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3020   .text.HAL_SPI_IRQHandler:00000000 HAL_SPI_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3158   .text.HAL_SPI_IRQHandler:00000120 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3166   .text.SPI_DMAAbortOnError:00000000 SPI_DMAAbortOnError
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3161   .text.SPI_DMAAbortOnError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3178   .text.HAL_SPI_AbortCpltCallback:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s 			page 64
+
+
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3184   .text.HAL_SPI_AbortCpltCallback:00000000 HAL_SPI_AbortCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3191   .text.HAL_SPI_Abort_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3197   .text.HAL_SPI_Abort_IT:00000000 HAL_SPI_Abort_IT
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3370   .text.HAL_SPI_Abort_IT:00000144 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3451   .text.SPI_DMATxAbortCallback:00000000 SPI_DMATxAbortCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3383   .text.SPI_DMARxAbortCallback:00000000 SPI_DMARxAbortCallback
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3378   .text.SPI_DMARxAbortCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3446   .text.SPI_DMATxAbortCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3524   .text.SPI_DMATxAbortCallback:00000088 $d
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3528   .text.HAL_SPI_GetState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3534   .text.HAL_SPI_GetState:00000000 HAL_SPI_GetState
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3542   .text.HAL_SPI_GetError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccGvwTmM.s:3548   .text.HAL_SPI_GetError:00000000 HAL_SPI_GetError
+
+UNDEFINED SYMBOLS
+SystemCoreClock
+HAL_GetTick
+HAL_DMA_Start_IT
+HAL_DMA_Abort
+HAL_DMA_Abort_IT

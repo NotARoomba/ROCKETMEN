@@ -1,0 +1,3078 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"llcc68.c"
+  16              		.text
+  17              		.section	.text.llcc68_get_gfsk_crc_len_in_bytes,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	llcc68_get_gfsk_crc_len_in_bytes:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 0628     		cmp	r0, #6
+  28 0002 05D8     		bhi	.L2
+  29 0004 DFE800F0 		tbb	[pc, r0]
+  30              	.L4:
+  31 0008 0A       		.byte	(.L7-.L4)/2
+  32 0009 04       		.byte	(.L2-.L4)/2
+  33 000a 06       		.byte	(.L6-.L4)/2
+  34 000b 04       		.byte	(.L2-.L4)/2
+  35 000c 0A       		.byte	(.L7-.L4)/2
+  36 000d 04       		.byte	(.L2-.L4)/2
+  37 000e 08       		.byte	(.L3-.L4)/2
+  38 000f 00       		.p2align 1
+  39              	.L2:
+  40 0010 0020     		movs	r0, #0
+  41 0012 7047     		bx	lr
+  42              	.L6:
+  43 0014 0220     		movs	r0, #2
+  44 0016 7047     		bx	lr
+  45              	.L3:
+  46 0018 0220     		movs	r0, #2
+  47 001a 7047     		bx	lr
+  48              	.L7:
+  49 001c 0120     		movs	r0, #1
+  50 001e 7047     		bx	lr
+  52              		.section	.text.llcc68_hal_write,"ax",%progbits
+  53              		.align	1
+  54              		.global	llcc68_hal_write
+  55              		.syntax unified
+  56              		.thumb
+  57              		.thumb_func
+  59              	llcc68_hal_write:
+  60              		@ args = 4, pretend = 0, frame = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 2
+
+
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62 0000 60B1     		cbz	r0, .L10
+  63 0002 10B5     		push	{r4, lr}
+  64 0004 82B0     		sub	sp, sp, #8
+  65 0006 8446     		mov	ip, r0
+  66 0008 0468     		ldr	r4, [r0]
+  67 000a BDF81000 		ldrh	r0, [sp, #16]
+  68 000e 0090     		str	r0, [sp]
+  69 0010 DCF81000 		ldr	r0, [ip, #16]
+  70 0014 A047     		blx	r4
+  71 0016 C0B2     		uxtb	r0, r0
+  72 0018 02B0     		add	sp, sp, #8
+  73              		@ sp needed
+  74 001a 10BD     		pop	{r4, pc}
+  75              	.L10:
+  76 001c FF20     		movs	r0, #255
+  77 001e 7047     		bx	lr
+  79              		.section	.text.llcc68_hal_read,"ax",%progbits
+  80              		.align	1
+  81              		.global	llcc68_hal_read
+  82              		.syntax unified
+  83              		.thumb
+  84              		.thumb_func
+  86              	llcc68_hal_read:
+  87              		@ args = 4, pretend = 0, frame = 0
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89 0000 60B1     		cbz	r0, .L17
+  90 0002 10B5     		push	{r4, lr}
+  91 0004 82B0     		sub	sp, sp, #8
+  92 0006 8446     		mov	ip, r0
+  93 0008 4468     		ldr	r4, [r0, #4]
+  94 000a BDF81000 		ldrh	r0, [sp, #16]
+  95 000e 0090     		str	r0, [sp]
+  96 0010 DCF81000 		ldr	r0, [ip, #16]
+  97 0014 A047     		blx	r4
+  98 0016 C0B2     		uxtb	r0, r0
+  99 0018 02B0     		add	sp, sp, #8
+ 100              		@ sp needed
+ 101 001a 10BD     		pop	{r4, pc}
+ 102              	.L17:
+ 103 001c FF20     		movs	r0, #255
+ 104 001e 7047     		bx	lr
+ 106              		.section	.text.llcc68_hal_reset,"ax",%progbits
+ 107              		.align	1
+ 108              		.global	llcc68_hal_reset
+ 109              		.syntax unified
+ 110              		.thumb
+ 111              		.thumb_func
+ 113              	llcc68_hal_reset:
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116 0000 28B1     		cbz	r0, .L24
+ 117 0002 08B5     		push	{r3, lr}
+ 118 0004 8268     		ldr	r2, [r0, #8]
+ 119 0006 0069     		ldr	r0, [r0, #16]
+ 120 0008 9047     		blx	r2
+ 121 000a C0B2     		uxtb	r0, r0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 3
+
+
+ 122 000c 08BD     		pop	{r3, pc}
+ 123              	.L24:
+ 124 000e FF20     		movs	r0, #255
+ 125 0010 7047     		bx	lr
+ 127              		.section	.text.llcc68_hal_wakeup,"ax",%progbits
+ 128              		.align	1
+ 129              		.global	llcc68_hal_wakeup
+ 130              		.syntax unified
+ 131              		.thumb
+ 132              		.thumb_func
+ 134              	llcc68_hal_wakeup:
+ 135              		@ args = 0, pretend = 0, frame = 0
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137 0000 28B1     		cbz	r0, .L31
+ 138 0002 08B5     		push	{r3, lr}
+ 139 0004 8268     		ldr	r2, [r0, #8]
+ 140 0006 0069     		ldr	r0, [r0, #16]
+ 141 0008 9047     		blx	r2
+ 142 000a C0B2     		uxtb	r0, r0
+ 143 000c 08BD     		pop	{r3, pc}
+ 144              	.L31:
+ 145 000e FF20     		movs	r0, #255
+ 146 0010 7047     		bx	lr
+ 148              		.section	.text.llcc68_set_sleep,"ax",%progbits
+ 149              		.align	1
+ 150              		.global	llcc68_set_sleep
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 155              	llcc68_set_sleep:
+ 156              		@ args = 0, pretend = 0, frame = 8
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+ 158 0000 00B5     		push	{lr}
+ 159 0002 85B0     		sub	sp, sp, #20
+ 160 0004 8423     		movs	r3, #132
+ 161 0006 8DF80C30 		strb	r3, [sp, #12]
+ 162 000a 8DF80D10 		strb	r1, [sp, #13]
+ 163 000e 0023     		movs	r3, #0
+ 164 0010 0093     		str	r3, [sp]
+ 165 0012 0222     		movs	r2, #2
+ 166 0014 03A9     		add	r1, sp, #12
+ 167 0016 FFF7FEFF 		bl	llcc68_hal_write
+ 168 001a 05B0     		add	sp, sp, #20
+ 169              		@ sp needed
+ 170 001c 5DF804FB 		ldr	pc, [sp], #4
+ 172              		.section	.text.llcc68_set_standby,"ax",%progbits
+ 173              		.align	1
+ 174              		.global	llcc68_set_standby
+ 175              		.syntax unified
+ 176              		.thumb
+ 177              		.thumb_func
+ 179              	llcc68_set_standby:
+ 180              		@ args = 0, pretend = 0, frame = 8
+ 181              		@ frame_needed = 0, uses_anonymous_args = 0
+ 182 0000 00B5     		push	{lr}
+ 183 0002 85B0     		sub	sp, sp, #20
+ 184 0004 8023     		movs	r3, #128
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 4
+
+
+ 185 0006 8DF80C30 		strb	r3, [sp, #12]
+ 186 000a 8DF80D10 		strb	r1, [sp, #13]
+ 187 000e 0023     		movs	r3, #0
+ 188 0010 0093     		str	r3, [sp]
+ 189 0012 0222     		movs	r2, #2
+ 190 0014 03A9     		add	r1, sp, #12
+ 191 0016 FFF7FEFF 		bl	llcc68_hal_write
+ 192 001a 05B0     		add	sp, sp, #20
+ 193              		@ sp needed
+ 194 001c 5DF804FB 		ldr	pc, [sp], #4
+ 196              		.section	.text.llcc68_set_fs,"ax",%progbits
+ 197              		.align	1
+ 198              		.global	llcc68_set_fs
+ 199              		.syntax unified
+ 200              		.thumb
+ 201              		.thumb_func
+ 203              	llcc68_set_fs:
+ 204              		@ args = 0, pretend = 0, frame = 8
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206 0000 00B5     		push	{lr}
+ 207 0002 85B0     		sub	sp, sp, #20
+ 208 0004 C123     		movs	r3, #193
+ 209 0006 8DF80C30 		strb	r3, [sp, #12]
+ 210 000a 0023     		movs	r3, #0
+ 211 000c 0093     		str	r3, [sp]
+ 212 000e 0122     		movs	r2, #1
+ 213 0010 03A9     		add	r1, sp, #12
+ 214 0012 FFF7FEFF 		bl	llcc68_hal_write
+ 215 0016 05B0     		add	sp, sp, #20
+ 216              		@ sp needed
+ 217 0018 5DF804FB 		ldr	pc, [sp], #4
+ 219              		.section	.text.llcc68_set_tx_with_timeout_in_rtc_step,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	llcc68_set_tx_with_timeout_in_rtc_step
+ 222              		.syntax unified
+ 223              		.thumb
+ 224              		.thumb_func
+ 226              	llcc68_set_tx_with_timeout_in_rtc_step:
+ 227              		@ args = 0, pretend = 0, frame = 8
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 229 0000 00B5     		push	{lr}
+ 230 0002 85B0     		sub	sp, sp, #20
+ 231 0004 8323     		movs	r3, #131
+ 232 0006 8DF80C30 		strb	r3, [sp, #12]
+ 233 000a C1F30743 		ubfx	r3, r1, #16, #8
+ 234 000e 8DF80D30 		strb	r3, [sp, #13]
+ 235 0012 C1F30723 		ubfx	r3, r1, #8, #8
+ 236 0016 8DF80E30 		strb	r3, [sp, #14]
+ 237 001a 8DF80F10 		strb	r1, [sp, #15]
+ 238 001e 0023     		movs	r3, #0
+ 239 0020 0093     		str	r3, [sp]
+ 240 0022 0422     		movs	r2, #4
+ 241 0024 03A9     		add	r1, sp, #12
+ 242 0026 FFF7FEFF 		bl	llcc68_hal_write
+ 243 002a 05B0     		add	sp, sp, #20
+ 244              		@ sp needed
+ 245 002c 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 5
+
+
+ 247              		.section	.text.llcc68_set_rx_with_timeout_in_rtc_step,"ax",%progbits
+ 248              		.align	1
+ 249              		.global	llcc68_set_rx_with_timeout_in_rtc_step
+ 250              		.syntax unified
+ 251              		.thumb
+ 252              		.thumb_func
+ 254              	llcc68_set_rx_with_timeout_in_rtc_step:
+ 255              		@ args = 0, pretend = 0, frame = 8
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 257 0000 00B5     		push	{lr}
+ 258 0002 85B0     		sub	sp, sp, #20
+ 259 0004 8223     		movs	r3, #130
+ 260 0006 8DF80C30 		strb	r3, [sp, #12]
+ 261 000a C1F30743 		ubfx	r3, r1, #16, #8
+ 262 000e 8DF80D30 		strb	r3, [sp, #13]
+ 263 0012 C1F30723 		ubfx	r3, r1, #8, #8
+ 264 0016 8DF80E30 		strb	r3, [sp, #14]
+ 265 001a 8DF80F10 		strb	r1, [sp, #15]
+ 266 001e 0023     		movs	r3, #0
+ 267 0020 0093     		str	r3, [sp]
+ 268 0022 0422     		movs	r2, #4
+ 269 0024 03A9     		add	r1, sp, #12
+ 270 0026 FFF7FEFF 		bl	llcc68_hal_write
+ 271 002a 05B0     		add	sp, sp, #20
+ 272              		@ sp needed
+ 273 002c 5DF804FB 		ldr	pc, [sp], #4
+ 275              		.section	.text.llcc68_stop_timer_on_preamble,"ax",%progbits
+ 276              		.align	1
+ 277              		.global	llcc68_stop_timer_on_preamble
+ 278              		.syntax unified
+ 279              		.thumb
+ 280              		.thumb_func
+ 282              	llcc68_stop_timer_on_preamble:
+ 283              		@ args = 0, pretend = 0, frame = 8
+ 284              		@ frame_needed = 0, uses_anonymous_args = 0
+ 285 0000 00B5     		push	{lr}
+ 286 0002 85B0     		sub	sp, sp, #20
+ 287 0004 9F23     		movs	r3, #159
+ 288 0006 8DF80C30 		strb	r3, [sp, #12]
+ 289 000a 8DF80D10 		strb	r1, [sp, #13]
+ 290 000e 0023     		movs	r3, #0
+ 291 0010 0093     		str	r3, [sp]
+ 292 0012 0222     		movs	r2, #2
+ 293 0014 03A9     		add	r1, sp, #12
+ 294 0016 FFF7FEFF 		bl	llcc68_hal_write
+ 295 001a 05B0     		add	sp, sp, #20
+ 296              		@ sp needed
+ 297 001c 5DF804FB 		ldr	pc, [sp], #4
+ 299              		.section	.text.llcc68_set_rx_duty_cycle_with_timings_in_rtc_step,"ax",%progbits
+ 300              		.align	1
+ 301              		.global	llcc68_set_rx_duty_cycle_with_timings_in_rtc_step
+ 302              		.syntax unified
+ 303              		.thumb
+ 304              		.thumb_func
+ 306              	llcc68_set_rx_duty_cycle_with_timings_in_rtc_step:
+ 307              		@ args = 0, pretend = 0, frame = 8
+ 308              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 6
+
+
+ 309 0000 00B5     		push	{lr}
+ 310 0002 85B0     		sub	sp, sp, #20
+ 311 0004 9423     		movs	r3, #148
+ 312 0006 8DF80830 		strb	r3, [sp, #8]
+ 313 000a C1F30743 		ubfx	r3, r1, #16, #8
+ 314 000e 8DF80930 		strb	r3, [sp, #9]
+ 315 0012 C1F30723 		ubfx	r3, r1, #8, #8
+ 316 0016 8DF80A30 		strb	r3, [sp, #10]
+ 317 001a 8DF80B10 		strb	r1, [sp, #11]
+ 318 001e C2F30743 		ubfx	r3, r2, #16, #8
+ 319 0022 8DF80C30 		strb	r3, [sp, #12]
+ 320 0026 C2F30723 		ubfx	r3, r2, #8, #8
+ 321 002a 8DF80D30 		strb	r3, [sp, #13]
+ 322 002e 8DF80E20 		strb	r2, [sp, #14]
+ 323 0032 0023     		movs	r3, #0
+ 324 0034 0093     		str	r3, [sp]
+ 325 0036 0722     		movs	r2, #7
+ 326 0038 02A9     		add	r1, sp, #8
+ 327 003a FFF7FEFF 		bl	llcc68_hal_write
+ 328 003e 05B0     		add	sp, sp, #20
+ 329              		@ sp needed
+ 330 0040 5DF804FB 		ldr	pc, [sp], #4
+ 332              		.section	.text.llcc68_set_cad,"ax",%progbits
+ 333              		.align	1
+ 334              		.global	llcc68_set_cad
+ 335              		.syntax unified
+ 336              		.thumb
+ 337              		.thumb_func
+ 339              	llcc68_set_cad:
+ 340              		@ args = 0, pretend = 0, frame = 8
+ 341              		@ frame_needed = 0, uses_anonymous_args = 0
+ 342 0000 00B5     		push	{lr}
+ 343 0002 85B0     		sub	sp, sp, #20
+ 344 0004 C523     		movs	r3, #197
+ 345 0006 8DF80C30 		strb	r3, [sp, #12]
+ 346 000a 0023     		movs	r3, #0
+ 347 000c 0093     		str	r3, [sp]
+ 348 000e 0122     		movs	r2, #1
+ 349 0010 03A9     		add	r1, sp, #12
+ 350 0012 FFF7FEFF 		bl	llcc68_hal_write
+ 351 0016 05B0     		add	sp, sp, #20
+ 352              		@ sp needed
+ 353 0018 5DF804FB 		ldr	pc, [sp], #4
+ 355              		.section	.text.llcc68_set_tx_cw,"ax",%progbits
+ 356              		.align	1
+ 357              		.global	llcc68_set_tx_cw
+ 358              		.syntax unified
+ 359              		.thumb
+ 360              		.thumb_func
+ 362              	llcc68_set_tx_cw:
+ 363              		@ args = 0, pretend = 0, frame = 8
+ 364              		@ frame_needed = 0, uses_anonymous_args = 0
+ 365 0000 00B5     		push	{lr}
+ 366 0002 85B0     		sub	sp, sp, #20
+ 367 0004 D123     		movs	r3, #209
+ 368 0006 8DF80C30 		strb	r3, [sp, #12]
+ 369 000a 0023     		movs	r3, #0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 7
+
+
+ 370 000c 0093     		str	r3, [sp]
+ 371 000e 0122     		movs	r2, #1
+ 372 0010 03A9     		add	r1, sp, #12
+ 373 0012 FFF7FEFF 		bl	llcc68_hal_write
+ 374 0016 05B0     		add	sp, sp, #20
+ 375              		@ sp needed
+ 376 0018 5DF804FB 		ldr	pc, [sp], #4
+ 378              		.section	.text.llcc68_set_tx_infinite_preamble,"ax",%progbits
+ 379              		.align	1
+ 380              		.global	llcc68_set_tx_infinite_preamble
+ 381              		.syntax unified
+ 382              		.thumb
+ 383              		.thumb_func
+ 385              	llcc68_set_tx_infinite_preamble:
+ 386              		@ args = 0, pretend = 0, frame = 8
+ 387              		@ frame_needed = 0, uses_anonymous_args = 0
+ 388 0000 00B5     		push	{lr}
+ 389 0002 85B0     		sub	sp, sp, #20
+ 390 0004 D223     		movs	r3, #210
+ 391 0006 8DF80C30 		strb	r3, [sp, #12]
+ 392 000a 0023     		movs	r3, #0
+ 393 000c 0093     		str	r3, [sp]
+ 394 000e 0122     		movs	r2, #1
+ 395 0010 03A9     		add	r1, sp, #12
+ 396 0012 FFF7FEFF 		bl	llcc68_hal_write
+ 397 0016 05B0     		add	sp, sp, #20
+ 398              		@ sp needed
+ 399 0018 5DF804FB 		ldr	pc, [sp], #4
+ 401              		.section	.text.llcc68_set_reg_mode,"ax",%progbits
+ 402              		.align	1
+ 403              		.global	llcc68_set_reg_mode
+ 404              		.syntax unified
+ 405              		.thumb
+ 406              		.thumb_func
+ 408              	llcc68_set_reg_mode:
+ 409              		@ args = 0, pretend = 0, frame = 8
+ 410              		@ frame_needed = 0, uses_anonymous_args = 0
+ 411 0000 00B5     		push	{lr}
+ 412 0002 85B0     		sub	sp, sp, #20
+ 413 0004 9623     		movs	r3, #150
+ 414 0006 8DF80C30 		strb	r3, [sp, #12]
+ 415 000a 8DF80D10 		strb	r1, [sp, #13]
+ 416 000e 0023     		movs	r3, #0
+ 417 0010 0093     		str	r3, [sp]
+ 418 0012 0222     		movs	r2, #2
+ 419 0014 03A9     		add	r1, sp, #12
+ 420 0016 FFF7FEFF 		bl	llcc68_hal_write
+ 421 001a 05B0     		add	sp, sp, #20
+ 422              		@ sp needed
+ 423 001c 5DF804FB 		ldr	pc, [sp], #4
+ 425              		.section	.text.llcc68_cal,"ax",%progbits
+ 426              		.align	1
+ 427              		.global	llcc68_cal
+ 428              		.syntax unified
+ 429              		.thumb
+ 430              		.thumb_func
+ 432              	llcc68_cal:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 8
+
+
+ 433              		@ args = 0, pretend = 0, frame = 8
+ 434              		@ frame_needed = 0, uses_anonymous_args = 0
+ 435 0000 00B5     		push	{lr}
+ 436 0002 85B0     		sub	sp, sp, #20
+ 437 0004 8923     		movs	r3, #137
+ 438 0006 8DF80C30 		strb	r3, [sp, #12]
+ 439 000a 8DF80D10 		strb	r1, [sp, #13]
+ 440 000e 0023     		movs	r3, #0
+ 441 0010 0093     		str	r3, [sp]
+ 442 0012 0222     		movs	r2, #2
+ 443 0014 03A9     		add	r1, sp, #12
+ 444 0016 FFF7FEFF 		bl	llcc68_hal_write
+ 445 001a 05B0     		add	sp, sp, #20
+ 446              		@ sp needed
+ 447 001c 5DF804FB 		ldr	pc, [sp], #4
+ 449              		.section	.text.llcc68_cal_img,"ax",%progbits
+ 450              		.align	1
+ 451              		.global	llcc68_cal_img
+ 452              		.syntax unified
+ 453              		.thumb
+ 454              		.thumb_func
+ 456              	llcc68_cal_img:
+ 457              		@ args = 0, pretend = 0, frame = 8
+ 458              		@ frame_needed = 0, uses_anonymous_args = 0
+ 459 0000 00B5     		push	{lr}
+ 460 0002 85B0     		sub	sp, sp, #20
+ 461 0004 9823     		movs	r3, #152
+ 462 0006 8DF80C30 		strb	r3, [sp, #12]
+ 463 000a 8DF80D10 		strb	r1, [sp, #13]
+ 464 000e 8DF80E20 		strb	r2, [sp, #14]
+ 465 0012 0023     		movs	r3, #0
+ 466 0014 0093     		str	r3, [sp]
+ 467 0016 0322     		movs	r2, #3
+ 468 0018 03A9     		add	r1, sp, #12
+ 469 001a FFF7FEFF 		bl	llcc68_hal_write
+ 470 001e 05B0     		add	sp, sp, #20
+ 471              		@ sp needed
+ 472 0020 5DF804FB 		ldr	pc, [sp], #4
+ 474              		.section	.text.llcc68_cal_img_in_mhz,"ax",%progbits
+ 475              		.align	1
+ 476              		.global	llcc68_cal_img_in_mhz
+ 477              		.syntax unified
+ 478              		.thumb
+ 479              		.thumb_func
+ 481              	llcc68_cal_img_in_mhz:
+ 482              		@ args = 0, pretend = 0, frame = 0
+ 483              		@ frame_needed = 0, uses_anonymous_args = 0
+ 484 0000 08B5     		push	{r3, lr}
+ 485 0002 C1F38701 		ubfx	r1, r1, #2, #8
+ 486 0006 0332     		adds	r2, r2, #3
+ 487 0008 C2F38702 		ubfx	r2, r2, #2, #8
+ 488 000c FFF7FEFF 		bl	llcc68_cal_img
+ 489 0010 08BD     		pop	{r3, pc}
+ 491              		.section	.text.llcc68_set_pa_cfg,"ax",%progbits
+ 492              		.align	1
+ 493              		.global	llcc68_set_pa_cfg
+ 494              		.syntax unified
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 9
+
+
+ 495              		.thumb
+ 496              		.thumb_func
+ 498              	llcc68_set_pa_cfg:
+ 499              		@ args = 0, pretend = 0, frame = 8
+ 500              		@ frame_needed = 0, uses_anonymous_args = 0
+ 501 0000 00B5     		push	{lr}
+ 502 0002 85B0     		sub	sp, sp, #20
+ 503 0004 9523     		movs	r3, #149
+ 504 0006 8DF80830 		strb	r3, [sp, #8]
+ 505 000a 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 506 000c 8DF80930 		strb	r3, [sp, #9]
+ 507 0010 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 508 0012 8DF80A30 		strb	r3, [sp, #10]
+ 509 0016 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ 510 0018 8DF80B30 		strb	r3, [sp, #11]
+ 511 001c CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 512 001e 8DF80C30 		strb	r3, [sp, #12]
+ 513 0022 0023     		movs	r3, #0
+ 514 0024 0093     		str	r3, [sp]
+ 515 0026 0522     		movs	r2, #5
+ 516 0028 02A9     		add	r1, sp, #8
+ 517 002a FFF7FEFF 		bl	llcc68_hal_write
+ 518 002e 05B0     		add	sp, sp, #20
+ 519              		@ sp needed
+ 520 0030 5DF804FB 		ldr	pc, [sp], #4
+ 522              		.section	.text.llcc68_set_rx_tx_fallback_mode,"ax",%progbits
+ 523              		.align	1
+ 524              		.global	llcc68_set_rx_tx_fallback_mode
+ 525              		.syntax unified
+ 526              		.thumb
+ 527              		.thumb_func
+ 529              	llcc68_set_rx_tx_fallback_mode:
+ 530              		@ args = 0, pretend = 0, frame = 8
+ 531              		@ frame_needed = 0, uses_anonymous_args = 0
+ 532 0000 00B5     		push	{lr}
+ 533 0002 85B0     		sub	sp, sp, #20
+ 534 0004 9323     		movs	r3, #147
+ 535 0006 8DF80C30 		strb	r3, [sp, #12]
+ 536 000a 8DF80D10 		strb	r1, [sp, #13]
+ 537 000e 0023     		movs	r3, #0
+ 538 0010 0093     		str	r3, [sp]
+ 539 0012 0222     		movs	r2, #2
+ 540 0014 03A9     		add	r1, sp, #12
+ 541 0016 FFF7FEFF 		bl	llcc68_hal_write
+ 542 001a 05B0     		add	sp, sp, #20
+ 543              		@ sp needed
+ 544 001c 5DF804FB 		ldr	pc, [sp], #4
+ 546              		.section	.text.llcc68_write_register,"ax",%progbits
+ 547              		.align	1
+ 548              		.global	llcc68_write_register
+ 549              		.syntax unified
+ 550              		.thumb
+ 551              		.thumb_func
+ 553              	llcc68_write_register:
+ 554              		@ args = 0, pretend = 0, frame = 8
+ 555              		@ frame_needed = 0, uses_anonymous_args = 0
+ 556 0000 00B5     		push	{lr}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 10
+
+
+ 557 0002 85B0     		sub	sp, sp, #20
+ 558 0004 4FF00D0C 		mov	ip, #13
+ 559 0008 8DF80CC0 		strb	ip, [sp, #12]
+ 560 000c 4FEA112C 		lsr	ip, r1, #8
+ 561 0010 8DF80DC0 		strb	ip, [sp, #13]
+ 562 0014 8DF80E10 		strb	r1, [sp, #14]
+ 563 0018 0093     		str	r3, [sp]
+ 564 001a 1346     		mov	r3, r2
+ 565 001c 0322     		movs	r2, #3
+ 566 001e 03A9     		add	r1, sp, #12
+ 567 0020 FFF7FEFF 		bl	llcc68_hal_write
+ 568 0024 05B0     		add	sp, sp, #20
+ 569              		@ sp needed
+ 570 0026 5DF804FB 		ldr	pc, [sp], #4
+ 572              		.section	.text.llcc68_read_register,"ax",%progbits
+ 573              		.align	1
+ 574              		.global	llcc68_read_register
+ 575              		.syntax unified
+ 576              		.thumb
+ 577              		.thumb_func
+ 579              	llcc68_read_register:
+ 580              		@ args = 0, pretend = 0, frame = 8
+ 581              		@ frame_needed = 0, uses_anonymous_args = 0
+ 582 0000 00B5     		push	{lr}
+ 583 0002 85B0     		sub	sp, sp, #20
+ 584 0004 4FF01D0C 		mov	ip, #29
+ 585 0008 8DF80CC0 		strb	ip, [sp, #12]
+ 586 000c 4FEA112C 		lsr	ip, r1, #8
+ 587 0010 8DF80DC0 		strb	ip, [sp, #13]
+ 588 0014 8DF80E10 		strb	r1, [sp, #14]
+ 589 0018 0021     		movs	r1, #0
+ 590 001a 8DF80F10 		strb	r1, [sp, #15]
+ 591 001e 0093     		str	r3, [sp]
+ 592 0020 1346     		mov	r3, r2
+ 593 0022 0422     		movs	r2, #4
+ 594 0024 03A9     		add	r1, sp, #12
+ 595 0026 FFF7FEFF 		bl	llcc68_hal_read
+ 596 002a 05B0     		add	sp, sp, #20
+ 597              		@ sp needed
+ 598 002c 5DF804FB 		ldr	pc, [sp], #4
+ 600              		.section	.text.llcc68_tx_modulation_workaround,"ax",%progbits
+ 601              		.align	1
+ 602              		.syntax unified
+ 603              		.thumb
+ 604              		.thumb_func
+ 606              	llcc68_tx_modulation_workaround:
+ 607              		@ args = 0, pretend = 0, frame = 8
+ 608              		@ frame_needed = 0, uses_anonymous_args = 0
+ 609 0000 70B5     		push	{r4, r5, r6, lr}
+ 610 0002 82B0     		sub	sp, sp, #8
+ 611 0004 0646     		mov	r6, r0
+ 612 0006 0C46     		mov	r4, r1
+ 613 0008 1546     		mov	r5, r2
+ 614 000a 0023     		movs	r3, #0
+ 615 000c 8DF80730 		strb	r3, [sp, #7]
+ 616 0010 0123     		movs	r3, #1
+ 617 0012 0DF10702 		add	r2, sp, #7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 11
+
+
+ 618 0016 40F68901 		movw	r1, #2185
+ 619 001a FFF7FEFF 		bl	llcc68_read_register
+ 620 001e 78B9     		cbnz	r0, .L74
+ 621 0020 012C     		cmp	r4, #1
+ 622 0022 0FD0     		beq	.L79
+ 623 0024 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 624 0028 43F00403 		orr	r3, r3, #4
+ 625 002c 8DF80730 		strb	r3, [sp, #7]
+ 626              	.L77:
+ 627 0030 0123     		movs	r3, #1
+ 628 0032 0DF10702 		add	r2, sp, #7
+ 629 0036 40F68901 		movw	r1, #2185
+ 630 003a 3046     		mov	r0, r6
+ 631 003c FFF7FEFF 		bl	llcc68_write_register
+ 632              	.L74:
+ 633 0040 02B0     		add	sp, sp, #8
+ 634              		@ sp needed
+ 635 0042 70BD     		pop	{r4, r5, r6, pc}
+ 636              	.L79:
+ 637 0044 062D     		cmp	r5, #6
+ 638 0046 06D0     		beq	.L80
+ 639 0048 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 640 004c 43F00403 		orr	r3, r3, #4
+ 641 0050 8DF80730 		strb	r3, [sp, #7]
+ 642 0054 ECE7     		b	.L77
+ 643              	.L80:
+ 644 0056 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 645 005a 23F00403 		bic	r3, r3, #4
+ 646 005e 8DF80730 		strb	r3, [sp, #7]
+ 647 0062 E5E7     		b	.L77
+ 649              		.section	.text.llcc68_write_buffer,"ax",%progbits
+ 650              		.align	1
+ 651              		.global	llcc68_write_buffer
+ 652              		.syntax unified
+ 653              		.thumb
+ 654              		.thumb_func
+ 656              	llcc68_write_buffer:
+ 657              		@ args = 0, pretend = 0, frame = 8
+ 658              		@ frame_needed = 0, uses_anonymous_args = 0
+ 659 0000 00B5     		push	{lr}
+ 660 0002 85B0     		sub	sp, sp, #20
+ 661 0004 4FF00E0C 		mov	ip, #14
+ 662 0008 8DF80CC0 		strb	ip, [sp, #12]
+ 663 000c 8DF80D10 		strb	r1, [sp, #13]
+ 664 0010 0093     		str	r3, [sp]
+ 665 0012 1346     		mov	r3, r2
+ 666 0014 0222     		movs	r2, #2
+ 667 0016 03A9     		add	r1, sp, #12
+ 668 0018 FFF7FEFF 		bl	llcc68_hal_write
+ 669 001c 05B0     		add	sp, sp, #20
+ 670              		@ sp needed
+ 671 001e 5DF804FB 		ldr	pc, [sp], #4
+ 673              		.section	.text.llcc68_read_buffer,"ax",%progbits
+ 674              		.align	1
+ 675              		.global	llcc68_read_buffer
+ 676              		.syntax unified
+ 677              		.thumb
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 12
+
+
+ 678              		.thumb_func
+ 680              	llcc68_read_buffer:
+ 681              		@ args = 0, pretend = 0, frame = 8
+ 682              		@ frame_needed = 0, uses_anonymous_args = 0
+ 683 0000 00B5     		push	{lr}
+ 684 0002 85B0     		sub	sp, sp, #20
+ 685 0004 4FF01E0C 		mov	ip, #30
+ 686 0008 8DF80CC0 		strb	ip, [sp, #12]
+ 687 000c 8DF80D10 		strb	r1, [sp, #13]
+ 688 0010 0021     		movs	r1, #0
+ 689 0012 8DF80E10 		strb	r1, [sp, #14]
+ 690 0016 0093     		str	r3, [sp]
+ 691 0018 1346     		mov	r3, r2
+ 692 001a 0322     		movs	r2, #3
+ 693 001c 03A9     		add	r1, sp, #12
+ 694 001e FFF7FEFF 		bl	llcc68_hal_read
+ 695 0022 05B0     		add	sp, sp, #20
+ 696              		@ sp needed
+ 697 0024 5DF804FB 		ldr	pc, [sp], #4
+ 699              		.section	.text.llcc68_set_dio_irq_params,"ax",%progbits
+ 700              		.align	1
+ 701              		.global	llcc68_set_dio_irq_params
+ 702              		.syntax unified
+ 703              		.thumb
+ 704              		.thumb_func
+ 706              	llcc68_set_dio_irq_params:
+ 707              		@ args = 4, pretend = 0, frame = 16
+ 708              		@ frame_needed = 0, uses_anonymous_args = 0
+ 709 0000 00B5     		push	{lr}
+ 710 0002 87B0     		sub	sp, sp, #28
+ 711 0004 BDF820C0 		ldrh	ip, [sp, #32]
+ 712 0008 4FF0080E 		mov	lr, #8
+ 713 000c 8DF80CE0 		strb	lr, [sp, #12]
+ 714 0010 21FA0EFE 		lsr	lr, r1, lr
+ 715 0014 8DF80DE0 		strb	lr, [sp, #13]
+ 716 0018 8DF80E10 		strb	r1, [sp, #14]
+ 717 001c 110A     		lsrs	r1, r2, #8
+ 718 001e 8DF80F10 		strb	r1, [sp, #15]
+ 719 0022 8DF81020 		strb	r2, [sp, #16]
+ 720 0026 1A0A     		lsrs	r2, r3, #8
+ 721 0028 8DF81120 		strb	r2, [sp, #17]
+ 722 002c 8DF81230 		strb	r3, [sp, #18]
+ 723 0030 4FEA1C23 		lsr	r3, ip, #8
+ 724 0034 8DF81330 		strb	r3, [sp, #19]
+ 725 0038 8DF814C0 		strb	ip, [sp, #20]
+ 726 003c 0023     		movs	r3, #0
+ 727 003e 0093     		str	r3, [sp]
+ 728 0040 0922     		movs	r2, #9
+ 729 0042 03A9     		add	r1, sp, #12
+ 730 0044 FFF7FEFF 		bl	llcc68_hal_write
+ 731 0048 07B0     		add	sp, sp, #28
+ 732              		@ sp needed
+ 733 004a 5DF804FB 		ldr	pc, [sp], #4
+ 735              		.section	.text.llcc68_get_irq_status,"ax",%progbits
+ 736              		.align	1
+ 737              		.global	llcc68_get_irq_status
+ 738              		.syntax unified
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 13
+
+
+ 739              		.thumb
+ 740              		.thumb_func
+ 742              	llcc68_get_irq_status:
+ 743              		@ args = 0, pretend = 0, frame = 8
+ 744              		@ frame_needed = 0, uses_anonymous_args = 0
+ 745 0000 10B5     		push	{r4, lr}
+ 746 0002 84B0     		sub	sp, sp, #16
+ 747 0004 0C46     		mov	r4, r1
+ 748 0006 1223     		movs	r3, #18
+ 749 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 750 000c 0023     		movs	r3, #0
+ 751 000e ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 752 0012 0222     		movs	r2, #2
+ 753 0014 0092     		str	r2, [sp]
+ 754 0016 02AB     		add	r3, sp, #8
+ 755 0018 03A9     		add	r1, sp, #12
+ 756 001a FFF7FEFF 		bl	llcc68_hal_read
+ 757 001e 30B9     		cbnz	r0, .L88
+ 758 0020 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
+ 759 0024 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 760 0028 03EB0223 		add	r3, r3, r2, lsl #8
+ 761 002c 2380     		strh	r3, [r4]	@ movhi
+ 762              	.L88:
+ 763 002e 04B0     		add	sp, sp, #16
+ 764              		@ sp needed
+ 765 0030 10BD     		pop	{r4, pc}
+ 767              		.section	.text.llcc68_clear_irq_status,"ax",%progbits
+ 768              		.align	1
+ 769              		.global	llcc68_clear_irq_status
+ 770              		.syntax unified
+ 771              		.thumb
+ 772              		.thumb_func
+ 774              	llcc68_clear_irq_status:
+ 775              		@ args = 0, pretend = 0, frame = 8
+ 776              		@ frame_needed = 0, uses_anonymous_args = 0
+ 777 0000 00B5     		push	{lr}
+ 778 0002 85B0     		sub	sp, sp, #20
+ 779 0004 0223     		movs	r3, #2
+ 780 0006 8DF80C30 		strb	r3, [sp, #12]
+ 781 000a 0B0A     		lsrs	r3, r1, #8
+ 782 000c 8DF80D30 		strb	r3, [sp, #13]
+ 783 0010 8DF80E10 		strb	r1, [sp, #14]
+ 784 0014 0023     		movs	r3, #0
+ 785 0016 0093     		str	r3, [sp]
+ 786 0018 0322     		movs	r2, #3
+ 787 001a 03A9     		add	r1, sp, #12
+ 788 001c FFF7FEFF 		bl	llcc68_hal_write
+ 789 0020 05B0     		add	sp, sp, #20
+ 790              		@ sp needed
+ 791 0022 5DF804FB 		ldr	pc, [sp], #4
+ 793              		.section	.text.llcc68_get_and_clear_irq_status,"ax",%progbits
+ 794              		.align	1
+ 795              		.global	llcc68_get_and_clear_irq_status
+ 796              		.syntax unified
+ 797              		.thumb
+ 798              		.thumb_func
+ 800              	llcc68_get_and_clear_irq_status:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 14
+
+
+ 801              		@ args = 0, pretend = 0, frame = 8
+ 802              		@ frame_needed = 0, uses_anonymous_args = 0
+ 803 0000 30B5     		push	{r4, r5, lr}
+ 804 0002 83B0     		sub	sp, sp, #12
+ 805 0004 0546     		mov	r5, r0
+ 806 0006 0C46     		mov	r4, r1
+ 807 0008 0023     		movs	r3, #0
+ 808 000a ADF80630 		strh	r3, [sp, #6]	@ movhi
+ 809 000e 0DF10601 		add	r1, sp, #6
+ 810 0012 FFF7FEFF 		bl	llcc68_get_irq_status
+ 811 0016 38B9     		cbnz	r0, .L93
+ 812 0018 BDF80610 		ldrh	r1, [sp, #6]
+ 813 001c 31B9     		cbnz	r1, .L96
+ 814              	.L94:
+ 815 001e 18B9     		cbnz	r0, .L93
+ 816 0020 14B1     		cbz	r4, .L93
+ 817 0022 BDF80630 		ldrh	r3, [sp, #6]
+ 818 0026 2380     		strh	r3, [r4]	@ movhi
+ 819              	.L93:
+ 820 0028 03B0     		add	sp, sp, #12
+ 821              		@ sp needed
+ 822 002a 30BD     		pop	{r4, r5, pc}
+ 823              	.L96:
+ 824 002c 2846     		mov	r0, r5
+ 825 002e FFF7FEFF 		bl	llcc68_clear_irq_status
+ 826 0032 F4E7     		b	.L94
+ 828              		.section	.text.llcc68_set_dio2_as_rf_sw_ctrl,"ax",%progbits
+ 829              		.align	1
+ 830              		.global	llcc68_set_dio2_as_rf_sw_ctrl
+ 831              		.syntax unified
+ 832              		.thumb
+ 833              		.thumb_func
+ 835              	llcc68_set_dio2_as_rf_sw_ctrl:
+ 836              		@ args = 0, pretend = 0, frame = 8
+ 837              		@ frame_needed = 0, uses_anonymous_args = 0
+ 838 0000 00B5     		push	{lr}
+ 839 0002 85B0     		sub	sp, sp, #20
+ 840 0004 9D23     		movs	r3, #157
+ 841 0006 8DF80C30 		strb	r3, [sp, #12]
+ 842 000a 8DF80D10 		strb	r1, [sp, #13]
+ 843 000e 0023     		movs	r3, #0
+ 844 0010 0093     		str	r3, [sp]
+ 845 0012 0222     		movs	r2, #2
+ 846 0014 03A9     		add	r1, sp, #12
+ 847 0016 FFF7FEFF 		bl	llcc68_hal_write
+ 848 001a 05B0     		add	sp, sp, #20
+ 849              		@ sp needed
+ 850 001c 5DF804FB 		ldr	pc, [sp], #4
+ 852              		.section	.text.llcc68_set_dio3_as_tcxo_ctrl,"ax",%progbits
+ 853              		.align	1
+ 854              		.global	llcc68_set_dio3_as_tcxo_ctrl
+ 855              		.syntax unified
+ 856              		.thumb
+ 857              		.thumb_func
+ 859              	llcc68_set_dio3_as_tcxo_ctrl:
+ 860              		@ args = 0, pretend = 0, frame = 8
+ 861              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 15
+
+
+ 862 0000 00B5     		push	{lr}
+ 863 0002 85B0     		sub	sp, sp, #20
+ 864 0004 9723     		movs	r3, #151
+ 865 0006 8DF80830 		strb	r3, [sp, #8]
+ 866 000a 8DF80910 		strb	r1, [sp, #9]
+ 867 000e C2F30743 		ubfx	r3, r2, #16, #8
+ 868 0012 8DF80A30 		strb	r3, [sp, #10]
+ 869 0016 C2F30723 		ubfx	r3, r2, #8, #8
+ 870 001a 8DF80B30 		strb	r3, [sp, #11]
+ 871 001e 8DF80C20 		strb	r2, [sp, #12]
+ 872 0022 0023     		movs	r3, #0
+ 873 0024 0093     		str	r3, [sp]
+ 874 0026 0522     		movs	r2, #5
+ 875 0028 02A9     		add	r1, sp, #8
+ 876 002a FFF7FEFF 		bl	llcc68_hal_write
+ 877 002e 05B0     		add	sp, sp, #20
+ 878              		@ sp needed
+ 879 0030 5DF804FB 		ldr	pc, [sp], #4
+ 881              		.section	.text.llcc68_set_rf_freq_in_pll_steps,"ax",%progbits
+ 882              		.align	1
+ 883              		.global	llcc68_set_rf_freq_in_pll_steps
+ 884              		.syntax unified
+ 885              		.thumb
+ 886              		.thumb_func
+ 888              	llcc68_set_rf_freq_in_pll_steps:
+ 889              		@ args = 0, pretend = 0, frame = 8
+ 890              		@ frame_needed = 0, uses_anonymous_args = 0
+ 891 0000 00B5     		push	{lr}
+ 892 0002 85B0     		sub	sp, sp, #20
+ 893 0004 8623     		movs	r3, #134
+ 894 0006 8DF80830 		strb	r3, [sp, #8]
+ 895 000a 0B0E     		lsrs	r3, r1, #24
+ 896 000c 8DF80930 		strb	r3, [sp, #9]
+ 897 0010 C1F30743 		ubfx	r3, r1, #16, #8
+ 898 0014 8DF80A30 		strb	r3, [sp, #10]
+ 899 0018 C1F30723 		ubfx	r3, r1, #8, #8
+ 900 001c 8DF80B30 		strb	r3, [sp, #11]
+ 901 0020 8DF80C10 		strb	r1, [sp, #12]
+ 902 0024 0023     		movs	r3, #0
+ 903 0026 0093     		str	r3, [sp]
+ 904 0028 0522     		movs	r2, #5
+ 905 002a 02A9     		add	r1, sp, #8
+ 906 002c FFF7FEFF 		bl	llcc68_hal_write
+ 907 0030 05B0     		add	sp, sp, #20
+ 908              		@ sp needed
+ 909 0032 5DF804FB 		ldr	pc, [sp], #4
+ 911              		.section	.text.llcc68_set_pkt_type,"ax",%progbits
+ 912              		.align	1
+ 913              		.global	llcc68_set_pkt_type
+ 914              		.syntax unified
+ 915              		.thumb
+ 916              		.thumb_func
+ 918              	llcc68_set_pkt_type:
+ 919              		@ args = 0, pretend = 0, frame = 8
+ 920              		@ frame_needed = 0, uses_anonymous_args = 0
+ 921 0000 00B5     		push	{lr}
+ 922 0002 85B0     		sub	sp, sp, #20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 16
+
+
+ 923 0004 8A23     		movs	r3, #138
+ 924 0006 8DF80C30 		strb	r3, [sp, #12]
+ 925 000a 8DF80D10 		strb	r1, [sp, #13]
+ 926 000e 0023     		movs	r3, #0
+ 927 0010 0093     		str	r3, [sp]
+ 928 0012 0222     		movs	r2, #2
+ 929 0014 03A9     		add	r1, sp, #12
+ 930 0016 FFF7FEFF 		bl	llcc68_hal_write
+ 931 001a 05B0     		add	sp, sp, #20
+ 932              		@ sp needed
+ 933 001c 5DF804FB 		ldr	pc, [sp], #4
+ 935              		.section	.text.llcc68_get_pkt_type,"ax",%progbits
+ 936              		.align	1
+ 937              		.global	llcc68_get_pkt_type
+ 938              		.syntax unified
+ 939              		.thumb
+ 940              		.thumb_func
+ 942              	llcc68_get_pkt_type:
+ 943              		@ args = 0, pretend = 0, frame = 8
+ 944              		@ frame_needed = 0, uses_anonymous_args = 0
+ 945 0000 00B5     		push	{lr}
+ 946 0002 85B0     		sub	sp, sp, #20
+ 947 0004 0B46     		mov	r3, r1
+ 948 0006 1122     		movs	r2, #17
+ 949 0008 ADF80C20 		strh	r2, [sp, #12]	@ movhi
+ 950 000c 0122     		movs	r2, #1
+ 951 000e 0092     		str	r2, [sp]
+ 952 0010 0222     		movs	r2, #2
+ 953 0012 03A9     		add	r1, sp, #12
+ 954 0014 FFF7FEFF 		bl	llcc68_hal_read
+ 955 0018 05B0     		add	sp, sp, #20
+ 956              		@ sp needed
+ 957 001a 5DF804FB 		ldr	pc, [sp], #4
+ 959              		.section	.text.llcc68_set_tx_params,"ax",%progbits
+ 960              		.align	1
+ 961              		.global	llcc68_set_tx_params
+ 962              		.syntax unified
+ 963              		.thumb
+ 964              		.thumb_func
+ 966              	llcc68_set_tx_params:
+ 967              		@ args = 0, pretend = 0, frame = 8
+ 968              		@ frame_needed = 0, uses_anonymous_args = 0
+ 969 0000 00B5     		push	{lr}
+ 970 0002 85B0     		sub	sp, sp, #20
+ 971 0004 8E23     		movs	r3, #142
+ 972 0006 8DF80C30 		strb	r3, [sp, #12]
+ 973 000a 8DF80D10 		strb	r1, [sp, #13]
+ 974 000e 8DF80E20 		strb	r2, [sp, #14]
+ 975 0012 0023     		movs	r3, #0
+ 976 0014 0093     		str	r3, [sp]
+ 977 0016 0322     		movs	r2, #3
+ 978 0018 03A9     		add	r1, sp, #12
+ 979 001a FFF7FEFF 		bl	llcc68_hal_write
+ 980 001e 05B0     		add	sp, sp, #20
+ 981              		@ sp needed
+ 982 0020 5DF804FB 		ldr	pc, [sp], #4
+ 984              		.section	.text.llcc68_set_bpsk_mod_params,"ax",%progbits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 17
+
+
+ 985              		.align	1
+ 986              		.global	llcc68_set_bpsk_mod_params
+ 987              		.syntax unified
+ 988              		.thumb
+ 989              		.thumb_func
+ 991              	llcc68_set_bpsk_mod_params:
+ 992              		@ args = 0, pretend = 0, frame = 8
+ 993              		@ frame_needed = 0, uses_anonymous_args = 0
+ 994 0000 00B5     		push	{lr}
+ 995 0002 85B0     		sub	sp, sp, #20
+ 996 0004 0A68     		ldr	r2, [r1]
+ 997 0006 0E4B     		ldr	r3, .L111
+ 998 0008 B3FBF2F3 		udiv	r3, r3, r2
+ 999 000c 8B22     		movs	r2, #139
+ 1000 000e 8DF80820 		strb	r2, [sp, #8]
+ 1001 0012 C3F30742 		ubfx	r2, r3, #16, #8
+ 1002 0016 8DF80920 		strb	r2, [sp, #9]
+ 1003 001a C3F30722 		ubfx	r2, r3, #8, #8
+ 1004 001e 8DF80A20 		strb	r2, [sp, #10]
+ 1005 0022 8DF80B30 		strb	r3, [sp, #11]
+ 1006 0026 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1007 0028 8DF80C30 		strb	r3, [sp, #12]
+ 1008 002c 0023     		movs	r3, #0
+ 1009 002e 0093     		str	r3, [sp]
+ 1010 0030 0522     		movs	r2, #5
+ 1011 0032 02A9     		add	r1, sp, #8
+ 1012 0034 FFF7FEFF 		bl	llcc68_hal_write
+ 1013 0038 05B0     		add	sp, sp, #20
+ 1014              		@ sp needed
+ 1015 003a 5DF804FB 		ldr	pc, [sp], #4
+ 1016              	.L112:
+ 1017 003e 00BF     		.align	2
+ 1018              	.L111:
+ 1019 0040 0000093D 		.word	1024000000
+ 1021              		.section	.text.llcc68_set_lora_mod_params,"ax",%progbits
+ 1022              		.align	1
+ 1023              		.global	llcc68_set_lora_mod_params
+ 1024              		.syntax unified
+ 1025              		.thumb
+ 1026              		.thumb_func
+ 1028              	llcc68_set_lora_mod_params:
+ 1029              		@ args = 0, pretend = 0, frame = 8
+ 1030              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1031 0000 30B5     		push	{r4, r5, lr}
+ 1032 0002 85B0     		sub	sp, sp, #20
+ 1033 0004 0546     		mov	r5, r0
+ 1034 0006 0C46     		mov	r4, r1
+ 1035 0008 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 1036 000a 052B     		cmp	r3, #5
+ 1037 000c 21D0     		beq	.L121
+ 1038              	.L114:
+ 1039 000e 042B     		cmp	r3, #4
+ 1040 0010 04D1     		bne	.L116
+ 1041 0012 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 1042 0014 0A3B     		subs	r3, r3, #10
+ 1043 0016 DBB2     		uxtb	r3, r3
+ 1044 0018 012B     		cmp	r3, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 18
+
+
+ 1045 001a 25D9     		bls	.L119
+ 1046              	.L116:
+ 1047 001c 8B23     		movs	r3, #139
+ 1048 001e 8DF80830 		strb	r3, [sp, #8]
+ 1049 0022 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 1050 0024 8DF80930 		strb	r3, [sp, #9]
+ 1051 0028 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 1052 002a 8DF80A30 		strb	r3, [sp, #10]
+ 1053 002e A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 1054 0030 8DF80B30 		strb	r3, [sp, #11]
+ 1055 0034 E378     		ldrb	r3, [r4, #3]	@ zero_extendqisi2
+ 1056 0036 03F00103 		and	r3, r3, #1
+ 1057 003a 8DF80C30 		strb	r3, [sp, #12]
+ 1058 003e 0023     		movs	r3, #0
+ 1059 0040 0093     		str	r3, [sp]
+ 1060 0042 0522     		movs	r2, #5
+ 1061 0044 02A9     		add	r1, sp, #8
+ 1062 0046 2846     		mov	r0, r5
+ 1063 0048 FFF7FEFF 		bl	llcc68_hal_write
+ 1064 004c 30B1     		cbz	r0, .L122
+ 1065              	.L115:
+ 1066 004e 05B0     		add	sp, sp, #20
+ 1067              		@ sp needed
+ 1068 0050 30BD     		pop	{r4, r5, pc}
+ 1069              	.L121:
+ 1070 0052 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 1071 0054 0B2A     		cmp	r2, #11
+ 1072 0056 DAD1     		bne	.L114
+ 1073 0058 0120     		movs	r0, #1
+ 1074 005a F8E7     		b	.L115
+ 1075              	.L122:
+ 1076 005c 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 1077 005e 0121     		movs	r1, #1
+ 1078 0060 2846     		mov	r0, r5
+ 1079 0062 FFF7FEFF 		bl	llcc68_tx_modulation_workaround
+ 1080 0066 F2E7     		b	.L115
+ 1081              	.L119:
+ 1082 0068 0120     		movs	r0, #1
+ 1083 006a F0E7     		b	.L115
+ 1085              		.section	.text.llcc68_set_gfsk_pkt_params,"ax",%progbits
+ 1086              		.align	1
+ 1087              		.global	llcc68_set_gfsk_pkt_params
+ 1088              		.syntax unified
+ 1089              		.thumb
+ 1090              		.thumb_func
+ 1092              	llcc68_set_gfsk_pkt_params:
+ 1093              		@ args = 0, pretend = 0, frame = 16
+ 1094              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1095 0000 00B5     		push	{lr}
+ 1096 0002 87B0     		sub	sp, sp, #28
+ 1097 0004 8C23     		movs	r3, #140
+ 1098 0006 8DF80C30 		strb	r3, [sp, #12]
+ 1099 000a 0B88     		ldrh	r3, [r1]
+ 1100 000c 1A0A     		lsrs	r2, r3, #8
+ 1101 000e 8DF80D20 		strb	r2, [sp, #13]
+ 1102 0012 8DF80E30 		strb	r3, [sp, #14]
+ 1103 0016 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 19
+
+
+ 1104 0018 8DF80F30 		strb	r3, [sp, #15]
+ 1105 001c CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 1106 001e 8DF81030 		strb	r3, [sp, #16]
+ 1107 0022 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1108 0024 8DF81130 		strb	r3, [sp, #17]
+ 1109 0028 4B79     		ldrb	r3, [r1, #5]	@ zero_extendqisi2
+ 1110 002a 8DF81230 		strb	r3, [sp, #18]
+ 1111 002e 8B79     		ldrb	r3, [r1, #6]	@ zero_extendqisi2
+ 1112 0030 8DF81330 		strb	r3, [sp, #19]
+ 1113 0034 CB79     		ldrb	r3, [r1, #7]	@ zero_extendqisi2
+ 1114 0036 8DF81430 		strb	r3, [sp, #20]
+ 1115 003a 0B7A     		ldrb	r3, [r1, #8]	@ zero_extendqisi2
+ 1116 003c 8DF81530 		strb	r3, [sp, #21]
+ 1117 0040 0023     		movs	r3, #0
+ 1118 0042 0093     		str	r3, [sp]
+ 1119 0044 0A22     		movs	r2, #10
+ 1120 0046 03A9     		add	r1, sp, #12
+ 1121 0048 FFF7FEFF 		bl	llcc68_hal_write
+ 1122 004c 07B0     		add	sp, sp, #28
+ 1123              		@ sp needed
+ 1124 004e 5DF804FB 		ldr	pc, [sp], #4
+ 1126              		.section	.text.llcc68_set_bpsk_pkt_params,"ax",%progbits
+ 1127              		.align	1
+ 1128              		.global	llcc68_set_bpsk_pkt_params
+ 1129              		.syntax unified
+ 1130              		.thumb
+ 1131              		.thumb_func
+ 1133              	llcc68_set_bpsk_pkt_params:
+ 1134              		@ args = 0, pretend = 0, frame = 16
+ 1135              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1136 0000 30B5     		push	{r4, r5, lr}
+ 1137 0002 87B0     		sub	sp, sp, #28
+ 1138 0004 0546     		mov	r5, r0
+ 1139 0006 0C46     		mov	r4, r1
+ 1140 0008 8C23     		movs	r3, #140
+ 1141 000a 8DF81430 		strb	r3, [sp, #20]
+ 1142 000e 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1143 0010 8DF81530 		strb	r3, [sp, #21]
+ 1144 0014 0023     		movs	r3, #0
+ 1145 0016 0093     		str	r3, [sp]
+ 1146 0018 0222     		movs	r2, #2
+ 1147 001a 05A9     		add	r1, sp, #20
+ 1148 001c FFF7FEFF 		bl	llcc68_hal_write
+ 1149 0020 08B1     		cbz	r0, .L128
+ 1150              	.L126:
+ 1151 0022 07B0     		add	sp, sp, #28
+ 1152              		@ sp needed
+ 1153 0024 30BD     		pop	{r4, r5, pc}
+ 1154              	.L128:
+ 1155 0026 6388     		ldrh	r3, [r4, #2]
+ 1156 0028 1A0A     		lsrs	r2, r3, #8
+ 1157 002a 8DF80C20 		strb	r2, [sp, #12]
+ 1158 002e 8DF80D30 		strb	r3, [sp, #13]
+ 1159 0032 A388     		ldrh	r3, [r4, #4]
+ 1160 0034 1A0A     		lsrs	r2, r3, #8
+ 1161 0036 8DF80E20 		strb	r2, [sp, #14]
+ 1162 003a 8DF80F30 		strb	r3, [sp, #15]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 20
+
+
+ 1163 003e E388     		ldrh	r3, [r4, #6]
+ 1164 0040 1A0A     		lsrs	r2, r3, #8
+ 1165 0042 8DF81020 		strb	r2, [sp, #16]
+ 1166 0046 8DF81130 		strb	r3, [sp, #17]
+ 1167 004a 0623     		movs	r3, #6
+ 1168 004c 03AA     		add	r2, sp, #12
+ 1169 004e F021     		movs	r1, #240
+ 1170 0050 2846     		mov	r0, r5
+ 1171 0052 FFF7FEFF 		bl	llcc68_write_register
+ 1172 0056 E4E7     		b	.L126
+ 1174              		.section	.text.llcc68_set_lora_pkt_params,"ax",%progbits
+ 1175              		.align	1
+ 1176              		.global	llcc68_set_lora_pkt_params
+ 1177              		.syntax unified
+ 1178              		.thumb
+ 1179              		.thumb_func
+ 1181              	llcc68_set_lora_pkt_params:
+ 1182              		@ args = 0, pretend = 0, frame = 16
+ 1183              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1184 0000 30B5     		push	{r4, r5, lr}
+ 1185 0002 87B0     		sub	sp, sp, #28
+ 1186 0004 0546     		mov	r5, r0
+ 1187 0006 0C46     		mov	r4, r1
+ 1188 0008 8C23     		movs	r3, #140
+ 1189 000a 8DF81030 		strb	r3, [sp, #16]
+ 1190 000e 0B88     		ldrh	r3, [r1]
+ 1191 0010 1A0A     		lsrs	r2, r3, #8
+ 1192 0012 8DF81120 		strb	r2, [sp, #17]
+ 1193 0016 8DF81230 		strb	r3, [sp, #18]
+ 1194 001a 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ 1195 001c 8DF81330 		strb	r3, [sp, #19]
+ 1196 0020 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 1197 0022 8DF81430 		strb	r3, [sp, #20]
+ 1198 0026 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1199 0028 8BB1     		cbz	r3, .L136
+ 1200 002a 0123     		movs	r3, #1
+ 1201              	.L130:
+ 1202 002c 8DF81530 		strb	r3, [sp, #21]
+ 1203 0030 6379     		ldrb	r3, [r4, #5]	@ zero_extendqisi2
+ 1204 0032 73B1     		cbz	r3, .L137
+ 1205 0034 0123     		movs	r3, #1
+ 1206              	.L131:
+ 1207 0036 8DF81630 		strb	r3, [sp, #22]
+ 1208 003a 0023     		movs	r3, #0
+ 1209 003c 0093     		str	r3, [sp]
+ 1210 003e 0722     		movs	r2, #7
+ 1211 0040 04A9     		add	r1, sp, #16
+ 1212 0042 2846     		mov	r0, r5
+ 1213 0044 FFF7FEFF 		bl	llcc68_hal_write
+ 1214 0048 28B1     		cbz	r0, .L139
+ 1215              	.L132:
+ 1216 004a 07B0     		add	sp, sp, #28
+ 1217              		@ sp needed
+ 1218 004c 30BD     		pop	{r4, r5, pc}
+ 1219              	.L136:
+ 1220 004e 0023     		movs	r3, #0
+ 1221 0050 ECE7     		b	.L130
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 21
+
+
+ 1222              	.L137:
+ 1223 0052 0023     		movs	r3, #0
+ 1224 0054 EFE7     		b	.L131
+ 1225              	.L139:
+ 1226 0056 8DF80F00 		strb	r0, [sp, #15]
+ 1227 005a 0123     		movs	r3, #1
+ 1228 005c 0DF10F02 		add	r2, sp, #15
+ 1229 0060 40F23671 		movw	r1, #1846
+ 1230 0064 2846     		mov	r0, r5
+ 1231 0066 FFF7FEFF 		bl	llcc68_read_register
+ 1232 006a 0028     		cmp	r0, #0
+ 1233 006c EDD1     		bne	.L132
+ 1234 006e 6379     		ldrb	r3, [r4, #5]	@ zero_extendqisi2
+ 1235 0070 73B1     		cbz	r3, .L134
+ 1236 0072 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 1237 0076 23F00403 		bic	r3, r3, #4
+ 1238 007a 8DF80F30 		strb	r3, [sp, #15]
+ 1239              	.L135:
+ 1240 007e 0123     		movs	r3, #1
+ 1241 0080 0DF10F02 		add	r2, sp, #15
+ 1242 0084 40F23671 		movw	r1, #1846
+ 1243 0088 2846     		mov	r0, r5
+ 1244 008a FFF7FEFF 		bl	llcc68_write_register
+ 1245 008e DCE7     		b	.L132
+ 1246              	.L134:
+ 1247 0090 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 1248 0094 43F00403 		orr	r3, r3, #4
+ 1249 0098 8DF80F30 		strb	r3, [sp, #15]
+ 1250 009c EFE7     		b	.L135
+ 1252              		.section	.text.llcc68_set_gfsk_pkt_address,"ax",%progbits
+ 1253              		.align	1
+ 1254              		.global	llcc68_set_gfsk_pkt_address
+ 1255              		.syntax unified
+ 1256              		.thumb
+ 1257              		.thumb_func
+ 1259              	llcc68_set_gfsk_pkt_address:
+ 1260              		@ args = 0, pretend = 0, frame = 8
+ 1261              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1262 0000 00B5     		push	{lr}
+ 1263 0002 83B0     		sub	sp, sp, #12
+ 1264 0004 8DF80410 		strb	r1, [sp, #4]
+ 1265 0008 8DF80520 		strb	r2, [sp, #5]
+ 1266 000c 0223     		movs	r3, #2
+ 1267 000e 01AA     		add	r2, sp, #4
+ 1268 0010 40F2CD61 		movw	r1, #1741
+ 1269 0014 FFF7FEFF 		bl	llcc68_write_register
+ 1270 0018 03B0     		add	sp, sp, #12
+ 1271              		@ sp needed
+ 1272 001a 5DF804FB 		ldr	pc, [sp], #4
+ 1274              		.section	.text.llcc68_set_cad_params,"ax",%progbits
+ 1275              		.align	1
+ 1276              		.global	llcc68_set_cad_params
+ 1277              		.syntax unified
+ 1278              		.thumb
+ 1279              		.thumb_func
+ 1281              	llcc68_set_cad_params:
+ 1282              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 22
+
+
+ 1283              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1284 0000 00B5     		push	{lr}
+ 1285 0002 85B0     		sub	sp, sp, #20
+ 1286 0004 8823     		movs	r3, #136
+ 1287 0006 8DF80830 		strb	r3, [sp, #8]
+ 1288 000a 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1289 000c 8DF80930 		strb	r3, [sp, #9]
+ 1290 0010 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 1291 0012 8DF80A30 		strb	r3, [sp, #10]
+ 1292 0016 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ 1293 0018 8DF80B30 		strb	r3, [sp, #11]
+ 1294 001c CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 1295 001e 8DF80C30 		strb	r3, [sp, #12]
+ 1296 0022 4B68     		ldr	r3, [r1, #4]
+ 1297 0024 C3F30742 		ubfx	r2, r3, #16, #8
+ 1298 0028 8DF80D20 		strb	r2, [sp, #13]
+ 1299 002c C3F30722 		ubfx	r2, r3, #8, #8
+ 1300 0030 8DF80E20 		strb	r2, [sp, #14]
+ 1301 0034 8DF80F30 		strb	r3, [sp, #15]
+ 1302 0038 0023     		movs	r3, #0
+ 1303 003a 0093     		str	r3, [sp]
+ 1304 003c 0822     		movs	r2, #8
+ 1305 003e 0DEB0201 		add	r1, sp, r2
+ 1306 0042 FFF7FEFF 		bl	llcc68_hal_write
+ 1307 0046 05B0     		add	sp, sp, #20
+ 1308              		@ sp needed
+ 1309 0048 5DF804FB 		ldr	pc, [sp], #4
+ 1311              		.section	.text.llcc68_set_buffer_base_address,"ax",%progbits
+ 1312              		.align	1
+ 1313              		.global	llcc68_set_buffer_base_address
+ 1314              		.syntax unified
+ 1315              		.thumb
+ 1316              		.thumb_func
+ 1318              	llcc68_set_buffer_base_address:
+ 1319              		@ args = 0, pretend = 0, frame = 8
+ 1320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1321 0000 00B5     		push	{lr}
+ 1322 0002 85B0     		sub	sp, sp, #20
+ 1323 0004 8F23     		movs	r3, #143
+ 1324 0006 8DF80C30 		strb	r3, [sp, #12]
+ 1325 000a 8DF80D10 		strb	r1, [sp, #13]
+ 1326 000e 8DF80E20 		strb	r2, [sp, #14]
+ 1327 0012 0023     		movs	r3, #0
+ 1328 0014 0093     		str	r3, [sp]
+ 1329 0016 0322     		movs	r2, #3
+ 1330 0018 03A9     		add	r1, sp, #12
+ 1331 001a FFF7FEFF 		bl	llcc68_hal_write
+ 1332 001e 05B0     		add	sp, sp, #20
+ 1333              		@ sp needed
+ 1334 0020 5DF804FB 		ldr	pc, [sp], #4
+ 1336              		.section	.text.llcc68_set_lora_symb_nb_timeout,"ax",%progbits
+ 1337              		.align	1
+ 1338              		.global	llcc68_set_lora_symb_nb_timeout
+ 1339              		.syntax unified
+ 1340              		.thumb
+ 1341              		.thumb_func
+ 1343              	llcc68_set_lora_symb_nb_timeout:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 23
+
+
+ 1344              		@ args = 0, pretend = 0, frame = 8
+ 1345              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1346 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1347 0002 85B0     		sub	sp, sp, #20
+ 1348 0004 0646     		mov	r6, r0
+ 1349 0006 0F46     		mov	r7, r1
+ 1350 0008 0C46     		mov	r4, r1
+ 1351 000a F829     		cmp	r1, #248
+ 1352 000c 28BF     		it	cs
+ 1353 000e F824     		movcs	r4, #248
+ 1354 0010 0134     		adds	r4, r4, #1
+ 1355 0012 6408     		lsrs	r4, r4, #1
+ 1356 0014 0025     		movs	r5, #0
+ 1357 0016 04E0     		b	.L147
+ 1358              	.L148:
+ 1359 0018 0334     		adds	r4, r4, #3
+ 1360 001a C4F38704 		ubfx	r4, r4, #2, #8
+ 1361 001e 6B1C     		adds	r3, r5, #1
+ 1362 0020 DDB2     		uxtb	r5, r3
+ 1363              	.L147:
+ 1364 0022 1F2C     		cmp	r4, #31
+ 1365 0024 F8D8     		bhi	.L148
+ 1366 0026 A023     		movs	r3, #160
+ 1367 0028 8DF80C30 		strb	r3, [sp, #12]
+ 1368 002c 6B00     		lsls	r3, r5, #1
+ 1369 002e 0133     		adds	r3, r3, #1
+ 1370 0030 04FA03F3 		lsl	r3, r4, r3
+ 1371 0034 8DF80D30 		strb	r3, [sp, #13]
+ 1372 0038 0023     		movs	r3, #0
+ 1373 003a 0093     		str	r3, [sp]
+ 1374 003c 0222     		movs	r2, #2
+ 1375 003e 03A9     		add	r1, sp, #12
+ 1376 0040 3046     		mov	r0, r6
+ 1377 0042 FFF7FEFF 		bl	llcc68_hal_write
+ 1378 0046 00B9     		cbnz	r0, .L149
+ 1379 0048 0FB9     		cbnz	r7, .L151
+ 1380              	.L149:
+ 1381 004a 05B0     		add	sp, sp, #20
+ 1382              		@ sp needed
+ 1383 004c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1384              	.L151:
+ 1385 004e E300     		lsls	r3, r4, #3
+ 1386 0050 DBB2     		uxtb	r3, r3
+ 1387 0052 2B44     		add	r3, r3, r5
+ 1388 0054 8DF80B30 		strb	r3, [sp, #11]
+ 1389 0058 0123     		movs	r3, #1
+ 1390 005a 0DF10B02 		add	r2, sp, #11
+ 1391 005e 40F20671 		movw	r1, #1798
+ 1392 0062 3046     		mov	r0, r6
+ 1393 0064 FFF7FEFF 		bl	llcc68_write_register
+ 1394 0068 EFE7     		b	.L149
+ 1396              		.section	.text.llcc68_get_status,"ax",%progbits
+ 1397              		.align	1
+ 1398              		.global	llcc68_get_status
+ 1399              		.syntax unified
+ 1400              		.thumb
+ 1401              		.thumb_func
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 24
+
+
+ 1403              	llcc68_get_status:
+ 1404              		@ args = 0, pretend = 0, frame = 8
+ 1405              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1406 0000 10B5     		push	{r4, lr}
+ 1407 0002 84B0     		sub	sp, sp, #16
+ 1408 0004 0C46     		mov	r4, r1
+ 1409 0006 C023     		movs	r3, #192
+ 1410 0008 8DF80C30 		strb	r3, [sp, #12]
+ 1411 000c 0023     		movs	r3, #0
+ 1412 000e 8DF80B30 		strb	r3, [sp, #11]
+ 1413 0012 0122     		movs	r2, #1
+ 1414 0014 0092     		str	r2, [sp]
+ 1415 0016 0DF10B03 		add	r3, sp, #11
+ 1416 001a 03A9     		add	r1, sp, #12
+ 1417 001c FFF7FEFF 		bl	llcc68_hal_read
+ 1418 0020 38B9     		cbnz	r0, .L153
+ 1419 0022 9DF80B30 		ldrb	r3, [sp, #11]	@ zero_extendqisi2
+ 1420 0026 C3F34202 		ubfx	r2, r3, #1, #3
+ 1421 002a 2270     		strb	r2, [r4]
+ 1422 002c C3F30213 		ubfx	r3, r3, #4, #3
+ 1423 0030 6370     		strb	r3, [r4, #1]
+ 1424              	.L153:
+ 1425 0032 04B0     		add	sp, sp, #16
+ 1426              		@ sp needed
+ 1427 0034 10BD     		pop	{r4, pc}
+ 1429              		.section	.text.llcc68_get_rx_buffer_status,"ax",%progbits
+ 1430              		.align	1
+ 1431              		.global	llcc68_get_rx_buffer_status
+ 1432              		.syntax unified
+ 1433              		.thumb
+ 1434              		.thumb_func
+ 1436              	llcc68_get_rx_buffer_status:
+ 1437              		@ args = 0, pretend = 0, frame = 8
+ 1438              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1439 0000 10B5     		push	{r4, lr}
+ 1440 0002 84B0     		sub	sp, sp, #16
+ 1441 0004 0C46     		mov	r4, r1
+ 1442 0006 1323     		movs	r3, #19
+ 1443 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 1444 000c 0023     		movs	r3, #0
+ 1445 000e ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 1446 0012 0222     		movs	r2, #2
+ 1447 0014 0092     		str	r2, [sp]
+ 1448 0016 02AB     		add	r3, sp, #8
+ 1449 0018 03A9     		add	r1, sp, #12
+ 1450 001a FFF7FEFF 		bl	llcc68_hal_read
+ 1451 001e 28B9     		cbnz	r0, .L156
+ 1452 0020 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ 1453 0024 2370     		strb	r3, [r4]
+ 1454 0026 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 1455 002a 6370     		strb	r3, [r4, #1]
+ 1456              	.L156:
+ 1457 002c 04B0     		add	sp, sp, #16
+ 1458              		@ sp needed
+ 1459 002e 10BD     		pop	{r4, pc}
+ 1461              		.section	.text.llcc68_get_gfsk_pkt_status,"ax",%progbits
+ 1462              		.align	1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 25
+
+
+ 1463              		.global	llcc68_get_gfsk_pkt_status
+ 1464              		.syntax unified
+ 1465              		.thumb
+ 1466              		.thumb_func
+ 1468              	llcc68_get_gfsk_pkt_status:
+ 1469              		@ args = 0, pretend = 0, frame = 8
+ 1470              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1471 0000 10B5     		push	{r4, lr}
+ 1472 0002 84B0     		sub	sp, sp, #16
+ 1473 0004 0C46     		mov	r4, r1
+ 1474 0006 1423     		movs	r3, #20
+ 1475 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 1476 000c 0023     		movs	r3, #0
+ 1477 000e ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 1478 0012 8DF80A30 		strb	r3, [sp, #10]
+ 1479 0016 0323     		movs	r3, #3
+ 1480 0018 0093     		str	r3, [sp]
+ 1481 001a 02AB     		add	r3, sp, #8
+ 1482 001c 0222     		movs	r2, #2
+ 1483 001e 03A9     		add	r1, sp, #12
+ 1484 0020 FFF7FEFF 		bl	llcc68_hal_read
+ 1485 0024 E8B9     		cbnz	r0, .L159
+ 1486 0026 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ 1487 002a 03F00102 		and	r2, r3, #1
+ 1488 002e 2270     		strb	r2, [r4]
+ 1489 0030 C3F34002 		ubfx	r2, r3, #1, #1
+ 1490 0034 6270     		strb	r2, [r4, #1]
+ 1491 0036 C3F38002 		ubfx	r2, r3, #2, #1
+ 1492 003a A270     		strb	r2, [r4, #2]
+ 1493 003c C3F3C002 		ubfx	r2, r3, #3, #1
+ 1494 0040 E270     		strb	r2, [r4, #3]
+ 1495 0042 C3F30012 		ubfx	r2, r3, #4, #1
+ 1496 0046 2271     		strb	r2, [r4, #4]
+ 1497 0048 C3F34013 		ubfx	r3, r3, #5, #1
+ 1498 004c 6371     		strb	r3, [r4, #5]
+ 1499 004e 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 1500 0052 5B42     		rsbs	r3, r3, #0
+ 1501 0054 5B10     		asrs	r3, r3, #1
+ 1502 0056 A371     		strb	r3, [r4, #6]
+ 1503 0058 9DF80A30 		ldrb	r3, [sp, #10]	@ zero_extendqisi2
+ 1504 005c 5B42     		rsbs	r3, r3, #0
+ 1505 005e 5B10     		asrs	r3, r3, #1
+ 1506 0060 E371     		strb	r3, [r4, #7]
+ 1507              	.L159:
+ 1508 0062 04B0     		add	sp, sp, #16
+ 1509              		@ sp needed
+ 1510 0064 10BD     		pop	{r4, pc}
+ 1512              		.section	.text.llcc68_get_lora_pkt_status,"ax",%progbits
+ 1513              		.align	1
+ 1514              		.global	llcc68_get_lora_pkt_status
+ 1515              		.syntax unified
+ 1516              		.thumb
+ 1517              		.thumb_func
+ 1519              	llcc68_get_lora_pkt_status:
+ 1520              		@ args = 0, pretend = 0, frame = 8
+ 1521              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1522 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 26
+
+
+ 1523 0002 84B0     		sub	sp, sp, #16
+ 1524 0004 0C46     		mov	r4, r1
+ 1525 0006 1423     		movs	r3, #20
+ 1526 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 1527 000c 0023     		movs	r3, #0
+ 1528 000e ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 1529 0012 8DF80A30 		strb	r3, [sp, #10]
+ 1530 0016 0323     		movs	r3, #3
+ 1531 0018 0093     		str	r3, [sp]
+ 1532 001a 02AB     		add	r3, sp, #8
+ 1533 001c 0222     		movs	r2, #2
+ 1534 001e 03A9     		add	r1, sp, #12
+ 1535 0020 FFF7FEFF 		bl	llcc68_hal_read
+ 1536 0024 70B9     		cbnz	r0, .L162
+ 1537 0026 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ 1538 002a 5B42     		rsbs	r3, r3, #0
+ 1539 002c 5B10     		asrs	r3, r3, #1
+ 1540 002e 2370     		strb	r3, [r4]
+ 1541 0030 9DF90930 		ldrsb	r3, [sp, #9]
+ 1542 0034 0233     		adds	r3, r3, #2
+ 1543 0036 9B10     		asrs	r3, r3, #2
+ 1544 0038 6370     		strb	r3, [r4, #1]
+ 1545 003a 9DF80A30 		ldrb	r3, [sp, #10]	@ zero_extendqisi2
+ 1546 003e 5B42     		rsbs	r3, r3, #0
+ 1547 0040 5B10     		asrs	r3, r3, #1
+ 1548 0042 A370     		strb	r3, [r4, #2]
+ 1549              	.L162:
+ 1550 0044 04B0     		add	sp, sp, #16
+ 1551              		@ sp needed
+ 1552 0046 10BD     		pop	{r4, pc}
+ 1554              		.section	.text.llcc68_get_rssi_inst,"ax",%progbits
+ 1555              		.align	1
+ 1556              		.global	llcc68_get_rssi_inst
+ 1557              		.syntax unified
+ 1558              		.thumb
+ 1559              		.thumb_func
+ 1561              	llcc68_get_rssi_inst:
+ 1562              		@ args = 0, pretend = 0, frame = 8
+ 1563              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1564 0000 10B5     		push	{r4, lr}
+ 1565 0002 84B0     		sub	sp, sp, #16
+ 1566 0004 0C46     		mov	r4, r1
+ 1567 0006 1523     		movs	r3, #21
+ 1568 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 1569 000c 0023     		movs	r3, #0
+ 1570 000e 8DF80B30 		strb	r3, [sp, #11]
+ 1571 0012 0123     		movs	r3, #1
+ 1572 0014 0093     		str	r3, [sp]
+ 1573 0016 0DF10B03 		add	r3, sp, #11
+ 1574 001a 0222     		movs	r2, #2
+ 1575 001c 03A9     		add	r1, sp, #12
+ 1576 001e FFF7FEFF 		bl	llcc68_hal_read
+ 1577 0022 20B9     		cbnz	r0, .L165
+ 1578 0024 9DF80B30 		ldrb	r3, [sp, #11]	@ zero_extendqisi2
+ 1579 0028 5B42     		rsbs	r3, r3, #0
+ 1580 002a 5B10     		asrs	r3, r3, #1
+ 1581 002c 2380     		strh	r3, [r4]	@ movhi
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 27
+
+
+ 1582              	.L165:
+ 1583 002e 04B0     		add	sp, sp, #16
+ 1584              		@ sp needed
+ 1585 0030 10BD     		pop	{r4, pc}
+ 1587              		.section	.text.llcc68_get_gfsk_stats,"ax",%progbits
+ 1588              		.align	1
+ 1589              		.global	llcc68_get_gfsk_stats
+ 1590              		.syntax unified
+ 1591              		.thumb
+ 1592              		.thumb_func
+ 1594              	llcc68_get_gfsk_stats:
+ 1595              		@ args = 0, pretend = 0, frame = 16
+ 1596              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1597 0000 10B5     		push	{r4, lr}
+ 1598 0002 86B0     		sub	sp, sp, #24
+ 1599 0004 0C46     		mov	r4, r1
+ 1600 0006 1023     		movs	r3, #16
+ 1601 0008 ADF81430 		strh	r3, [sp, #20]	@ movhi
+ 1602 000c 0023     		movs	r3, #0
+ 1603 000e 0393     		str	r3, [sp, #12]
+ 1604 0010 ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 1605 0014 0623     		movs	r3, #6
+ 1606 0016 0093     		str	r3, [sp]
+ 1607 0018 03AB     		add	r3, sp, #12
+ 1608 001a 0222     		movs	r2, #2
+ 1609 001c 05A9     		add	r1, sp, #20
+ 1610 001e FFF7FEFF 		bl	llcc68_hal_read
+ 1611 0022 A0B9     		cbnz	r0, .L168
+ 1612 0024 9DF80C20 		ldrb	r2, [sp, #12]	@ zero_extendqisi2
+ 1613 0028 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 1614 002c 03EB0223 		add	r3, r3, r2, lsl #8
+ 1615 0030 2380     		strh	r3, [r4]	@ movhi
+ 1616 0032 9DF80E20 		ldrb	r2, [sp, #14]	@ zero_extendqisi2
+ 1617 0036 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 1618 003a 03EB0223 		add	r3, r3, r2, lsl #8
+ 1619 003e 6380     		strh	r3, [r4, #2]	@ movhi
+ 1620 0040 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 1621 0044 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+ 1622 0048 03EB0223 		add	r3, r3, r2, lsl #8
+ 1623 004c A380     		strh	r3, [r4, #4]	@ movhi
+ 1624              	.L168:
+ 1625 004e 06B0     		add	sp, sp, #24
+ 1626              		@ sp needed
+ 1627 0050 10BD     		pop	{r4, pc}
+ 1629              		.section	.text.llcc68_get_lora_stats,"ax",%progbits
+ 1630              		.align	1
+ 1631              		.global	llcc68_get_lora_stats
+ 1632              		.syntax unified
+ 1633              		.thumb
+ 1634              		.thumb_func
+ 1636              	llcc68_get_lora_stats:
+ 1637              		@ args = 0, pretend = 0, frame = 16
+ 1638              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1639 0000 10B5     		push	{r4, lr}
+ 1640 0002 86B0     		sub	sp, sp, #24
+ 1641 0004 0C46     		mov	r4, r1
+ 1642 0006 1023     		movs	r3, #16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 28
+
+
+ 1643 0008 ADF81430 		strh	r3, [sp, #20]	@ movhi
+ 1644 000c 0023     		movs	r3, #0
+ 1645 000e 0393     		str	r3, [sp, #12]
+ 1646 0010 ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 1647 0014 0623     		movs	r3, #6
+ 1648 0016 0093     		str	r3, [sp]
+ 1649 0018 03AB     		add	r3, sp, #12
+ 1650 001a 0222     		movs	r2, #2
+ 1651 001c 05A9     		add	r1, sp, #20
+ 1652 001e FFF7FEFF 		bl	llcc68_hal_read
+ 1653 0022 A0B9     		cbnz	r0, .L171
+ 1654 0024 9DF80C20 		ldrb	r2, [sp, #12]	@ zero_extendqisi2
+ 1655 0028 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 1656 002c 03EB0223 		add	r3, r3, r2, lsl #8
+ 1657 0030 2380     		strh	r3, [r4]	@ movhi
+ 1658 0032 9DF80E20 		ldrb	r2, [sp, #14]	@ zero_extendqisi2
+ 1659 0036 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 1660 003a 03EB0223 		add	r3, r3, r2, lsl #8
+ 1661 003e 6380     		strh	r3, [r4, #2]	@ movhi
+ 1662 0040 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 1663 0044 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+ 1664 0048 03EB0223 		add	r3, r3, r2, lsl #8
+ 1665 004c A380     		strh	r3, [r4, #4]	@ movhi
+ 1666              	.L171:
+ 1667 004e 06B0     		add	sp, sp, #24
+ 1668              		@ sp needed
+ 1669 0050 10BD     		pop	{r4, pc}
+ 1671              		.section	.text.llcc68_reset_stats,"ax",%progbits
+ 1672              		.align	1
+ 1673              		.global	llcc68_reset_stats
+ 1674              		.syntax unified
+ 1675              		.thumb
+ 1676              		.thumb_func
+ 1678              	llcc68_reset_stats:
+ 1679              		@ args = 0, pretend = 0, frame = 8
+ 1680              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1681 0000 00B5     		push	{lr}
+ 1682 0002 85B0     		sub	sp, sp, #20
+ 1683 0004 0023     		movs	r3, #0
+ 1684 0006 0293     		str	r3, [sp, #8]
+ 1685 0008 CDF80B30 		str	r3, [sp, #11]	@ unaligned
+ 1686 000c 0093     		str	r3, [sp]
+ 1687 000e 0722     		movs	r2, #7
+ 1688 0010 02A9     		add	r1, sp, #8
+ 1689 0012 FFF7FEFF 		bl	llcc68_hal_write
+ 1690 0016 05B0     		add	sp, sp, #20
+ 1691              		@ sp needed
+ 1692 0018 5DF804FB 		ldr	pc, [sp], #4
+ 1694              		.section	.text.llcc68_reset,"ax",%progbits
+ 1695              		.align	1
+ 1696              		.global	llcc68_reset
+ 1697              		.syntax unified
+ 1698              		.thumb
+ 1699              		.thumb_func
+ 1701              	llcc68_reset:
+ 1702              		@ args = 0, pretend = 0, frame = 0
+ 1703              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 29
+
+
+ 1704 0000 08B5     		push	{r3, lr}
+ 1705 0002 FFF7FEFF 		bl	llcc68_hal_reset
+ 1706 0006 08BD     		pop	{r3, pc}
+ 1708              		.section	.text.llcc68_wakeup,"ax",%progbits
+ 1709              		.align	1
+ 1710              		.global	llcc68_wakeup
+ 1711              		.syntax unified
+ 1712              		.thumb
+ 1713              		.thumb_func
+ 1715              	llcc68_wakeup:
+ 1716              		@ args = 0, pretend = 0, frame = 0
+ 1717              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1718 0000 08B5     		push	{r3, lr}
+ 1719 0002 FFF7FEFF 		bl	llcc68_hal_wakeup
+ 1720 0006 08BD     		pop	{r3, pc}
+ 1722              		.section	.text.llcc68_get_device_errors,"ax",%progbits
+ 1723              		.align	1
+ 1724              		.global	llcc68_get_device_errors
+ 1725              		.syntax unified
+ 1726              		.thumb
+ 1727              		.thumb_func
+ 1729              	llcc68_get_device_errors:
+ 1730              		@ args = 0, pretend = 0, frame = 8
+ 1731              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1732 0000 10B5     		push	{r4, lr}
+ 1733 0002 84B0     		sub	sp, sp, #16
+ 1734 0004 0C46     		mov	r4, r1
+ 1735 0006 1723     		movs	r3, #23
+ 1736 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 1737 000c 0023     		movs	r3, #0
+ 1738 000e ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 1739 0012 0222     		movs	r2, #2
+ 1740 0014 0092     		str	r2, [sp]
+ 1741 0016 02AB     		add	r3, sp, #8
+ 1742 0018 03A9     		add	r1, sp, #12
+ 1743 001a FFF7FEFF 		bl	llcc68_hal_read
+ 1744 001e 30B9     		cbnz	r0, .L180
+ 1745 0020 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
+ 1746 0024 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 1747 0028 03EB0223 		add	r3, r3, r2, lsl #8
+ 1748 002c 2380     		strh	r3, [r4]	@ movhi
+ 1749              	.L180:
+ 1750 002e 04B0     		add	sp, sp, #16
+ 1751              		@ sp needed
+ 1752 0030 10BD     		pop	{r4, pc}
+ 1754              		.section	.text.llcc68_clear_device_errors,"ax",%progbits
+ 1755              		.align	1
+ 1756              		.global	llcc68_clear_device_errors
+ 1757              		.syntax unified
+ 1758              		.thumb
+ 1759              		.thumb_func
+ 1761              	llcc68_clear_device_errors:
+ 1762              		@ args = 0, pretend = 0, frame = 8
+ 1763              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1764 0000 00B5     		push	{lr}
+ 1765 0002 85B0     		sub	sp, sp, #20
+ 1766 0004 074B     		ldr	r3, .L184
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 30
+
+
+ 1767 0006 1B68     		ldr	r3, [r3]
+ 1768 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 1769 000c 1B0C     		lsrs	r3, r3, #16
+ 1770 000e 8DF80E30 		strb	r3, [sp, #14]
+ 1771 0012 0023     		movs	r3, #0
+ 1772 0014 0093     		str	r3, [sp]
+ 1773 0016 0322     		movs	r2, #3
+ 1774 0018 03A9     		add	r1, sp, #12
+ 1775 001a FFF7FEFF 		bl	llcc68_hal_write
+ 1776 001e 05B0     		add	sp, sp, #20
+ 1777              		@ sp needed
+ 1778 0020 5DF804FB 		ldr	pc, [sp], #4
+ 1779              	.L185:
+ 1780              		.align	2
+ 1781              	.L184:
+ 1782 0024 00000000 		.word	.LANCHOR0
+ 1784              		.section	.text.llcc68_get_gfsk_bw_param,"ax",%progbits
+ 1785              		.align	1
+ 1786              		.global	llcc68_get_gfsk_bw_param
+ 1787              		.syntax unified
+ 1788              		.thumb
+ 1789              		.thumb_func
+ 1791              	llcc68_get_gfsk_bw_param:
+ 1792              		@ args = 0, pretend = 0, frame = 0
+ 1793              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1794              		@ link register save eliminated.
+ 1795 0000 8446     		mov	ip, r0
+ 1796 0002 50B1     		cbz	r0, .L192
+ 1797 0004 0023     		movs	r3, #0
+ 1798              	.L187:
+ 1799 0006 142B     		cmp	r3, #20
+ 1800 0008 10D8     		bhi	.L193
+ 1801 000a 094A     		ldr	r2, .L195
+ 1802 000c 52F83320 		ldr	r2, [r2, r3, lsl #3]
+ 1803 0010 6245     		cmp	r2, ip
+ 1804 0012 04D2     		bcs	.L194
+ 1805 0014 0133     		adds	r3, r3, #1
+ 1806 0016 DBB2     		uxtb	r3, r3
+ 1807 0018 F5E7     		b	.L187
+ 1808              	.L192:
+ 1809 001a 0320     		movs	r0, #3
+ 1810 001c 7047     		bx	lr
+ 1811              	.L194:
+ 1812 001e 044A     		ldr	r2, .L195
+ 1813 0020 02EBC303 		add	r3, r2, r3, lsl #3
+ 1814 0024 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 1815 0026 0B70     		strb	r3, [r1]
+ 1816 0028 0020     		movs	r0, #0
+ 1817 002a 7047     		bx	lr
+ 1818              	.L193:
+ 1819 002c 0220     		movs	r0, #2
+ 1820 002e 7047     		bx	lr
+ 1821              	.L196:
+ 1822              		.align	2
+ 1823              	.L195:
+ 1824 0030 00000000 		.word	gfsk_bw
+ 1826              		.section	.text.llcc68_get_lora_bw_in_hz,"ax",%progbits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 31
+
+
+ 1827              		.align	1
+ 1828              		.global	llcc68_get_lora_bw_in_hz
+ 1829              		.syntax unified
+ 1830              		.thumb
+ 1831              		.thumb_func
+ 1833              	llcc68_get_lora_bw_in_hz:
+ 1834              		@ args = 0, pretend = 0, frame = 0
+ 1835              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1836              		@ link register save eliminated.
+ 1837 0000 0A28     		cmp	r0, #10
+ 1838 0002 07D8     		bhi	.L198
+ 1839 0004 DFE800F0 		tbb	[pc, r0]
+ 1840              	.L200:
+ 1841 0008 20       		.byte	(.L210-.L200)/2
+ 1842 0009 0B       		.byte	(.L208-.L200)/2
+ 1843 000a 11       		.byte	(.L207-.L200)/2
+ 1844 000b 17       		.byte	(.L206-.L200)/2
+ 1845 000c 1A       		.byte	(.L205-.L200)/2
+ 1846 000d 1C       		.byte	(.L204-.L200)/2
+ 1847 000e 1E       		.byte	(.L203-.L200)/2
+ 1848 000f 06       		.byte	(.L198-.L200)/2
+ 1849 0010 08       		.byte	(.L202-.L200)/2
+ 1850 0011 0E       		.byte	(.L201-.L200)/2
+ 1851 0012 14       		.byte	(.L199-.L200)/2
+ 1852 0013 00       		.p2align 1
+ 1853              	.L198:
+ 1854 0014 0020     		movs	r0, #0
+ 1855 0016 7047     		bx	lr
+ 1856              	.L202:
+ 1857 0018 42F6B100 		movw	r0, #10417
+ 1858 001c 7047     		bx	lr
+ 1859              	.L208:
+ 1860 001e 43F60950 		movw	r0, #15625
+ 1861 0022 7047     		bx	lr
+ 1862              	.L201:
+ 1863 0024 45F26110 		movw	r0, #20833
+ 1864 0028 7047     		bx	lr
+ 1865              	.L207:
+ 1866 002a 47F61220 		movw	r0, #31250
+ 1867 002e 7047     		bx	lr
+ 1868              	.L199:
+ 1869 0030 4AF2C320 		movw	r0, #41667
+ 1870 0034 7047     		bx	lr
+ 1871              	.L206:
+ 1872 0036 4FF22440 		movw	r0, #62500
+ 1873 003a 7047     		bx	lr
+ 1874              	.L205:
+ 1875 003c 0448     		ldr	r0, .L211
+ 1876 003e 7047     		bx	lr
+ 1877              	.L204:
+ 1878 0040 0448     		ldr	r0, .L211+4
+ 1879 0042 7047     		bx	lr
+ 1880              	.L203:
+ 1881 0044 0448     		ldr	r0, .L211+8
+ 1882 0046 7047     		bx	lr
+ 1883              	.L210:
+ 1884 0048 41F68460 		movw	r0, #7812
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 32
+
+
+ 1885 004c 7047     		bx	lr
+ 1886              	.L212:
+ 1887 004e 00BF     		.align	2
+ 1888              	.L211:
+ 1889 0050 48E80100 		.word	125000
+ 1890 0054 90D00300 		.word	250000
+ 1891 0058 20A10700 		.word	500000
+ 1893              		.section	.text.llcc68_get_lora_time_on_air_numerator,"ax",%progbits
+ 1894              		.align	1
+ 1895              		.global	llcc68_get_lora_time_on_air_numerator
+ 1896              		.syntax unified
+ 1897              		.thumb
+ 1898              		.thumb_func
+ 1900              	llcc68_get_lora_time_on_air_numerator:
+ 1901              		@ args = 0, pretend = 0, frame = 0
+ 1902              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1903 0000 30B5     		push	{r4, r5, lr}
+ 1904 0002 C378     		ldrb	r3, [r0, #3]	@ zero_extendqisi2
+ 1905 0004 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 1906 0006 8478     		ldrb	r4, [r0, #2]	@ zero_extendqisi2
+ 1907 0008 91F802C0 		ldrb	ip, [r1, #2]	@ zero_extendqisi2
+ 1908 000c 0CF1040C 		add	ip, ip, #4
+ 1909 0010 DB00     		lsls	r3, r3, #3
+ 1910 0012 0579     		ldrb	r5, [r0, #4]	@ zero_extendqisi2
+ 1911 0014 3DB3     		cbz	r5, .L219
+ 1912 0016 4FF0100E 		mov	lr, #16
+ 1913              	.L214:
+ 1914 001a 7344     		add	r3, r3, lr
+ 1915 001c 4FEA820E 		lsl	lr, r2, #2
+ 1916 0020 A3EB8203 		sub	r3, r3, r2, lsl #2
+ 1917 0024 012C     		cmp	r4, #1
+ 1918 0026 21D0     		beq	.L223
+ 1919 0028 1424     		movs	r4, #20
+ 1920              	.L215:
+ 1921 002a 2344     		add	r3, r3, r4
+ 1922 002c 062A     		cmp	r2, #6
+ 1923 002e 06DD     		ble	.L216
+ 1924 0030 0833     		adds	r3, r3, #8
+ 1925 0032 C978     		ldrb	r1, [r1, #3]	@ zero_extendqisi2
+ 1926 0034 19B1     		cbz	r1, .L216
+ 1927 0036 A2F1020E 		sub	lr, r2, #2
+ 1928 003a 4FEA8E0E 		lsl	lr, lr, #2
+ 1929              	.L216:
+ 1930 003e 002B     		cmp	r3, #0
+ 1931 0040 16DB     		blt	.L224
+ 1932              	.L217:
+ 1933 0042 7344     		add	r3, r3, lr
+ 1934 0044 013B     		subs	r3, r3, #1
+ 1935 0046 93FBFEF3 		sdiv	r3, r3, lr
+ 1936 004a 0188     		ldrh	r1, [r0]
+ 1937 004c 0CFB0313 		mla	r3, ip, r3, r1
+ 1938 0050 03F10C00 		add	r0, r3, #12
+ 1939 0054 062A     		cmp	r2, #6
+ 1940 0056 01DC     		bgt	.L218
+ 1941 0058 03F10E00 		add	r0, r3, #14
+ 1942              	.L218:
+ 1943 005c 8000     		lsls	r0, r0, #2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 33
+
+
+ 1944 005e 0130     		adds	r0, r0, #1
+ 1945 0060 023A     		subs	r2, r2, #2
+ 1946 0062 9040     		lsls	r0, r0, r2
+ 1947 0064 30BD     		pop	{r4, r5, pc}
+ 1948              	.L219:
+ 1949 0066 4FF0000E 		mov	lr, #0
+ 1950 006a D6E7     		b	.L214
+ 1951              	.L223:
+ 1952 006c 0024     		movs	r4, #0
+ 1953 006e DCE7     		b	.L215
+ 1954              	.L224:
+ 1955 0070 0023     		movs	r3, #0
+ 1956 0072 E6E7     		b	.L217
+ 1958              		.section	.text.llcc68_get_lora_time_on_air_in_ms,"ax",%progbits
+ 1959              		.align	1
+ 1960              		.global	llcc68_get_lora_time_on_air_in_ms
+ 1961              		.syntax unified
+ 1962              		.thumb
+ 1963              		.thumb_func
+ 1965              	llcc68_get_lora_time_on_air_in_ms:
+ 1966              		@ args = 0, pretend = 0, frame = 0
+ 1967              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1968 0000 38B5     		push	{r3, r4, r5, lr}
+ 1969 0002 0D46     		mov	r5, r1
+ 1970 0004 FFF7FEFF 		bl	llcc68_get_lora_time_on_air_numerator
+ 1971 0008 4FF47A73 		mov	r3, #1000
+ 1972 000c 03FB00F4 		mul	r4, r3, r0
+ 1973 0010 6878     		ldrb	r0, [r5, #1]	@ zero_extendqisi2
+ 1974 0012 FFF7FEFF 		bl	llcc68_get_lora_bw_in_hz
+ 1975 0016 0444     		add	r4, r4, r0
+ 1976 0018 013C     		subs	r4, r4, #1
+ 1977 001a B4FBF0F0 		udiv	r0, r4, r0
+ 1978 001e 38BD     		pop	{r3, r4, r5, pc}
+ 1980              		.section	.text.llcc68_get_gfsk_time_on_air_numerator,"ax",%progbits
+ 1981              		.align	1
+ 1982              		.global	llcc68_get_gfsk_time_on_air_numerator
+ 1983              		.syntax unified
+ 1984              		.thumb
+ 1985              		.thumb_func
+ 1987              	llcc68_get_gfsk_time_on_air_numerator:
+ 1988              		@ args = 0, pretend = 0, frame = 0
+ 1989              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1990 0000 38B5     		push	{r3, r4, r5, lr}
+ 1991 0002 0488     		ldrh	r4, [r0]
+ 1992 0004 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
+ 1993 0006 012B     		cmp	r3, #1
+ 1994 0008 0FD0     		beq	.L231
+ 1995 000a 0023     		movs	r3, #0
+ 1996              	.L228:
+ 1997 000c 1C44     		add	r4, r4, r3
+ 1998 000e C378     		ldrb	r3, [r0, #3]	@ zero_extendqisi2
+ 1999 0010 1C44     		add	r4, r4, r3
+ 2000 0012 8579     		ldrb	r5, [r0, #6]	@ zero_extendqisi2
+ 2001 0014 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 2002 0016 002B     		cmp	r3, #0
+ 2003 0018 18BF     		it	ne
+ 2004 001a 0135     		addne	r5, r5, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 34
+
+
+ 2005 001c C079     		ldrb	r0, [r0, #7]	@ zero_extendqisi2
+ 2006 001e FFF7FEFF 		bl	llcc68_get_gfsk_crc_len_in_bytes
+ 2007 0022 2844     		add	r0, r0, r5
+ 2008 0024 04EBC000 		add	r0, r4, r0, lsl #3
+ 2009 0028 38BD     		pop	{r3, r4, r5, pc}
+ 2010              	.L231:
+ 2011 002a 0823     		movs	r3, #8
+ 2012 002c EEE7     		b	.L228
+ 2014              		.section	.text.llcc68_get_gfsk_time_on_air_in_ms,"ax",%progbits
+ 2015              		.align	1
+ 2016              		.global	llcc68_get_gfsk_time_on_air_in_ms
+ 2017              		.syntax unified
+ 2018              		.thumb
+ 2019              		.thumb_func
+ 2021              	llcc68_get_gfsk_time_on_air_in_ms:
+ 2022              		@ args = 0, pretend = 0, frame = 0
+ 2023              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2024 0000 10B5     		push	{r4, lr}
+ 2025 0002 0C46     		mov	r4, r1
+ 2026 0004 FFF7FEFF 		bl	llcc68_get_gfsk_time_on_air_numerator
+ 2027 0008 2368     		ldr	r3, [r4]
+ 2028 000a 4FF47A72 		mov	r2, #1000
+ 2029 000e 02FB0030 		mla	r0, r2, r0, r3
+ 2030 0012 0138     		subs	r0, r0, #1
+ 2031 0014 B0FBF3F0 		udiv	r0, r0, r3
+ 2032 0018 10BD     		pop	{r4, pc}
+ 2034              		.section	.text.llcc68_get_random_numbers,"ax",%progbits
+ 2035              		.align	1
+ 2036              		.global	llcc68_get_random_numbers
+ 2037              		.syntax unified
+ 2038              		.thumb
+ 2039              		.thumb_func
+ 2041              	llcc68_get_random_numbers:
+ 2042              		@ args = 0, pretend = 0, frame = 8
+ 2043              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2044 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 2045 0002 83B0     		sub	sp, sp, #12
+ 2046 0004 0446     		mov	r4, r0
+ 2047 0006 0E46     		mov	r6, r1
+ 2048 0008 1546     		mov	r5, r2
+ 2049 000a 0023     		movs	r3, #0
+ 2050 000c 8DF80730 		strb	r3, [sp, #7]
+ 2051 0010 8DF80630 		strb	r3, [sp, #6]
+ 2052 0014 8DF80530 		strb	r3, [sp, #5]
+ 2053 0018 0123     		movs	r3, #1
+ 2054 001a 0DF10702 		add	r2, sp, #7
+ 2055 001e 40F6E201 		movw	r1, #2274
+ 2056 0022 FFF7FEFF 		bl	llcc68_read_register
+ 2057 0026 0346     		mov	r3, r0
+ 2058 0028 10B1     		cbz	r0, .L239
+ 2059              	.L235:
+ 2060 002a 1846     		mov	r0, r3
+ 2061 002c 03B0     		add	sp, sp, #12
+ 2062              		@ sp needed
+ 2063 002e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 2064              	.L239:
+ 2065 0030 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 35
+
+
+ 2066 0034 03F0FE03 		and	r3, r3, #254
+ 2067 0038 8DF80530 		strb	r3, [sp, #5]
+ 2068 003c 0123     		movs	r3, #1
+ 2069 003e 0DF10502 		add	r2, sp, #5
+ 2070 0042 40F6E201 		movw	r1, #2274
+ 2071 0046 2046     		mov	r0, r4
+ 2072 0048 FFF7FEFF 		bl	llcc68_write_register
+ 2073 004c 0346     		mov	r3, r0
+ 2074 004e 0028     		cmp	r0, #0
+ 2075 0050 EBD1     		bne	.L235
+ 2076 0052 0123     		movs	r3, #1
+ 2077 0054 0DF10602 		add	r2, sp, #6
+ 2078 0058 40F6E501 		movw	r1, #2277
+ 2079 005c 2046     		mov	r0, r4
+ 2080 005e FFF7FEFF 		bl	llcc68_read_register
+ 2081 0062 0346     		mov	r3, r0
+ 2082 0064 0028     		cmp	r0, #0
+ 2083 0066 E0D1     		bne	.L235
+ 2084 0068 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 2085 006c 03F07F03 		and	r3, r3, #127
+ 2086 0070 8DF80530 		strb	r3, [sp, #5]
+ 2087 0074 0123     		movs	r3, #1
+ 2088 0076 0DF10502 		add	r2, sp, #5
+ 2089 007a 40F6E501 		movw	r1, #2277
+ 2090 007e 2046     		mov	r0, r4
+ 2091 0080 FFF7FEFF 		bl	llcc68_write_register
+ 2092 0084 0346     		mov	r3, r0
+ 2093 0086 0028     		cmp	r0, #0
+ 2094 0088 CFD1     		bne	.L235
+ 2095 008a 6FF07F41 		mvn	r1, #-16777216
+ 2096 008e 2046     		mov	r0, r4
+ 2097 0090 FFF7FEFF 		bl	llcc68_set_rx_with_timeout_in_rtc_step
+ 2098 0094 0346     		mov	r3, r0
+ 2099 0096 0028     		cmp	r0, #0
+ 2100 0098 C7D1     		bne	.L235
+ 2101 009a 0027     		movs	r7, #0
+ 2102              	.L236:
+ 2103 009c AF42     		cmp	r7, r5
+ 2104 009e 0CD2     		bcs	.L240
+ 2105 00a0 0423     		movs	r3, #4
+ 2106 00a2 06EB8702 		add	r2, r6, r7, lsl #2
+ 2107 00a6 40F61901 		movw	r1, #2073
+ 2108 00aa 2046     		mov	r0, r4
+ 2109 00ac FFF7FEFF 		bl	llcc68_read_register
+ 2110 00b0 0346     		mov	r3, r0
+ 2111 00b2 0028     		cmp	r0, #0
+ 2112 00b4 B9D1     		bne	.L235
+ 2113 00b6 0137     		adds	r7, r7, #1
+ 2114 00b8 F0E7     		b	.L236
+ 2115              	.L240:
+ 2116 00ba 0021     		movs	r1, #0
+ 2117 00bc 2046     		mov	r0, r4
+ 2118 00be FFF7FEFF 		bl	llcc68_set_standby
+ 2119 00c2 0346     		mov	r3, r0
+ 2120 00c4 0028     		cmp	r0, #0
+ 2121 00c6 B0D1     		bne	.L235
+ 2122 00c8 0123     		movs	r3, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 36
+
+
+ 2123 00ca 0DF10702 		add	r2, sp, #7
+ 2124 00ce 40F6E201 		movw	r1, #2274
+ 2125 00d2 2046     		mov	r0, r4
+ 2126 00d4 FFF7FEFF 		bl	llcc68_write_register
+ 2127 00d8 0346     		mov	r3, r0
+ 2128 00da 0028     		cmp	r0, #0
+ 2129 00dc A5D1     		bne	.L235
+ 2130 00de 0123     		movs	r3, #1
+ 2131 00e0 0DF10602 		add	r2, sp, #6
+ 2132 00e4 40F6E501 		movw	r1, #2277
+ 2133 00e8 2046     		mov	r0, r4
+ 2134 00ea FFF7FEFF 		bl	llcc68_write_register
+ 2135 00ee 0346     		mov	r3, r0
+ 2136 00f0 9BE7     		b	.L235
+ 2138              		.section	.text.llcc68_convert_freq_in_hz_to_pll_step,"ax",%progbits
+ 2139              		.align	1
+ 2140              		.global	llcc68_convert_freq_in_hz_to_pll_step
+ 2141              		.syntax unified
+ 2142              		.thumb
+ 2143              		.thumb_func
+ 2145              	llcc68_convert_freq_in_hz_to_pll_step:
+ 2146              		@ args = 0, pretend = 0, frame = 0
+ 2147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2148              		@ link register save eliminated.
+ 2149 0000 0849     		ldr	r1, .L242
+ 2150 0002 A1FB0032 		umull	r3, r2, r1, r0
+ 2151 0006 120B     		lsrs	r2, r2, #12
+ 2152 0008 43F60953 		movw	r3, #15625
+ 2153 000c 03FB1200 		mls	r0, r3, r2, r0
+ 2154 0010 41F68463 		movw	r3, #7812
+ 2155 0014 03EB8033 		add	r3, r3, r0, lsl #14
+ 2156 0018 A1FB0313 		umull	r1, r3, r1, r3
+ 2157 001c 1B0B     		lsrs	r3, r3, #12
+ 2158 001e 03EB8230 		add	r0, r3, r2, lsl #14
+ 2159 0022 7047     		bx	lr
+ 2160              	.L243:
+ 2161              		.align	2
+ 2162              	.L242:
+ 2163 0024 83DE1B43 		.word	1125899907
+ 2165              		.section	.text.llcc68_set_rf_freq,"ax",%progbits
+ 2166              		.align	1
+ 2167              		.global	llcc68_set_rf_freq
+ 2168              		.syntax unified
+ 2169              		.thumb
+ 2170              		.thumb_func
+ 2172              	llcc68_set_rf_freq:
+ 2173              		@ args = 0, pretend = 0, frame = 0
+ 2174              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2175 0000 10B5     		push	{r4, lr}
+ 2176 0002 0446     		mov	r4, r0
+ 2177 0004 0846     		mov	r0, r1
+ 2178 0006 FFF7FEFF 		bl	llcc68_convert_freq_in_hz_to_pll_step
+ 2179 000a 0146     		mov	r1, r0
+ 2180 000c 2046     		mov	r0, r4
+ 2181 000e FFF7FEFF 		bl	llcc68_set_rf_freq_in_pll_steps
+ 2182 0012 10BD     		pop	{r4, pc}
+ 2184              		.section	.text.llcc68_set_gfsk_mod_params,"ax",%progbits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 37
+
+
+ 2185              		.align	1
+ 2186              		.global	llcc68_set_gfsk_mod_params
+ 2187              		.syntax unified
+ 2188              		.thumb
+ 2189              		.thumb_func
+ 2191              	llcc68_set_gfsk_mod_params:
+ 2192              		@ args = 0, pretend = 0, frame = 16
+ 2193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2194 0000 70B5     		push	{r4, r5, r6, lr}
+ 2195 0002 86B0     		sub	sp, sp, #24
+ 2196 0004 0646     		mov	r6, r0
+ 2197 0006 0C46     		mov	r4, r1
+ 2198 0008 0B68     		ldr	r3, [r1]
+ 2199 000a 194D     		ldr	r5, .L250
+ 2200 000c B5FBF3F5 		udiv	r5, r5, r3
+ 2201 0010 4868     		ldr	r0, [r1, #4]
+ 2202 0012 FFF7FEFF 		bl	llcc68_convert_freq_in_hz_to_pll_step
+ 2203 0016 8B23     		movs	r3, #139
+ 2204 0018 8DF80C30 		strb	r3, [sp, #12]
+ 2205 001c C5F30743 		ubfx	r3, r5, #16, #8
+ 2206 0020 8DF80D30 		strb	r3, [sp, #13]
+ 2207 0024 C5F30723 		ubfx	r3, r5, #8, #8
+ 2208 0028 8DF80E30 		strb	r3, [sp, #14]
+ 2209 002c 8DF80F50 		strb	r5, [sp, #15]
+ 2210 0030 237A     		ldrb	r3, [r4, #8]	@ zero_extendqisi2
+ 2211 0032 8DF81030 		strb	r3, [sp, #16]
+ 2212 0036 637A     		ldrb	r3, [r4, #9]	@ zero_extendqisi2
+ 2213 0038 8DF81130 		strb	r3, [sp, #17]
+ 2214 003c C0F30743 		ubfx	r3, r0, #16, #8
+ 2215 0040 8DF81230 		strb	r3, [sp, #18]
+ 2216 0044 C0F30723 		ubfx	r3, r0, #8, #8
+ 2217 0048 8DF81330 		strb	r3, [sp, #19]
+ 2218 004c 8DF81400 		strb	r0, [sp, #20]
+ 2219 0050 0023     		movs	r3, #0
+ 2220 0052 0093     		str	r3, [sp]
+ 2221 0054 0922     		movs	r2, #9
+ 2222 0056 03A9     		add	r1, sp, #12
+ 2223 0058 3046     		mov	r0, r6
+ 2224 005a FFF7FEFF 		bl	llcc68_hal_write
+ 2225 005e 08B1     		cbz	r0, .L249
+ 2226              	.L247:
+ 2227 0060 06B0     		add	sp, sp, #24
+ 2228              		@ sp needed
+ 2229 0062 70BD     		pop	{r4, r5, r6, pc}
+ 2230              	.L249:
+ 2231 0064 0022     		movs	r2, #0
+ 2232 0066 1146     		mov	r1, r2
+ 2233 0068 3046     		mov	r0, r6
+ 2234 006a FFF7FEFF 		bl	llcc68_tx_modulation_workaround
+ 2235 006e F7E7     		b	.L247
+ 2236              	.L251:
+ 2237              		.align	2
+ 2238              	.L250:
+ 2239 0070 0000093D 		.word	1024000000
+ 2241              		.section	.text.llcc68_convert_timeout_in_ms_to_rtc_step,"ax",%progbits
+ 2242              		.align	1
+ 2243              		.global	llcc68_convert_timeout_in_ms_to_rtc_step
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 38
+
+
+ 2244              		.syntax unified
+ 2245              		.thumb
+ 2246              		.thumb_func
+ 2248              	llcc68_convert_timeout_in_ms_to_rtc_step:
+ 2249              		@ args = 0, pretend = 0, frame = 0
+ 2250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2251              		@ link register save eliminated.
+ 2252 0000 8001     		lsls	r0, r0, #6
+ 2253 0002 7047     		bx	lr
+ 2255              		.section	.text.llcc68_set_tx,"ax",%progbits
+ 2256              		.align	1
+ 2257              		.global	llcc68_set_tx
+ 2258              		.syntax unified
+ 2259              		.thumb
+ 2260              		.thumb_func
+ 2262              	llcc68_set_tx:
+ 2263              		@ args = 0, pretend = 0, frame = 0
+ 2264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2265 0000 B1F5802F 		cmp	r1, #262144
+ 2266 0004 09D2     		bcs	.L255
+ 2267 0006 10B5     		push	{r4, lr}
+ 2268 0008 0446     		mov	r4, r0
+ 2269 000a 0846     		mov	r0, r1
+ 2270 000c FFF7FEFF 		bl	llcc68_convert_timeout_in_ms_to_rtc_step
+ 2271 0010 0146     		mov	r1, r0
+ 2272 0012 2046     		mov	r0, r4
+ 2273 0014 FFF7FEFF 		bl	llcc68_set_tx_with_timeout_in_rtc_step
+ 2274 0018 10BD     		pop	{r4, pc}
+ 2275              	.L255:
+ 2276 001a 0220     		movs	r0, #2
+ 2277 001c 7047     		bx	lr
+ 2279              		.section	.text.llcc68_set_rx,"ax",%progbits
+ 2280              		.align	1
+ 2281              		.global	llcc68_set_rx
+ 2282              		.syntax unified
+ 2283              		.thumb
+ 2284              		.thumb_func
+ 2286              	llcc68_set_rx:
+ 2287              		@ args = 0, pretend = 0, frame = 0
+ 2288              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2289 0000 B1F5802F 		cmp	r1, #262144
+ 2290 0004 09D2     		bcs	.L262
+ 2291 0006 10B5     		push	{r4, lr}
+ 2292 0008 0446     		mov	r4, r0
+ 2293 000a 0846     		mov	r0, r1
+ 2294 000c FFF7FEFF 		bl	llcc68_convert_timeout_in_ms_to_rtc_step
+ 2295 0010 0146     		mov	r1, r0
+ 2296 0012 2046     		mov	r0, r4
+ 2297 0014 FFF7FEFF 		bl	llcc68_set_rx_with_timeout_in_rtc_step
+ 2298 0018 10BD     		pop	{r4, pc}
+ 2299              	.L262:
+ 2300 001a 0220     		movs	r0, #2
+ 2301 001c 7047     		bx	lr
+ 2303              		.section	.text.llcc68_set_rx_duty_cycle,"ax",%progbits
+ 2304              		.align	1
+ 2305              		.global	llcc68_set_rx_duty_cycle
+ 2306              		.syntax unified
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 39
+
+
+ 2307              		.thumb
+ 2308              		.thumb_func
+ 2310              	llcc68_set_rx_duty_cycle:
+ 2311              		@ args = 0, pretend = 0, frame = 0
+ 2312              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2313 0000 70B5     		push	{r4, r5, r6, lr}
+ 2314 0002 0446     		mov	r4, r0
+ 2315 0004 1646     		mov	r6, r2
+ 2316 0006 0846     		mov	r0, r1
+ 2317 0008 FFF7FEFF 		bl	llcc68_convert_timeout_in_ms_to_rtc_step
+ 2318 000c 0546     		mov	r5, r0
+ 2319 000e 3046     		mov	r0, r6
+ 2320 0010 FFF7FEFF 		bl	llcc68_convert_timeout_in_ms_to_rtc_step
+ 2321 0014 0246     		mov	r2, r0
+ 2322 0016 2946     		mov	r1, r5
+ 2323 0018 2046     		mov	r0, r4
+ 2324 001a FFF7FEFF 		bl	llcc68_set_rx_duty_cycle_with_timings_in_rtc_step
+ 2325 001e 70BD     		pop	{r4, r5, r6, pc}
+ 2327              		.section	.text.llcc68_cfg_rx_boosted,"ax",%progbits
+ 2328              		.align	1
+ 2329              		.global	llcc68_cfg_rx_boosted
+ 2330              		.syntax unified
+ 2331              		.thumb
+ 2332              		.thumb_func
+ 2334              	llcc68_cfg_rx_boosted:
+ 2335              		@ args = 0, pretend = 0, frame = 8
+ 2336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2337 0000 00B5     		push	{lr}
+ 2338 0002 83B0     		sub	sp, sp, #12
+ 2339 0004 59B1     		cbz	r1, .L270
+ 2340 0006 9623     		movs	r3, #150
+ 2341 0008 8DF80030 		strb	r3, [sp]
+ 2342 000c 0123     		movs	r3, #1
+ 2343 000e 6A46     		mov	r2, sp
+ 2344 0010 40F6AC01 		movw	r1, #2220
+ 2345 0014 FFF7FEFF 		bl	llcc68_write_register
+ 2346              	.L271:
+ 2347 0018 03B0     		add	sp, sp, #12
+ 2348              		@ sp needed
+ 2349 001a 5DF804FB 		ldr	pc, [sp], #4
+ 2350              	.L270:
+ 2351 001e 9423     		movs	r3, #148
+ 2352 0020 8DF80430 		strb	r3, [sp, #4]
+ 2353 0024 0123     		movs	r3, #1
+ 2354 0026 01AA     		add	r2, sp, #4
+ 2355 0028 40F6AC01 		movw	r1, #2220
+ 2356 002c FFF7FEFF 		bl	llcc68_write_register
+ 2357 0030 F2E7     		b	.L271
+ 2359              		.section	.text.llcc68_set_gfsk_sync_word,"ax",%progbits
+ 2360              		.align	1
+ 2361              		.global	llcc68_set_gfsk_sync_word
+ 2362              		.syntax unified
+ 2363              		.thumb
+ 2364              		.thumb_func
+ 2366              	llcc68_set_gfsk_sync_word:
+ 2367              		@ args = 0, pretend = 0, frame = 8
+ 2368              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 40
+
+
+ 2369 0000 082A     		cmp	r2, #8
+ 2370 0002 18D8     		bhi	.L277
+ 2371 0004 00B5     		push	{lr}
+ 2372 0006 83B0     		sub	sp, sp, #12
+ 2373 0008 0023     		movs	r3, #0
+ 2374 000a 0093     		str	r3, [sp]
+ 2375 000c 0193     		str	r3, [sp, #4]
+ 2376 000e 07E0     		b	.L275
+ 2377              	.L276:
+ 2378 0010 11F803E0 		ldrb	lr, [r1, r3]	@ zero_extendqisi2
+ 2379 0014 03F1080C 		add	ip, r3, #8
+ 2380 0018 EC44     		add	ip, sp, ip
+ 2381 001a 0CF808EC 		strb	lr, [ip, #-8]
+ 2382 001e 0133     		adds	r3, r3, #1
+ 2383              	.L275:
+ 2384 0020 9A42     		cmp	r2, r3
+ 2385 0022 F5DC     		bgt	.L276
+ 2386 0024 0823     		movs	r3, #8
+ 2387 0026 6A46     		mov	r2, sp
+ 2388 0028 4FF4D861 		mov	r1, #1728
+ 2389 002c FFF7FEFF 		bl	llcc68_write_register
+ 2390 0030 03B0     		add	sp, sp, #12
+ 2391              		@ sp needed
+ 2392 0032 5DF804FB 		ldr	pc, [sp], #4
+ 2393              	.L277:
+ 2394 0036 0320     		movs	r0, #3
+ 2395 0038 7047     		bx	lr
+ 2397              		.section	.text.llcc68_set_lora_sync_word,"ax",%progbits
+ 2398              		.align	1
+ 2399              		.global	llcc68_set_lora_sync_word
+ 2400              		.syntax unified
+ 2401              		.thumb
+ 2402              		.thumb_func
+ 2404              	llcc68_set_lora_sync_word:
+ 2405              		@ args = 0, pretend = 0, frame = 8
+ 2406              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2407 0000 30B5     		push	{r4, r5, lr}
+ 2408 0002 83B0     		sub	sp, sp, #12
+ 2409 0004 0546     		mov	r5, r0
+ 2410 0006 0C46     		mov	r4, r1
+ 2411 0008 0023     		movs	r3, #0
+ 2412 000a ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 2413 000e 0223     		movs	r3, #2
+ 2414 0010 01AA     		add	r2, sp, #4
+ 2415 0012 4FF4E861 		mov	r1, #1856
+ 2416 0016 FFF7FEFF 		bl	llcc68_read_register
+ 2417 001a 08B1     		cbz	r0, .L285
+ 2418              	.L283:
+ 2419 001c 03B0     		add	sp, sp, #12
+ 2420              		@ sp needed
+ 2421 001e 30BD     		pop	{r4, r5, pc}
+ 2422              	.L285:
+ 2423 0020 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 2424 0024 03F00F03 		and	r3, r3, #15
+ 2425 0028 24F00F02 		bic	r2, r4, #15
+ 2426 002c 1343     		orrs	r3, r3, r2
+ 2427 002e 8DF80430 		strb	r3, [sp, #4]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 41
+
+
+ 2428 0032 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 2429 0036 03F00F03 		and	r3, r3, #15
+ 2430 003a 03EB0413 		add	r3, r3, r4, lsl #4
+ 2431 003e 8DF80530 		strb	r3, [sp, #5]
+ 2432 0042 0223     		movs	r3, #2
+ 2433 0044 01AA     		add	r2, sp, #4
+ 2434 0046 4FF4E861 		mov	r1, #1856
+ 2435 004a 2846     		mov	r0, r5
+ 2436 004c FFF7FEFF 		bl	llcc68_write_register
+ 2437 0050 E4E7     		b	.L283
+ 2439              		.section	.text.llcc68_set_gfsk_crc_seed,"ax",%progbits
+ 2440              		.align	1
+ 2441              		.global	llcc68_set_gfsk_crc_seed
+ 2442              		.syntax unified
+ 2443              		.thumb
+ 2444              		.thumb_func
+ 2446              	llcc68_set_gfsk_crc_seed:
+ 2447              		@ args = 0, pretend = 0, frame = 8
+ 2448              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2449 0000 00B5     		push	{lr}
+ 2450 0002 83B0     		sub	sp, sp, #12
+ 2451 0004 0B0A     		lsrs	r3, r1, #8
+ 2452 0006 8DF80430 		strb	r3, [sp, #4]
+ 2453 000a 8DF80510 		strb	r1, [sp, #5]
+ 2454 000e 0223     		movs	r3, #2
+ 2455 0010 01AA     		add	r2, sp, #4
+ 2456 0012 40F2BC61 		movw	r1, #1724
+ 2457 0016 FFF7FEFF 		bl	llcc68_write_register
+ 2458 001a 03B0     		add	sp, sp, #12
+ 2459              		@ sp needed
+ 2460 001c 5DF804FB 		ldr	pc, [sp], #4
+ 2462              		.section	.text.llcc68_set_gfsk_crc_polynomial,"ax",%progbits
+ 2463              		.align	1
+ 2464              		.global	llcc68_set_gfsk_crc_polynomial
+ 2465              		.syntax unified
+ 2466              		.thumb
+ 2467              		.thumb_func
+ 2469              	llcc68_set_gfsk_crc_polynomial:
+ 2470              		@ args = 0, pretend = 0, frame = 8
+ 2471              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2472 0000 00B5     		push	{lr}
+ 2473 0002 83B0     		sub	sp, sp, #12
+ 2474 0004 0B0A     		lsrs	r3, r1, #8
+ 2475 0006 8DF80430 		strb	r3, [sp, #4]
+ 2476 000a 8DF80510 		strb	r1, [sp, #5]
+ 2477 000e 0223     		movs	r3, #2
+ 2478 0010 01AA     		add	r2, sp, #4
+ 2479 0012 40F2BE61 		movw	r1, #1726
+ 2480 0016 FFF7FEFF 		bl	llcc68_write_register
+ 2481 001a 03B0     		add	sp, sp, #12
+ 2482              		@ sp needed
+ 2483 001c 5DF804FB 		ldr	pc, [sp], #4
+ 2485              		.section	.text.llcc68_set_gfsk_whitening_seed,"ax",%progbits
+ 2486              		.align	1
+ 2487              		.global	llcc68_set_gfsk_whitening_seed
+ 2488              		.syntax unified
+ 2489              		.thumb
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 42
+
+
+ 2490              		.thumb_func
+ 2492              	llcc68_set_gfsk_whitening_seed:
+ 2493              		@ args = 0, pretend = 0, frame = 8
+ 2494              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2495 0000 30B5     		push	{r4, r5, lr}
+ 2496 0002 83B0     		sub	sp, sp, #12
+ 2497 0004 0546     		mov	r5, r0
+ 2498 0006 0C46     		mov	r4, r1
+ 2499 0008 0023     		movs	r3, #0
+ 2500 000a 8DF80730 		strb	r3, [sp, #7]
+ 2501 000e 0123     		movs	r3, #1
+ 2502 0010 0DF10702 		add	r2, sp, #7
+ 2503 0014 4FF4D761 		mov	r1, #1720
+ 2504 0018 FFF7FEFF 		bl	llcc68_read_register
+ 2505 001c 08B1     		cbz	r0, .L293
+ 2506              	.L291:
+ 2507 001e 03B0     		add	sp, sp, #12
+ 2508              		@ sp needed
+ 2509 0020 30BD     		pop	{r4, r5, pc}
+ 2510              	.L293:
+ 2511 0022 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 2512 0026 C4F30022 		ubfx	r2, r4, #8, #1
+ 2513 002a 23F00103 		bic	r3, r3, #1
+ 2514 002e 1343     		orrs	r3, r3, r2
+ 2515 0030 8DF80730 		strb	r3, [sp, #7]
+ 2516 0034 0123     		movs	r3, #1
+ 2517 0036 0DF10702 		add	r2, sp, #7
+ 2518 003a 4FF4D761 		mov	r1, #1720
+ 2519 003e 2846     		mov	r0, r5
+ 2520 0040 FFF7FEFF 		bl	llcc68_write_register
+ 2521 0044 0028     		cmp	r0, #0
+ 2522 0046 EAD1     		bne	.L291
+ 2523 0048 8DF80740 		strb	r4, [sp, #7]
+ 2524 004c 0123     		movs	r3, #1
+ 2525 004e 0DF10702 		add	r2, sp, #7
+ 2526 0052 40F2B961 		movw	r1, #1721
+ 2527 0056 2846     		mov	r0, r5
+ 2528 0058 FFF7FEFF 		bl	llcc68_write_register
+ 2529 005c DFE7     		b	.L291
+ 2531              		.section	.text.llcc68_cfg_tx_clamp,"ax",%progbits
+ 2532              		.align	1
+ 2533              		.global	llcc68_cfg_tx_clamp
+ 2534              		.syntax unified
+ 2535              		.thumb
+ 2536              		.thumb_func
+ 2538              	llcc68_cfg_tx_clamp:
+ 2539              		@ args = 0, pretend = 0, frame = 8
+ 2540              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2541 0000 10B5     		push	{r4, lr}
+ 2542 0002 82B0     		sub	sp, sp, #8
+ 2543 0004 0446     		mov	r4, r0
+ 2544 0006 0023     		movs	r3, #0
+ 2545 0008 8DF80730 		strb	r3, [sp, #7]
+ 2546 000c 0123     		movs	r3, #1
+ 2547 000e 0DF10702 		add	r2, sp, #7
+ 2548 0012 40F6D801 		movw	r1, #2264
+ 2549 0016 FFF7FEFF 		bl	llcc68_read_register
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 43
+
+
+ 2550 001a 08B1     		cbz	r0, .L297
+ 2551              	.L295:
+ 2552 001c 02B0     		add	sp, sp, #8
+ 2553              		@ sp needed
+ 2554 001e 10BD     		pop	{r4, pc}
+ 2555              	.L297:
+ 2556 0020 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 2557 0024 43F01E03 		orr	r3, r3, #30
+ 2558 0028 8DF80730 		strb	r3, [sp, #7]
+ 2559 002c 0123     		movs	r3, #1
+ 2560 002e 0DF10702 		add	r2, sp, #7
+ 2561 0032 40F6D801 		movw	r1, #2264
+ 2562 0036 2046     		mov	r0, r4
+ 2563 0038 FFF7FEFF 		bl	llcc68_write_register
+ 2564 003c EEE7     		b	.L295
+ 2566              		.section	.text.llcc68_stop_rtc,"ax",%progbits
+ 2567              		.align	1
+ 2568              		.global	llcc68_stop_rtc
+ 2569              		.syntax unified
+ 2570              		.thumb
+ 2571              		.thumb_func
+ 2573              	llcc68_stop_rtc:
+ 2574              		@ args = 0, pretend = 0, frame = 8
+ 2575              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2576 0000 10B5     		push	{r4, lr}
+ 2577 0002 82B0     		sub	sp, sp, #8
+ 2578 0004 0446     		mov	r4, r0
+ 2579 0006 0023     		movs	r3, #0
+ 2580 0008 8DF80730 		strb	r3, [sp, #7]
+ 2581 000c 0123     		movs	r3, #1
+ 2582 000e 0DF10702 		add	r2, sp, #7
+ 2583 0012 40F60211 		movw	r1, #2306
+ 2584 0016 FFF7FEFF 		bl	llcc68_write_register
+ 2585 001a 08B1     		cbz	r0, .L301
+ 2586              	.L299:
+ 2587 001c 02B0     		add	sp, sp, #8
+ 2588              		@ sp needed
+ 2589 001e 10BD     		pop	{r4, pc}
+ 2590              	.L301:
+ 2591 0020 0123     		movs	r3, #1
+ 2592 0022 0DF10702 		add	r2, sp, #7
+ 2593 0026 40F64411 		movw	r1, #2372
+ 2594 002a 2046     		mov	r0, r4
+ 2595 002c FFF7FEFF 		bl	llcc68_read_register
+ 2596 0030 0028     		cmp	r0, #0
+ 2597 0032 F3D1     		bne	.L299
+ 2598 0034 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 2599 0038 43F00203 		orr	r3, r3, #2
+ 2600 003c 8DF80730 		strb	r3, [sp, #7]
+ 2601 0040 0123     		movs	r3, #1
+ 2602 0042 0DF10702 		add	r2, sp, #7
+ 2603 0046 40F64411 		movw	r1, #2372
+ 2604 004a 2046     		mov	r0, r4
+ 2605 004c FFF7FEFF 		bl	llcc68_write_register
+ 2606 0050 E4E7     		b	.L299
+ 2608              		.section	.text.llcc68_handle_rx_done,"ax",%progbits
+ 2609              		.align	1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 44
+
+
+ 2610              		.global	llcc68_handle_rx_done
+ 2611              		.syntax unified
+ 2612              		.thumb
+ 2613              		.thumb_func
+ 2615              	llcc68_handle_rx_done:
+ 2616              		@ args = 0, pretend = 0, frame = 0
+ 2617              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2618 0000 08B5     		push	{r3, lr}
+ 2619 0002 FFF7FEFF 		bl	llcc68_stop_rtc
+ 2620 0006 08BD     		pop	{r3, pc}
+ 2622              		.section	.text.llcc68_set_ocp_value,"ax",%progbits
+ 2623              		.align	1
+ 2624              		.global	llcc68_set_ocp_value
+ 2625              		.syntax unified
+ 2626              		.thumb
+ 2627              		.thumb_func
+ 2629              	llcc68_set_ocp_value:
+ 2630              		@ args = 0, pretend = 0, frame = 8
+ 2631              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2632 0000 00B5     		push	{lr}
+ 2633 0002 83B0     		sub	sp, sp, #12
+ 2634 0004 8DF80710 		strb	r1, [sp, #7]
+ 2635 0008 0123     		movs	r3, #1
+ 2636 000a 0DF10702 		add	r2, sp, #7
+ 2637 000e 40F6E701 		movw	r1, #2279
+ 2638 0012 FFF7FEFF 		bl	llcc68_write_register
+ 2639 0016 03B0     		add	sp, sp, #12
+ 2640              		@ sp needed
+ 2641 0018 5DF804FB 		ldr	pc, [sp], #4
+ 2643              		.section	.text.llcc68_set_trimming_capacitor_values,"ax",%progbits
+ 2644              		.align	1
+ 2645              		.global	llcc68_set_trimming_capacitor_values
+ 2646              		.syntax unified
+ 2647              		.thumb
+ 2648              		.thumb_func
+ 2650              	llcc68_set_trimming_capacitor_values:
+ 2651              		@ args = 0, pretend = 0, frame = 8
+ 2652              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2653 0000 00B5     		push	{lr}
+ 2654 0002 83B0     		sub	sp, sp, #12
+ 2655 0004 8DF80410 		strb	r1, [sp, #4]
+ 2656 0008 8DF80520 		strb	r2, [sp, #5]
+ 2657 000c 0223     		movs	r3, #2
+ 2658 000e 01AA     		add	r2, sp, #4
+ 2659 0010 40F61111 		movw	r1, #2321
+ 2660 0014 FFF7FEFF 		bl	llcc68_write_register
+ 2661 0018 03B0     		add	sp, sp, #12
+ 2662              		@ sp needed
+ 2663 001a 5DF804FB 		ldr	pc, [sp], #4
+ 2665              		.section	.text.llcc68_add_registers_to_retention_list,"ax",%progbits
+ 2666              		.align	1
+ 2667              		.global	llcc68_add_registers_to_retention_list
+ 2668              		.syntax unified
+ 2669              		.thumb
+ 2670              		.thumb_func
+ 2672              	llcc68_add_registers_to_retention_list:
+ 2673              		@ args = 0, pretend = 0, frame = 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 45
+
+
+ 2674              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2675 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 2676 0004 84B0     		sub	sp, sp, #16
+ 2677 0006 0646     		mov	r6, r0
+ 2678 0008 0C46     		mov	r4, r1
+ 2679 000a 1546     		mov	r5, r2
+ 2680 000c 0023     		movs	r3, #0
+ 2681 000e 0193     		str	r3, [sp, #4]
+ 2682 0010 0293     		str	r3, [sp, #8]
+ 2683 0012 8DF80C30 		strb	r3, [sp, #12]
+ 2684 0016 0923     		movs	r3, #9
+ 2685 0018 01AA     		add	r2, sp, #4
+ 2686 001a 40F29F21 		movw	r1, #671
+ 2687 001e FFF7FEFF 		bl	llcc68_read_register
+ 2688 0022 D0BB     		cbnz	r0, .L309
+ 2689 0024 9DF80480 		ldrb	r8, [sp, #4]	@ zero_extendqisi2
+ 2690 0028 0746     		mov	r7, r0
+ 2691 002a 18E0     		b	.L310
+ 2692              	.L320:
+ 2693 002c 0123     		movs	r3, #1
+ 2694              	.L311:
+ 2695 002e A3B1     		cbz	r3, .L313
+ 2696 0030 032A     		cmp	r2, #3
+ 2697 0032 3DD8     		bhi	.L316
+ 2698 0034 34F817C0 		ldrh	ip, [r4, r7, lsl #1]
+ 2699 0038 0DF10501 		add	r1, sp, #5
+ 2700 003c 4FEA1C23 		lsr	r3, ip, #8
+ 2701 0040 01F81230 		strb	r3, [r1, r2, lsl #1]
+ 2702 0044 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 2703 0048 5B00     		lsls	r3, r3, #1
+ 2704 004a 0133     		adds	r3, r3, #1
+ 2705 004c 01F803C0 		strb	ip, [r1, r3]
+ 2706 0050 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 2707 0054 0133     		adds	r3, r3, #1
+ 2708 0056 8DF80430 		strb	r3, [sp, #4]
+ 2709              	.L313:
+ 2710 005a 0137     		adds	r7, r7, #1
+ 2711 005c FFB2     		uxtb	r7, r7
+ 2712              	.L310:
+ 2713 005e AF42     		cmp	r7, r5
+ 2714 0060 17D2     		bcs	.L319
+ 2715 0062 0346     		mov	r3, r0
+ 2716              	.L314:
+ 2717 0064 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 2718 0068 9A42     		cmp	r2, r3
+ 2719 006a DFD9     		bls	.L320
+ 2720 006c 34F81710 		ldrh	r1, [r4, r7, lsl #1]
+ 2721 0070 0DF1100C 		add	ip, sp, #16
+ 2722 0074 0CEB430C 		add	ip, ip, r3, lsl #1
+ 2723 0078 1CF80BEC 		ldrb	lr, [ip, #-11]	@ zero_extendqisi2
+ 2724 007c 1CF80ACC 		ldrb	ip, [ip, #-10]	@ zero_extendqisi2
+ 2725 0080 0CEB0E2C 		add	ip, ip, lr, lsl #8
+ 2726 0084 6145     		cmp	r1, ip
+ 2727 0086 02D0     		beq	.L315
+ 2728 0088 0133     		adds	r3, r3, #1
+ 2729 008a DBB2     		uxtb	r3, r3
+ 2730 008c EAE7     		b	.L314
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 46
+
+
+ 2731              	.L315:
+ 2732 008e 0023     		movs	r3, #0
+ 2733 0090 CDE7     		b	.L311
+ 2734              	.L319:
+ 2735 0092 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 2736 0096 4345     		cmp	r3, r8
+ 2737 0098 02D1     		bne	.L321
+ 2738              	.L309:
+ 2739 009a 04B0     		add	sp, sp, #16
+ 2740              		@ sp needed
+ 2741 009c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 2742              	.L321:
+ 2743 00a0 0923     		movs	r3, #9
+ 2744 00a2 01AA     		add	r2, sp, #4
+ 2745 00a4 40F29F21 		movw	r1, #671
+ 2746 00a8 3046     		mov	r0, r6
+ 2747 00aa FFF7FEFF 		bl	llcc68_write_register
+ 2748 00ae F4E7     		b	.L309
+ 2749              	.L316:
+ 2750 00b0 0320     		movs	r0, #3
+ 2751 00b2 F2E7     		b	.L309
+ 2753              		.section	.text.llcc68_init_retention_list,"ax",%progbits
+ 2754              		.align	1
+ 2755              		.global	llcc68_init_retention_list
+ 2756              		.syntax unified
+ 2757              		.thumb
+ 2758              		.thumb_func
+ 2760              	llcc68_init_retention_list:
+ 2761              		@ args = 0, pretend = 0, frame = 8
+ 2762              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2763 0000 00B5     		push	{lr}
+ 2764 0002 83B0     		sub	sp, sp, #12
+ 2765 0004 8446     		mov	ip, r0
+ 2766 0006 074B     		ldr	r3, .L324
+ 2767 0008 93E80300 		ldm	r3, {r0, r1}
+ 2768 000c 0090     		str	r0, [sp]
+ 2769 000e ADF80410 		strh	r1, [sp, #4]	@ movhi
+ 2770 0012 0322     		movs	r2, #3
+ 2771 0014 6946     		mov	r1, sp
+ 2772 0016 6046     		mov	r0, ip
+ 2773 0018 FFF7FEFF 		bl	llcc68_add_registers_to_retention_list
+ 2774 001c 03B0     		add	sp, sp, #12
+ 2775              		@ sp needed
+ 2776 001e 5DF804FB 		ldr	pc, [sp], #4
+ 2777              	.L325:
+ 2778 0022 00BF     		.align	2
+ 2779              	.L324:
+ 2780 0024 04000000 		.word	.LANCHOR0+4
+ 2782              		.section	.text.llcc68_get_lora_params_from_header,"ax",%progbits
+ 2783              		.align	1
+ 2784              		.global	llcc68_get_lora_params_from_header
+ 2785              		.syntax unified
+ 2786              		.thumb
+ 2787              		.thumb_func
+ 2789              	llcc68_get_lora_params_from_header:
+ 2790              		@ args = 0, pretend = 0, frame = 8
+ 2791              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 47
+
+
+ 2792 0000 70B5     		push	{r4, r5, r6, lr}
+ 2793 0002 82B0     		sub	sp, sp, #8
+ 2794 0004 0446     		mov	r4, r0
+ 2795 0006 0E46     		mov	r6, r1
+ 2796 0008 1546     		mov	r5, r2
+ 2797 000a 0023     		movs	r3, #0
+ 2798 000c 8DF80730 		strb	r3, [sp, #7]
+ 2799 0010 8DF80630 		strb	r3, [sp, #6]
+ 2800 0014 0123     		movs	r3, #1
+ 2801 0016 0DF10702 		add	r2, sp, #7
+ 2802 001a 40F24971 		movw	r1, #1865
+ 2803 001e FFF7FEFF 		bl	llcc68_read_register
+ 2804 0022 08B1     		cbz	r0, .L329
+ 2805              	.L327:
+ 2806 0024 02B0     		add	sp, sp, #8
+ 2807              		@ sp needed
+ 2808 0026 70BD     		pop	{r4, r5, r6, pc}
+ 2809              	.L329:
+ 2810 0028 0123     		movs	r3, #1
+ 2811 002a 0DF10602 		add	r2, sp, #6
+ 2812 002e 40F26B71 		movw	r1, #1899
+ 2813 0032 2046     		mov	r0, r4
+ 2814 0034 FFF7FEFF 		bl	llcc68_read_register
+ 2815 0038 0028     		cmp	r0, #0
+ 2816 003a F3D1     		bne	.L327
+ 2817 003c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 2818 0040 C3F30213 		ubfx	r3, r3, #4, #3
+ 2819 0044 3370     		strb	r3, [r6]
+ 2820 0046 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 2821 004a C3F30013 		ubfx	r3, r3, #4, #1
+ 2822 004e 2B70     		strb	r3, [r5]
+ 2823 0050 E8E7     		b	.L327
+ 2825              		.global	gfsk_bw
+ 2826              		.section	.data.gfsk_bw,"aw"
+ 2827              		.align	2
+ 2830              	gfsk_bw:
+ 2831 0000 C0120000 		.word	4800
+ 2832 0004 1F       		.byte	31
+ 2833 0005 000000   		.space	3
+ 2834 0008 A8160000 		.word	5800
+ 2835 000c 17       		.byte	23
+ 2836 000d 000000   		.space	3
+ 2837 0010 841C0000 		.word	7300
+ 2838 0014 0F       		.byte	15
+ 2839 0015 000000   		.space	3
+ 2840 0018 E4250000 		.word	9700
+ 2841 001c 1E       		.byte	30
+ 2842 001d 000000   		.space	3
+ 2843 0020 B42D0000 		.word	11700
+ 2844 0024 16       		.byte	22
+ 2845 0025 000000   		.space	3
+ 2846 0028 08390000 		.word	14600
+ 2847 002c 0E       		.byte	14
+ 2848 002d 000000   		.space	3
+ 2849 0030 2C4C0000 		.word	19500
+ 2850 0034 1D       		.byte	29
+ 2851 0035 000000   		.space	3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 48
+
+
+ 2852 0038 685B0000 		.word	23400
+ 2853 003c 15       		.byte	21
+ 2854 003d 000000   		.space	3
+ 2855 0040 74720000 		.word	29300
+ 2856 0044 0D       		.byte	13
+ 2857 0045 000000   		.space	3
+ 2858 0048 58980000 		.word	39000
+ 2859 004c 1C       		.byte	28
+ 2860 004d 000000   		.space	3
+ 2861 0050 34B70000 		.word	46900
+ 2862 0054 14       		.byte	20
+ 2863 0055 000000   		.space	3
+ 2864 0058 E8E40000 		.word	58600
+ 2865 005c 0C       		.byte	12
+ 2866 005d 000000   		.space	3
+ 2867 0060 78310100 		.word	78200
+ 2868 0064 1B       		.byte	27
+ 2869 0065 000000   		.space	3
+ 2870 0068 686E0100 		.word	93800
+ 2871 006c 13       		.byte	19
+ 2872 006d 000000   		.space	3
+ 2873 0070 34CA0100 		.word	117300
+ 2874 0074 0B       		.byte	11
+ 2875 0075 000000   		.space	3
+ 2876 0078 28620200 		.word	156200
+ 2877 007c 1A       		.byte	26
+ 2878 007d 000000   		.space	3
+ 2879 0080 40DB0200 		.word	187200
+ 2880 0084 12       		.byte	18
+ 2881 0085 000000   		.space	3
+ 2882 0088 3C930300 		.word	234300
+ 2883 008c 0A       		.byte	10
+ 2884 008d 000000   		.space	3
+ 2885 0090 C0C20400 		.word	312000
+ 2886 0094 19       		.byte	25
+ 2887 0095 000000   		.space	3
+ 2888 0098 60B30500 		.word	373600
+ 2889 009c 11       		.byte	17
+ 2890 009d 000000   		.space	3
+ 2891 00a0 38200700 		.word	467000
+ 2892 00a4 09       		.byte	9
+ 2893 00a5 000000   		.space	3
+ 2894              		.section	.rodata
+ 2895              		.align	2
+ 2896              		.set	.LANCHOR0,. + 0
+ 2897              	.LC1:
+ 2898 0000 070000   		.ascii	"\007\000\000"
+ 2899 0003 00       		.space	1
+ 2900              	.LC0:
+ 2901 0004 AC08     		.short	2220
+ 2902 0006 8908     		.short	2185
+ 2903 0008 3607     		.short	1846
+ 2904              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 49
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 llcc68.c
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:18     .text.llcc68_get_gfsk_crc_len_in_bytes:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:23     .text.llcc68_get_gfsk_crc_len_in_bytes:00000000 llcc68_get_gfsk_crc_len_in_bytes
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:31     .text.llcc68_get_gfsk_crc_len_in_bytes:00000008 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:53     .text.llcc68_hal_write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:59     .text.llcc68_hal_write:00000000 llcc68_hal_write
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:80     .text.llcc68_hal_read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:86     .text.llcc68_hal_read:00000000 llcc68_hal_read
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:107    .text.llcc68_hal_reset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:113    .text.llcc68_hal_reset:00000000 llcc68_hal_reset
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:128    .text.llcc68_hal_wakeup:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:134    .text.llcc68_hal_wakeup:00000000 llcc68_hal_wakeup
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:149    .text.llcc68_set_sleep:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:155    .text.llcc68_set_sleep:00000000 llcc68_set_sleep
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:173    .text.llcc68_set_standby:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:179    .text.llcc68_set_standby:00000000 llcc68_set_standby
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:197    .text.llcc68_set_fs:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:203    .text.llcc68_set_fs:00000000 llcc68_set_fs
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:220    .text.llcc68_set_tx_with_timeout_in_rtc_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:226    .text.llcc68_set_tx_with_timeout_in_rtc_step:00000000 llcc68_set_tx_with_timeout_in_rtc_step
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:248    .text.llcc68_set_rx_with_timeout_in_rtc_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:254    .text.llcc68_set_rx_with_timeout_in_rtc_step:00000000 llcc68_set_rx_with_timeout_in_rtc_step
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:276    .text.llcc68_stop_timer_on_preamble:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:282    .text.llcc68_stop_timer_on_preamble:00000000 llcc68_stop_timer_on_preamble
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:300    .text.llcc68_set_rx_duty_cycle_with_timings_in_rtc_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:306    .text.llcc68_set_rx_duty_cycle_with_timings_in_rtc_step:00000000 llcc68_set_rx_duty_cycle_with_timings_in_rtc_step
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:333    .text.llcc68_set_cad:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:339    .text.llcc68_set_cad:00000000 llcc68_set_cad
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:356    .text.llcc68_set_tx_cw:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:362    .text.llcc68_set_tx_cw:00000000 llcc68_set_tx_cw
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:379    .text.llcc68_set_tx_infinite_preamble:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:385    .text.llcc68_set_tx_infinite_preamble:00000000 llcc68_set_tx_infinite_preamble
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:402    .text.llcc68_set_reg_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:408    .text.llcc68_set_reg_mode:00000000 llcc68_set_reg_mode
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:426    .text.llcc68_cal:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:432    .text.llcc68_cal:00000000 llcc68_cal
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:450    .text.llcc68_cal_img:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:456    .text.llcc68_cal_img:00000000 llcc68_cal_img
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:475    .text.llcc68_cal_img_in_mhz:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:481    .text.llcc68_cal_img_in_mhz:00000000 llcc68_cal_img_in_mhz
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:492    .text.llcc68_set_pa_cfg:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:498    .text.llcc68_set_pa_cfg:00000000 llcc68_set_pa_cfg
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:523    .text.llcc68_set_rx_tx_fallback_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:529    .text.llcc68_set_rx_tx_fallback_mode:00000000 llcc68_set_rx_tx_fallback_mode
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:547    .text.llcc68_write_register:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:553    .text.llcc68_write_register:00000000 llcc68_write_register
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:573    .text.llcc68_read_register:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:579    .text.llcc68_read_register:00000000 llcc68_read_register
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:601    .text.llcc68_tx_modulation_workaround:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:606    .text.llcc68_tx_modulation_workaround:00000000 llcc68_tx_modulation_workaround
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:650    .text.llcc68_write_buffer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:656    .text.llcc68_write_buffer:00000000 llcc68_write_buffer
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:674    .text.llcc68_read_buffer:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:680    .text.llcc68_read_buffer:00000000 llcc68_read_buffer
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:700    .text.llcc68_set_dio_irq_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:706    .text.llcc68_set_dio_irq_params:00000000 llcc68_set_dio_irq_params
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 50
+
+
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:736    .text.llcc68_get_irq_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:742    .text.llcc68_get_irq_status:00000000 llcc68_get_irq_status
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:768    .text.llcc68_clear_irq_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:774    .text.llcc68_clear_irq_status:00000000 llcc68_clear_irq_status
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:794    .text.llcc68_get_and_clear_irq_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:800    .text.llcc68_get_and_clear_irq_status:00000000 llcc68_get_and_clear_irq_status
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:829    .text.llcc68_set_dio2_as_rf_sw_ctrl:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:835    .text.llcc68_set_dio2_as_rf_sw_ctrl:00000000 llcc68_set_dio2_as_rf_sw_ctrl
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:853    .text.llcc68_set_dio3_as_tcxo_ctrl:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:859    .text.llcc68_set_dio3_as_tcxo_ctrl:00000000 llcc68_set_dio3_as_tcxo_ctrl
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:882    .text.llcc68_set_rf_freq_in_pll_steps:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:888    .text.llcc68_set_rf_freq_in_pll_steps:00000000 llcc68_set_rf_freq_in_pll_steps
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:912    .text.llcc68_set_pkt_type:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:918    .text.llcc68_set_pkt_type:00000000 llcc68_set_pkt_type
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:936    .text.llcc68_get_pkt_type:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:942    .text.llcc68_get_pkt_type:00000000 llcc68_get_pkt_type
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:960    .text.llcc68_set_tx_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:966    .text.llcc68_set_tx_params:00000000 llcc68_set_tx_params
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:985    .text.llcc68_set_bpsk_mod_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:991    .text.llcc68_set_bpsk_mod_params:00000000 llcc68_set_bpsk_mod_params
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1019   .text.llcc68_set_bpsk_mod_params:00000040 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1022   .text.llcc68_set_lora_mod_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1028   .text.llcc68_set_lora_mod_params:00000000 llcc68_set_lora_mod_params
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1086   .text.llcc68_set_gfsk_pkt_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1092   .text.llcc68_set_gfsk_pkt_params:00000000 llcc68_set_gfsk_pkt_params
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1127   .text.llcc68_set_bpsk_pkt_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1133   .text.llcc68_set_bpsk_pkt_params:00000000 llcc68_set_bpsk_pkt_params
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1175   .text.llcc68_set_lora_pkt_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1181   .text.llcc68_set_lora_pkt_params:00000000 llcc68_set_lora_pkt_params
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1253   .text.llcc68_set_gfsk_pkt_address:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1259   .text.llcc68_set_gfsk_pkt_address:00000000 llcc68_set_gfsk_pkt_address
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1275   .text.llcc68_set_cad_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1281   .text.llcc68_set_cad_params:00000000 llcc68_set_cad_params
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1312   .text.llcc68_set_buffer_base_address:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1318   .text.llcc68_set_buffer_base_address:00000000 llcc68_set_buffer_base_address
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1337   .text.llcc68_set_lora_symb_nb_timeout:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1343   .text.llcc68_set_lora_symb_nb_timeout:00000000 llcc68_set_lora_symb_nb_timeout
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1397   .text.llcc68_get_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1403   .text.llcc68_get_status:00000000 llcc68_get_status
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1430   .text.llcc68_get_rx_buffer_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1436   .text.llcc68_get_rx_buffer_status:00000000 llcc68_get_rx_buffer_status
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1462   .text.llcc68_get_gfsk_pkt_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1468   .text.llcc68_get_gfsk_pkt_status:00000000 llcc68_get_gfsk_pkt_status
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1513   .text.llcc68_get_lora_pkt_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1519   .text.llcc68_get_lora_pkt_status:00000000 llcc68_get_lora_pkt_status
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1555   .text.llcc68_get_rssi_inst:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1561   .text.llcc68_get_rssi_inst:00000000 llcc68_get_rssi_inst
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1588   .text.llcc68_get_gfsk_stats:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1594   .text.llcc68_get_gfsk_stats:00000000 llcc68_get_gfsk_stats
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1630   .text.llcc68_get_lora_stats:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1636   .text.llcc68_get_lora_stats:00000000 llcc68_get_lora_stats
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1672   .text.llcc68_reset_stats:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1678   .text.llcc68_reset_stats:00000000 llcc68_reset_stats
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1695   .text.llcc68_reset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1701   .text.llcc68_reset:00000000 llcc68_reset
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1709   .text.llcc68_wakeup:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1715   .text.llcc68_wakeup:00000000 llcc68_wakeup
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 51
+
+
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1723   .text.llcc68_get_device_errors:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1729   .text.llcc68_get_device_errors:00000000 llcc68_get_device_errors
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1755   .text.llcc68_clear_device_errors:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1761   .text.llcc68_clear_device_errors:00000000 llcc68_clear_device_errors
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1782   .text.llcc68_clear_device_errors:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1785   .text.llcc68_get_gfsk_bw_param:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1791   .text.llcc68_get_gfsk_bw_param:00000000 llcc68_get_gfsk_bw_param
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1824   .text.llcc68_get_gfsk_bw_param:00000030 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2830   .data.gfsk_bw:00000000 gfsk_bw
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1827   .text.llcc68_get_lora_bw_in_hz:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1833   .text.llcc68_get_lora_bw_in_hz:00000000 llcc68_get_lora_bw_in_hz
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1841   .text.llcc68_get_lora_bw_in_hz:00000008 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1889   .text.llcc68_get_lora_bw_in_hz:00000050 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1894   .text.llcc68_get_lora_time_on_air_numerator:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1900   .text.llcc68_get_lora_time_on_air_numerator:00000000 llcc68_get_lora_time_on_air_numerator
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1959   .text.llcc68_get_lora_time_on_air_in_ms:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1965   .text.llcc68_get_lora_time_on_air_in_ms:00000000 llcc68_get_lora_time_on_air_in_ms
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1981   .text.llcc68_get_gfsk_time_on_air_numerator:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1987   .text.llcc68_get_gfsk_time_on_air_numerator:00000000 llcc68_get_gfsk_time_on_air_numerator
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2015   .text.llcc68_get_gfsk_time_on_air_in_ms:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2021   .text.llcc68_get_gfsk_time_on_air_in_ms:00000000 llcc68_get_gfsk_time_on_air_in_ms
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2035   .text.llcc68_get_random_numbers:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2041   .text.llcc68_get_random_numbers:00000000 llcc68_get_random_numbers
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2139   .text.llcc68_convert_freq_in_hz_to_pll_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2145   .text.llcc68_convert_freq_in_hz_to_pll_step:00000000 llcc68_convert_freq_in_hz_to_pll_step
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2163   .text.llcc68_convert_freq_in_hz_to_pll_step:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2166   .text.llcc68_set_rf_freq:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2172   .text.llcc68_set_rf_freq:00000000 llcc68_set_rf_freq
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2185   .text.llcc68_set_gfsk_mod_params:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2191   .text.llcc68_set_gfsk_mod_params:00000000 llcc68_set_gfsk_mod_params
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2239   .text.llcc68_set_gfsk_mod_params:00000070 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2242   .text.llcc68_convert_timeout_in_ms_to_rtc_step:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2248   .text.llcc68_convert_timeout_in_ms_to_rtc_step:00000000 llcc68_convert_timeout_in_ms_to_rtc_step
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2256   .text.llcc68_set_tx:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2262   .text.llcc68_set_tx:00000000 llcc68_set_tx
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2280   .text.llcc68_set_rx:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2286   .text.llcc68_set_rx:00000000 llcc68_set_rx
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2304   .text.llcc68_set_rx_duty_cycle:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2310   .text.llcc68_set_rx_duty_cycle:00000000 llcc68_set_rx_duty_cycle
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2328   .text.llcc68_cfg_rx_boosted:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2334   .text.llcc68_cfg_rx_boosted:00000000 llcc68_cfg_rx_boosted
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2360   .text.llcc68_set_gfsk_sync_word:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2366   .text.llcc68_set_gfsk_sync_word:00000000 llcc68_set_gfsk_sync_word
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2398   .text.llcc68_set_lora_sync_word:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2404   .text.llcc68_set_lora_sync_word:00000000 llcc68_set_lora_sync_word
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2440   .text.llcc68_set_gfsk_crc_seed:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2446   .text.llcc68_set_gfsk_crc_seed:00000000 llcc68_set_gfsk_crc_seed
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2463   .text.llcc68_set_gfsk_crc_polynomial:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2469   .text.llcc68_set_gfsk_crc_polynomial:00000000 llcc68_set_gfsk_crc_polynomial
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2486   .text.llcc68_set_gfsk_whitening_seed:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2492   .text.llcc68_set_gfsk_whitening_seed:00000000 llcc68_set_gfsk_whitening_seed
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2532   .text.llcc68_cfg_tx_clamp:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2538   .text.llcc68_cfg_tx_clamp:00000000 llcc68_cfg_tx_clamp
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2567   .text.llcc68_stop_rtc:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2573   .text.llcc68_stop_rtc:00000000 llcc68_stop_rtc
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2609   .text.llcc68_handle_rx_done:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2615   .text.llcc68_handle_rx_done:00000000 llcc68_handle_rx_done
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s 			page 52
+
+
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2623   .text.llcc68_set_ocp_value:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2629   .text.llcc68_set_ocp_value:00000000 llcc68_set_ocp_value
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2644   .text.llcc68_set_trimming_capacitor_values:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2650   .text.llcc68_set_trimming_capacitor_values:00000000 llcc68_set_trimming_capacitor_values
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2666   .text.llcc68_add_registers_to_retention_list:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2672   .text.llcc68_add_registers_to_retention_list:00000000 llcc68_add_registers_to_retention_list
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2754   .text.llcc68_init_retention_list:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2760   .text.llcc68_init_retention_list:00000000 llcc68_init_retention_list
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2780   .text.llcc68_init_retention_list:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2783   .text.llcc68_get_lora_params_from_header:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2789   .text.llcc68_get_lora_params_from_header:00000000 llcc68_get_lora_params_from_header
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2827   .data.gfsk_bw:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:2895   .rodata:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:38     .text.llcc68_get_gfsk_crc_len_in_bytes:0000000f $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:38     .text.llcc68_get_gfsk_crc_len_in_bytes:00000010 $t
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1852   .text.llcc68_get_lora_bw_in_hz:00000013 $d
+C:\Users\Nathan\AppData\Local\Temp\ccbMfli9.s:1852   .text.llcc68_get_lora_bw_in_hz:00000014 $t
+
+NO UNDEFINED SYMBOLS

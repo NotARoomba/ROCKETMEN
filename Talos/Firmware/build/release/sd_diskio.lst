@@ -1,0 +1,256 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"sd_diskio.c"
+  16              		.text
+  17              		.section	.text.SD_CheckStatus,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	SD_CheckStatus:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 074B     		ldr	r3, .L4
+  28 0004 0122     		movs	r2, #1
+  29 0006 1A70     		strb	r2, [r3]
+  30 0008 FFF7FEFF 		bl	BSP_SD_GetCardState
+  31 000c 20B9     		cbnz	r0, .L2
+  32 000e 044A     		ldr	r2, .L4
+  33 0010 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  34 0012 03F0FE03 		and	r3, r3, #254
+  35 0016 1370     		strb	r3, [r2]
+  36              	.L2:
+  37 0018 014B     		ldr	r3, .L4
+  38 001a 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  39 001c 08BD     		pop	{r3, pc}
+  40              	.L5:
+  41 001e 00BF     		.align	2
+  42              	.L4:
+  43 0020 00000000 		.word	Stat
+  45              		.section	.text.SD_initialize,"ax",%progbits
+  46              		.align	1
+  47              		.global	SD_initialize
+  48              		.syntax unified
+  49              		.thumb
+  50              		.thumb_func
+  52              	SD_initialize:
+  53              		@ args = 0, pretend = 0, frame = 0
+  54              		@ frame_needed = 0, uses_anonymous_args = 0
+  55 0000 10B5     		push	{r4, lr}
+  56 0002 0446     		mov	r4, r0
+  57 0004 074B     		ldr	r3, .L10
+  58 0006 0122     		movs	r2, #1
+  59 0008 1A70     		strb	r2, [r3]
+  60 000a FFF7FEFF 		bl	BSP_SD_Init
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s 			page 2
+
+
+  61 000e 10B1     		cbz	r0, .L9
+  62              	.L7:
+  63 0010 044B     		ldr	r3, .L10
+  64 0012 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  65 0014 10BD     		pop	{r4, pc}
+  66              	.L9:
+  67 0016 2046     		mov	r0, r4
+  68 0018 FFF7FEFF 		bl	SD_CheckStatus
+  69 001c 014B     		ldr	r3, .L10
+  70 001e 1870     		strb	r0, [r3]
+  71 0020 F6E7     		b	.L7
+  72              	.L11:
+  73 0022 00BF     		.align	2
+  74              	.L10:
+  75 0024 00000000 		.word	Stat
+  77              		.section	.text.SD_status,"ax",%progbits
+  78              		.align	1
+  79              		.global	SD_status
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  84              	SD_status:
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  87 0000 08B5     		push	{r3, lr}
+  88 0002 FFF7FEFF 		bl	SD_CheckStatus
+  89 0006 08BD     		pop	{r3, pc}
+  91              		.section	.text.SD_read,"ax",%progbits
+  92              		.align	1
+  93              		.global	SD_read
+  94              		.syntax unified
+  95              		.thumb
+  96              		.thumb_func
+  98              	SD_read:
+  99              		@ args = 0, pretend = 0, frame = 0
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101 0000 08B5     		push	{r3, lr}
+ 102 0002 0846     		mov	r0, r1
+ 103 0004 1146     		mov	r1, r2
+ 104 0006 1A46     		mov	r2, r3
+ 105 0008 4FF0FF33 		mov	r3, #-1
+ 106 000c FFF7FEFF 		bl	BSP_SD_ReadBlocks
+ 107 0010 30B9     		cbnz	r0, .L17
+ 108              	.L16:
+ 109 0012 FFF7FEFF 		bl	BSP_SD_GetCardState
+ 110 0016 0346     		mov	r3, r0
+ 111 0018 0028     		cmp	r0, #0
+ 112 001a FAD1     		bne	.L16
+ 113              	.L15:
+ 114 001c 1846     		mov	r0, r3
+ 115 001e 08BD     		pop	{r3, pc}
+ 116              	.L17:
+ 117 0020 0123     		movs	r3, #1
+ 118 0022 FBE7     		b	.L15
+ 120              		.section	.text.SD_write,"ax",%progbits
+ 121              		.align	1
+ 122              		.global	SD_write
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s 			page 3
+
+
+ 123              		.syntax unified
+ 124              		.thumb
+ 125              		.thumb_func
+ 127              	SD_write:
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130 0000 08B5     		push	{r3, lr}
+ 131 0002 0846     		mov	r0, r1
+ 132 0004 1146     		mov	r1, r2
+ 133 0006 1A46     		mov	r2, r3
+ 134 0008 4FF0FF33 		mov	r3, #-1
+ 135 000c FFF7FEFF 		bl	BSP_SD_WriteBlocks
+ 136 0010 30B9     		cbnz	r0, .L22
+ 137              	.L21:
+ 138 0012 FFF7FEFF 		bl	BSP_SD_GetCardState
+ 139 0016 0346     		mov	r3, r0
+ 140 0018 0028     		cmp	r0, #0
+ 141 001a FAD1     		bne	.L21
+ 142              	.L20:
+ 143 001c 1846     		mov	r0, r3
+ 144 001e 08BD     		pop	{r3, pc}
+ 145              	.L22:
+ 146 0020 0123     		movs	r3, #1
+ 147 0022 FBE7     		b	.L20
+ 149              		.section	.text.SD_ioctl,"ax",%progbits
+ 150              		.align	1
+ 151              		.global	SD_ioctl
+ 152              		.syntax unified
+ 153              		.thumb
+ 154              		.thumb_func
+ 156              	SD_ioctl:
+ 157              		@ args = 0, pretend = 0, frame = 32
+ 158              		@ frame_needed = 0, uses_anonymous_args = 0
+ 159 0000 30B5     		push	{r4, r5, lr}
+ 160 0002 89B0     		sub	sp, sp, #36
+ 161 0004 134B     		ldr	r3, .L34
+ 162 0006 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 163 0008 10F00104 		ands	r4, r0, #1
+ 164 000c 1BD1     		bne	.L31
+ 165 000e 1546     		mov	r5, r2
+ 166 0010 0329     		cmp	r1, #3
+ 167 0012 1CD8     		bhi	.L32
+ 168 0014 DFE801F0 		tbb	[pc, r1]
+ 169              	.L27:
+ 170 0018 02       		.byte	(.L30-.L27)/2
+ 171 0019 04       		.byte	(.L29-.L27)/2
+ 172 001a 0A       		.byte	(.L28-.L27)/2
+ 173 001b 10       		.byte	(.L26-.L27)/2
+ 174              		.p2align 1
+ 175              	.L30:
+ 176 001c 0C46     		mov	r4, r1
+ 177 001e 13E0     		b	.L25
+ 178              	.L29:
+ 179 0020 6846     		mov	r0, sp
+ 180 0022 FFF7FEFF 		bl	BSP_SD_GetCardInfo
+ 181 0026 069B     		ldr	r3, [sp, #24]
+ 182 0028 2B60     		str	r3, [r5]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s 			page 4
+
+
+ 183 002a 0DE0     		b	.L25
+ 184              	.L28:
+ 185 002c 6846     		mov	r0, sp
+ 186 002e FFF7FEFF 		bl	BSP_SD_GetCardInfo
+ 187 0032 079B     		ldr	r3, [sp, #28]
+ 188 0034 2B80     		strh	r3, [r5]	@ movhi
+ 189 0036 07E0     		b	.L25
+ 190              	.L26:
+ 191 0038 6846     		mov	r0, sp
+ 192 003a FFF7FEFF 		bl	BSP_SD_GetCardInfo
+ 193 003e 079B     		ldr	r3, [sp, #28]
+ 194 0040 5B0A     		lsrs	r3, r3, #9
+ 195 0042 2B60     		str	r3, [r5]
+ 196 0044 00E0     		b	.L25
+ 197              	.L31:
+ 198 0046 0324     		movs	r4, #3
+ 199              	.L25:
+ 200 0048 2046     		mov	r0, r4
+ 201 004a 09B0     		add	sp, sp, #36
+ 202              		@ sp needed
+ 203 004c 30BD     		pop	{r4, r5, pc}
+ 204              	.L32:
+ 205 004e 0424     		movs	r4, #4
+ 206 0050 FAE7     		b	.L25
+ 207              	.L35:
+ 208 0052 00BF     		.align	2
+ 209              	.L34:
+ 210 0054 00000000 		.word	Stat
+ 212              		.global	SD_Driver
+ 213              		.section	.rodata.SD_Driver,"a"
+ 214              		.align	2
+ 217              	SD_Driver:
+ 218 0000 00000000 		.word	SD_initialize
+ 219 0004 00000000 		.word	SD_status
+ 220 0008 00000000 		.word	SD_read
+ 221 000c 00000000 		.word	SD_write
+ 222 0010 00000000 		.word	SD_ioctl
+ 223              		.section	.data.Stat,"aw"
+ 226              	Stat:
+ 227 0000 01       		.byte	1
+ 228              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 sd_diskio.c
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:18     .text.SD_CheckStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:23     .text.SD_CheckStatus:00000000 SD_CheckStatus
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:43     .text.SD_CheckStatus:00000020 $d
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:226    .data.Stat:00000000 Stat
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:46     .text.SD_initialize:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:52     .text.SD_initialize:00000000 SD_initialize
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:75     .text.SD_initialize:00000024 $d
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:78     .text.SD_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:84     .text.SD_status:00000000 SD_status
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:92     .text.SD_read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:98     .text.SD_read:00000000 SD_read
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:121    .text.SD_write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:127    .text.SD_write:00000000 SD_write
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:150    .text.SD_ioctl:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:156    .text.SD_ioctl:00000000 SD_ioctl
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:170    .text.SD_ioctl:00000018 $d
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:174    .text.SD_ioctl:0000001c $t
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:210    .text.SD_ioctl:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:217    .rodata.SD_Driver:00000000 SD_Driver
+C:\Users\Nathan\AppData\Local\Temp\ccddCd6d.s:214    .rodata.SD_Driver:00000000 $d
+
+UNDEFINED SYMBOLS
+BSP_SD_GetCardState
+BSP_SD_Init
+BSP_SD_ReadBlocks
+BSP_SD_WriteBlocks
+BSP_SD_GetCardInfo

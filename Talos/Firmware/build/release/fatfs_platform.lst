@@ -1,0 +1,55 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnEYgY7.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"fatfs_platform.c"
+  16              		.text
+  17              		.section	.text.BSP_PlatformIsDetected,"ax",%progbits
+  18              		.align	1
+  19              		.global	BSP_PlatformIsDetected
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	BSP_PlatformIsDetected:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 08B5     		push	{r3, lr}
+  28 0002 0221     		movs	r1, #2
+  29 0004 0348     		ldr	r0, .L5
+  30 0006 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  31 000a 08B9     		cbnz	r0, .L3
+  32 000c 0120     		movs	r0, #1
+  33              	.L2:
+  34 000e 08BD     		pop	{r3, pc}
+  35              	.L3:
+  36 0010 0020     		movs	r0, #0
+  37 0012 FCE7     		b	.L2
+  38              	.L6:
+  39              		.align	2
+  40              	.L5:
+  41 0014 00000240 		.word	1073872896
+  43              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccnEYgY7.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fatfs_platform.c
+C:\Users\Nathan\AppData\Local\Temp\ccnEYgY7.s:18     .text.BSP_PlatformIsDetected:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccnEYgY7.s:24     .text.BSP_PlatformIsDetected:00000000 BSP_PlatformIsDetected
+C:\Users\Nathan\AppData\Local\Temp\ccnEYgY7.s:41     .text.BSP_PlatformIsDetected:00000014 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin

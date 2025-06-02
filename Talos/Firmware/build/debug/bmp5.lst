@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
   28:Drivers/BMP580/Src/bmp5.c **** * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
   29:Drivers/BMP580/Src/bmp5.c **** * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
   30:Drivers/BMP580/Src/bmp5.c **** * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 2
 
 
   31:Drivers/BMP580/Src/bmp5.c **** * POSSIBILITY OF SUCH DAMAGE.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
   85:Drivers/BMP580/Src/bmp5.c ****  * @retval 0 -> Success
   86:Drivers/BMP580/Src/bmp5.c ****  * @retval <0 -> Fail
   87:Drivers/BMP580/Src/bmp5.c ****  */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 3
 
 
   88:Drivers/BMP580/Src/bmp5.c **** static int8_t power_up_check(struct bmp5_dev *dev);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  142:Drivers/BMP580/Src/bmp5.c ****  * @param[in] base          : Base for power calculation.
  143:Drivers/BMP580/Src/bmp5.c ****  * @param[in] resolution    : Exponent for power calculation.
  144:Drivers/BMP580/Src/bmp5.c ****  *
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 4
 
 
  145:Drivers/BMP580/Src/bmp5.c ****  * @return the calculated power
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  199:Drivers/BMP580/Src/bmp5.c **** */
  200:Drivers/BMP580/Src/bmp5.c **** static int8_t unpack_sensor_data(struct bmp5_sensor_data *sensor_data,
  201:Drivers/BMP580/Src/bmp5.c ****                                  uint16_t *data_index,
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 5
 
 
  202:Drivers/BMP580/Src/bmp5.c ****                                  const struct bmp5_fifo *fifo);
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  256:Drivers/BMP580/Src/bmp5.c ****  * @param[in] dev              : Structure instance of bmp5_dev.
  257:Drivers/BMP580/Src/bmp5.c ****  *
  258:Drivers/BMP580/Src/bmp5.c ****  * @return Result of API execution status
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 6
 
 
  259:Drivers/BMP580/Src/bmp5.c ****  * @retval 0 -> Success
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  313:Drivers/BMP580/Src/bmp5.c ****             rslt = bmp5_get_regs(BMP5_REG_CHIP_ID, &chip_id, 1, dev);
  314:Drivers/BMP580/Src/bmp5.c **** 
  315:Drivers/BMP580/Src/bmp5.c ****             if (rslt == BMP5_OK)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 7
 
 
  316:Drivers/BMP580/Src/bmp5.c ****             {
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  370:Drivers/BMP580/Src/bmp5.c **** 
  371:Drivers/BMP580/Src/bmp5.c ****     return rslt;
  372:Drivers/BMP580/Src/bmp5.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 8
 
 
  373:Drivers/BMP580/Src/bmp5.c **** 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  427:Drivers/BMP580/Src/bmp5.c **** 
  428:Drivers/BMP580/Src/bmp5.c ****     /* Reset the device */
  429:Drivers/BMP580/Src/bmp5.c ****     rslt = bmp5_set_regs(BMP5_REG_CMD, &data, 1, dev);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 9
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 9
 
 
  430:Drivers/BMP580/Src/bmp5.c **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  484:Drivers/BMP580/Src/bmp5.c **** 
  485:Drivers/BMP580/Src/bmp5.c **** /*!
  486:Drivers/BMP580/Src/bmp5.c ****  *  @brief This API is used to get powermode of the sensor.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 10
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 10
 
 
  487:Drivers/BMP580/Src/bmp5.c ****  */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  541:Drivers/BMP580/Src/bmp5.c ****     else
  542:Drivers/BMP580/Src/bmp5.c ****     {
  543:Drivers/BMP580/Src/bmp5.c ****         rslt = BMP5_E_NULL_PTR;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 11
 
 
  544:Drivers/BMP580/Src/bmp5.c ****     }
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  598:Drivers/BMP580/Src/bmp5.c ****                 default:
  599:Drivers/BMP580/Src/bmp5.c ****                     rslt = BMP5_E_INVALID_POWERMODE;
  600:Drivers/BMP580/Src/bmp5.c ****                     break;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 12
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 12
 
 
  601:Drivers/BMP580/Src/bmp5.c ****             }
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  655:Drivers/BMP580/Src/bmp5.c **** #endif
  656:Drivers/BMP580/Src/bmp5.c ****         }
  657:Drivers/BMP580/Src/bmp5.c ****         else
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 13
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 13
 
 
  658:Drivers/BMP580/Src/bmp5.c ****         {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  712:Drivers/BMP580/Src/bmp5.c ****     /* Variable to get interrupt configuration */
  713:Drivers/BMP580/Src/bmp5.c ****     uint8_t reg_data = 0;
  714:Drivers/BMP580/Src/bmp5.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 14
 
 
  715:Drivers/BMP580/Src/bmp5.c ****     /* Variable to set interrupt source */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  769:Drivers/BMP580/Src/bmp5.c ****         if (rslt == BMP5_OK)
  770:Drivers/BMP580/Src/bmp5.c ****         {
  771:Drivers/BMP580/Src/bmp5.c ****             osr_odr_press_cfg->osr_t = BMP5_GET_BITS_POS_0(reg_data[0], BMP5_TEMP_OS);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 15
 
 
  772:Drivers/BMP580/Src/bmp5.c ****             osr_odr_press_cfg->osr_p = BMP5_GET_BITSLICE(reg_data[0], BMP5_PRESS_OS);
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  826:Drivers/BMP580/Src/bmp5.c ****         }
  827:Drivers/BMP580/Src/bmp5.c ****     }
  828:Drivers/BMP580/Src/bmp5.c ****     else
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 16
 
 
  829:Drivers/BMP580/Src/bmp5.c ****     {
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  883:Drivers/BMP580/Src/bmp5.c ****         /* If IIR value for both temperature and pressure is set a value other than bypass then pow
  884:Drivers/BMP580/Src/bmp5.c ****          * as standby mode, as IIR with value other than bypass without disabling deep-standby mode
  885:Drivers/BMP580/Src/bmp5.c ****          * invalid.
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 17
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 17
 
 
  886:Drivers/BMP580/Src/bmp5.c ****          */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  940:Drivers/BMP580/Src/bmp5.c ****     /* Variable to store the function result */
  941:Drivers/BMP580/Src/bmp5.c ****     int8_t rslt;
  942:Drivers/BMP580/Src/bmp5.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 18
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 18
 
 
  943:Drivers/BMP580/Src/bmp5.c ****     /* Variable to store effective OSR */
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  997:Drivers/BMP580/Src/bmp5.c ****             if (rslt == BMP5_OK)
  998:Drivers/BMP580/Src/bmp5.c ****             {
  999:Drivers/BMP580/Src/bmp5.c ****                 fifo->set_fifo_iir_t = BMP5_GET_BITSLICE(reg_data, BMP5_SET_FIFO_IIR_TEMP);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 19
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 19
 
 
 1000:Drivers/BMP580/Src/bmp5.c ****                 fifo->set_fifo_iir_p = BMP5_GET_BITSLICE(reg_data, BMP5_SET_FIFO_IIR_PRESS);
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1054:Drivers/BMP580/Src/bmp5.c ****                 {
 1055:Drivers/BMP580/Src/bmp5.c ****                     /* Set the fifo congifurations */
 1056:Drivers/BMP580/Src/bmp5.c ****                     rslt = bmp5_set_regs(BMP5_REG_FIFO_CONFIG, &reg_data, 1, dev);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 20
 
 
 1057:Drivers/BMP580/Src/bmp5.c ****                 }
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1111:Drivers/BMP580/Src/bmp5.c ****             {
 1112:Drivers/BMP580/Src/bmp5.c ****                 /* Maximum of 16 frames if both temperature and pressure is selected
 1113:Drivers/BMP580/Src/bmp5.c ****                  * and each frame comprises of 6 bytes of data
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 21
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 21
 
 
 1114:Drivers/BMP580/Src/bmp5.c ****                  */
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1168:Drivers/BMP580/Src/bmp5.c **** 
 1169:Drivers/BMP580/Src/bmp5.c ****     /* Proceed if null check is fine */
 1170:Drivers/BMP580/Src/bmp5.c ****     if ((fifo != NULL) && (sensor_data != NULL))
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 22
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 22
 
 
 1171:Drivers/BMP580/Src/bmp5.c ****     {
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1225:Drivers/BMP580/Src/bmp5.c ****  *  count limit and IIR.
 1226:Drivers/BMP580/Src/bmp5.c ****  */
 1227:Drivers/BMP580/Src/bmp5.c **** int8_t bmp5_set_oor_configuration(const struct bmp5_oor_press_configuration *oor_press_config, stru
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 23
 
 
 1228:Drivers/BMP580/Src/bmp5.c **** {
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1282:Drivers/BMP580/Src/bmp5.c ****     /* Proceed if null check is fine */
 1283:Drivers/BMP580/Src/bmp5.c ****     if ((rslt == BMP5_OK) && (nvm_data != NULL))
 1284:Drivers/BMP580/Src/bmp5.c ****     {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 24
 
 
 1285:Drivers/BMP580/Src/bmp5.c ****         rslt = nvm_write_addr(nvm_addr, BMP5_DISABLE, &curr_pwrmode, dev);
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1339:Drivers/BMP580/Src/bmp5.c ****     uint8_t nvmdata[2];
 1340:Drivers/BMP580/Src/bmp5.c **** 
 1341:Drivers/BMP580/Src/bmp5.c ****     /* Variable to store existing powermode */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 25
 
 
 1342:Drivers/BMP580/Src/bmp5.c ****     enum bmp5_powermode curr_pwrmode;
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1396:Drivers/BMP580/Src/bmp5.c ****             else
 1397:Drivers/BMP580/Src/bmp5.c ****             {
 1398:Drivers/BMP580/Src/bmp5.c ****                 rslt = BMP5_E_NVM_NOT_READY;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 26
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 26
 
 
 1399:Drivers/BMP580/Src/bmp5.c ****             }
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1432:Drivers/BMP580/Src/bmp5.c ****     {
 1433:Drivers/BMP580/Src/bmp5.c ****         /* Device structure pointer is not valid */
 1434:Drivers/BMP580/Src/bmp5.c ****         rslt = BMP5_E_NULL_PTR;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 27
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 27
 
 
 1435:Drivers/BMP580/Src/bmp5.c ****     }
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
   88              		.align	1
   89              		.syntax unified
   90              		.thumb
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 28
 
 
   91              		.thumb_func
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  125              		.loc 1 1464 1 is_stmt 0 view .LVU33
  126 0014 7047     		bx	lr
  127              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 29
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 29
 
 
  128              	.LFE25:
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1510:Drivers/BMP580/Src/bmp5.c **** {
 1511:Drivers/BMP580/Src/bmp5.c ****     int8_t rslt;
 1512:Drivers/BMP580/Src/bmp5.c ****     uint8_t fifo_frame_sel;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 30
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 30
 
 
 1513:Drivers/BMP580/Src/bmp5.c ****     struct bmp5_iir_config iir_cfg = { 0 };
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1567:Drivers/BMP580/Src/bmp5.c ****             {
 1568:Drivers/BMP580/Src/bmp5.c ****                 /* Set iir_t and iir_p as Bypass(0x00) */
 1569:Drivers/BMP580/Src/bmp5.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 31
 
 
 1570:Drivers/BMP580/Src/bmp5.c ****                 /* The register holds only iir_t and iir_p and the last 2 bits are reserved.
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1624:Drivers/BMP580/Src/bmp5.c **** static int8_t set_standby_mode(struct bmp5_dev *dev)
 1625:Drivers/BMP580/Src/bmp5.c **** {
 1626:Drivers/BMP580/Src/bmp5.c ****     int8_t rslt;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 32
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 32
 
 
 1627:Drivers/BMP580/Src/bmp5.c ****     enum bmp5_powermode pwrmode;
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1681:Drivers/BMP580/Src/bmp5.c ****         reg_data[0] = BMP5_SET_BITSLICE(reg_data[0], BMP5_IIR_FLUSH_FORCED_EN, iir_cfg->iir_flush_f
 1682:Drivers/BMP580/Src/bmp5.c **** 
 1683:Drivers/BMP580/Src/bmp5.c ****         reg_data[1] = iir_cfg->set_iir_t;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 33
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 33
 
 
 1684:Drivers/BMP580/Src/bmp5.c ****         reg_data[1] = BMP5_SET_BITSLICE(reg_data[1], BMP5_SET_IIR_PRESS, iir_cfg->set_iir_p);
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1738:Drivers/BMP580/Src/bmp5.c ****             /* Since fifo IIR works only in standby mode we are not re-writing to deepstandby mode
 1739:Drivers/BMP580/Src/bmp5.c ****              * as deep standby mode resets the fifo IIR settings to default
 1740:Drivers/BMP580/Src/bmp5.c ****              */
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 34
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 34
 
 
 1741:Drivers/BMP580/Src/bmp5.c ****             if ((curr_pwrmode != BMP5_POWERMODE_STANDBY) && (curr_pwrmode != BMP5_POWERMODE_DEEP_ST
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  161              		.loc 1 1756 12 view .LVU43
  162 0010 7047     		bx	lr
  163              	.LVL17:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 35
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 35
 
 
  164              	.L17:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  203              		.loc 1 1756 12 view .LVU59
  204 0040 7047     		bx	lr
  205              	.LVL21:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 36
 
 
  206              	.L14:
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  243              		.cfi_offset 4, -16
  244              		.cfi_offset 5, -12
  245              		.cfi_offset 6, -8
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 37
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 37
 
 
  246              		.cfi_offset 14, -4
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  286 0028 43EA0243 		orr	r3, r3, r2, lsl #16
  287              	.LVL30:
 1807:Drivers/BMP580/Src/bmp5.c ****                         fifo->data[*data_index]);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 38
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 38
 
 
 1808:Drivers/BMP580/Src/bmp5.c **** 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  323              		.loc 1 1802 64 discriminator 1 view .LVU96
  324 0052 7F2E     		cmp	r6, #127
  325 0054 E4D1     		bne	.L23
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 39
 
 
 1803:Drivers/BMP580/Src/bmp5.c ****             {
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  359 0072 0B44     		add	r3, r3, r1
  360 0074 9A78     		ldrb	r2, [r3, #2]	@ zero_extendqisi2
  361              	.LVL40:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 40
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 40
 
 
 1842:Drivers/BMP580/Src/bmp5.c ****                                (uint16_t)fifo->data[(*data_index) + 1] << 8 |
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  396 009c 0020     		movs	r0, #0
  397              		.loc 1 1859 29 view .LVU125
  398 009e 54E0     		b	.L25
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 41
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 41
 
 
  399              	.LVL46:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  436 00c2 25D0     		beq	.L33
  437              	.L28:
 1872:Drivers/BMP580/Src/bmp5.c ****                   (fifo->data[*data_index + 2] == BMP5_FIFO_EMPTY) &&
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 42
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 42
 
 
 1873:Drivers/BMP580/Src/bmp5.c ****                   (fifo->data[*data_index + 3] == BMP5_FIFO_EMPTY) &&
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1899:Drivers/BMP580/Src/bmp5.c **** 
 1900:Drivers/BMP580/Src/bmp5.c ****                 /* Division by 2^16(whose equivalent value is 65536) is performed to get temperatur
 1901:Drivers/BMP580/Src/bmp5.c ****                 sensor_data->temperature = (float)(raw_data_t / 65536.0);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 43
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 43
 
 
  464              		.loc 1 1901 17 is_stmt 1 view .LVU152
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  509              		.loc 1 1871 64 discriminator 1 view .LVU167
  510 0114 7F2E     		cmp	r6, #127
  511 0116 D5D1     		bne	.L28
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 44
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 44
 
 
 1872:Drivers/BMP580/Src/bmp5.c ****                   (fifo->data[*data_index + 3] == BMP5_FIFO_EMPTY) &&
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1917:Drivers/BMP580/Src/bmp5.c ****             break;
 1918:Drivers/BMP580/Src/bmp5.c ****         default:
 1919:Drivers/BMP580/Src/bmp5.c ****             sensor_data->pressure = 0.0;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 45
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 45
 
 
  548              		.loc 1 1919 13 is_stmt 1 view .LVU181
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  595              		.cfi_offset 14, -4
  596 0004 0646     		mov	r6, r0
  597 0006 0D46     		mov	r5, r1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 46
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 46
 
 
  598 0008 9046     		mov	r8, r2
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  636              	.LVL72:
  358:Drivers/BMP580/Src/bmp5.c **** 
  637              		.loc 1 358 24 discriminator 1 view .LVU208
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 47
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 47
 
 
  638 002c 2075     		strb	r0, [r4, #20]
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1938:Drivers/BMP580/Src/bmp5.c ****     rslt = bmp5_get_power_mode(&curr_pwrmode, dev);
 1939:Drivers/BMP580/Src/bmp5.c **** 
 1940:Drivers/BMP580/Src/bmp5.c ****     if (rslt == BMP5_OK)
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 48
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 48
 
 
 1941:Drivers/BMP580/Src/bmp5.c ****     {
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1995:Drivers/BMP580/Src/bmp5.c ****     return rslt;
 1996:Drivers/BMP580/Src/bmp5.c **** }
 1997:Drivers/BMP580/Src/bmp5.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 49
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 49
 
 
 1998:Drivers/BMP580/Src/bmp5.c **** /*!
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 2052:Drivers/BMP580/Src/bmp5.c ****             /* Write the NVM address */
 2053:Drivers/BMP580/Src/bmp5.c ****             reg_data = BMP5_SET_BITS_POS_0(reg_data, BMP5_NVM_ADDR, nvm_addr);
 2054:Drivers/BMP580/Src/bmp5.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 50
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 50
 
 
 2055:Drivers/BMP580/Src/bmp5.c ****             if (prog_en == BMP5_ENABLE)
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 2109:Drivers/BMP580/Src/bmp5.c ****     return rslt;
 2110:Drivers/BMP580/Src/bmp5.c **** }
 2111:Drivers/BMP580/Src/bmp5.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 51
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 51
 
 
 2112:Drivers/BMP580/Src/bmp5.c **** /*!
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  709              	.LVL82:
 2128:Drivers/BMP580/Src/bmp5.c **** }
  710              		.loc 1 2128 5 is_stmt 1 view .LVU227
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 52
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 52
 
 
  711              		.loc 1 2129 1 is_stmt 0 view .LVU228
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 2091:Drivers/BMP580/Src/bmp5.c ****             (!(nvm_status & BMP5_INT_NVM_CMD_ERR)))
  755              		.loc 1 2091 12 view .LVU241
  756 0016 03F00602 		and	r2, r3, #6
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 53
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 53
 
 
  757 001a 022A     		cmp	r2, #2
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  798              	.LVL90:
  799              	.L54:
  800              		.cfi_def_cfa_offset 24
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 54
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 54
 
 
  801              		.cfi_offset 4, -12
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  849              		.loc 1 384 12 view .LVU262
  850 000e FFF7FEFF 		bl	null_ptr_check
  851              	.LVL94:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 55
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 55
 
 
  387:Drivers/BMP580/Src/bmp5.c ****     {
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  891 003a 03E0     		b	.L63
  892              	.LVL99:
  893              	.L62:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 56
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 56
 
 
  398:Drivers/BMP580/Src/bmp5.c ****         {
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  934 0060 4FF0FF39 		mov	r9, #-1
  935 0064 F1E7     		b	.L61
  936              	.L66:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 57
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 57
 
 
  937 0066 4FF0FF39 		mov	r9, #-1
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1551:Drivers/BMP580/Src/bmp5.c ****     {
  983              		.loc 1 1551 8 is_stmt 0 view .LVU302
  984 0014 08B1     		cbz	r0, .L74
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 58
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 58
 
 
  985              	.LVL111:
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1026              	.LVL114:
 1564:Drivers/BMP580/Src/bmp5.c **** 
  1027              		.loc 1 1564 20 view .LVU316
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 59
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 59
 
 
  1028 004e FFF7FEFF 		bl	bmp5_get_regs
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1067 0084 C7D1     		bne	.L72
 1587:Drivers/BMP580/Src/bmp5.c **** 
  1068              		.loc 1 1587 17 is_stmt 1 view .LVU332
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 60
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 60
 
 
 1587:Drivers/BMP580/Src/bmp5.c **** 
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1114              		.loc 1 1606 5 view .LVU343
 1606:Drivers/BMP580/Src/bmp5.c **** 
  1115              		.loc 1 1606 12 is_stmt 0 view .LVU344
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 61
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 61
 
 
  1116 0008 0B46     		mov	r3, r1
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1157 003c 0122     		movs	r2, #1
  1158 003e 0DF10701 		add	r1, sp, #7
  1159 0042 3720     		movs	r0, #55
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 62
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 62
 
 
  1160 0044 FFF7FEFF 		bl	bmp5_set_regs
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1205              		.loc 1 1677 8 is_stmt 0 view .LVU368
  1206 0014 08B1     		cbz	r0, .L82
  1207              	.LVL133:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 63
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 63
 
 
  1208              	.L80:
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1249 0054 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
 1683:Drivers/BMP580/Src/bmp5.c ****         reg_data[1] = BMP5_SET_BITSLICE(reg_data[1], BMP5_SET_IIR_PRESS, iir_cfg->set_iir_p);
  1250              		.loc 1 1683 21 view .LVU382
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 64
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 64
 
 
  1251 0056 8DF80530 		strb	r3, [sp, #5]
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 2039:Drivers/BMP580/Src/bmp5.c ****     uint8_t nvm_status;
  1299              		.loc 1 2039 5 is_stmt 1 view .LVU391
 2040:Drivers/BMP580/Src/bmp5.c ****     uint8_t reg_data;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 65
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 65
 
 
  1300              		.loc 1 2040 5 view .LVU392
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1338              		.loc 1 2053 22 view .LVU408
  1339 003e 8DF80600 		strb	r0, [sp, #6]
 2055:Drivers/BMP580/Src/bmp5.c ****             {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 66
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 66
 
 
  1340              		.loc 1 2055 13 is_stmt 1 view .LVU409
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1382 0072 6FF00A00 		mvn	r0, #10
  1383 0076 F1E7     		b	.L84
  1384              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 67
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 67
 
 
  1385              	.LFE37:
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1430 0012 4FF0FF30 		mov	r0, #-1
  1431              	.LVL152:
  482:Drivers/BMP580/Src/bmp5.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 68
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 68
 
 
  1432              		.loc 1 482 5 is_stmt 1 view .LVU433
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1475 0012 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
 1480:Drivers/BMP580/Src/bmp5.c ****         {
  1476              		.loc 1 1480 12 view .LVU447
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 69
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 69
 
 
  1477 0016 03F00603 		and	r3, r3, #6
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1520              		.section	.text.bmp5_init,"ax",%progbits
  1521              		.align	1
  1522              		.global	bmp5_init
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 70
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 70
 
 
  1523              		.syntax unified
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  310:Drivers/BMP580/Src/bmp5.c ****         {
  1564              		.loc 1 310 9 is_stmt 1 view .LVU474
  310:Drivers/BMP580/Src/bmp5.c ****         {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 71
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 71
 
 
  1565              		.loc 1 310 12 is_stmt 0 view .LVU475
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1608 0040 0028     		cmp	r0, #0
  1609 0042 E9D1     		bne	.L104
  317:Drivers/BMP580/Src/bmp5.c ****                 {
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 72
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 72
 
 
  1610              		.loc 1 317 17 is_stmt 1 view .LVU487
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1652              		.thumb
  1653              		.thumb_func
  1655              	bmp5_soft_reset:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 73
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 73
 
 
  1656              	.LVL177:
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1695              		.loc 1 434 9 view .LVU515
  1696 0020 6168     		ldr	r1, [r4, #4]
  1697 0022 4FF4FA60 		mov	r0, #2000
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 74
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 74
 
 
  1698              	.LVL180:
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1739              		.loc 1 447 20 is_stmt 0 view .LVU528
  1740 0046 2146     		mov	r1, r4
  1741 0048 0DF10600 		add	r0, sp, #6
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 75
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 75
 
 
  1742 004c FFF7FEFF 		bl	bmp5_get_interrupt_status
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1788              		.loc 1 617 5 view .LVU538
  617:Drivers/BMP580/Src/bmp5.c ****     int32_t raw_data_t;
  1789              		.loc 1 617 13 is_stmt 0 view .LVU539
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 76
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 76
 
 
  1790 000a 0021     		movs	r1, #0
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1827              		.loc 1 637 9 is_stmt 1 view .LVU556
  637:Drivers/BMP580/Src/bmp5.c **** #endif
  1828              		.loc 1 637 55 is_stmt 0 view .LVU557
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 77
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 77
 
 
  1829 0034 40F31700 		sbfx	r0, r0, #0, #24
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  642:Drivers/BMP580/Src/bmp5.c **** 
  1870              		.loc 1 642 88 view .LVU571
  1871 005e 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 78
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 78
 
 
  642:Drivers/BMP580/Src/bmp5.c **** 
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1918              		@ frame_needed = 0, uses_anonymous_args = 0
  672:Drivers/BMP580/Src/bmp5.c ****     uint8_t reg_data;
  1919              		.loc 1 672 5 view .LVU582
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 79
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 79
 
 
  673:Drivers/BMP580/Src/bmp5.c **** 
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  1961              		.loc 1 681 13 is_stmt 1 view .LVU595
  681:Drivers/BMP580/Src/bmp5.c **** 
  1962              		.loc 1 681 24 is_stmt 0 view .LVU596
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 80
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 80
 
 
  1963 0020 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2004              		.loc 1 689 20 view .LVU609
  2005 0074 FFF7FEFF 		bl	bmp5_set_regs
  2006              	.LVL212:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 81
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 81
 
 
  689:Drivers/BMP580/Src/bmp5.c ****         }
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  713:Drivers/BMP580/Src/bmp5.c **** 
  2056              		.loc 1 713 5 view .LVU617
  713:Drivers/BMP580/Src/bmp5.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 82
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 82
 
 
  2057              		.loc 1 713 13 is_stmt 0 view .LVU618
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  728:Drivers/BMP580/Src/bmp5.c **** 
  2097              		.loc 1 728 9 is_stmt 1 view .LVU633
  728:Drivers/BMP580/Src/bmp5.c **** 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 83
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 83
 
 
  2098              		.loc 1 728 16 is_stmt 0 view .LVU634
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  740:Drivers/BMP580/Src/bmp5.c ****                 reg_data = BMP5_SET_BITSLICE(reg_data, BMP5_INT_EN, int_en);
  2139              		.loc 1 740 17 is_stmt 1 view .LVU648
  740:Drivers/BMP580/Src/bmp5.c ****                 reg_data = BMP5_SET_BITSLICE(reg_data, BMP5_INT_EN, int_en);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 84
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 84
 
 
  2140              		.loc 1 740 28 is_stmt 0 view .LVU649
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2185              		.loc 1 762 5 view .LVU660
  764:Drivers/BMP580/Src/bmp5.c ****     {
  2186              		.loc 1 764 5 view .LVU661
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 85
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 85
 
 
  764:Drivers/BMP580/Src/bmp5.c ****     {
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2225 0026 C3F38013 		ubfx	r3, r3, #6, #1
  773:Drivers/BMP580/Src/bmp5.c ****             osr_odr_press_cfg->odr = BMP5_GET_BITSLICE(reg_data[1], BMP5_ODR);
  2226              		.loc 1 773 41 view .LVU678
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 86
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 86
 
 
  2227 002a A370     		strb	r3, [r4, #2]
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2271              		.loc 1 847 5 view .LVU690
  847:Drivers/BMP580/Src/bmp5.c ****     {
  2272              		.loc 1 847 8 is_stmt 0 view .LVU691
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 87
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 87
 
 
  2273 0000 E8B1     		cbz	r0, .L145
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2311              		.loc 1 856 30 is_stmt 0 view .LVU707
  2312 002a 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
  2313 002e 03F00702 		and	r2, r3, #7
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 88
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 88
 
 
  856:Drivers/BMP580/Src/bmp5.c ****         iir_cfg->set_iir_p = BMP5_GET_BITSLICE(reg_data[1], BMP5_SET_IIR_PRESS);
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2359              		.cfi_offset 14, -4
  2360 0002 85B0     		sub	sp, sp, #20
  2361              		.cfi_def_cfa_offset 32
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 89
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 89
 
 
  2362 0004 0546     		mov	r5, r0
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2399 002e 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
 1532:Drivers/BMP580/Src/bmp5.c ****         (iir_cfg.set_iir_t == BMP5_IIR_FILTER_BYPASS) && (iir_cfg.set_iir_p == BMP5_IIR_FILTER_BYPA
  2400              		.loc 1 1532 8 view .LVU736
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 90
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 90
 
 
  2401 0032 182B     		cmp	r3, #24
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2440              		.loc 1 1525 13 is_stmt 1 view .LVU751
 1525:Drivers/BMP580/Src/bmp5.c ****         }
  2441              		.loc 1 1525 20 is_stmt 0 view .LVU752
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 91
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 91
 
 
  2442 005c 2146     		mov	r1, r4
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2486 000a 0B46     		mov	r3, r1
  2487 000c 0122     		movs	r2, #1
  2488 000e 0DF10701 		add	r1, sp, #7
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 92
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 92
 
 
  2489              	.LVL250:
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2528              		.loc 1 522 36 view .LVU779
  2529 0034 2B70     		strb	r3, [r5]
  2530              	.LVL257:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 93
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 93
 
 
  522:Drivers/BMP580/Src/bmp5.c ****                     }
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2571 004c 2B70     		strb	r3, [r5]
  531:Drivers/BMP580/Src/bmp5.c ****                 case BMP5_POWERMODE_CONTINOUS:
  2572              		.loc 1 531 21 is_stmt 1 view .LVU794
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 94
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 94
 
 
  2573 004e FAE7     		b	.L156
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  553:Drivers/BMP580/Src/bmp5.c ****     int8_t rslt;
  2620              		.loc 1 553 1 is_stmt 1 view -0
  2621              		.cfi_startproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 95
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 95
 
 
  2622              		@ args = 0, pretend = 0, frame = 8
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2662 0022 B3B9     		cbnz	r3, .L174
  2663 0024 DEB9     		cbnz	r6, .L179
  2664              	.LVL276:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 96
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 96
 
 
  2665              	.L171:
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2706              	.LVL281:
  2707 004e 0546     		mov	r5, r0
  2708              	.LVL282:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 97
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 97
 
 
  586:Drivers/BMP580/Src/bmp5.c ****                 case BMP5_POWERMODE_STANDBY:
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2755              		.cfi_offset 14, -4
  2756 0002 82B0     		sub	sp, sp, #8
  2757              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 98
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 98
 
 
  2758 0004 0446     		mov	r4, r0
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2797 0026 F8E7     		b	.L181
  2798              		.cfi_endproc
  2799              	.LFE30:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 99
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 99
 
 
  2801              		.section	.text.bmp5_set_osr_odr_press_config,"ax",%progbits
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2844              	.LVL296:
  809:Drivers/BMP580/Src/bmp5.c ****         }
  2845              		.loc 1 809 20 view .LVU869
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 100
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 100
 
 
  2846 001a FFF7FEFF 		bl	set_standby_mode
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2888              		.loc 1 819 17 is_stmt 1 view .LVU881
  819:Drivers/BMP580/Src/bmp5.c ****                 reg_data[0] = BMP5_SET_BITSLICE(reg_data[0], BMP5_PRESS_EN, osr_odr_press_cfg->pres
  2889              		.loc 1 819 31 is_stmt 0 view .LVU882
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 101
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 101
 
 
  2890 004c 6A78     		ldrb	r2, [r5, #1]	@ zero_extendqisi2
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  2932              		.loc 1 830 14 view .LVU894
  2933 0096 4FF0FF33 		mov	r3, #-1
  2934 009a CAE7     		b	.L185
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 102
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 102
 
 
  2935              		.cfi_endproc
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1709:Drivers/BMP580/Src/bmp5.c ****     {
  2980              		.loc 1 1709 8 is_stmt 0 view .LVU906
  2981 001a 0346     		mov	r3, r0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 103
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 103
 
 
  2982 001c 18B9     		cbnz	r0, .L191
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3022 0038 0122     		movs	r2, #1
  3023 003a 0DF10701 		add	r1, sp, #7
  3024 003e 3020     		movs	r0, #48
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 104
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 104
 
 
  3025 0040 FFF7FEFF 		bl	bmp5_get_regs
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1741:Drivers/BMP580/Src/bmp5.c ****             {
  3065              		.loc 1 1741 31 is_stmt 0 view .LVU935
  3066 0082 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 105
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 105
 
 
  3067              	.LVL319:
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3113              		.loc 1 1933 5 view .LVU945
 1933:Drivers/BMP580/Src/bmp5.c **** 
  3114              		.loc 1 1933 13 is_stmt 0 view .LVU946
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 106
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 106
 
 
  3115 000a 0023     		movs	r3, #0
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1946:Drivers/BMP580/Src/bmp5.c ****         }
  3155              		.loc 1 1946 13 is_stmt 1 view .LVU961
 1946:Drivers/BMP580/Src/bmp5.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 107
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 107
 
 
  3156              		.loc 1 1946 20 is_stmt 0 view .LVU962
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1976:Drivers/BMP580/Src/bmp5.c ****             }
  3196              		.loc 1 1976 17 view .LVU977
 1976:Drivers/BMP580/Src/bmp5.c ****             }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 108
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 108
 
 
  3197              		.loc 1 1976 24 is_stmt 0 view .LVU978
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1959:Drivers/BMP580/Src/bmp5.c ****             }
  3238              		.loc 1 1959 17 is_stmt 1 view .LVU992
 1959:Drivers/BMP580/Src/bmp5.c ****             }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 109
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 109
 
 
  3239              		.loc 1 1959 24 is_stmt 0 view .LVU993
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3286              		.cfi_offset 3, -24
  3287              		.cfi_offset 4, -20
  3288              		.cfi_offset 5, -16
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 110
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 110
 
 
  3289              		.cfi_offset 6, -12
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3327 0022 28B1     		cbz	r0, .L210
  3328              	.LVL350:
  3329              	.L205:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 111
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 111
 
 
 2031:Drivers/BMP580/Src/bmp5.c **** }
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3374              	bmp5_set_iir_config:
  3375              	.LVL358:
  3376              	.LFB13:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 112
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 112
 
 
  874:Drivers/BMP580/Src/bmp5.c ****     /* Variable to store the function result */
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3415 0018 0346     		mov	r3, r0
  3416 001a 50B9     		cbnz	r0, .L212
  3417              	.LVL361:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 113
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 113
 
 
  3418              	.L214:
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3458 003e 0346     		mov	r3, r0
  3459              	.LVL367:
  902:Drivers/BMP580/Src/bmp5.c ****                 }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 114
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 114
 
 
  3460              		.loc 1 902 28 view .LVU1061
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3501 0066 4FF0FF33 		mov	r3, #-1
  3502              	.LVL373:
  931:Drivers/BMP580/Src/bmp5.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 115
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 115
 
 
  3503              		.loc 1 931 5 is_stmt 1 view .LVU1075
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  949:Drivers/BMP580/Src/bmp5.c **** 
  3548              		.loc 1 949 16 view .LVU1087
  3549 0012 FFF7FEFF 		bl	bmp5_get_regs
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 116
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 116
 
 
  3550              	.LVL378:
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3588              		.cfi_endproc
  3589              	.LFE14:
  3591              		.section	.text.bmp5_get_fifo_configuration,"ax",%progbits
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 117
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 117
 
 
  3592              		.align	1
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3635              	.LVL385:
  3636              	.L231:
 1009:Drivers/BMP580/Src/bmp5.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 118
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 118
 
 
  3637              		.loc 1 1009 5 is_stmt 1 view .LVU1116
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3676              		.loc 1 988 33 view .LVU1131
  3677 0048 AA71     		strb	r2, [r5, #6]
  989:Drivers/BMP580/Src/bmp5.c ****             }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 119
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 119
 
 
  3678              		.loc 1 989 17 is_stmt 1 view .LVU1132
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3717 0074 4FF0FF30 		mov	r0, #-1
  3718              	.LVL392:
 1009:Drivers/BMP580/Src/bmp5.c **** }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 120
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 120
 
 
  3719              		.loc 1 1009 5 is_stmt 1 view .LVU1148
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3762              		.loc 1 1031 20 is_stmt 0 view .LVU1161
  3763 0010 0846     		mov	r0, r1
  3764              	.LVL394:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 121
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 121
 
 
 1031:Drivers/BMP580/Src/bmp5.c ****         }
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3806              	.LVL400:
 1044:Drivers/BMP580/Src/bmp5.c **** 
  3807              		.loc 1 1044 24 view .LVU1175
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 122
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 122
 
 
  3808 0038 FFF7FEFF 		bl	bmp5_get_regs
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3848              		.loc 1 1059 17 is_stmt 1 view .LVU1189
 1059:Drivers/BMP580/Src/bmp5.c ****                 {
  3849              		.loc 1 1059 20 is_stmt 0 view .LVU1190
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 123
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 123
 
 
  3850 0076 0346     		mov	r3, r0
@@ -7378,7 +7378,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3890 00b8 0122     		movs	r2, #1
  3891 00ba 0DF10701 		add	r1, sp, #7
  3892 00be 1820     		movs	r0, #24
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 124
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 124
 
 
  3893              	.LVL408:
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1090:Drivers/BMP580/Src/bmp5.c ****     int8_t rslt;
  3938              		.loc 1 1090 1 view .LVU1216
  3939 0002 30B5     		push	{r4, r5, lr}
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 125
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 125
 
 
  3940              		.cfi_def_cfa_offset 12
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  3979              		.loc 1 1103 16 view .LVU1231
  3980 002c 012A     		cmp	r2, #1
  3981 002e 06D9     		bls	.L256
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 126
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 126
 
 
 1110:Drivers/BMP580/Src/bmp5.c ****             {
@@ -7558,7 +7558,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4024 004e 4FF0FF30 		mov	r0, #-1
  4025              	.LVL423:
 1121:Drivers/BMP580/Src/bmp5.c ****     }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 127
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 127
 
 
  4026              		.loc 1 1121 14 view .LVU1244
@@ -7618,7 +7618,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4071              		.loc 1 1140 9 is_stmt 1 view .LVU1255
 1140:Drivers/BMP580/Src/bmp5.c ****         {
  4072              		.loc 1 1140 12 is_stmt 0 view .LVU1256
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 128
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 128
 
 
  4073 0016 58B9     		cbnz	r0, .L258
@@ -7678,7 +7678,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4113              		.loc 1 1157 1 is_stmt 0 view .LVU1270
  4114 0038 7047     		bx	lr
  4115              		.cfi_endproc
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 129
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 129
 
 
  4116              	.LFE18:
@@ -7738,7 +7738,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4159              		.loc 1 1172 9 view .LVU1283
  4160 0014 08E0     		b	.L267
  4161              	.LVL434:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 130
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 130
 
 
  4162              	.L268:
@@ -7798,7 +7798,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4203              		.cfi_restore 5
  4204              		.cfi_restore 6
  4205              		.cfi_restore 14
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 131
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 131
 
 
 1181:Drivers/BMP580/Src/bmp5.c ****     }
@@ -7858,7 +7858,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4251              		.cfi_offset 14, -4
  4252 0004 83B0     		sub	sp, sp, #12
  4253              		.cfi_def_cfa_offset 24
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 132
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 132
 
 
  4254 0006 0C46     		mov	r4, r1
@@ -7918,7 +7918,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1204:Drivers/BMP580/Src/bmp5.c **** 
  4295              		.loc 1 1204 20 view .LVU1321
  4296 002e FFF7FEFF 		bl	bmp5_get_regs
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 133
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 133
 
 
  4297              	.LVL450:
@@ -7978,7 +7978,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1217:Drivers/BMP580/Src/bmp5.c ****     }
  4335              		.loc 1 1217 14 view .LVU1338
  4336 005c 4FF0FF30 		mov	r0, #-1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 134
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 134
 
 
  4337              	.LVL452:
@@ -8038,7 +8038,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4379              		.loc 1 1239 16 is_stmt 0 view .LVU1352
  4380 000a 0A46     		mov	r2, r1
  4381 000c 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 135
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 135
 
 
  4382              	.LVL455:
@@ -8098,7 +8098,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1249:Drivers/BMP580/Src/bmp5.c ****                     (uint8_t)(BMP5_SET_BITS_POS_0(reg_data[1], BMP5_OOR_THR_P_MSB, oor_press_config
  4422              		.loc 1 1249 17 is_stmt 1 view .LVU1367
 1250:Drivers/BMP580/Src/bmp5.c ****                 reg_data[2] = oor_press_config->oor_range_p;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 136
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 136
 
 
  4423              		.loc 1 1250 21 is_stmt 0 view .LVU1368
@@ -8158,7 +8158,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1262:Drivers/BMP580/Src/bmp5.c ****     }
  4463              		.loc 1 1262 14 view .LVU1383
  4464 0062 4FF0FF30 		mov	r0, #-1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 137
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 137
 
 
  4465              	.LVL466:
@@ -8218,7 +8218,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4509              		.loc 1 1283 8 is_stmt 0 view .LVU1395
  4510 0010 0028     		cmp	r0, #0
  4511 0012 3CD1     		bne	.L294
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 138
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 138
 
 
 1283:Drivers/BMP580/Src/bmp5.c ****     {
@@ -8278,7 +8278,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
 1291:Drivers/BMP580/Src/bmp5.c ****         }
  4553              		.loc 1 1291 13 is_stmt 1 view .LVU1409
 1291:Drivers/BMP580/Src/bmp5.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 139
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 139
 
 
  4554              		.loc 1 1291 20 is_stmt 0 view .LVU1410
@@ -8338,7 +8338,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4595              		.loc 1 1306 20 is_stmt 0 view .LVU1423
  4596 006e 2146     		mov	r1, r4
  4597 0070 3046     		mov	r0, r6
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 140
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 140
 
 
  4598 0072 FFF7FEFF 		bl	get_nvm_data
@@ -8398,7 +8398,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4644              		@ args = 0, pretend = 0, frame = 8
  4645              		@ frame_needed = 0, uses_anonymous_args = 0
 1332:Drivers/BMP580/Src/bmp5.c ****     int8_t rslt;
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 141
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 141
 
 
  4646              		.loc 1 1332 1 is_stmt 0 view .LVU1434
@@ -8458,7 +8458,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4685 0024 0DF10302 		add	r2, sp, #3
  4686 0028 0121     		movs	r1, #1
  4687 002a 2846     		mov	r0, r5
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 142
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 142
 
 
  4688              	.LVL490:
@@ -8518,7 +8518,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4729 004a 0028     		cmp	r0, #0
  4730 004c F3D1     		bne	.L300
 1359:Drivers/BMP580/Src/bmp5.c ****                 nvmdata[1] = (uint8_t)((*nvm_data & BMP5_NVM_DATA_MSB_MSK) >> 8);
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 143
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 143
 
 
  4731              		.loc 1 1359 17 is_stmt 1 view .LVU1463
@@ -8578,7 +8578,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4770 0080 0546     		mov	r5, r0
  4771              	.LVL502:
 1370:Drivers/BMP580/Src/bmp5.c ****         }
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 144
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 144
 
 
  4772              		.loc 1 1370 20 view .LVU1479
@@ -8638,7 +8638,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4812 00ba 022A     		cmp	r2, #2
  4813 00bc 21D1     		bne	.L304
 1388:Drivers/BMP580/Src/bmp5.c ****                 (!(nvm_status & BMP5_INT_NVM_CMD_ERR)))
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 145
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 145
 
 
  4814              		.loc 1 1388 87 discriminator 1 view .LVU1494
@@ -8698,7 +8698,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4854              		.loc 1 1415 14 view .LVU1508
  4855 00f6 4FF0FF35 		mov	r5, #-1
  4856 00fa 9CE7     		b	.L300
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 146
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 146
 
 
  4857              	.L303:
@@ -8720,98 +8720,98 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 1
  4873              		.file 2 "C:/PROGRAM FILES (X86)/ARM GNU TOOLCHAIN ARM-NONE-EABI/13.3 REL1/arm-none-eabi/include/ma
  4874              		.file 3 "C:/PROGRAM FILES (X86)/ARM GNU TOOLCHAIN ARM-NONE-EABI/13.3 REL1/arm-none-eabi/include/sy
  4875              		.file 4 "Drivers/BMP580/Inc/bmp5_defs.h"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 147
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 147
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 bmp5.c
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:21     .text.null_ptr_check:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:26     .text.null_ptr_check:00000000 null_ptr_check
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:88     .text.validate_chip_id:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:93     .text.validate_chip_id:00000000 validate_chip_id
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:131    .text.set_fifo_threshold:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:136    .text.set_fifo_threshold:00000000 set_fifo_threshold
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:228    .text.unpack_sensor_data:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:233    .text.unpack_sensor_data:00000000 unpack_sensor_data
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:568    .text.unpack_sensor_data:0000014c $d
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:574    .text.bmp5_get_regs:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:580    .text.bmp5_get_regs:00000000 bmp5_get_regs
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:667    .text.get_nvm_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:672    .text.get_nvm_status:00000000 get_nvm_status
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:717    .text.get_nvm_data:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:722    .text.get_nvm_data:00000000 get_nvm_data
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:814    .text.bmp5_set_regs:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:820    .text.bmp5_set_regs:00000000 bmp5_set_regs
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:950    .text.set_deep_standby_mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:955    .text.set_deep_standby_mode:00000000 set_deep_standby_mode
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1090   .text.set_power_mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1095   .text.set_power_mode:00000000 set_power_mode
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1168   .text.set_iir_config:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1173   .text.set_iir_config:00000000 set_iir_config
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1275   .text.set_nvm_addr:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1280   .text.set_nvm_addr:00000000 set_nvm_addr
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1388   .text.bmp5_get_interrupt_status:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1394   .text.bmp5_get_interrupt_status:00000000 bmp5_get_interrupt_status
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1439   .text.power_up_check:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1444   .text.power_up_check:00000000 power_up_check
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1521   .text.bmp5_init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1527   .text.bmp5_init:00000000 bmp5_init
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1649   .text.bmp5_soft_reset:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1655   .text.bmp5_soft_reset:00000000 bmp5_soft_reset
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1762   .text.bmp5_get_sensor_data:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1768   .text.bmp5_get_sensor_data:00000000 bmp5_get_sensor_data
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1900   .text.bmp5_get_sensor_data:00000084 $d
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1906   .text.bmp5_int_source_select:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:1912   .text.bmp5_int_source_select:00000000 bmp5_int_source_select
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2025   .text.bmp5_configure_interrupt:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2031   .text.bmp5_configure_interrupt:00000000 bmp5_configure_interrupt
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2171   .text.bmp5_get_osr_odr_press_config:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2177   .text.bmp5_get_osr_odr_press_config:00000000 bmp5_get_osr_odr_press_config
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2256   .text.bmp5_get_iir_config:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2262   .text.bmp5_get_iir_config:00000000 bmp5_get_iir_config
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2342   .text.check_deepstandby_mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2347   .text.check_deepstandby_mode:00000000 check_deepstandby_mode
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2454   .text.bmp5_get_power_mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2460   .text.bmp5_get_power_mode:00000000 bmp5_get_power_mode
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2510   .text.bmp5_get_power_mode:0000002a $d
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2514   .text.bmp5_get_power_mode:0000002e $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2611   .text.bmp5_set_power_mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2617   .text.bmp5_set_power_mode:00000000 bmp5_set_power_mode
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2739   .text.set_standby_mode:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2744   .text.set_standby_mode:00000000 set_standby_mode
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2802   .text.bmp5_set_osr_odr_press_config:00000000 $t
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s 			page 148
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:21     .text.null_ptr_check:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:26     .text.null_ptr_check:00000000 null_ptr_check
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:88     .text.validate_chip_id:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:93     .text.validate_chip_id:00000000 validate_chip_id
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:131    .text.set_fifo_threshold:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:136    .text.set_fifo_threshold:00000000 set_fifo_threshold
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:228    .text.unpack_sensor_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:233    .text.unpack_sensor_data:00000000 unpack_sensor_data
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:568    .text.unpack_sensor_data:0000014c $d
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:574    .text.bmp5_get_regs:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:580    .text.bmp5_get_regs:00000000 bmp5_get_regs
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:667    .text.get_nvm_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:672    .text.get_nvm_status:00000000 get_nvm_status
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:717    .text.get_nvm_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:722    .text.get_nvm_data:00000000 get_nvm_data
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:814    .text.bmp5_set_regs:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:820    .text.bmp5_set_regs:00000000 bmp5_set_regs
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:950    .text.set_deep_standby_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:955    .text.set_deep_standby_mode:00000000 set_deep_standby_mode
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1090   .text.set_power_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1095   .text.set_power_mode:00000000 set_power_mode
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1168   .text.set_iir_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1173   .text.set_iir_config:00000000 set_iir_config
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1275   .text.set_nvm_addr:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1280   .text.set_nvm_addr:00000000 set_nvm_addr
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1388   .text.bmp5_get_interrupt_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1394   .text.bmp5_get_interrupt_status:00000000 bmp5_get_interrupt_status
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1439   .text.power_up_check:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1444   .text.power_up_check:00000000 power_up_check
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1521   .text.bmp5_init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1527   .text.bmp5_init:00000000 bmp5_init
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1649   .text.bmp5_soft_reset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1655   .text.bmp5_soft_reset:00000000 bmp5_soft_reset
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1762   .text.bmp5_get_sensor_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1768   .text.bmp5_get_sensor_data:00000000 bmp5_get_sensor_data
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1900   .text.bmp5_get_sensor_data:00000084 $d
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1906   .text.bmp5_int_source_select:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:1912   .text.bmp5_int_source_select:00000000 bmp5_int_source_select
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2025   .text.bmp5_configure_interrupt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2031   .text.bmp5_configure_interrupt:00000000 bmp5_configure_interrupt
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2171   .text.bmp5_get_osr_odr_press_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2177   .text.bmp5_get_osr_odr_press_config:00000000 bmp5_get_osr_odr_press_config
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2256   .text.bmp5_get_iir_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2262   .text.bmp5_get_iir_config:00000000 bmp5_get_iir_config
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2342   .text.check_deepstandby_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2347   .text.check_deepstandby_mode:00000000 check_deepstandby_mode
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2454   .text.bmp5_get_power_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2460   .text.bmp5_get_power_mode:00000000 bmp5_get_power_mode
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2510   .text.bmp5_get_power_mode:0000002a $d
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2514   .text.bmp5_get_power_mode:0000002e $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2611   .text.bmp5_set_power_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2617   .text.bmp5_set_power_mode:00000000 bmp5_set_power_mode
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2739   .text.set_standby_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2744   .text.set_standby_mode:00000000 set_standby_mode
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2802   .text.bmp5_set_osr_odr_press_config:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s 			page 148
 
 
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2808   .text.bmp5_set_osr_odr_press_config:00000000 bmp5_set_osr_odr_press_config
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2939   .text.set_fifo_iir_config:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:2944   .text.set_fifo_iir_config:00000000 set_fifo_iir_config
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3088   .text.set_oor_iir_count_limit:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3093   .text.set_oor_iir_count_limit:00000000 set_oor_iir_count_limit
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3271   .text.nvm_write_addr:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3276   .text.nvm_write_addr:00000000 nvm_write_addr
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3368   .text.bmp5_set_iir_config:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3374   .text.bmp5_set_iir_config:00000000 bmp5_set_iir_config
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3513   .text.bmp5_get_osr_odr_eff:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3519   .text.bmp5_get_osr_odr_eff:00000000 bmp5_get_osr_odr_eff
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3592   .text.bmp5_get_fifo_configuration:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3598   .text.bmp5_get_fifo_configuration:00000000 bmp5_get_fifo_configuration
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3726   .text.bmp5_set_fifo_configuration:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3732   .text.bmp5_set_fifo_configuration:00000000 bmp5_set_fifo_configuration
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3920   .text.bmp5_get_fifo_len:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:3926   .text.bmp5_get_fifo_len:00000000 bmp5_get_fifo_len
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4032   .text.bmp5_get_fifo_data:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4038   .text.bmp5_get_fifo_data:00000000 bmp5_get_fifo_data
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4119   .text.bmp5_extract_fifo_data:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4125   .text.bmp5_extract_fifo_data:00000000 bmp5_extract_fifo_data
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4228   .text.bmp5_get_oor_configuration:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4234   .text.bmp5_get_oor_configuration:00000000 bmp5_get_oor_configuration
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4345   .text.bmp5_set_oor_configuration:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4351   .text.bmp5_set_oor_configuration:00000000 bmp5_set_oor_configuration
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4473   .text.bmp5_nvm_read:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4479   .text.bmp5_nvm_read:00000000 bmp5_nvm_read
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4633   .text.bmp5_nvm_write:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\cckgxcAZ.s:4639   .text.bmp5_nvm_write:00000000 bmp5_nvm_write
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2808   .text.bmp5_set_osr_odr_press_config:00000000 bmp5_set_osr_odr_press_config
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2939   .text.set_fifo_iir_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:2944   .text.set_fifo_iir_config:00000000 set_fifo_iir_config
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3088   .text.set_oor_iir_count_limit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3093   .text.set_oor_iir_count_limit:00000000 set_oor_iir_count_limit
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3271   .text.nvm_write_addr:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3276   .text.nvm_write_addr:00000000 nvm_write_addr
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3368   .text.bmp5_set_iir_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3374   .text.bmp5_set_iir_config:00000000 bmp5_set_iir_config
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3513   .text.bmp5_get_osr_odr_eff:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3519   .text.bmp5_get_osr_odr_eff:00000000 bmp5_get_osr_odr_eff
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3592   .text.bmp5_get_fifo_configuration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3598   .text.bmp5_get_fifo_configuration:00000000 bmp5_get_fifo_configuration
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3726   .text.bmp5_set_fifo_configuration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3732   .text.bmp5_set_fifo_configuration:00000000 bmp5_set_fifo_configuration
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3920   .text.bmp5_get_fifo_len:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:3926   .text.bmp5_get_fifo_len:00000000 bmp5_get_fifo_len
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4032   .text.bmp5_get_fifo_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4038   .text.bmp5_get_fifo_data:00000000 bmp5_get_fifo_data
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4119   .text.bmp5_extract_fifo_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4125   .text.bmp5_extract_fifo_data:00000000 bmp5_extract_fifo_data
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4228   .text.bmp5_get_oor_configuration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4234   .text.bmp5_get_oor_configuration:00000000 bmp5_get_oor_configuration
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4345   .text.bmp5_set_oor_configuration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4351   .text.bmp5_set_oor_configuration:00000000 bmp5_set_oor_configuration
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4473   .text.bmp5_nvm_read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4479   .text.bmp5_nvm_read:00000000 bmp5_nvm_read
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4633   .text.bmp5_nvm_write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccb0rvwN.s:4639   .text.bmp5_nvm_write:00000000 bmp5_nvm_write
 
 UNDEFINED SYMBOLS
 __aeabi_i2d

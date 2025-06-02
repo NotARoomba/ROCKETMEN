@@ -163,14 +163,14 @@ int main(void)
   platform_delay(1000);
 
   // PRESSURE SENSOR CONFIGURATION
-  // bmp5_read(BMP5_REG_CHIP_ID, &whoamI, 1, &hspi1);
-  // printf("Pressure sensor who am I: %d\n", whoamI);
-  // rslt = bmp5_init(&bmp5_ctx);
-  // bmp5_error_codes_print_result("bmp5_init", rslt);
-  // if (rslt == BMP5_OK) {
-  //   rslt = bmp5_set_config(&osr_odr_press_cfg, &bmp5_ctx);
-  //   bmp5_error_codes_print_result("set_config", rslt);
-  // }
+  bmp5_read(BMP5_REG_CHIP_ID, &whoamI, 1, &hspi1);
+  printf("Pressure sensor who am I: %d\n", whoamI);
+  rslt = bmp5_init(&bmp5_ctx);
+  bmp5_error_codes_print_result("bmp5_init", rslt);
+  if (rslt == BMP5_OK) {
+    rslt = bmp5_set_config(&osr_odr_press_cfg, &bmp5_ctx);
+    bmp5_error_codes_print_result("set_config", rslt);
+  }
 
   // IMU CONFIGURATION
 
@@ -218,7 +218,7 @@ int main(void)
   /* Gyroscope - filtering chain */
   lsm6dsm_gy_band_pass_set(&dev_ctx, LSM6DSM_HP_DISABLE_LP1_AGGRESSIVE);
   // update the offset bias of acceleration
-  platform_delay(1000);
+  platform_delay(2000);
 
   const int SAMPLE_SIZE = 1000;
   //create a while loop that gets 5 sample of acceleration and calculate the average, then set the offset weight and write it to the sensor taking to account the above
@@ -276,6 +276,10 @@ int main(void)
   gyro_bias[0] /= SAMPLE_SIZE;
   gyro_bias[1] /= SAMPLE_SIZE;
   gyro_bias[2] /= SAMPLE_SIZE;
+
+  gyro_bias[0] = 0;
+  gyro_bias[1] = 0;
+  gyro_bias[2] = 0;
 
   // LORA MODULE CONFIGURATION
   // llcc68_reset(&radio_ctx);
@@ -336,7 +340,7 @@ int main(void)
 	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]) - acc_bias[2];
 	      // printf("Acceleration [mg]:%4.2f\t%4.2f\t%4.2f\r\n",
 	      //         acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
-        // printf("%4.2f,%4.2f,%4.2f,", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
+        // printf("ACCEL:%4.2f,%4.2f,%4.2f\r\n", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
 	    }
 
 	    if (reg.status_reg.gda) {
@@ -350,7 +354,7 @@ int main(void)
 	      angular_rate_mdps[2] =
 	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]) - gyro_bias[2];
 	      // printf("Angular rate [mdps]:%4.2f\t%4.2f\t%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
-	      // printf("%4.2f,%4.2f,%4.2f,", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
+	      // printf("ANGLE:%4.2f,%4.2f,%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
 	    }
 	    if (reg.status_reg.tda) {
 	      /* Read temperature data */
@@ -360,25 +364,33 @@ int main(void)
 	                           data_raw_temperature);
 	      // printf("Temperature [degC]:%6.2f\r\n",
 	      //         temperature_degC);
-        // printf("%.2f,101.325\r\n", temperature_degC);
+        // printf("TEMP:%.2f,101.325\r\n", temperature_degC);
 	    }
       printf("%4.2f,%4.2f,%4.2f,%4.2f,%4.2f,%4.2f,%.2f,101.325\r\n", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2], angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2], temperature_degC);
+      // acceleration_mg[0] = 0;
+      // acceleration_mg[1] = 0;
+      // acceleration_mg[2] = 0;
+      // angular_rate_mdps[0] = 0;
+      // angular_rate_mdps[1] = 0;
+      // angular_rate_mdps[2] = 0;
+      // temperature_degC = 0;
 
-      // uint8_t int_status;
-      // struct bmp5_sensor_data bmp5_data;
-      //   rslt = bmp5_get_interrupt_status(&int_status, &bmp5_ctx);
-      //   bmp5_error_codes_print_result("bmp5_get_interrupt_status", rslt);
 
-      //   if (int_status & BMP5_INT_ASSERTED_DRDY)
-      //   {
-      //       rslt = bmp5_get_sensor_data(&bmp5_data, &osr_odr_press_cfg, &bmp5_ctx);
-      //       bmp5_error_codes_print_result("bmp5_get_sensor_data", rslt);
+      uint8_t int_status;
+      struct bmp5_sensor_data bmp5_data;
+        rslt = bmp5_get_interrupt_status(&int_status, &bmp5_ctx);
+        bmp5_error_codes_print_result("bmp5_get_interrupt_status", rslt);
 
-      //       if (rslt == BMP5_OK)
-      //       {
-      //           printf("%f\r\n", bmp5_data.pressure);
-      //       }
-      //   }
+        if (int_status & BMP5_INT_ASSERTED_DRDY)
+        {
+            rslt = bmp5_get_sensor_data(&bmp5_data, &osr_odr_press_cfg, &bmp5_ctx);
+            bmp5_error_codes_print_result("bmp5_get_sensor_data", rslt);
+
+            if (rslt == BMP5_OK)
+            {
+                printf("%f\r\n", bmp5_data.pressure);
+            }
+        }
     //   llcc68_set_buffer_base_address(&radio_ctx, 0x00, 0x00);
     // llcc68_write_buffer(&radio_ctx, 0x00, (uint8_t*)"Hello World!\r\n", 14);
     // llcc68_set_lora_mod_params(&radio_ctx, &mod_params);
@@ -400,9 +412,9 @@ int main(void)
     //   llcc68_chip_status_t chip_status;
     //   llcc68_get_status(&radio_ctx, &chip_status);
     //   printf("Chip Mode: %d, Chip Status: %d\r\n", chip_status.chip_mode, chip_status.cmd_status);
-     ///print if busy or not with busy gpio pin
+    //  // print if busy or not with busy gpio pin
     //  HAL_GPIO_ReadPin(BUSY_GPIO_Port, BUSY_Pin) == GPIO_PIN_SET ? printf("Busy\r\n") : printf("Not Busy\r\n");
-      // platform_delay(100);
+    //   platform_delay(100);
   }
   /* USER CODE END 3 */
 }
@@ -429,10 +441,10 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 16;
-  RCC_OscInitStruct.PLL.PLLN = 192;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 128;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 6;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -442,12 +454,12 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
   {
     Error_Handler();
   }

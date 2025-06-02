@@ -1,0 +1,2473 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"bmp5.c"
+  16              		.text
+  17              		.section	.text.null_ptr_check,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	null_ptr_check:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 50B1     		cbz	r0, .L3
+  28 0002 8268     		ldr	r2, [r0, #8]
+  29 0004 5AB1     		cbz	r2, .L4
+  30 0006 C268     		ldr	r2, [r0, #12]
+  31 0008 62B1     		cbz	r2, .L5
+  32 000a 0369     		ldr	r3, [r0, #16]
+  33 000c 0BB1     		cbz	r3, .L7
+  34 000e 0020     		movs	r0, #0
+  35 0010 7047     		bx	lr
+  36              	.L7:
+  37 0012 4FF0FF30 		mov	r0, #-1
+  38 0016 7047     		bx	lr
+  39              	.L3:
+  40 0018 4FF0FF30 		mov	r0, #-1
+  41 001c 7047     		bx	lr
+  42              	.L4:
+  43 001e 4FF0FF30 		mov	r0, #-1
+  44 0022 7047     		bx	lr
+  45              	.L5:
+  46 0024 4FF0FF30 		mov	r0, #-1
+  47 0028 7047     		bx	lr
+  49              		.section	.text.validate_chip_id,"ax",%progbits
+  50              		.align	1
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	validate_chip_id:
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58              		@ link register save eliminated.
+  59 0000 A0F15003 		sub	r3, r0, #80
+  60 0004 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 2
+
+
+  61 0006 012B     		cmp	r3, #1
+  62 0008 02D8     		bhi	.L10
+  63 000a 0870     		strb	r0, [r1]
+  64 000c 0020     		movs	r0, #0
+  65 000e 7047     		bx	lr
+  66              	.L10:
+  67 0010 6FF00200 		mvn	r0, #2
+  68 0014 7047     		bx	lr
+  70              		.section	.text.set_fifo_threshold,"ax",%progbits
+  71              		.align	1
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  76              	set_fifo_threshold:
+  77              		@ args = 0, pretend = 0, frame = 0
+  78              		@ frame_needed = 0, uses_anonymous_args = 0
+  79              		@ link register save eliminated.
+  80 0000 8A79     		ldrb	r2, [r1, #6]	@ zero_extendqisi2
+  81 0002 531E     		subs	r3, r2, #1
+  82 0004 DBB2     		uxtb	r3, r3
+  83 0006 012B     		cmp	r3, #1
+  84 0008 03D9     		bls	.L17
+  85 000a 032A     		cmp	r2, #3
+  86 000c 0DD0     		beq	.L18
+  87 000e 0020     		movs	r0, #0
+  88 0010 7047     		bx	lr
+  89              	.L17:
+  90 0012 8A7A     		ldrb	r2, [r1, #10]	@ zero_extendqisi2
+  91 0014 1F2A     		cmp	r2, #31
+  92 0016 14D8     		bhi	.L14
+  93 0018 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  94 001a 23F01F03 		bic	r3, r3, #31
+  95 001e 02F01F02 		and	r2, r2, #31
+  96 0022 1343     		orrs	r3, r3, r2
+  97 0024 0370     		strb	r3, [r0]
+  98 0026 0020     		movs	r0, #0
+  99 0028 7047     		bx	lr
+ 100              	.L18:
+ 101 002a 8A7A     		ldrb	r2, [r1, #10]	@ zero_extendqisi2
+ 102 002c 0F2A     		cmp	r2, #15
+ 103 002e 0BD8     		bhi	.L16
+ 104 0030 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 105 0032 23F01F03 		bic	r3, r3, #31
+ 106 0036 02F01F02 		and	r2, r2, #31
+ 107 003a 1343     		orrs	r3, r3, r2
+ 108 003c 0370     		strb	r3, [r0]
+ 109 003e 0020     		movs	r0, #0
+ 110 0040 7047     		bx	lr
+ 111              	.L14:
+ 112 0042 6FF00700 		mvn	r0, #7
+ 113 0046 7047     		bx	lr
+ 114              	.L16:
+ 115 0048 6FF00700 		mvn	r0, #7
+ 116 004c 7047     		bx	lr
+ 118              		.global	__aeabi_i2d
+ 119              		.global	__aeabi_dmul
+ 120              		.global	__aeabi_d2f
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 3
+
+
+ 121              		.global	__aeabi_ui2d
+ 122              		.section	.text.unpack_sensor_data,"ax",%progbits
+ 123              		.align	1
+ 124              		.syntax unified
+ 125              		.thumb
+ 126              		.thumb_func
+ 128              	unpack_sensor_data:
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131 0000 70B5     		push	{r4, r5, r6, lr}
+ 132 0002 0546     		mov	r5, r0
+ 133 0004 0C46     		mov	r4, r1
+ 134 0006 9379     		ldrb	r3, [r2, #6]	@ zero_extendqisi2
+ 135 0008 022B     		cmp	r3, #2
+ 136 000a 2DD0     		beq	.L20
+ 137 000c 032B     		cmp	r3, #3
+ 138 000e 54D0     		beq	.L21
+ 139 0010 012B     		cmp	r3, #1
+ 140 0012 40F09680 		bne	.L22
+ 141 0016 1368     		ldr	r3, [r2]
+ 142 0018 0988     		ldrh	r1, [r1]
+ 143 001a 585C     		ldrb	r0, [r3, r1]	@ zero_extendqisi2
+ 144 001c 7F28     		cmp	r0, #127
+ 145 001e 16D0     		beq	.L31
+ 146              	.L23:
+ 147 0020 0B44     		add	r3, r3, r1
+ 148 0022 9A78     		ldrb	r2, [r3, #2]	@ zero_extendqisi2
+ 149 0024 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 150 0026 1B02     		lsls	r3, r3, #8
+ 151 0028 43EA0243 		orr	r3, r3, r2, lsl #16
+ 152 002c 1843     		orrs	r0, r0, r3
+ 153 002e FFF7FEFF 		bl	__aeabi_i2d
+ 154 0032 0022     		movs	r2, #0
+ 155 0034 454B     		ldr	r3, .L34
+ 156 0036 FFF7FEFF 		bl	__aeabi_dmul
+ 157 003a FFF7FEFF 		bl	__aeabi_d2f
+ 158 003e 6860     		str	r0, [r5, #4]	@ float
+ 159 0040 0023     		movs	r3, #0
+ 160 0042 2B60     		str	r3, [r5]	@ float
+ 161 0044 2388     		ldrh	r3, [r4]
+ 162 0046 0333     		adds	r3, r3, #3
+ 163 0048 2380     		strh	r3, [r4]	@ movhi
+ 164 004a 0020     		movs	r0, #0
+ 165 004c 7DE0     		b	.L25
+ 166              	.L31:
+ 167 004e 5E18     		adds	r6, r3, r1
+ 168 0050 7678     		ldrb	r6, [r6, #1]	@ zero_extendqisi2
+ 169 0052 7F2E     		cmp	r6, #127
+ 170 0054 E4D1     		bne	.L23
+ 171 0056 5E18     		adds	r6, r3, r1
+ 172 0058 B678     		ldrb	r6, [r6, #2]	@ zero_extendqisi2
+ 173 005a 7F2E     		cmp	r6, #127
+ 174 005c E0D1     		bne	.L23
+ 175 005e 9388     		ldrh	r3, [r2, #4]
+ 176 0060 2380     		strh	r3, [r4]	@ movhi
+ 177 0062 6FF00800 		mvn	r0, #8
+ 178 0066 70E0     		b	.L25
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 4
+
+
+ 179              	.L20:
+ 180 0068 1368     		ldr	r3, [r2]
+ 181 006a 0988     		ldrh	r1, [r1]
+ 182 006c 585C     		ldrb	r0, [r3, r1]	@ zero_extendqisi2
+ 183 006e 7F28     		cmp	r0, #127
+ 184 0070 16D0     		beq	.L32
+ 185              	.L26:
+ 186 0072 0B44     		add	r3, r3, r1
+ 187 0074 9A78     		ldrb	r2, [r3, #2]	@ zero_extendqisi2
+ 188 0076 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 189 0078 1B02     		lsls	r3, r3, #8
+ 190 007a 43EA0243 		orr	r3, r3, r2, lsl #16
+ 191 007e 1843     		orrs	r0, r0, r3
+ 192 0080 FFF7FEFF 		bl	__aeabi_ui2d
+ 193 0084 0022     		movs	r2, #0
+ 194 0086 324B     		ldr	r3, .L34+4
+ 195 0088 FFF7FEFF 		bl	__aeabi_dmul
+ 196 008c FFF7FEFF 		bl	__aeabi_d2f
+ 197 0090 2860     		str	r0, [r5]	@ float
+ 198 0092 0023     		movs	r3, #0
+ 199 0094 6B60     		str	r3, [r5, #4]	@ float
+ 200 0096 2388     		ldrh	r3, [r4]
+ 201 0098 0333     		adds	r3, r3, #3
+ 202 009a 2380     		strh	r3, [r4]	@ movhi
+ 203 009c 0020     		movs	r0, #0
+ 204 009e 54E0     		b	.L25
+ 205              	.L32:
+ 206 00a0 5E18     		adds	r6, r3, r1
+ 207 00a2 7678     		ldrb	r6, [r6, #1]	@ zero_extendqisi2
+ 208 00a4 7F2E     		cmp	r6, #127
+ 209 00a6 E4D1     		bne	.L26
+ 210 00a8 5E18     		adds	r6, r3, r1
+ 211 00aa B678     		ldrb	r6, [r6, #2]	@ zero_extendqisi2
+ 212 00ac 7F2E     		cmp	r6, #127
+ 213 00ae E0D1     		bne	.L26
+ 214 00b0 9388     		ldrh	r3, [r2, #4]
+ 215 00b2 2380     		strh	r3, [r4]	@ movhi
+ 216 00b4 6FF00800 		mvn	r0, #8
+ 217 00b8 47E0     		b	.L25
+ 218              	.L21:
+ 219 00ba 1368     		ldr	r3, [r2]
+ 220 00bc 0988     		ldrh	r1, [r1]
+ 221 00be 585C     		ldrb	r0, [r3, r1]	@ zero_extendqisi2
+ 222 00c0 7F28     		cmp	r0, #127
+ 223 00c2 25D0     		beq	.L33
+ 224              	.L28:
+ 225 00c4 0B44     		add	r3, r3, r1
+ 226 00c6 9978     		ldrb	r1, [r3, #2]	@ zero_extendqisi2
+ 227 00c8 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 228 00ca 1202     		lsls	r2, r2, #8
+ 229 00cc 42EA0142 		orr	r2, r2, r1, lsl #16
+ 230 00d0 5979     		ldrb	r1, [r3, #5]	@ zero_extendqisi2
+ 231 00d2 1E79     		ldrb	r6, [r3, #4]	@ zero_extendqisi2
+ 232 00d4 3602     		lsls	r6, r6, #8
+ 233 00d6 46EA0146 		orr	r6, r6, r1, lsl #16
+ 234 00da DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 235 00dc 1E43     		orrs	r6, r6, r3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 5
+
+
+ 236 00de 1043     		orrs	r0, r0, r2
+ 237 00e0 FFF7FEFF 		bl	__aeabi_i2d
+ 238 00e4 0022     		movs	r2, #0
+ 239 00e6 194B     		ldr	r3, .L34
+ 240 00e8 FFF7FEFF 		bl	__aeabi_dmul
+ 241 00ec FFF7FEFF 		bl	__aeabi_d2f
+ 242 00f0 6860     		str	r0, [r5, #4]	@ float
+ 243 00f2 3046     		mov	r0, r6
+ 244 00f4 FFF7FEFF 		bl	__aeabi_ui2d
+ 245 00f8 0022     		movs	r2, #0
+ 246 00fa 154B     		ldr	r3, .L34+4
+ 247 00fc FFF7FEFF 		bl	__aeabi_dmul
+ 248 0100 FFF7FEFF 		bl	__aeabi_d2f
+ 249 0104 2860     		str	r0, [r5]	@ float
+ 250 0106 2388     		ldrh	r3, [r4]
+ 251 0108 0633     		adds	r3, r3, #6
+ 252 010a 2380     		strh	r3, [r4]	@ movhi
+ 253 010c 0020     		movs	r0, #0
+ 254 010e 1CE0     		b	.L25
+ 255              	.L33:
+ 256 0110 5E18     		adds	r6, r3, r1
+ 257 0112 7678     		ldrb	r6, [r6, #1]	@ zero_extendqisi2
+ 258 0114 7F2E     		cmp	r6, #127
+ 259 0116 D5D1     		bne	.L28
+ 260 0118 5E18     		adds	r6, r3, r1
+ 261 011a B678     		ldrb	r6, [r6, #2]	@ zero_extendqisi2
+ 262 011c 7F2E     		cmp	r6, #127
+ 263 011e D1D1     		bne	.L28
+ 264 0120 5E18     		adds	r6, r3, r1
+ 265 0122 F678     		ldrb	r6, [r6, #3]	@ zero_extendqisi2
+ 266 0124 7F2E     		cmp	r6, #127
+ 267 0126 CDD1     		bne	.L28
+ 268 0128 5E18     		adds	r6, r3, r1
+ 269 012a 3679     		ldrb	r6, [r6, #4]	@ zero_extendqisi2
+ 270 012c 7F2E     		cmp	r6, #127
+ 271 012e C9D1     		bne	.L28
+ 272 0130 5E18     		adds	r6, r3, r1
+ 273 0132 7679     		ldrb	r6, [r6, #5]	@ zero_extendqisi2
+ 274 0134 7F2E     		cmp	r6, #127
+ 275 0136 C5D1     		bne	.L28
+ 276 0138 9388     		ldrh	r3, [r2, #4]
+ 277 013a 2380     		strh	r3, [r4]	@ movhi
+ 278 013c 6FF00800 		mvn	r0, #8
+ 279 0140 03E0     		b	.L25
+ 280              	.L22:
+ 281 0142 0023     		movs	r3, #0
+ 282 0144 0360     		str	r3, [r0]	@ float
+ 283 0146 4360     		str	r3, [r0, #4]	@ float
+ 284 0148 0020     		movs	r0, #0
+ 285              	.L25:
+ 286 014a 70BD     		pop	{r4, r5, r6, pc}
+ 287              	.L35:
+ 288              		.align	2
+ 289              	.L34:
+ 290 014c 0000F03E 		.word	1055916032
+ 291 0150 0000903F 		.word	1066401792
+ 293              		.section	.text.bmp5_get_regs,"ax",%progbits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 6
+
+
+ 294              		.align	1
+ 295              		.global	bmp5_get_regs
+ 296              		.syntax unified
+ 297              		.thumb
+ 298              		.thumb_func
+ 300              	bmp5_get_regs:
+ 301              		@ args = 0, pretend = 0, frame = 0
+ 302              		@ frame_needed = 0, uses_anonymous_args = 0
+ 303 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 304 0004 0646     		mov	r6, r0
+ 305 0006 0D46     		mov	r5, r1
+ 306 0008 9046     		mov	r8, r2
+ 307 000a 1C46     		mov	r4, r3
+ 308 000c 1846     		mov	r0, r3
+ 309 000e FFF7FEFF 		bl	null_ptr_check
+ 310 0012 80B9     		cbnz	r0, .L39
+ 311 0014 0746     		mov	r7, r0
+ 312 0016 8DB1     		cbz	r5, .L40
+ 313 0018 637D     		ldrb	r3, [r4, #21]	@ zero_extendqisi2
+ 314 001a 0BB9     		cbnz	r3, .L38
+ 315 001c 46F08006 		orr	r6, r6, #128
+ 316              	.L38:
+ 317 0020 6368     		ldr	r3, [r4, #4]
+ 318 0022 4246     		mov	r2, r8
+ 319 0024 2946     		mov	r1, r5
+ 320 0026 3046     		mov	r0, r6
+ 321 0028 A568     		ldr	r5, [r4, #8]
+ 322 002a A847     		blx	r5
+ 323 002c 2075     		strb	r0, [r4, #20]
+ 324 002e 40B9     		cbnz	r0, .L43
+ 325              	.L37:
+ 326 0030 3846     		mov	r0, r7
+ 327 0032 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 328              	.L39:
+ 329 0036 4FF0FF37 		mov	r7, #-1
+ 330 003a F9E7     		b	.L37
+ 331              	.L40:
+ 332 003c 4FF0FF37 		mov	r7, #-1
+ 333 0040 F6E7     		b	.L37
+ 334              	.L43:
+ 335 0042 6FF00107 		mvn	r7, #1
+ 336 0046 F3E7     		b	.L37
+ 338              		.section	.text.get_nvm_status,"ax",%progbits
+ 339              		.align	1
+ 340              		.syntax unified
+ 341              		.thumb
+ 342              		.thumb_func
+ 344              	get_nvm_status:
+ 345              		@ args = 0, pretend = 0, frame = 0
+ 346              		@ frame_needed = 0, uses_anonymous_args = 0
+ 347 0000 38B1     		cbz	r0, .L46
+ 348 0002 08B5     		push	{r3, lr}
+ 349 0004 0B46     		mov	r3, r1
+ 350 0006 0146     		mov	r1, r0
+ 351 0008 0122     		movs	r2, #1
+ 352 000a 2820     		movs	r0, #40
+ 353 000c FFF7FEFF 		bl	bmp5_get_regs
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 7
+
+
+ 354 0010 08BD     		pop	{r3, pc}
+ 355              	.L46:
+ 356 0012 4FF0FF30 		mov	r0, #-1
+ 357 0016 7047     		bx	lr
+ 359              		.section	.text.get_nvm_data,"ax",%progbits
+ 360              		.align	1
+ 361              		.syntax unified
+ 362              		.thumb
+ 363              		.thumb_func
+ 365              	get_nvm_data:
+ 366              		@ args = 0, pretend = 0, frame = 8
+ 367              		@ frame_needed = 0, uses_anonymous_args = 0
+ 368 0000 F0B1     		cbz	r0, .L53
+ 369 0002 30B5     		push	{r4, r5, lr}
+ 370 0004 83B0     		sub	sp, sp, #12
+ 371 0006 0C46     		mov	r4, r1
+ 372 0008 0546     		mov	r5, r0
+ 373 000a 0DF10700 		add	r0, sp, #7
+ 374 000e FFF7FEFF 		bl	get_nvm_status
+ 375 0012 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 376 0016 03F00602 		and	r2, r3, #6
+ 377 001a 022A     		cmp	r2, #2
+ 378 001c 13D1     		bne	.L54
+ 379 001e 13F0080F 		tst	r3, #8
+ 380 0022 13D1     		bne	.L55
+ 381 0024 2346     		mov	r3, r4
+ 382 0026 01A9     		add	r1, sp, #4
+ 383 0028 2C20     		movs	r0, #44
+ 384 002a FFF7FEFF 		bl	bmp5_get_regs
+ 385 002e 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 386 0032 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 387 0036 43EA0223 		orr	r3, r3, r2, lsl #8
+ 388 003a 2B80     		strh	r3, [r5]	@ movhi
+ 389              	.L52:
+ 390 003c 03B0     		add	sp, sp, #12
+ 391              		@ sp needed
+ 392 003e 30BD     		pop	{r4, r5, pc}
+ 393              	.L53:
+ 394 0040 4FF0FF30 		mov	r0, #-1
+ 395 0044 7047     		bx	lr
+ 396              	.L54:
+ 397 0046 6FF00A00 		mvn	r0, #10
+ 398 004a F7E7     		b	.L52
+ 399              	.L55:
+ 400 004c 6FF00A00 		mvn	r0, #10
+ 401 0050 F4E7     		b	.L52
+ 403              		.section	.text.bmp5_set_regs,"ax",%progbits
+ 404              		.align	1
+ 405              		.global	bmp5_set_regs
+ 406              		.syntax unified
+ 407              		.thumb
+ 408              		.thumb_func
+ 410              	bmp5_set_regs:
+ 411              		@ args = 0, pretend = 0, frame = 0
+ 412              		@ frame_needed = 0, uses_anonymous_args = 0
+ 413 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 414 0004 8246     		mov	r10, r0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 8
+
+
+ 415 0006 0E46     		mov	r6, r1
+ 416 0008 9046     		mov	r8, r2
+ 417 000a 1D46     		mov	r5, r3
+ 418 000c 1846     		mov	r0, r3
+ 419 000e FFF7FEFF 		bl	null_ptr_check
+ 420 0012 28BB     		cbnz	r0, .L65
+ 421 0014 8146     		mov	r9, r0
+ 422 0016 36B3     		cbz	r6, .L66
+ 423 0018 6C7D     		ldrb	r4, [r5, #21]	@ zero_extendqisi2
+ 424 001a 7CB9     		cbnz	r4, .L62
+ 425              	.L64:
+ 426 001c 04EB0A00 		add	r0, r4, r10
+ 427 0020 6B68     		ldr	r3, [r5, #4]
+ 428 0022 0122     		movs	r2, #1
+ 429 0024 3119     		adds	r1, r6, r4
+ 430 0026 C0B2     		uxtb	r0, r0
+ 431 0028 EF68     		ldr	r7, [r5, #12]
+ 432 002a B847     		blx	r7
+ 433 002c 2875     		strb	r0, [r5, #20]
+ 434 002e 0134     		adds	r4, r4, #1
+ 435 0030 E4B2     		uxtb	r4, r4
+ 436 0032 4445     		cmp	r4, r8
+ 437 0034 06D2     		bcs	.L63
+ 438 0036 0028     		cmp	r0, #0
+ 439 0038 F0D0     		beq	.L64
+ 440 003a 03E0     		b	.L63
+ 441              	.L62:
+ 442 003c 013C     		subs	r4, r4, #1
+ 443 003e E4B2     		uxtb	r4, r4
+ 444 0040 012C     		cmp	r4, #1
+ 445 0042 05D9     		bls	.L69
+ 446              	.L63:
+ 447 0044 95F91430 		ldrsb	r3, [r5, #20]
+ 448 0048 83B9     		cbnz	r3, .L70
+ 449              	.L61:
+ 450 004a 4846     		mov	r0, r9
+ 451 004c BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 452              	.L69:
+ 453 0050 EC68     		ldr	r4, [r5, #12]
+ 454 0052 6B68     		ldr	r3, [r5, #4]
+ 455 0054 4246     		mov	r2, r8
+ 456 0056 3146     		mov	r1, r6
+ 457 0058 5046     		mov	r0, r10
+ 458 005a A047     		blx	r4
+ 459 005c 2875     		strb	r0, [r5, #20]
+ 460 005e F1E7     		b	.L63
+ 461              	.L65:
+ 462 0060 4FF0FF39 		mov	r9, #-1
+ 463 0064 F1E7     		b	.L61
+ 464              	.L66:
+ 465 0066 4FF0FF39 		mov	r9, #-1
+ 466 006a EEE7     		b	.L61
+ 467              	.L70:
+ 468 006c 6FF00109 		mvn	r9, #1
+ 469 0070 EBE7     		b	.L61
+ 471              		.section	.text.set_deep_standby_mode,"ax",%progbits
+ 472              		.align	1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 9
+
+
+ 473              		.syntax unified
+ 474              		.thumb
+ 475              		.thumb_func
+ 477              	set_deep_standby_mode:
+ 478              		@ args = 0, pretend = 0, frame = 8
+ 479              		@ frame_needed = 0, uses_anonymous_args = 0
+ 480 0000 10B5     		push	{r4, lr}
+ 481 0002 82B0     		sub	sp, sp, #8
+ 482 0004 0446     		mov	r4, r0
+ 483 0006 0346     		mov	r3, r0
+ 484 0008 0122     		movs	r2, #1
+ 485 000a 0DF10701 		add	r1, sp, #7
+ 486 000e 3720     		movs	r0, #55
+ 487 0010 FFF7FEFF 		bl	bmp5_get_regs
+ 488 0014 08B1     		cbz	r0, .L74
+ 489              	.L72:
+ 490 0016 02B0     		add	sp, sp, #8
+ 491              		@ sp needed
+ 492 0018 10BD     		pop	{r4, pc}
+ 493              	.L74:
+ 494 001a 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 495 001e 03F07F02 		and	r2, r3, #127
+ 496 0022 8DF80720 		strb	r2, [sp, #7]
+ 497 0026 03F00303 		and	r3, r3, #3
+ 498 002a 43F07003 		orr	r3, r3, #112
+ 499 002e 8DF80730 		strb	r3, [sp, #7]
+ 500 0032 2346     		mov	r3, r4
+ 501 0034 0122     		movs	r2, #1
+ 502 0036 0DF10701 		add	r1, sp, #7
+ 503 003a 3720     		movs	r0, #55
+ 504 003c FFF7FEFF 		bl	bmp5_set_regs
+ 505 0040 0028     		cmp	r0, #0
+ 506 0042 E8D1     		bne	.L72
+ 507 0044 2346     		mov	r3, r4
+ 508 0046 0122     		movs	r2, #1
+ 509 0048 0DF10701 		add	r1, sp, #7
+ 510 004c 3120     		movs	r0, #49
+ 511 004e FFF7FEFF 		bl	bmp5_get_regs
+ 512 0052 0028     		cmp	r0, #0
+ 513 0054 DFD1     		bne	.L72
+ 514 0056 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 515 005a 03F0C003 		and	r3, r3, #192
+ 516 005e 8DF80730 		strb	r3, [sp, #7]
+ 517 0062 2346     		mov	r3, r4
+ 518 0064 0122     		movs	r2, #1
+ 519 0066 0DF10701 		add	r1, sp, #7
+ 520 006a 3120     		movs	r0, #49
+ 521 006c FFF7FEFF 		bl	bmp5_set_regs
+ 522 0070 0028     		cmp	r0, #0
+ 523 0072 D0D1     		bne	.L72
+ 524 0074 2346     		mov	r3, r4
+ 525 0076 0122     		movs	r2, #1
+ 526 0078 0DF10701 		add	r1, sp, #7
+ 527 007c 1820     		movs	r0, #24
+ 528 007e FFF7FEFF 		bl	bmp5_get_regs
+ 529 0082 0028     		cmp	r0, #0
+ 530 0084 C7D1     		bne	.L72
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 10
+
+
+ 531 0086 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 532 008a 03F0FC03 		and	r3, r3, #252
+ 533 008e 8DF80730 		strb	r3, [sp, #7]
+ 534 0092 2346     		mov	r3, r4
+ 535 0094 0122     		movs	r2, #1
+ 536 0096 0DF10701 		add	r1, sp, #7
+ 537 009a 1820     		movs	r0, #24
+ 538 009c FFF7FEFF 		bl	bmp5_set_regs
+ 539 00a0 B9E7     		b	.L72
+ 541              		.section	.text.set_power_mode,"ax",%progbits
+ 542              		.align	1
+ 543              		.syntax unified
+ 544              		.thumb
+ 545              		.thumb_func
+ 547              	set_power_mode:
+ 548              		@ args = 0, pretend = 0, frame = 8
+ 549              		@ frame_needed = 0, uses_anonymous_args = 0
+ 550 0000 30B5     		push	{r4, r5, lr}
+ 551 0002 83B0     		sub	sp, sp, #12
+ 552 0004 0546     		mov	r5, r0
+ 553 0006 0C46     		mov	r4, r1
+ 554 0008 0B46     		mov	r3, r1
+ 555 000a 0122     		movs	r2, #1
+ 556 000c 0DF10701 		add	r1, sp, #7
+ 557 0010 3720     		movs	r0, #55
+ 558 0012 FFF7FEFF 		bl	bmp5_get_regs
+ 559 0016 08B1     		cbz	r0, .L78
+ 560              	.L76:
+ 561 0018 03B0     		add	sp, sp, #12
+ 562              		@ sp needed
+ 563 001a 30BD     		pop	{r4, r5, pc}
+ 564              	.L78:
+ 565 001c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 566 0020 43F08002 		orr	r2, r3, #128
+ 567 0024 8DF80720 		strb	r2, [sp, #7]
+ 568 0028 23F00303 		bic	r3, r3, #3
+ 569 002c 63F07F03 		orn	r3, r3, #127
+ 570 0030 05F00300 		and	r0, r5, #3
+ 571 0034 1843     		orrs	r0, r0, r3
+ 572 0036 8DF80700 		strb	r0, [sp, #7]
+ 573 003a 2346     		mov	r3, r4
+ 574 003c 0122     		movs	r2, #1
+ 575 003e 0DF10701 		add	r1, sp, #7
+ 576 0042 3720     		movs	r0, #55
+ 577 0044 FFF7FEFF 		bl	bmp5_set_regs
+ 578 0048 E6E7     		b	.L76
+ 580              		.section	.text.set_iir_config,"ax",%progbits
+ 581              		.align	1
+ 582              		.syntax unified
+ 583              		.thumb
+ 584              		.thumb_func
+ 586              	set_iir_config:
+ 587              		@ args = 0, pretend = 0, frame = 8
+ 588              		@ frame_needed = 0, uses_anonymous_args = 0
+ 589 0000 30B5     		push	{r4, r5, lr}
+ 590 0002 83B0     		sub	sp, sp, #12
+ 591 0004 0446     		mov	r4, r0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 11
+
+
+ 592 0006 0D46     		mov	r5, r1
+ 593 0008 0B46     		mov	r3, r1
+ 594 000a 0222     		movs	r2, #2
+ 595 000c 01A9     		add	r1, sp, #4
+ 596 000e 3020     		movs	r0, #48
+ 597 0010 FFF7FEFF 		bl	bmp5_get_regs
+ 598 0014 08B1     		cbz	r0, .L82
+ 599              	.L80:
+ 600 0016 03B0     		add	sp, sp, #12
+ 601              		@ sp needed
+ 602 0018 30BD     		pop	{r4, r5, pc}
+ 603              	.L82:
+ 604 001a 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 605 001e A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 606 0020 DB00     		lsls	r3, r3, #3
+ 607 0022 03F00803 		and	r3, r3, #8
+ 608 0026 22F00802 		bic	r2, r2, #8
+ 609 002a 1A43     		orrs	r2, r2, r3
+ 610 002c 8DF80420 		strb	r2, [sp, #4]
+ 611 0030 E378     		ldrb	r3, [r4, #3]	@ zero_extendqisi2
+ 612 0032 5B01     		lsls	r3, r3, #5
+ 613 0034 03F02003 		and	r3, r3, #32
+ 614 0038 22F02002 		bic	r2, r2, #32
+ 615 003c 1A43     		orrs	r2, r2, r3
+ 616 003e 8DF80420 		strb	r2, [sp, #4]
+ 617 0042 2379     		ldrb	r3, [r4, #4]	@ zero_extendqisi2
+ 618 0044 9B00     		lsls	r3, r3, #2
+ 619 0046 03F00403 		and	r3, r3, #4
+ 620 004a 22F00402 		bic	r2, r2, #4
+ 621 004e 1A43     		orrs	r2, r2, r3
+ 622 0050 8DF80420 		strb	r2, [sp, #4]
+ 623 0054 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 624 0056 8DF80530 		strb	r3, [sp, #5]
+ 625 005a 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 626 005c D200     		lsls	r2, r2, #3
+ 627 005e 02F03802 		and	r2, r2, #56
+ 628 0062 23F03803 		bic	r3, r3, #56
+ 629 0066 1343     		orrs	r3, r3, r2
+ 630 0068 8DF80530 		strb	r3, [sp, #5]
+ 631 006c 2B46     		mov	r3, r5
+ 632 006e 0222     		movs	r2, #2
+ 633 0070 01A9     		add	r1, sp, #4
+ 634 0072 3020     		movs	r0, #48
+ 635 0074 FFF7FEFF 		bl	bmp5_set_regs
+ 636 0078 CDE7     		b	.L80
+ 638              		.section	.text.set_nvm_addr,"ax",%progbits
+ 639              		.align	1
+ 640              		.syntax unified
+ 641              		.thumb
+ 642              		.thumb_func
+ 644              	set_nvm_addr:
+ 645              		@ args = 0, pretend = 0, frame = 8
+ 646              		@ frame_needed = 0, uses_anonymous_args = 0
+ 647 0000 70B5     		push	{r4, r5, r6, lr}
+ 648 0002 82B0     		sub	sp, sp, #8
+ 649 0004 0546     		mov	r5, r0
+ 650 0006 0E46     		mov	r6, r1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 12
+
+
+ 651 0008 1446     		mov	r4, r2
+ 652 000a 1146     		mov	r1, r2
+ 653 000c 0DF10700 		add	r0, sp, #7
+ 654 0010 FFF7FEFF 		bl	get_nvm_status
+ 655 0014 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 656 0018 13F0020F 		tst	r3, #2
+ 657 001c 29D0     		beq	.L87
+ 658 001e 2346     		mov	r3, r4
+ 659 0020 0122     		movs	r2, #1
+ 660 0022 0DF10601 		add	r1, sp, #6
+ 661 0026 2B20     		movs	r0, #43
+ 662 0028 FFF7FEFF 		bl	bmp5_get_regs
+ 663 002c B0B9     		cbnz	r0, .L84
+ 664 002e 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 665 0032 23F03F03 		bic	r3, r3, #63
+ 666 0036 05F03F05 		and	r5, r5, #63
+ 667 003a 43EA0500 		orr	r0, r3, r5
+ 668 003e 8DF80600 		strb	r0, [sp, #6]
+ 669 0042 012E     		cmp	r6, #1
+ 670 0044 0CD0     		beq	.L89
+ 671 0046 00F0BF00 		and	r0, r0, #191
+ 672 004a 8DF80600 		strb	r0, [sp, #6]
+ 673              	.L86:
+ 674 004e 2346     		mov	r3, r4
+ 675 0050 0122     		movs	r2, #1
+ 676 0052 0DF10601 		add	r1, sp, #6
+ 677 0056 2B20     		movs	r0, #43
+ 678 0058 FFF7FEFF 		bl	bmp5_set_regs
+ 679              	.L84:
+ 680 005c 02B0     		add	sp, sp, #8
+ 681              		@ sp needed
+ 682 005e 70BD     		pop	{r4, r5, r6, pc}
+ 683              	.L89:
+ 684 0060 B601     		lsls	r6, r6, #6
+ 685 0062 06F04006 		and	r6, r6, #64
+ 686 0066 20F04000 		bic	r0, r0, #64
+ 687 006a 3043     		orrs	r0, r0, r6
+ 688 006c 8DF80600 		strb	r0, [sp, #6]
+ 689 0070 EDE7     		b	.L86
+ 690              	.L87:
+ 691 0072 6FF00A00 		mvn	r0, #10
+ 692 0076 F1E7     		b	.L84
+ 694              		.section	.text.bmp5_get_interrupt_status,"ax",%progbits
+ 695              		.align	1
+ 696              		.global	bmp5_get_interrupt_status
+ 697              		.syntax unified
+ 698              		.thumb
+ 699              		.thumb_func
+ 701              	bmp5_get_interrupt_status:
+ 702              		@ args = 0, pretend = 0, frame = 0
+ 703              		@ frame_needed = 0, uses_anonymous_args = 0
+ 704 0000 38B1     		cbz	r0, .L92
+ 705 0002 08B5     		push	{r3, lr}
+ 706 0004 0B46     		mov	r3, r1
+ 707 0006 0146     		mov	r1, r0
+ 708 0008 0122     		movs	r2, #1
+ 709 000a 2720     		movs	r0, #39
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 13
+
+
+ 710 000c FFF7FEFF 		bl	bmp5_get_regs
+ 711 0010 08BD     		pop	{r3, pc}
+ 712              	.L92:
+ 713 0012 4FF0FF30 		mov	r0, #-1
+ 714 0016 7047     		bx	lr
+ 716              		.section	.text.power_up_check,"ax",%progbits
+ 717              		.align	1
+ 718              		.syntax unified
+ 719              		.thumb
+ 720              		.thumb_func
+ 722              	power_up_check:
+ 723              		@ args = 0, pretend = 0, frame = 8
+ 724              		@ frame_needed = 0, uses_anonymous_args = 0
+ 725 0000 10B5     		push	{r4, lr}
+ 726 0002 82B0     		sub	sp, sp, #8
+ 727 0004 0446     		mov	r4, r0
+ 728 0006 0146     		mov	r1, r0
+ 729 0008 0DF10700 		add	r0, sp, #7
+ 730 000c FFF7FEFF 		bl	get_nvm_status
+ 731 0010 80B9     		cbnz	r0, .L98
+ 732 0012 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 733 0016 03F00603 		and	r3, r3, #6
+ 734 001a 022B     		cmp	r3, #2
+ 735 001c 0CD1     		bne	.L99
+ 736 001e 2146     		mov	r1, r4
+ 737 0020 0DF10600 		add	r0, sp, #6
+ 738 0024 FFF7FEFF 		bl	bmp5_get_interrupt_status
+ 739 0028 20B9     		cbnz	r0, .L98
+ 740 002a 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 741 002e 13F0100F 		tst	r3, #16
+ 742 0032 04D0     		beq	.L102
+ 743              	.L98:
+ 744 0034 02B0     		add	sp, sp, #8
+ 745              		@ sp needed
+ 746 0036 10BD     		pop	{r4, pc}
+ 747              	.L99:
+ 748 0038 6FF00400 		mvn	r0, #4
+ 749 003c FAE7     		b	.L98
+ 750              	.L102:
+ 751 003e 6FF00400 		mvn	r0, #4
+ 752 0042 F7E7     		b	.L98
+ 754              		.section	.text.bmp5_init,"ax",%progbits
+ 755              		.align	1
+ 756              		.global	bmp5_init
+ 757              		.syntax unified
+ 758              		.thumb
+ 759              		.thumb_func
+ 761              	bmp5_init:
+ 762              		@ args = 0, pretend = 0, frame = 8
+ 763              		@ frame_needed = 0, uses_anonymous_args = 0
+ 764 0000 10B5     		push	{r4, lr}
+ 765 0002 82B0     		sub	sp, sp, #8
+ 766 0004 0446     		mov	r4, r0
+ 767 0006 FFF7FEFF 		bl	null_ptr_check
+ 768 000a 0346     		mov	r3, r0
+ 769 000c 20B9     		cbnz	r0, .L104
+ 770 000e 0022     		movs	r2, #0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 14
+
+
+ 771 0010 2270     		strb	r2, [r4]
+ 772 0012 627D     		ldrb	r2, [r4, #21]	@ zero_extendqisi2
+ 773 0014 1AB1     		cbz	r2, .L108
+ 774              	.L105:
+ 775 0016 5BB1     		cbz	r3, .L109
+ 776              	.L104:
+ 777 0018 1846     		mov	r0, r3
+ 778 001a 02B0     		add	sp, sp, #8
+ 779              		@ sp needed
+ 780 001c 10BD     		pop	{r4, pc}
+ 781              	.L108:
+ 782 001e 2346     		mov	r3, r4
+ 783 0020 0122     		movs	r2, #1
+ 784 0022 0DF10701 		add	r1, sp, #7
+ 785 0026 1046     		mov	r0, r2
+ 786 0028 FFF7FEFF 		bl	bmp5_get_regs
+ 787 002c 0346     		mov	r3, r0
+ 788 002e F2E7     		b	.L105
+ 789              	.L109:
+ 790 0030 2346     		mov	r3, r4
+ 791 0032 0122     		movs	r2, #1
+ 792 0034 0DF10601 		add	r1, sp, #6
+ 793 0038 1046     		mov	r0, r2
+ 794 003a FFF7FEFF 		bl	bmp5_get_regs
+ 795 003e 0346     		mov	r3, r0
+ 796 0040 0028     		cmp	r0, #0
+ 797 0042 E9D1     		bne	.L104
+ 798 0044 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 799 0048 63B1     		cbz	r3, .L106
+ 800 004a 2046     		mov	r0, r4
+ 801 004c FFF7FEFF 		bl	power_up_check
+ 802 0050 0346     		mov	r3, r0
+ 803 0052 0028     		cmp	r0, #0
+ 804 0054 E0D1     		bne	.L104
+ 805 0056 2146     		mov	r1, r4
+ 806 0058 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 807 005c FFF7FEFF 		bl	validate_chip_id
+ 808 0060 0346     		mov	r3, r0
+ 809 0062 D9E7     		b	.L104
+ 810              	.L106:
+ 811 0064 6FF00303 		mvn	r3, #3
+ 812 0068 D6E7     		b	.L104
+ 814              		.section	.text.bmp5_soft_reset,"ax",%progbits
+ 815              		.align	1
+ 816              		.global	bmp5_soft_reset
+ 817              		.syntax unified
+ 818              		.thumb
+ 819              		.thumb_func
+ 821              	bmp5_soft_reset:
+ 822              		@ args = 0, pretend = 0, frame = 8
+ 823              		@ frame_needed = 0, uses_anonymous_args = 0
+ 824 0000 30B5     		push	{r4, r5, lr}
+ 825 0002 83B0     		sub	sp, sp, #12
+ 826 0004 0446     		mov	r4, r0
+ 827 0006 B623     		movs	r3, #182
+ 828 0008 8DF80530 		strb	r3, [sp, #5]
+ 829 000c 0346     		mov	r3, r0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 15
+
+
+ 830 000e 0122     		movs	r2, #1
+ 831 0010 0DF10501 		add	r1, sp, #5
+ 832 0014 7E20     		movs	r0, #126
+ 833 0016 FFF7FEFF 		bl	bmp5_set_regs
+ 834 001a 0546     		mov	r5, r0
+ 835 001c 38B9     		cbnz	r0, .L111
+ 836 001e 2369     		ldr	r3, [r4, #16]
+ 837 0020 6168     		ldr	r1, [r4, #4]
+ 838 0022 4FF4FA60 		mov	r0, #2000
+ 839 0026 9847     		blx	r3
+ 840 0028 637D     		ldrb	r3, [r4, #21]	@ zero_extendqisi2
+ 841 002a 1BB1     		cbz	r3, .L115
+ 842              	.L112:
+ 843 002c 5DB1     		cbz	r5, .L116
+ 844              	.L111:
+ 845 002e 2846     		mov	r0, r5
+ 846 0030 03B0     		add	sp, sp, #12
+ 847              		@ sp needed
+ 848 0032 30BD     		pop	{r4, r5, pc}
+ 849              	.L115:
+ 850 0034 2346     		mov	r3, r4
+ 851 0036 0122     		movs	r2, #1
+ 852 0038 0DF10701 		add	r1, sp, #7
+ 853 003c 1046     		mov	r0, r2
+ 854 003e FFF7FEFF 		bl	bmp5_get_regs
+ 855 0042 0546     		mov	r5, r0
+ 856 0044 F2E7     		b	.L112
+ 857              	.L116:
+ 858 0046 2146     		mov	r1, r4
+ 859 0048 0DF10600 		add	r0, sp, #6
+ 860 004c FFF7FEFF 		bl	bmp5_get_interrupt_status
+ 861 0050 0546     		mov	r5, r0
+ 862 0052 0028     		cmp	r0, #0
+ 863 0054 EBD1     		bne	.L111
+ 864 0056 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 865 005a 13F0100F 		tst	r3, #16
+ 866 005e E6D1     		bne	.L111
+ 867 0060 6FF00505 		mvn	r5, #5
+ 868 0064 E3E7     		b	.L111
+ 870              		.section	.text.bmp5_get_sensor_data,"ax",%progbits
+ 871              		.align	1
+ 872              		.global	bmp5_get_sensor_data
+ 873              		.syntax unified
+ 874              		.thumb
+ 875              		.thumb_func
+ 877              	bmp5_get_sensor_data:
+ 878              		@ args = 0, pretend = 0, frame = 8
+ 879              		@ frame_needed = 0, uses_anonymous_args = 0
+ 880 0000 70B5     		push	{r4, r5, r6, lr}
+ 881 0002 82B0     		sub	sp, sp, #8
+ 882 0004 0446     		mov	r4, r0
+ 883 0006 0D46     		mov	r5, r1
+ 884 0008 1346     		mov	r3, r2
+ 885 000a 0021     		movs	r1, #0
+ 886 000c 0091     		str	r1, [sp]
+ 887 000e ADF80410 		strh	r1, [sp, #4]	@ movhi
+ 888 0012 0622     		movs	r2, #6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 16
+
+
+ 889 0014 6946     		mov	r1, sp
+ 890 0016 1D20     		movs	r0, #29
+ 891 0018 FFF7FEFF 		bl	bmp5_get_regs
+ 892 001c 0646     		mov	r6, r0
+ 893 001e C8B9     		cbnz	r0, .L118
+ 894 0020 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 895 0024 9DF80100 		ldrb	r0, [sp, #1]	@ zero_extendqisi2
+ 896 0028 0002     		lsls	r0, r0, #8
+ 897 002a 40EA0340 		orr	r0, r0, r3, lsl #16
+ 898 002e 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
+ 899 0032 1843     		orrs	r0, r0, r3
+ 900 0034 40F31700 		sbfx	r0, r0, #0, #24
+ 901 0038 FFF7FEFF 		bl	__aeabi_i2d
+ 902 003c 0022     		movs	r2, #0
+ 903 003e 114B     		ldr	r3, .L122
+ 904 0040 FFF7FEFF 		bl	__aeabi_dmul
+ 905 0044 FFF7FEFF 		bl	__aeabi_d2f
+ 906 0048 6060     		str	r0, [r4, #4]	@ float
+ 907 004a AB78     		ldrb	r3, [r5, #2]	@ zero_extendqisi2
+ 908 004c 012B     		cmp	r3, #1
+ 909 004e 04D0     		beq	.L121
+ 910 0050 0023     		movs	r3, #0
+ 911 0052 2360     		str	r3, [r4]	@ float
+ 912              	.L118:
+ 913 0054 3046     		mov	r0, r6
+ 914 0056 02B0     		add	sp, sp, #8
+ 915              		@ sp needed
+ 916 0058 70BD     		pop	{r4, r5, r6, pc}
+ 917              	.L121:
+ 918 005a 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 919 005e 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 920 0062 1B02     		lsls	r3, r3, #8
+ 921 0064 43EA0243 		orr	r3, r3, r2, lsl #16
+ 922 0068 9DF80300 		ldrb	r0, [sp, #3]	@ zero_extendqisi2
+ 923 006c 1843     		orrs	r0, r0, r3
+ 924 006e FFF7FEFF 		bl	__aeabi_ui2d
+ 925 0072 0022     		movs	r2, #0
+ 926 0074 044B     		ldr	r3, .L122+4
+ 927 0076 FFF7FEFF 		bl	__aeabi_dmul
+ 928 007a FFF7FEFF 		bl	__aeabi_d2f
+ 929 007e 2060     		str	r0, [r4]	@ float
+ 930 0080 E8E7     		b	.L118
+ 931              	.L123:
+ 932 0082 00BF     		.align	2
+ 933              	.L122:
+ 934 0084 0000F03E 		.word	1055916032
+ 935 0088 0000903F 		.word	1066401792
+ 937              		.section	.text.bmp5_int_source_select,"ax",%progbits
+ 938              		.align	1
+ 939              		.global	bmp5_int_source_select
+ 940              		.syntax unified
+ 941              		.thumb
+ 942              		.thumb_func
+ 944              	bmp5_int_source_select:
+ 945              		@ args = 0, pretend = 0, frame = 8
+ 946              		@ frame_needed = 0, uses_anonymous_args = 0
+ 947 0000 0028     		cmp	r0, #0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 17
+
+
+ 948 0002 3AD0     		beq	.L126
+ 949 0004 30B5     		push	{r4, r5, lr}
+ 950 0006 83B0     		sub	sp, sp, #12
+ 951 0008 0C46     		mov	r4, r1
+ 952 000a 0546     		mov	r5, r0
+ 953 000c 0B46     		mov	r3, r1
+ 954 000e 0122     		movs	r2, #1
+ 955 0010 0DF10701 		add	r1, sp, #7
+ 956 0014 1520     		movs	r0, #21
+ 957 0016 FFF7FEFF 		bl	bmp5_get_regs
+ 958 001a 08B1     		cbz	r0, .L131
+ 959              	.L125:
+ 960 001c 03B0     		add	sp, sp, #12
+ 961              		@ sp needed
+ 962 001e 30BD     		pop	{r4, r5, pc}
+ 963              	.L131:
+ 964 0020 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 965 0024 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 966 0026 22F00102 		bic	r2, r2, #1
+ 967 002a 03F00103 		and	r3, r3, #1
+ 968 002e 1A43     		orrs	r2, r2, r3
+ 969 0030 8DF80720 		strb	r2, [sp, #7]
+ 970 0034 6B78     		ldrb	r3, [r5, #1]	@ zero_extendqisi2
+ 971 0036 5B00     		lsls	r3, r3, #1
+ 972 0038 03F00203 		and	r3, r3, #2
+ 973 003c 22F00202 		bic	r2, r2, #2
+ 974 0040 1A43     		orrs	r2, r2, r3
+ 975 0042 8DF80720 		strb	r2, [sp, #7]
+ 976 0046 AB78     		ldrb	r3, [r5, #2]	@ zero_extendqisi2
+ 977 0048 9B00     		lsls	r3, r3, #2
+ 978 004a 03F00403 		and	r3, r3, #4
+ 979 004e 22F00402 		bic	r2, r2, #4
+ 980 0052 1A43     		orrs	r2, r2, r3
+ 981 0054 8DF80720 		strb	r2, [sp, #7]
+ 982 0058 EB78     		ldrb	r3, [r5, #3]	@ zero_extendqisi2
+ 983 005a DB00     		lsls	r3, r3, #3
+ 984 005c 03F00803 		and	r3, r3, #8
+ 985 0060 22F00802 		bic	r2, r2, #8
+ 986 0064 1A43     		orrs	r2, r2, r3
+ 987 0066 8DF80720 		strb	r2, [sp, #7]
+ 988 006a 2346     		mov	r3, r4
+ 989 006c 0122     		movs	r2, #1
+ 990 006e 0DF10701 		add	r1, sp, #7
+ 991 0072 1520     		movs	r0, #21
+ 992 0074 FFF7FEFF 		bl	bmp5_set_regs
+ 993 0078 D0E7     		b	.L125
+ 994              	.L126:
+ 995 007a 4FF0FF30 		mov	r0, #-1
+ 996 007e 7047     		bx	lr
+ 998              		.section	.text.bmp5_configure_interrupt,"ax",%progbits
+ 999              		.align	1
+ 1000              		.global	bmp5_configure_interrupt
+ 1001              		.syntax unified
+ 1002              		.thumb
+ 1003              		.thumb_func
+ 1005              	bmp5_configure_interrupt:
+ 1006              		@ args = 4, pretend = 0, frame = 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 18
+
+
+ 1007              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1008 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 1009 0004 83B0     		sub	sp, sp, #12
+ 1010 0006 8046     		mov	r8, r0
+ 1011 0008 0F46     		mov	r7, r1
+ 1012 000a 1646     		mov	r6, r2
+ 1013 000c 9946     		mov	r9, r3
+ 1014 000e 0A9D     		ldr	r5, [sp, #40]
+ 1015 0010 4FF0000C 		mov	ip, #0
+ 1016 0014 8DF807C0 		strb	ip, [sp, #7]
+ 1017 0018 8DF806C0 		strb	ip, [sp, #6]
+ 1018 001c 8DF805C0 		strb	ip, [sp, #5]
+ 1019 0020 2B46     		mov	r3, r5
+ 1020 0022 0122     		movs	r2, #1
+ 1021 0024 0DF10701 		add	r1, sp, #7
+ 1022 0028 1420     		movs	r0, #20
+ 1023 002a FFF7FEFF 		bl	bmp5_get_regs
+ 1024 002e 10B1     		cbz	r0, .L135
+ 1025              	.L133:
+ 1026 0030 03B0     		add	sp, sp, #12
+ 1027              		@ sp needed
+ 1028 0032 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 1029              	.L135:
+ 1030 0036 2B46     		mov	r3, r5
+ 1031 0038 0122     		movs	r2, #1
+ 1032 003a 0DF10601 		add	r1, sp, #6
+ 1033 003e 1520     		movs	r0, #21
+ 1034 0040 FFF7FEFF 		bl	bmp5_set_regs
+ 1035 0044 0028     		cmp	r0, #0
+ 1036 0046 F3D1     		bne	.L133
+ 1037 0048 2B46     		mov	r3, r5
+ 1038 004a 0122     		movs	r2, #1
+ 1039 004c 0DF10501 		add	r1, sp, #5
+ 1040 0050 2720     		movs	r0, #39
+ 1041 0052 FFF7FEFF 		bl	bmp5_get_regs
+ 1042 0056 0028     		cmp	r0, #0
+ 1043 0058 EAD1     		bne	.L133
+ 1044 005a 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 1045 005e 22F00102 		bic	r2, r2, #1
+ 1046 0062 08F00108 		and	r8, r8, #1
+ 1047 0066 42EA0802 		orr	r2, r2, r8
+ 1048 006a 8DF80720 		strb	r2, [sp, #7]
+ 1049 006e 7F00     		lsls	r7, r7, #1
+ 1050 0070 07F00207 		and	r7, r7, #2
+ 1051 0074 22F00202 		bic	r2, r2, #2
+ 1052 0078 3A43     		orrs	r2, r2, r7
+ 1053 007a 8DF80720 		strb	r2, [sp, #7]
+ 1054 007e B600     		lsls	r6, r6, #2
+ 1055 0080 06F00406 		and	r6, r6, #4
+ 1056 0084 22F00402 		bic	r2, r2, #4
+ 1057 0088 3243     		orrs	r2, r2, r6
+ 1058 008a 8DF80720 		strb	r2, [sp, #7]
+ 1059 008e 4FEAC903 		lsl	r3, r9, #3
+ 1060 0092 03F00803 		and	r3, r3, #8
+ 1061 0096 22F00802 		bic	r2, r2, #8
+ 1062 009a 1A43     		orrs	r2, r2, r3
+ 1063 009c 8DF80720 		strb	r2, [sp, #7]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 19
+
+
+ 1064 00a0 2B46     		mov	r3, r5
+ 1065 00a2 0122     		movs	r2, #1
+ 1066 00a4 0DF10701 		add	r1, sp, #7
+ 1067 00a8 1420     		movs	r0, #20
+ 1068 00aa FFF7FEFF 		bl	bmp5_set_regs
+ 1069 00ae BFE7     		b	.L133
+ 1071              		.section	.text.bmp5_get_osr_odr_press_config,"ax",%progbits
+ 1072              		.align	1
+ 1073              		.global	bmp5_get_osr_odr_press_config
+ 1074              		.syntax unified
+ 1075              		.thumb
+ 1076              		.thumb_func
+ 1078              	bmp5_get_osr_odr_press_config:
+ 1079              		@ args = 0, pretend = 0, frame = 8
+ 1080              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1081 0000 D8B1     		cbz	r0, .L138
+ 1082 0002 10B5     		push	{r4, lr}
+ 1083 0004 82B0     		sub	sp, sp, #8
+ 1084 0006 0B46     		mov	r3, r1
+ 1085 0008 0446     		mov	r4, r0
+ 1086 000a 0222     		movs	r2, #2
+ 1087 000c 01A9     		add	r1, sp, #4
+ 1088 000e 3620     		movs	r0, #54
+ 1089 0010 FFF7FEFF 		bl	bmp5_get_regs
+ 1090 0014 78B9     		cbnz	r0, .L137
+ 1091 0016 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 1092 001a 03F00702 		and	r2, r3, #7
+ 1093 001e 2270     		strb	r2, [r4]
+ 1094 0020 C3F3C202 		ubfx	r2, r3, #3, #3
+ 1095 0024 6270     		strb	r2, [r4, #1]
+ 1096 0026 C3F38013 		ubfx	r3, r3, #6, #1
+ 1097 002a A370     		strb	r3, [r4, #2]
+ 1098 002c 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 1099 0030 C3F38403 		ubfx	r3, r3, #2, #5
+ 1100 0034 E370     		strb	r3, [r4, #3]
+ 1101              	.L137:
+ 1102 0036 02B0     		add	sp, sp, #8
+ 1103              		@ sp needed
+ 1104 0038 10BD     		pop	{r4, pc}
+ 1105              	.L138:
+ 1106 003a 4FF0FF30 		mov	r0, #-1
+ 1107 003e 7047     		bx	lr
+ 1109              		.section	.text.bmp5_get_iir_config,"ax",%progbits
+ 1110              		.align	1
+ 1111              		.global	bmp5_get_iir_config
+ 1112              		.syntax unified
+ 1113              		.thumb
+ 1114              		.thumb_func
+ 1116              	bmp5_get_iir_config:
+ 1117              		@ args = 0, pretend = 0, frame = 8
+ 1118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1119 0000 E8B1     		cbz	r0, .L145
+ 1120 0002 10B5     		push	{r4, lr}
+ 1121 0004 82B0     		sub	sp, sp, #8
+ 1122 0006 0B46     		mov	r3, r1
+ 1123 0008 0446     		mov	r4, r0
+ 1124 000a 0222     		movs	r2, #2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 20
+
+
+ 1125 000c 01A9     		add	r1, sp, #4
+ 1126 000e 3020     		movs	r0, #48
+ 1127 0010 FFF7FEFF 		bl	bmp5_get_regs
+ 1128 0014 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 1129 0018 C3F3C002 		ubfx	r2, r3, #3, #1
+ 1130 001c A270     		strb	r2, [r4, #2]
+ 1131 001e C3F34012 		ubfx	r2, r3, #5, #1
+ 1132 0022 E270     		strb	r2, [r4, #3]
+ 1133 0024 C3F38003 		ubfx	r3, r3, #2, #1
+ 1134 0028 2371     		strb	r3, [r4, #4]
+ 1135 002a 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 1136 002e 03F00702 		and	r2, r3, #7
+ 1137 0032 2270     		strb	r2, [r4]
+ 1138 0034 C3F3C203 		ubfx	r3, r3, #3, #3
+ 1139 0038 6370     		strb	r3, [r4, #1]
+ 1140 003a 02B0     		add	sp, sp, #8
+ 1141              		@ sp needed
+ 1142 003c 10BD     		pop	{r4, pc}
+ 1143              	.L145:
+ 1144 003e 4FF0FF30 		mov	r0, #-1
+ 1145 0042 7047     		bx	lr
+ 1147              		.section	.text.check_deepstandby_mode,"ax",%progbits
+ 1148              		.align	1
+ 1149              		.syntax unified
+ 1150              		.thumb
+ 1151              		.thumb_func
+ 1153              	check_deepstandby_mode:
+ 1154              		@ args = 0, pretend = 0, frame = 16
+ 1155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1156 0000 30B5     		push	{r4, r5, lr}
+ 1157 0002 85B0     		sub	sp, sp, #20
+ 1158 0004 0546     		mov	r5, r0
+ 1159 0006 0C46     		mov	r4, r1
+ 1160 0008 0023     		movs	r3, #0
+ 1161 000a 0293     		str	r3, [sp, #8]
+ 1162 000c 8DF80C30 		strb	r3, [sp, #12]
+ 1163 0010 0193     		str	r3, [sp, #4]
+ 1164 0012 0B46     		mov	r3, r1
+ 1165 0014 0122     		movs	r2, #1
+ 1166 0016 0DF10F01 		add	r1, sp, #15
+ 1167 001a 1820     		movs	r0, #24
+ 1168 001c FFF7FEFF 		bl	bmp5_get_regs
+ 1169 0020 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 1170 0024 03F00303 		and	r3, r3, #3
+ 1171 0028 8DF80F30 		strb	r3, [sp, #15]
+ 1172 002c 80B1     		cbz	r0, .L154
+ 1173              	.L151:
+ 1174 002e 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1175 0032 182B     		cmp	r3, #24
+ 1176 0034 0AD9     		bls	.L152
+ 1177 0036 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 1178 003a 3BB9     		cbnz	r3, .L152
+ 1179 003c 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ 1180 0040 23B9     		cbnz	r3, .L152
+ 1181 0042 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 1182 0046 0BB9     		cbnz	r3, .L152
+ 1183 0048 0423     		movs	r3, #4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 21
+
+
+ 1184 004a 2B70     		strb	r3, [r5]
+ 1185              	.L152:
+ 1186 004c 05B0     		add	sp, sp, #20
+ 1187              		@ sp needed
+ 1188 004e 30BD     		pop	{r4, r5, pc}
+ 1189              	.L154:
+ 1190 0050 2146     		mov	r1, r4
+ 1191 0052 01A8     		add	r0, sp, #4
+ 1192 0054 FFF7FEFF 		bl	bmp5_get_osr_odr_press_config
+ 1193 0058 0028     		cmp	r0, #0
+ 1194 005a E8D1     		bne	.L151
+ 1195 005c 2146     		mov	r1, r4
+ 1196 005e 02A8     		add	r0, sp, #8
+ 1197 0060 FFF7FEFF 		bl	bmp5_get_iir_config
+ 1198 0064 E3E7     		b	.L151
+ 1200              		.section	.text.bmp5_get_power_mode,"ax",%progbits
+ 1201              		.align	1
+ 1202              		.global	bmp5_get_power_mode
+ 1203              		.syntax unified
+ 1204              		.thumb
+ 1205              		.thumb_func
+ 1207              	bmp5_get_power_mode:
+ 1208              		@ args = 0, pretend = 0, frame = 8
+ 1209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1210 0000 48B3     		cbz	r0, .L163
+ 1211 0002 30B5     		push	{r4, r5, lr}
+ 1212 0004 83B0     		sub	sp, sp, #12
+ 1213 0006 0C46     		mov	r4, r1
+ 1214 0008 0546     		mov	r5, r0
+ 1215 000a 0B46     		mov	r3, r1
+ 1216 000c 0122     		movs	r2, #1
+ 1217 000e 0DF10701 		add	r1, sp, #7
+ 1218 0012 3720     		movs	r0, #55
+ 1219 0014 FFF7FEFF 		bl	bmp5_get_regs
+ 1220 0018 A8B9     		cbnz	r0, .L156
+ 1221 001a 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 1222 001e 02F00303 		and	r3, r2, #3
+ 1223 0022 032B     		cmp	r3, #3
+ 1224 0024 1AD8     		bhi	.L164
+ 1225 0026 DFE803F0 		tbb	[pc, r3]
+ 1226              	.L158:
+ 1227 002a 02       		.byte	(.L161-.L158)/2
+ 1228 002b 0C       		.byte	(.L160-.L158)/2
+ 1229 002c 10       		.byte	(.L159-.L158)/2
+ 1230 002d 13       		.byte	(.L157-.L158)/2
+ 1231              		.p2align 1
+ 1232              	.L161:
+ 1233 002e D209     		lsrs	r2, r2, #7
+ 1234 0030 02D0     		beq	.L169
+ 1235 0032 0023     		movs	r3, #0
+ 1236 0034 2B70     		strb	r3, [r5]
+ 1237 0036 06E0     		b	.L156
+ 1238              	.L169:
+ 1239 0038 2146     		mov	r1, r4
+ 1240 003a 2846     		mov	r0, r5
+ 1241 003c FFF7FEFF 		bl	check_deepstandby_mode
+ 1242 0040 01E0     		b	.L156
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 22
+
+
+ 1243              	.L160:
+ 1244 0042 0123     		movs	r3, #1
+ 1245 0044 2B70     		strb	r3, [r5]
+ 1246              	.L156:
+ 1247 0046 03B0     		add	sp, sp, #12
+ 1248              		@ sp needed
+ 1249 0048 30BD     		pop	{r4, r5, pc}
+ 1250              	.L159:
+ 1251 004a 0223     		movs	r3, #2
+ 1252 004c 2B70     		strb	r3, [r5]
+ 1253 004e FAE7     		b	.L156
+ 1254              	.L157:
+ 1255 0050 0323     		movs	r3, #3
+ 1256 0052 2B70     		strb	r3, [r5]
+ 1257 0054 F7E7     		b	.L156
+ 1258              	.L163:
+ 1259 0056 4FF0FF30 		mov	r0, #-1
+ 1260 005a 7047     		bx	lr
+ 1261              	.L164:
+ 1262 005c 6FF00600 		mvn	r0, #6
+ 1263 0060 F1E7     		b	.L156
+ 1265              		.section	.text.bmp5_set_power_mode,"ax",%progbits
+ 1266              		.align	1
+ 1267              		.global	bmp5_set_power_mode
+ 1268              		.syntax unified
+ 1269              		.thumb
+ 1270              		.thumb_func
+ 1272              	bmp5_set_power_mode:
+ 1273              		@ args = 0, pretend = 0, frame = 8
+ 1274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1275 0000 70B5     		push	{r4, r5, r6, lr}
+ 1276 0002 82B0     		sub	sp, sp, #8
+ 1277 0004 0646     		mov	r6, r0
+ 1278 0006 0C46     		mov	r4, r1
+ 1279 0008 0DF10700 		add	r0, sp, #7
+ 1280 000c FFF7FEFF 		bl	bmp5_get_power_mode
+ 1281 0010 0546     		mov	r5, r0
+ 1282 0012 40B9     		cbnz	r0, .L171
+ 1283 0014 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1284 0018 43B9     		cbnz	r3, .L178
+ 1285              	.L172:
+ 1286 001a 25B9     		cbnz	r5, .L171
+ 1287 001c 032E     		cmp	r6, #3
+ 1288 001e 11D8     		bhi	.L173
+ 1289 0020 73B2     		sxtb	r3, r6
+ 1290 0022 B3B9     		cbnz	r3, .L174
+ 1291 0024 DEB9     		cbnz	r6, .L179
+ 1292              	.L171:
+ 1293 0026 2846     		mov	r0, r5
+ 1294 0028 02B0     		add	sp, sp, #8
+ 1295              		@ sp needed
+ 1296 002a 70BD     		pop	{r4, r5, r6, pc}
+ 1297              	.L178:
+ 1298 002c 2146     		mov	r1, r4
+ 1299 002e FFF7FEFF 		bl	set_power_mode
+ 1300 0032 0546     		mov	r5, r0
+ 1301 0034 0028     		cmp	r0, #0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 23
+
+
+ 1302 0036 F6D1     		bne	.L171
+ 1303 0038 2369     		ldr	r3, [r4, #16]
+ 1304 003a 6168     		ldr	r1, [r4, #4]
+ 1305 003c 40F6C410 		movw	r0, #2500
+ 1306 0040 9847     		blx	r3
+ 1307 0042 EAE7     		b	.L172
+ 1308              	.L173:
+ 1309 0044 042E     		cmp	r6, #4
+ 1310 0046 0DD1     		bne	.L176
+ 1311 0048 2046     		mov	r0, r4
+ 1312 004a FFF7FEFF 		bl	set_deep_standby_mode
+ 1313 004e 0546     		mov	r5, r0
+ 1314 0050 E9E7     		b	.L171
+ 1315              	.L174:
+ 1316 0052 2146     		mov	r1, r4
+ 1317 0054 3046     		mov	r0, r6
+ 1318 0056 FFF7FEFF 		bl	set_power_mode
+ 1319 005a 0546     		mov	r5, r0
+ 1320 005c E3E7     		b	.L171
+ 1321              	.L179:
+ 1322 005e 6FF00605 		mvn	r5, #6
+ 1323 0062 E0E7     		b	.L171
+ 1324              	.L176:
+ 1325 0064 6FF00605 		mvn	r5, #6
+ 1326 0068 DDE7     		b	.L171
+ 1328              		.section	.text.set_standby_mode,"ax",%progbits
+ 1329              		.align	1
+ 1330              		.syntax unified
+ 1331              		.thumb
+ 1332              		.thumb_func
+ 1334              	set_standby_mode:
+ 1335              		@ args = 0, pretend = 0, frame = 8
+ 1336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1337 0000 10B5     		push	{r4, lr}
+ 1338 0002 82B0     		sub	sp, sp, #8
+ 1339 0004 0446     		mov	r4, r0
+ 1340 0006 0146     		mov	r1, r0
+ 1341 0008 0DF10700 		add	r0, sp, #7
+ 1342 000c FFF7FEFF 		bl	bmp5_get_power_mode
+ 1343 0010 18B9     		cbnz	r0, .L181
+ 1344 0012 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1345 0016 042B     		cmp	r3, #4
+ 1346 0018 01D0     		beq	.L183
+ 1347              	.L181:
+ 1348 001a 02B0     		add	sp, sp, #8
+ 1349              		@ sp needed
+ 1350 001c 10BD     		pop	{r4, pc}
+ 1351              	.L183:
+ 1352 001e 2146     		mov	r1, r4
+ 1353 0020 0020     		movs	r0, #0
+ 1354 0022 FFF7FEFF 		bl	bmp5_set_power_mode
+ 1355 0026 F8E7     		b	.L181
+ 1357              		.section	.text.bmp5_set_osr_odr_press_config,"ax",%progbits
+ 1358              		.align	1
+ 1359              		.global	bmp5_set_osr_odr_press_config
+ 1360              		.syntax unified
+ 1361              		.thumb
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 24
+
+
+ 1362              		.thumb_func
+ 1364              	bmp5_set_osr_odr_press_config:
+ 1365              		@ args = 0, pretend = 0, frame = 8
+ 1366              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1367 0000 30B5     		push	{r4, r5, lr}
+ 1368 0002 83B0     		sub	sp, sp, #12
+ 1369 0004 0023     		movs	r3, #0
+ 1370 0006 ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 1371 000a 0028     		cmp	r0, #0
+ 1372 000c 43D0     		beq	.L187
+ 1373 000e 0C46     		mov	r4, r1
+ 1374 0010 0546     		mov	r5, r0
+ 1375 0012 C378     		ldrb	r3, [r0, #3]	@ zero_extendqisi2
+ 1376 0014 172B     		cmp	r3, #23
+ 1377 0016 04D8     		bhi	.L186
+ 1378 0018 0846     		mov	r0, r1
+ 1379 001a FFF7FEFF 		bl	set_standby_mode
+ 1380 001e 0346     		mov	r3, r0
+ 1381 0020 38B9     		cbnz	r0, .L185
+ 1382              	.L186:
+ 1383 0022 2346     		mov	r3, r4
+ 1384 0024 0222     		movs	r2, #2
+ 1385 0026 01A9     		add	r1, sp, #4
+ 1386 0028 3620     		movs	r0, #54
+ 1387 002a FFF7FEFF 		bl	bmp5_get_regs
+ 1388 002e 0346     		mov	r3, r0
+ 1389 0030 10B1     		cbz	r0, .L189
+ 1390              	.L185:
+ 1391 0032 1846     		mov	r0, r3
+ 1392 0034 03B0     		add	sp, sp, #12
+ 1393              		@ sp needed
+ 1394 0036 30BD     		pop	{r4, r5, pc}
+ 1395              	.L189:
+ 1396 0038 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 1397 003c 2A78     		ldrb	r2, [r5]	@ zero_extendqisi2
+ 1398 003e 23F00703 		bic	r3, r3, #7
+ 1399 0042 02F00702 		and	r2, r2, #7
+ 1400 0046 1343     		orrs	r3, r3, r2
+ 1401 0048 8DF80430 		strb	r3, [sp, #4]
+ 1402 004c 6A78     		ldrb	r2, [r5, #1]	@ zero_extendqisi2
+ 1403 004e D200     		lsls	r2, r2, #3
+ 1404 0050 02F03802 		and	r2, r2, #56
+ 1405 0054 23F03803 		bic	r3, r3, #56
+ 1406 0058 1343     		orrs	r3, r3, r2
+ 1407 005a 8DF80430 		strb	r3, [sp, #4]
+ 1408 005e AA78     		ldrb	r2, [r5, #2]	@ zero_extendqisi2
+ 1409 0060 9201     		lsls	r2, r2, #6
+ 1410 0062 02F04002 		and	r2, r2, #64
+ 1411 0066 23F04003 		bic	r3, r3, #64
+ 1412 006a 1343     		orrs	r3, r3, r2
+ 1413 006c 8DF80430 		strb	r3, [sp, #4]
+ 1414 0070 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 1415 0074 EA78     		ldrb	r2, [r5, #3]	@ zero_extendqisi2
+ 1416 0076 9200     		lsls	r2, r2, #2
+ 1417 0078 02F07C02 		and	r2, r2, #124
+ 1418 007c 23F07C03 		bic	r3, r3, #124
+ 1419 0080 1343     		orrs	r3, r3, r2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 25
+
+
+ 1420 0082 8DF80530 		strb	r3, [sp, #5]
+ 1421 0086 2346     		mov	r3, r4
+ 1422 0088 0222     		movs	r2, #2
+ 1423 008a 01A9     		add	r1, sp, #4
+ 1424 008c 3620     		movs	r0, #54
+ 1425 008e FFF7FEFF 		bl	bmp5_set_regs
+ 1426 0092 0346     		mov	r3, r0
+ 1427 0094 CDE7     		b	.L185
+ 1428              	.L187:
+ 1429 0096 4FF0FF33 		mov	r3, #-1
+ 1430 009a CAE7     		b	.L185
+ 1432              		.section	.text.set_fifo_iir_config,"ax",%progbits
+ 1433              		.align	1
+ 1434              		.syntax unified
+ 1435              		.thumb
+ 1436              		.thumb_func
+ 1438              	set_fifo_iir_config:
+ 1439              		@ args = 0, pretend = 0, frame = 8
+ 1440              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1441 0000 70B5     		push	{r4, r5, r6, lr}
+ 1442 0002 82B0     		sub	sp, sp, #8
+ 1443 0004 0546     		mov	r5, r0
+ 1444 0006 0E46     		mov	r6, r1
+ 1445 0008 1446     		mov	r4, r2
+ 1446 000a 0023     		movs	r3, #0
+ 1447 000c 8DF80730 		strb	r3, [sp, #7]
+ 1448 0010 1146     		mov	r1, r2
+ 1449 0012 0DF10600 		add	r0, sp, #6
+ 1450 0016 FFF7FEFF 		bl	bmp5_get_power_mode
+ 1451 001a 0346     		mov	r3, r0
+ 1452 001c 18B9     		cbnz	r0, .L191
+ 1453 001e 9DF80620 		ldrb	r2, [sp, #6]	@ zero_extendqisi2
+ 1454 0022 1AB9     		cbnz	r2, .L194
+ 1455              	.L192:
+ 1456 0024 3BB1     		cbz	r3, .L195
+ 1457              	.L191:
+ 1458 0026 1846     		mov	r0, r3
+ 1459 0028 02B0     		add	sp, sp, #8
+ 1460              		@ sp needed
+ 1461 002a 70BD     		pop	{r4, r5, r6, pc}
+ 1462              	.L194:
+ 1463 002c 2146     		mov	r1, r4
+ 1464 002e FFF7FEFF 		bl	bmp5_set_power_mode
+ 1465 0032 0346     		mov	r3, r0
+ 1466 0034 F6E7     		b	.L192
+ 1467              	.L195:
+ 1468 0036 2346     		mov	r3, r4
+ 1469 0038 0122     		movs	r2, #1
+ 1470 003a 0DF10701 		add	r1, sp, #7
+ 1471 003e 3020     		movs	r0, #48
+ 1472 0040 FFF7FEFF 		bl	bmp5_get_regs
+ 1473 0044 0346     		mov	r3, r0
+ 1474 0046 0028     		cmp	r0, #0
+ 1475 0048 EDD1     		bne	.L191
+ 1476 004a 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1477 004e 2D01     		lsls	r5, r5, #4
+ 1478 0050 05F01005 		and	r5, r5, #16
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 26
+
+
+ 1479 0054 23F01003 		bic	r3, r3, #16
+ 1480 0058 2B43     		orrs	r3, r3, r5
+ 1481 005a 8DF80730 		strb	r3, [sp, #7]
+ 1482 005e B101     		lsls	r1, r6, #6
+ 1483 0060 01F04001 		and	r1, r1, #64
+ 1484 0064 23F04003 		bic	r3, r3, #64
+ 1485 0068 0B43     		orrs	r3, r3, r1
+ 1486 006a 8DF80730 		strb	r3, [sp, #7]
+ 1487 006e 2346     		mov	r3, r4
+ 1488 0070 0122     		movs	r2, #1
+ 1489 0072 0DF10701 		add	r1, sp, #7
+ 1490 0076 3020     		movs	r0, #48
+ 1491 0078 FFF7FEFF 		bl	bmp5_set_regs
+ 1492 007c 0346     		mov	r3, r0
+ 1493 007e 0028     		cmp	r0, #0
+ 1494 0080 D1D1     		bne	.L191
+ 1495 0082 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 1496 0086 0028     		cmp	r0, #0
+ 1497 0088 CDD0     		beq	.L191
+ 1498 008a 0428     		cmp	r0, #4
+ 1499 008c CBD0     		beq	.L191
+ 1500 008e 2146     		mov	r1, r4
+ 1501 0090 FFF7FEFF 		bl	bmp5_set_power_mode
+ 1502 0094 0346     		mov	r3, r0
+ 1503 0096 C6E7     		b	.L191
+ 1505              		.section	.text.set_oor_iir_count_limit,"ax",%progbits
+ 1506              		.align	1
+ 1507              		.syntax unified
+ 1508              		.thumb
+ 1509              		.thumb_func
+ 1511              	set_oor_iir_count_limit:
+ 1512              		@ args = 0, pretend = 0, frame = 8
+ 1513              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1514 0000 70B5     		push	{r4, r5, r6, lr}
+ 1515 0002 82B0     		sub	sp, sp, #8
+ 1516 0004 0646     		mov	r6, r0
+ 1517 0006 0D46     		mov	r5, r1
+ 1518 0008 1446     		mov	r4, r2
+ 1519 000a 0023     		movs	r3, #0
+ 1520 000c 8DF80730 		strb	r3, [sp, #7]
+ 1521 0010 1146     		mov	r1, r2
+ 1522 0012 0DF10600 		add	r0, sp, #6
+ 1523 0016 FFF7FEFF 		bl	bmp5_get_power_mode
+ 1524 001a 0346     		mov	r3, r0
+ 1525 001c 18B9     		cbnz	r0, .L197
+ 1526 001e 9DF80620 		ldrb	r2, [sp, #6]	@ zero_extendqisi2
+ 1527 0022 1AB9     		cbnz	r2, .L201
+ 1528              	.L198:
+ 1529 0024 3BB1     		cbz	r3, .L202
+ 1530              	.L197:
+ 1531 0026 1846     		mov	r0, r3
+ 1532 0028 02B0     		add	sp, sp, #8
+ 1533              		@ sp needed
+ 1534 002a 70BD     		pop	{r4, r5, r6, pc}
+ 1535              	.L201:
+ 1536 002c 2146     		mov	r1, r4
+ 1537 002e FFF7FEFF 		bl	bmp5_set_power_mode
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 27
+
+
+ 1538 0032 0346     		mov	r3, r0
+ 1539 0034 F6E7     		b	.L198
+ 1540              	.L202:
+ 1541 0036 2346     		mov	r3, r4
+ 1542 0038 0122     		movs	r2, #1
+ 1543 003a 0DF10701 		add	r1, sp, #7
+ 1544 003e 3020     		movs	r0, #48
+ 1545 0040 FFF7FEFF 		bl	bmp5_get_regs
+ 1546 0044 0346     		mov	r3, r0
+ 1547 0046 F0B1     		cbz	r0, .L203
+ 1548              	.L199:
+ 1549 0048 002B     		cmp	r3, #0
+ 1550 004a ECD1     		bne	.L197
+ 1551 004c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1552 0050 03F03F03 		and	r3, r3, #63
+ 1553 0054 43EA8513 		orr	r3, r3, r5, lsl #6
+ 1554 0058 8DF80730 		strb	r3, [sp, #7]
+ 1555 005c 2346     		mov	r3, r4
+ 1556 005e 0122     		movs	r2, #1
+ 1557 0060 0DF10701 		add	r1, sp, #7
+ 1558 0064 3520     		movs	r0, #53
+ 1559 0066 FFF7FEFF 		bl	bmp5_set_regs
+ 1560 006a 0346     		mov	r3, r0
+ 1561 006c 0028     		cmp	r0, #0
+ 1562 006e DAD1     		bne	.L197
+ 1563 0070 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 1564 0074 0028     		cmp	r0, #0
+ 1565 0076 D6D0     		beq	.L197
+ 1566 0078 0428     		cmp	r0, #4
+ 1567 007a D4D0     		beq	.L197
+ 1568 007c 2146     		mov	r1, r4
+ 1569 007e FFF7FEFF 		bl	bmp5_set_power_mode
+ 1570 0082 0346     		mov	r3, r0
+ 1571 0084 CFE7     		b	.L197
+ 1572              	.L203:
+ 1573 0086 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1574 008a 03F07F03 		and	r3, r3, #127
+ 1575 008e 43EAC613 		orr	r3, r3, r6, lsl #7
+ 1576 0092 8DF80730 		strb	r3, [sp, #7]
+ 1577 0096 2346     		mov	r3, r4
+ 1578 0098 0122     		movs	r2, #1
+ 1579 009a 0DF10701 		add	r1, sp, #7
+ 1580 009e 3020     		movs	r0, #48
+ 1581 00a0 FFF7FEFF 		bl	bmp5_set_regs
+ 1582 00a4 0346     		mov	r3, r0
+ 1583 00a6 0028     		cmp	r0, #0
+ 1584 00a8 BDD1     		bne	.L197
+ 1585 00aa 2346     		mov	r3, r4
+ 1586 00ac 0122     		movs	r2, #1
+ 1587 00ae 0DF10701 		add	r1, sp, #7
+ 1588 00b2 3520     		movs	r0, #53
+ 1589 00b4 FFF7FEFF 		bl	bmp5_get_regs
+ 1590 00b8 0346     		mov	r3, r0
+ 1591 00ba C5E7     		b	.L199
+ 1593              		.section	.text.nvm_write_addr,"ax",%progbits
+ 1594              		.align	1
+ 1595              		.syntax unified
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 28
+
+
+ 1596              		.thumb
+ 1597              		.thumb_func
+ 1599              	nvm_write_addr:
+ 1600              		@ args = 0, pretend = 0, frame = 0
+ 1601              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1602 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1603 0002 1D46     		mov	r5, r3
+ 1604 0004 A0F12003 		sub	r3, r0, #32
+ 1605 0008 DBB2     		uxtb	r3, r3
+ 1606 000a 022B     		cmp	r3, #2
+ 1607 000c 16D8     		bhi	.L207
+ 1608 000e 0646     		mov	r6, r0
+ 1609 0010 0F46     		mov	r7, r1
+ 1610 0012 1446     		mov	r4, r2
+ 1611 0014 2946     		mov	r1, r5
+ 1612 0016 1046     		mov	r0, r2
+ 1613 0018 FFF7FEFF 		bl	bmp5_get_power_mode
+ 1614 001c 10B9     		cbnz	r0, .L205
+ 1615 001e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 1616 0020 0BB9     		cbnz	r3, .L209
+ 1617              	.L206:
+ 1618 0022 28B1     		cbz	r0, .L210
+ 1619              	.L205:
+ 1620 0024 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1621              	.L209:
+ 1622 0026 2946     		mov	r1, r5
+ 1623 0028 0020     		movs	r0, #0
+ 1624 002a FFF7FEFF 		bl	bmp5_set_power_mode
+ 1625 002e F8E7     		b	.L206
+ 1626              	.L210:
+ 1627 0030 2A46     		mov	r2, r5
+ 1628 0032 3946     		mov	r1, r7
+ 1629 0034 3046     		mov	r0, r6
+ 1630 0036 FFF7FEFF 		bl	set_nvm_addr
+ 1631 003a F3E7     		b	.L205
+ 1632              	.L207:
+ 1633 003c 6FF00900 		mvn	r0, #9
+ 1634 0040 F0E7     		b	.L205
+ 1636              		.section	.text.bmp5_set_iir_config,"ax",%progbits
+ 1637              		.align	1
+ 1638              		.global	bmp5_set_iir_config
+ 1639              		.syntax unified
+ 1640              		.thumb
+ 1641              		.thumb_func
+ 1643              	bmp5_set_iir_config:
+ 1644              		@ args = 0, pretend = 0, frame = 8
+ 1645              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1646 0000 88B3     		cbz	r0, .L216
+ 1647 0002 30B5     		push	{r4, r5, lr}
+ 1648 0004 83B0     		sub	sp, sp, #12
+ 1649 0006 0C46     		mov	r4, r1
+ 1650 0008 0546     		mov	r5, r0
+ 1651 000a 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 1652 000c 0BB9     		cbnz	r3, .L213
+ 1653 000e 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
+ 1654 0010 23B1     		cbz	r3, .L214
+ 1655              	.L213:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 29
+
+
+ 1656 0012 2046     		mov	r0, r4
+ 1657 0014 FFF7FEFF 		bl	set_standby_mode
+ 1658 0018 0346     		mov	r3, r0
+ 1659 001a 50B9     		cbnz	r0, .L212
+ 1660              	.L214:
+ 1661 001c 2146     		mov	r1, r4
+ 1662 001e 0DF10700 		add	r0, sp, #7
+ 1663 0022 FFF7FEFF 		bl	bmp5_get_power_mode
+ 1664 0026 0346     		mov	r3, r0
+ 1665 0028 18B9     		cbnz	r0, .L212
+ 1666 002a 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 1667 002e 1AB9     		cbnz	r2, .L221
+ 1668              	.L215:
+ 1669 0030 3BB1     		cbz	r3, .L222
+ 1670              	.L212:
+ 1671 0032 1846     		mov	r0, r3
+ 1672 0034 03B0     		add	sp, sp, #12
+ 1673              		@ sp needed
+ 1674 0036 30BD     		pop	{r4, r5, pc}
+ 1675              	.L221:
+ 1676 0038 2146     		mov	r1, r4
+ 1677 003a FFF7FEFF 		bl	bmp5_set_power_mode
+ 1678 003e 0346     		mov	r3, r0
+ 1679 0040 F6E7     		b	.L215
+ 1680              	.L222:
+ 1681 0042 2146     		mov	r1, r4
+ 1682 0044 2846     		mov	r0, r5
+ 1683 0046 FFF7FEFF 		bl	set_iir_config
+ 1684 004a 0346     		mov	r3, r0
+ 1685 004c 0028     		cmp	r0, #0
+ 1686 004e F0D1     		bne	.L212
+ 1687 0050 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 1688 0054 0028     		cmp	r0, #0
+ 1689 0056 ECD0     		beq	.L212
+ 1690 0058 0428     		cmp	r0, #4
+ 1691 005a EAD0     		beq	.L212
+ 1692 005c 2146     		mov	r1, r4
+ 1693 005e FFF7FEFF 		bl	bmp5_set_power_mode
+ 1694 0062 0346     		mov	r3, r0
+ 1695 0064 E5E7     		b	.L212
+ 1696              	.L216:
+ 1697 0066 4FF0FF33 		mov	r3, #-1
+ 1698 006a 1846     		mov	r0, r3
+ 1699 006c 7047     		bx	lr
+ 1701              		.section	.text.bmp5_get_osr_odr_eff,"ax",%progbits
+ 1702              		.align	1
+ 1703              		.global	bmp5_get_osr_odr_eff
+ 1704              		.syntax unified
+ 1705              		.thumb
+ 1706              		.thumb_func
+ 1708              	bmp5_get_osr_odr_eff:
+ 1709              		@ args = 0, pretend = 0, frame = 8
+ 1710              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1711 0000 B0B1     		cbz	r0, .L225
+ 1712 0002 10B5     		push	{r4, lr}
+ 1713 0004 82B0     		sub	sp, sp, #8
+ 1714 0006 0B46     		mov	r3, r1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 30
+
+
+ 1715 0008 0446     		mov	r4, r0
+ 1716 000a 0122     		movs	r2, #1
+ 1717 000c 0DF10701 		add	r1, sp, #7
+ 1718 0010 3820     		movs	r0, #56
+ 1719 0012 FFF7FEFF 		bl	bmp5_get_regs
+ 1720 0016 48B9     		cbnz	r0, .L224
+ 1721 0018 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1722 001c 03F00702 		and	r2, r3, #7
+ 1723 0020 2270     		strb	r2, [r4]
+ 1724 0022 C3F3C202 		ubfx	r2, r3, #3, #3
+ 1725 0026 6270     		strb	r2, [r4, #1]
+ 1726 0028 DB09     		lsrs	r3, r3, #7
+ 1727 002a A370     		strb	r3, [r4, #2]
+ 1728              	.L224:
+ 1729 002c 02B0     		add	sp, sp, #8
+ 1730              		@ sp needed
+ 1731 002e 10BD     		pop	{r4, pc}
+ 1732              	.L225:
+ 1733 0030 4FF0FF30 		mov	r0, #-1
+ 1734 0034 7047     		bx	lr
+ 1736              		.section	.text.bmp5_get_fifo_configuration,"ax",%progbits
+ 1737              		.align	1
+ 1738              		.global	bmp5_get_fifo_configuration
+ 1739              		.syntax unified
+ 1740              		.thumb
+ 1741              		.thumb_func
+ 1743              	bmp5_get_fifo_configuration:
+ 1744              		@ args = 0, pretend = 0, frame = 8
+ 1745              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1746 0000 C0B3     		cbz	r0, .L232
+ 1747 0002 30B5     		push	{r4, r5, lr}
+ 1748 0004 83B0     		sub	sp, sp, #12
+ 1749 0006 0C46     		mov	r4, r1
+ 1750 0008 0546     		mov	r5, r0
+ 1751 000a 0B46     		mov	r3, r1
+ 1752 000c 0122     		movs	r2, #1
+ 1753 000e 0DF10701 		add	r1, sp, #7
+ 1754 0012 1620     		movs	r0, #22
+ 1755 0014 FFF7FEFF 		bl	bmp5_get_regs
+ 1756 0018 08B1     		cbz	r0, .L237
+ 1757              	.L231:
+ 1758 001a 03B0     		add	sp, sp, #12
+ 1759              		@ sp needed
+ 1760 001c 30BD     		pop	{r4, r5, pc}
+ 1761              	.L237:
+ 1762 001e 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1763 0022 03F01F02 		and	r2, r3, #31
+ 1764 0026 AA72     		strb	r2, [r5, #10]
+ 1765 0028 C3F34013 		ubfx	r3, r3, #5, #1
+ 1766 002c 6B72     		strb	r3, [r5, #9]
+ 1767 002e 2346     		mov	r3, r4
+ 1768 0030 0122     		movs	r2, #1
+ 1769 0032 0DF10701 		add	r1, sp, #7
+ 1770 0036 1820     		movs	r0, #24
+ 1771 0038 FFF7FEFF 		bl	bmp5_get_regs
+ 1772 003c 0028     		cmp	r0, #0
+ 1773 003e ECD1     		bne	.L231
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 31
+
+
+ 1774 0040 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1775 0044 03F00302 		and	r2, r3, #3
+ 1776 0048 AA71     		strb	r2, [r5, #6]
+ 1777 004a C3F38203 		ubfx	r3, r3, #2, #3
+ 1778 004e EB71     		strb	r3, [r5, #7]
+ 1779 0050 2346     		mov	r3, r4
+ 1780 0052 0122     		movs	r2, #1
+ 1781 0054 0DF10701 		add	r1, sp, #7
+ 1782 0058 3020     		movs	r0, #48
+ 1783 005a FFF7FEFF 		bl	bmp5_get_regs
+ 1784 005e 0028     		cmp	r0, #0
+ 1785 0060 DBD1     		bne	.L231
+ 1786 0062 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1787 0066 C3F30012 		ubfx	r2, r3, #4, #1
+ 1788 006a EA72     		strb	r2, [r5, #11]
+ 1789 006c C3F38013 		ubfx	r3, r3, #6, #1
+ 1790 0070 2B73     		strb	r3, [r5, #12]
+ 1791 0072 D2E7     		b	.L231
+ 1792              	.L232:
+ 1793 0074 4FF0FF30 		mov	r0, #-1
+ 1794 0078 7047     		bx	lr
+ 1796              		.section	.text.bmp5_set_fifo_configuration,"ax",%progbits
+ 1797              		.align	1
+ 1798              		.global	bmp5_set_fifo_configuration
+ 1799              		.syntax unified
+ 1800              		.thumb
+ 1801              		.thumb_func
+ 1803              	bmp5_set_fifo_configuration:
+ 1804              		@ args = 0, pretend = 0, frame = 8
+ 1805              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1806 0000 0028     		cmp	r0, #0
+ 1807 0002 61D0     		beq	.L241
+ 1808 0004 30B5     		push	{r4, r5, lr}
+ 1809 0006 83B0     		sub	sp, sp, #12
+ 1810 0008 0C46     		mov	r4, r1
+ 1811 000a 0546     		mov	r5, r0
+ 1812 000c 8379     		ldrb	r3, [r0, #6]	@ zero_extendqisi2
+ 1813 000e 23B1     		cbz	r3, .L240
+ 1814 0010 0846     		mov	r0, r1
+ 1815 0012 FFF7FEFF 		bl	set_standby_mode
+ 1816 0016 0346     		mov	r3, r0
+ 1817 0018 30B9     		cbnz	r0, .L239
+ 1818              	.L240:
+ 1819 001a 2246     		mov	r2, r4
+ 1820 001c 297B     		ldrb	r1, [r5, #12]	@ zero_extendqisi2
+ 1821 001e E87A     		ldrb	r0, [r5, #11]	@ zero_extendqisi2
+ 1822 0020 FFF7FEFF 		bl	set_fifo_iir_config
+ 1823 0024 0346     		mov	r3, r0
+ 1824 0026 10B1     		cbz	r0, .L246
+ 1825              	.L239:
+ 1826 0028 1846     		mov	r0, r3
+ 1827 002a 03B0     		add	sp, sp, #12
+ 1828              		@ sp needed
+ 1829 002c 30BD     		pop	{r4, r5, pc}
+ 1830              	.L246:
+ 1831 002e 2346     		mov	r3, r4
+ 1832 0030 0122     		movs	r2, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 32
+
+
+ 1833 0032 0DF10701 		add	r1, sp, #7
+ 1834 0036 1620     		movs	r0, #22
+ 1835 0038 FFF7FEFF 		bl	bmp5_get_regs
+ 1836 003c 0346     		mov	r3, r0
+ 1837 003e 0028     		cmp	r0, #0
+ 1838 0040 F2D1     		bne	.L239
+ 1839 0042 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1840 0046 6A7A     		ldrb	r2, [r5, #9]	@ zero_extendqisi2
+ 1841 0048 5201     		lsls	r2, r2, #5
+ 1842 004a 02F02002 		and	r2, r2, #32
+ 1843 004e 23F02003 		bic	r3, r3, #32
+ 1844 0052 1343     		orrs	r3, r3, r2
+ 1845 0054 8DF80730 		strb	r3, [sp, #7]
+ 1846 0058 2946     		mov	r1, r5
+ 1847 005a 0DF10700 		add	r0, sp, #7
+ 1848 005e FFF7FEFF 		bl	set_fifo_threshold
+ 1849 0062 0346     		mov	r3, r0
+ 1850 0064 0028     		cmp	r0, #0
+ 1851 0066 DFD1     		bne	.L239
+ 1852 0068 2346     		mov	r3, r4
+ 1853 006a 0122     		movs	r2, #1
+ 1854 006c 0DF10701 		add	r1, sp, #7
+ 1855 0070 1620     		movs	r0, #22
+ 1856 0072 FFF7FEFF 		bl	bmp5_set_regs
+ 1857 0076 0346     		mov	r3, r0
+ 1858 0078 0028     		cmp	r0, #0
+ 1859 007a D5D1     		bne	.L239
+ 1860 007c 2346     		mov	r3, r4
+ 1861 007e 0122     		movs	r2, #1
+ 1862 0080 0DF10701 		add	r1, sp, #7
+ 1863 0084 1820     		movs	r0, #24
+ 1864 0086 FFF7FEFF 		bl	bmp5_get_regs
+ 1865 008a 0346     		mov	r3, r0
+ 1866 008c 0028     		cmp	r0, #0
+ 1867 008e CBD1     		bne	.L239
+ 1868 0090 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1869 0094 AA79     		ldrb	r2, [r5, #6]	@ zero_extendqisi2
+ 1870 0096 23F00303 		bic	r3, r3, #3
+ 1871 009a 02F00302 		and	r2, r2, #3
+ 1872 009e 1343     		orrs	r3, r3, r2
+ 1873 00a0 8DF80730 		strb	r3, [sp, #7]
+ 1874 00a4 EA79     		ldrb	r2, [r5, #7]	@ zero_extendqisi2
+ 1875 00a6 9200     		lsls	r2, r2, #2
+ 1876 00a8 02F01C02 		and	r2, r2, #28
+ 1877 00ac 23F01C03 		bic	r3, r3, #28
+ 1878 00b0 1343     		orrs	r3, r3, r2
+ 1879 00b2 8DF80730 		strb	r3, [sp, #7]
+ 1880 00b6 2346     		mov	r3, r4
+ 1881 00b8 0122     		movs	r2, #1
+ 1882 00ba 0DF10701 		add	r1, sp, #7
+ 1883 00be 1820     		movs	r0, #24
+ 1884 00c0 FFF7FEFF 		bl	bmp5_set_regs
+ 1885 00c4 0346     		mov	r3, r0
+ 1886 00c6 AFE7     		b	.L239
+ 1887              	.L241:
+ 1888 00c8 4FF0FF33 		mov	r3, #-1
+ 1889 00cc 1846     		mov	r0, r3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 33
+
+
+ 1890 00ce 7047     		bx	lr
+ 1892              		.section	.text.bmp5_get_fifo_len,"ax",%progbits
+ 1893              		.align	1
+ 1894              		.global	bmp5_get_fifo_len
+ 1895              		.syntax unified
+ 1896              		.thumb
+ 1897              		.thumb_func
+ 1899              	bmp5_get_fifo_len:
+ 1900              		@ args = 0, pretend = 0, frame = 8
+ 1901              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1902 0000 11B3     		cbz	r1, .L250
+ 1903 0002 30B5     		push	{r4, r5, lr}
+ 1904 0004 83B0     		sub	sp, sp, #12
+ 1905 0006 0446     		mov	r4, r0
+ 1906 0008 1346     		mov	r3, r2
+ 1907 000a 0D46     		mov	r5, r1
+ 1908 000c F8B1     		cbz	r0, .L251
+ 1909 000e 0122     		movs	r2, #1
+ 1910 0010 0DF10701 		add	r1, sp, #7
+ 1911 0014 1720     		movs	r0, #23
+ 1912 0016 FFF7FEFF 		bl	bmp5_get_regs
+ 1913 001a 98B9     		cbnz	r0, .L248
+ 1914 001c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 1915 0020 03F03F03 		and	r3, r3, #63
+ 1916 0024 2B72     		strb	r3, [r5, #8]
+ 1917 0026 A979     		ldrb	r1, [r5, #6]	@ zero_extendqisi2
+ 1918 0028 4A1E     		subs	r2, r1, #1
+ 1919 002a D2B2     		uxtb	r2, r2
+ 1920 002c 012A     		cmp	r2, #1
+ 1921 002e 06D9     		bls	.L256
+ 1922 0030 0329     		cmp	r1, #3
+ 1923 0032 07D1     		bne	.L248
+ 1924 0034 03EB4303 		add	r3, r3, r3, lsl #1
+ 1925 0038 5B00     		lsls	r3, r3, #1
+ 1926 003a 2380     		strh	r3, [r4]	@ movhi
+ 1927 003c 02E0     		b	.L248
+ 1928              	.L256:
+ 1929 003e 03EB4303 		add	r3, r3, r3, lsl #1
+ 1930 0042 2380     		strh	r3, [r4]	@ movhi
+ 1931              	.L248:
+ 1932 0044 03B0     		add	sp, sp, #12
+ 1933              		@ sp needed
+ 1934 0046 30BD     		pop	{r4, r5, pc}
+ 1935              	.L250:
+ 1936 0048 4FF0FF30 		mov	r0, #-1
+ 1937 004c 7047     		bx	lr
+ 1938              	.L251:
+ 1939 004e 4FF0FF30 		mov	r0, #-1
+ 1940 0052 F7E7     		b	.L248
+ 1942              		.section	.text.bmp5_get_fifo_data,"ax",%progbits
+ 1943              		.align	1
+ 1944              		.global	bmp5_get_fifo_data
+ 1945              		.syntax unified
+ 1946              		.thumb
+ 1947              		.thumb_func
+ 1949              	bmp5_get_fifo_data:
+ 1950              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 34
+
+
+ 1951              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1952 0000 C0B1     		cbz	r0, .L260
+ 1953 0002 30B5     		push	{r4, r5, lr}
+ 1954 0004 83B0     		sub	sp, sp, #12
+ 1955 0006 0C46     		mov	r4, r1
+ 1956 0008 0546     		mov	r5, r0
+ 1957 000a 0A46     		mov	r2, r1
+ 1958 000c 0146     		mov	r1, r0
+ 1959 000e 0DF10600 		add	r0, sp, #6
+ 1960 0012 FFF7FEFF 		bl	bmp5_get_fifo_len
+ 1961 0016 58B9     		cbnz	r0, .L258
+ 1962 0018 AA88     		ldrh	r2, [r5, #4]
+ 1963 001a BDF80630 		ldrh	r3, [sp, #6]
+ 1964 001e 9A42     		cmp	r2, r3
+ 1965 0020 00D9     		bls	.L259
+ 1966 0022 AB80     		strh	r3, [r5, #4]	@ movhi
+ 1967              	.L259:
+ 1968 0024 2346     		mov	r3, r4
+ 1969 0026 AA88     		ldrh	r2, [r5, #4]
+ 1970 0028 2968     		ldr	r1, [r5]
+ 1971 002a 2920     		movs	r0, #41
+ 1972 002c FFF7FEFF 		bl	bmp5_get_regs
+ 1973              	.L258:
+ 1974 0030 03B0     		add	sp, sp, #12
+ 1975              		@ sp needed
+ 1976 0032 30BD     		pop	{r4, r5, pc}
+ 1977              	.L260:
+ 1978 0034 4FF0FF30 		mov	r0, #-1
+ 1979 0038 7047     		bx	lr
+ 1981              		.section	.text.bmp5_extract_fifo_data,"ax",%progbits
+ 1982              		.align	1
+ 1983              		.global	bmp5_extract_fifo_data
+ 1984              		.syntax unified
+ 1985              		.thumb
+ 1986              		.thumb_func
+ 1988              	bmp5_extract_fifo_data:
+ 1989              		@ args = 0, pretend = 0, frame = 8
+ 1990              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1991 0000 E0B1     		cbz	r0, .L269
+ 1992 0002 70B5     		push	{r4, r5, r6, lr}
+ 1993 0004 82B0     		sub	sp, sp, #8
+ 1994 0006 0E46     		mov	r6, r1
+ 1995 0008 0546     		mov	r5, r0
+ 1996 000a D1B1     		cbz	r1, .L270
+ 1997 000c 0020     		movs	r0, #0
+ 1998 000e ADF80600 		strh	r0, [sp, #6]	@ movhi
+ 1999 0012 0446     		mov	r4, r0
+ 2000 0014 08E0     		b	.L267
+ 2001              	.L268:
+ 2002 0016 2A46     		mov	r2, r5
+ 2003 0018 0DF10601 		add	r1, sp, #6
+ 2004 001c 06EBC400 		add	r0, r6, r4, lsl #3
+ 2005 0020 FFF7FEFF 		bl	unpack_sensor_data
+ 2006 0024 0134     		adds	r4, r4, #1
+ 2007 0026 E4B2     		uxtb	r4, r4
+ 2008              	.L267:
+ 2009 0028 AA88     		ldrh	r2, [r5, #4]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 35
+
+
+ 2010 002a BDF80630 		ldrh	r3, [sp, #6]
+ 2011 002e 9A42     		cmp	r2, r3
+ 2012 0030 02D9     		bls	.L266
+ 2013 0032 10F1090F 		cmn	r0, #9
+ 2014 0036 EED1     		bne	.L268
+ 2015              	.L266:
+ 2016 0038 02B0     		add	sp, sp, #8
+ 2017              		@ sp needed
+ 2018 003a 70BD     		pop	{r4, r5, r6, pc}
+ 2019              	.L269:
+ 2020 003c 4FF0FF30 		mov	r0, #-1
+ 2021 0040 7047     		bx	lr
+ 2022              	.L270:
+ 2023 0042 4FF0FF30 		mov	r0, #-1
+ 2024 0046 F7E7     		b	.L266
+ 2026              		.section	.text.bmp5_get_oor_configuration,"ax",%progbits
+ 2027              		.align	1
+ 2028              		.global	bmp5_get_oor_configuration
+ 2029              		.syntax unified
+ 2030              		.thumb
+ 2031              		.thumb_func
+ 2033              	bmp5_get_oor_configuration:
+ 2034              		@ args = 0, pretend = 0, frame = 8
+ 2035              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2036 0000 60B3     		cbz	r0, .L277
+ 2037 0002 30B5     		push	{r4, r5, lr}
+ 2038 0004 83B0     		sub	sp, sp, #12
+ 2039 0006 0C46     		mov	r4, r1
+ 2040 0008 0546     		mov	r5, r0
+ 2041 000a 0B46     		mov	r3, r1
+ 2042 000c 0122     		movs	r2, #1
+ 2043 000e 01A9     		add	r1, sp, #4
+ 2044 0010 3020     		movs	r0, #48
+ 2045 0012 FFF7FEFF 		bl	bmp5_get_regs
+ 2046 0016 08B1     		cbz	r0, .L282
+ 2047              	.L276:
+ 2048 0018 03B0     		add	sp, sp, #12
+ 2049              		@ sp needed
+ 2050 001a 30BD     		pop	{r4, r5, pc}
+ 2051              	.L282:
+ 2052 001c 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 2053 0020 DB09     		lsrs	r3, r3, #7
+ 2054 0022 AB71     		strb	r3, [r5, #6]
+ 2055 0024 2346     		mov	r3, r4
+ 2056 0026 0422     		movs	r2, #4
+ 2057 0028 0DEB0201 		add	r1, sp, r2
+ 2058 002c 3220     		movs	r0, #50
+ 2059 002e FFF7FEFF 		bl	bmp5_get_regs
+ 2060 0032 0028     		cmp	r0, #0
+ 2061 0034 F0D1     		bne	.L276
+ 2062 0036 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 2063 003a 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 2064 003e 43EA0223 		orr	r3, r3, r2, lsl #8
+ 2065 0042 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 2066 0046 1104     		lsls	r1, r2, #16
+ 2067 0048 01F48031 		and	r1, r1, #65536
+ 2068 004c 0B43     		orrs	r3, r3, r1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 36
+
+
+ 2069 004e 2B60     		str	r3, [r5]
+ 2070 0050 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 2071 0054 2B71     		strb	r3, [r5, #4]
+ 2072 0056 9209     		lsrs	r2, r2, #6
+ 2073 0058 6A71     		strb	r2, [r5, #5]
+ 2074 005a DDE7     		b	.L276
+ 2075              	.L277:
+ 2076 005c 4FF0FF30 		mov	r0, #-1
+ 2077 0060 7047     		bx	lr
+ 2079              		.section	.text.bmp5_set_oor_configuration,"ax",%progbits
+ 2080              		.align	1
+ 2081              		.global	bmp5_set_oor_configuration
+ 2082              		.syntax unified
+ 2083              		.thumb
+ 2084              		.thumb_func
+ 2086              	bmp5_set_oor_configuration:
+ 2087              		@ args = 0, pretend = 0, frame = 8
+ 2088              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2089 0000 78B3     		cbz	r0, .L285
+ 2090 0002 30B5     		push	{r4, r5, lr}
+ 2091 0004 83B0     		sub	sp, sp, #12
+ 2092 0006 0C46     		mov	r4, r1
+ 2093 0008 0546     		mov	r5, r0
+ 2094 000a 0A46     		mov	r2, r1
+ 2095 000c 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
+ 2096 000e 8079     		ldrb	r0, [r0, #6]	@ zero_extendqisi2
+ 2097 0010 FFF7FEFF 		bl	set_oor_iir_count_limit
+ 2098 0014 08B1     		cbz	r0, .L290
+ 2099              	.L284:
+ 2100 0016 03B0     		add	sp, sp, #12
+ 2101              		@ sp needed
+ 2102 0018 30BD     		pop	{r4, r5, pc}
+ 2103              	.L290:
+ 2104 001a 2346     		mov	r3, r4
+ 2105 001c 0422     		movs	r2, #4
+ 2106 001e 0DEB0201 		add	r1, sp, r2
+ 2107 0022 3220     		movs	r0, #50
+ 2108 0024 FFF7FEFF 		bl	bmp5_get_regs
+ 2109 0028 0028     		cmp	r0, #0
+ 2110 002a F4D1     		bne	.L284
+ 2111 002c 2B68     		ldr	r3, [r5]
+ 2112 002e 8DF80430 		strb	r3, [sp, #4]
+ 2113 0032 C3F30722 		ubfx	r2, r3, #8, #8
+ 2114 0036 8DF80520 		strb	r2, [sp, #5]
+ 2115 003a 2A79     		ldrb	r2, [r5, #4]	@ zero_extendqisi2
+ 2116 003c 8DF80620 		strb	r2, [sp, #6]
+ 2117 0040 C3F30043 		ubfx	r3, r3, #16, #1
+ 2118 0044 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 2119 0048 22F00102 		bic	r2, r2, #1
+ 2120 004c 1343     		orrs	r3, r3, r2
+ 2121 004e 8DF80730 		strb	r3, [sp, #7]
+ 2122 0052 2346     		mov	r3, r4
+ 2123 0054 0422     		movs	r2, #4
+ 2124 0056 0DEB0201 		add	r1, sp, r2
+ 2125 005a 3220     		movs	r0, #50
+ 2126 005c FFF7FEFF 		bl	bmp5_set_regs
+ 2127 0060 D9E7     		b	.L284
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 37
+
+
+ 2128              	.L285:
+ 2129 0062 4FF0FF30 		mov	r0, #-1
+ 2130 0066 7047     		bx	lr
+ 2132              		.section	.text.bmp5_nvm_read,"ax",%progbits
+ 2133              		.align	1
+ 2134              		.global	bmp5_nvm_read
+ 2135              		.syntax unified
+ 2136              		.thumb
+ 2137              		.thumb_func
+ 2139              	bmp5_nvm_read:
+ 2140              		@ args = 0, pretend = 0, frame = 8
+ 2141              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2142 0000 70B5     		push	{r4, r5, r6, lr}
+ 2143 0002 82B0     		sub	sp, sp, #8
+ 2144 0004 0546     		mov	r5, r0
+ 2145 0006 0E46     		mov	r6, r1
+ 2146 0008 1446     		mov	r4, r2
+ 2147 000a 1046     		mov	r0, r2
+ 2148 000c FFF7FEFF 		bl	null_ptr_check
+ 2149 0010 0028     		cmp	r0, #0
+ 2150 0012 3CD1     		bne	.L294
+ 2151 0014 002E     		cmp	r6, #0
+ 2152 0016 3DD0     		beq	.L295
+ 2153 0018 2346     		mov	r3, r4
+ 2154 001a 0DF10602 		add	r2, sp, #6
+ 2155 001e 0021     		movs	r1, #0
+ 2156 0020 2846     		mov	r0, r5
+ 2157 0022 FFF7FEFF 		bl	nvm_write_addr
+ 2158 0026 0546     		mov	r5, r0
+ 2159 0028 18B1     		cbz	r0, .L297
+ 2160              	.L293:
+ 2161 002a 05B3     		cbz	r5, .L298
+ 2162              	.L292:
+ 2163 002c 2846     		mov	r0, r5
+ 2164 002e 02B0     		add	sp, sp, #8
+ 2165              		@ sp needed
+ 2166 0030 70BD     		pop	{r4, r5, r6, pc}
+ 2167              	.L297:
+ 2168 0032 5D23     		movs	r3, #93
+ 2169 0034 8DF80730 		strb	r3, [sp, #7]
+ 2170 0038 2346     		mov	r3, r4
+ 2171 003a 0122     		movs	r2, #1
+ 2172 003c 0DF10701 		add	r1, sp, #7
+ 2173 0040 7E20     		movs	r0, #126
+ 2174 0042 FFF7FEFF 		bl	bmp5_set_regs
+ 2175 0046 0546     		mov	r5, r0
+ 2176 0048 0028     		cmp	r0, #0
+ 2177 004a EFD1     		bne	.L292
+ 2178 004c A523     		movs	r3, #165
+ 2179 004e 8DF80730 		strb	r3, [sp, #7]
+ 2180 0052 2346     		mov	r3, r4
+ 2181 0054 0122     		movs	r2, #1
+ 2182 0056 0DF10701 		add	r1, sp, #7
+ 2183 005a 7E20     		movs	r0, #126
+ 2184 005c FFF7FEFF 		bl	bmp5_set_regs
+ 2185 0060 0546     		mov	r5, r0
+ 2186 0062 2369     		ldr	r3, [r4, #16]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 38
+
+
+ 2187 0064 6168     		ldr	r1, [r4, #4]
+ 2188 0066 4FF44870 		mov	r0, #800
+ 2189 006a 9847     		blx	r3
+ 2190 006c DDE7     		b	.L293
+ 2191              	.L298:
+ 2192 006e 2146     		mov	r1, r4
+ 2193 0070 3046     		mov	r0, r6
+ 2194 0072 FFF7FEFF 		bl	get_nvm_data
+ 2195 0076 0546     		mov	r5, r0
+ 2196 0078 0028     		cmp	r0, #0
+ 2197 007a D7D1     		bne	.L292
+ 2198 007c 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 2199 0080 0028     		cmp	r0, #0
+ 2200 0082 D3D0     		beq	.L292
+ 2201 0084 2146     		mov	r1, r4
+ 2202 0086 FFF7FEFF 		bl	bmp5_set_power_mode
+ 2203 008a 0546     		mov	r5, r0
+ 2204 008c CEE7     		b	.L292
+ 2205              	.L294:
+ 2206 008e 4FF0FF35 		mov	r5, #-1
+ 2207 0092 CBE7     		b	.L292
+ 2208              	.L295:
+ 2209 0094 4FF0FF35 		mov	r5, #-1
+ 2210 0098 C8E7     		b	.L292
+ 2212              		.section	.text.bmp5_nvm_write,"ax",%progbits
+ 2213              		.align	1
+ 2214              		.global	bmp5_nvm_write
+ 2215              		.syntax unified
+ 2216              		.thumb
+ 2217              		.thumb_func
+ 2219              	bmp5_nvm_write:
+ 2220              		@ args = 0, pretend = 0, frame = 8
+ 2221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2222 0000 70B5     		push	{r4, r5, r6, lr}
+ 2223 0002 82B0     		sub	sp, sp, #8
+ 2224 0004 0546     		mov	r5, r0
+ 2225 0006 0E46     		mov	r6, r1
+ 2226 0008 1446     		mov	r4, r2
+ 2227 000a 0023     		movs	r3, #0
+ 2228 000c 8DF80730 		strb	r3, [sp, #7]
+ 2229 0010 8DF80630 		strb	r3, [sp, #6]
+ 2230 0014 1046     		mov	r0, r2
+ 2231 0016 FFF7FEFF 		bl	null_ptr_check
+ 2232 001a 0028     		cmp	r0, #0
+ 2233 001c 6BD1     		bne	.L302
+ 2234 001e 002E     		cmp	r6, #0
+ 2235 0020 6CD0     		beq	.L303
+ 2236 0022 2346     		mov	r3, r4
+ 2237 0024 0DF10302 		add	r2, sp, #3
+ 2238 0028 0121     		movs	r1, #1
+ 2239 002a 2846     		mov	r0, r5
+ 2240 002c FFF7FEFF 		bl	nvm_write_addr
+ 2241 0030 0546     		mov	r5, r0
+ 2242 0032 18B1     		cbz	r0, .L307
+ 2243              	.L301:
+ 2244 0034 35B3     		cbz	r5, .L308
+ 2245              	.L300:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 39
+
+
+ 2246 0036 2846     		mov	r0, r5
+ 2247 0038 02B0     		add	sp, sp, #8
+ 2248              		@ sp needed
+ 2249 003a 70BD     		pop	{r4, r5, r6, pc}
+ 2250              	.L307:
+ 2251 003c 2346     		mov	r3, r4
+ 2252 003e 0222     		movs	r2, #2
+ 2253 0040 01A9     		add	r1, sp, #4
+ 2254 0042 2C20     		movs	r0, #44
+ 2255 0044 FFF7FEFF 		bl	bmp5_get_regs
+ 2256 0048 0546     		mov	r5, r0
+ 2257 004a 0028     		cmp	r0, #0
+ 2258 004c F3D1     		bne	.L300
+ 2259 004e 3388     		ldrh	r3, [r6]
+ 2260 0050 8DF80430 		strb	r3, [sp, #4]
+ 2261 0054 1B0A     		lsrs	r3, r3, #8
+ 2262 0056 8DF80530 		strb	r3, [sp, #5]
+ 2263 005a 2346     		mov	r3, r4
+ 2264 005c 0222     		movs	r2, #2
+ 2265 005e 01A9     		add	r1, sp, #4
+ 2266 0060 2C20     		movs	r0, #44
+ 2267 0062 FFF7FEFF 		bl	bmp5_set_regs
+ 2268 0066 0546     		mov	r5, r0
+ 2269 0068 0028     		cmp	r0, #0
+ 2270 006a E4D1     		bne	.L300
+ 2271 006c 5D23     		movs	r3, #93
+ 2272 006e 8DF80630 		strb	r3, [sp, #6]
+ 2273 0072 2346     		mov	r3, r4
+ 2274 0074 0122     		movs	r2, #1
+ 2275 0076 0DF10601 		add	r1, sp, #6
+ 2276 007a 7E20     		movs	r0, #126
+ 2277 007c FFF7FEFF 		bl	bmp5_set_regs
+ 2278 0080 0546     		mov	r5, r0
+ 2279 0082 D7E7     		b	.L301
+ 2280              	.L308:
+ 2281 0084 A023     		movs	r3, #160
+ 2282 0086 8DF80630 		strb	r3, [sp, #6]
+ 2283 008a 2346     		mov	r3, r4
+ 2284 008c 0122     		movs	r2, #1
+ 2285 008e 0DF10601 		add	r1, sp, #6
+ 2286 0092 7E20     		movs	r0, #126
+ 2287 0094 FFF7FEFF 		bl	bmp5_set_regs
+ 2288 0098 0546     		mov	r5, r0
+ 2289 009a 2369     		ldr	r3, [r4, #16]
+ 2290 009c 6168     		ldr	r1, [r4, #4]
+ 2291 009e 42F21070 		movw	r0, #10000
+ 2292 00a2 9847     		blx	r3
+ 2293 00a4 002D     		cmp	r5, #0
+ 2294 00a6 C6D1     		bne	.L300
+ 2295 00a8 2146     		mov	r1, r4
+ 2296 00aa 0DF10700 		add	r0, sp, #7
+ 2297 00ae FFF7FEFF 		bl	get_nvm_status
+ 2298 00b2 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 2299 00b6 03F00602 		and	r2, r3, #6
+ 2300 00ba 022A     		cmp	r2, #2
+ 2301 00bc 21D1     		bne	.L304
+ 2302 00be 13F0080F 		tst	r3, #8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 40
+
+
+ 2303 00c2 21D1     		bne	.L305
+ 2304 00c4 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 2305 00c8 03F0BF03 		and	r3, r3, #191
+ 2306 00cc 8DF80630 		strb	r3, [sp, #6]
+ 2307 00d0 2346     		mov	r3, r4
+ 2308 00d2 0122     		movs	r2, #1
+ 2309 00d4 0DF10601 		add	r1, sp, #6
+ 2310 00d8 2B20     		movs	r0, #43
+ 2311 00da FFF7FEFF 		bl	bmp5_set_regs
+ 2312 00de 0546     		mov	r5, r0
+ 2313 00e0 0028     		cmp	r0, #0
+ 2314 00e2 A8D1     		bne	.L300
+ 2315 00e4 9DF80300 		ldrb	r0, [sp, #3]	@ zero_extendqisi2
+ 2316 00e8 0028     		cmp	r0, #0
+ 2317 00ea A4D0     		beq	.L300
+ 2318 00ec 2146     		mov	r1, r4
+ 2319 00ee FFF7FEFF 		bl	bmp5_set_power_mode
+ 2320 00f2 0546     		mov	r5, r0
+ 2321 00f4 9FE7     		b	.L300
+ 2322              	.L302:
+ 2323 00f6 4FF0FF35 		mov	r5, #-1
+ 2324 00fa 9CE7     		b	.L300
+ 2325              	.L303:
+ 2326 00fc 4FF0FF35 		mov	r5, #-1
+ 2327 0100 99E7     		b	.L300
+ 2328              	.L304:
+ 2329 0102 6FF00A05 		mvn	r5, #10
+ 2330 0106 96E7     		b	.L300
+ 2331              	.L305:
+ 2332 0108 6FF00A05 		mvn	r5, #10
+ 2333 010c 93E7     		b	.L300
+ 2335              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 41
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 bmp5.c
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:18     .text.null_ptr_check:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:23     .text.null_ptr_check:00000000 null_ptr_check
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:50     .text.validate_chip_id:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:55     .text.validate_chip_id:00000000 validate_chip_id
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:71     .text.set_fifo_threshold:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:76     .text.set_fifo_threshold:00000000 set_fifo_threshold
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:123    .text.unpack_sensor_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:128    .text.unpack_sensor_data:00000000 unpack_sensor_data
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:290    .text.unpack_sensor_data:0000014c $d
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:294    .text.bmp5_get_regs:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:300    .text.bmp5_get_regs:00000000 bmp5_get_regs
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:339    .text.get_nvm_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:344    .text.get_nvm_status:00000000 get_nvm_status
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:360    .text.get_nvm_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:365    .text.get_nvm_data:00000000 get_nvm_data
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:404    .text.bmp5_set_regs:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:410    .text.bmp5_set_regs:00000000 bmp5_set_regs
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:472    .text.set_deep_standby_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:477    .text.set_deep_standby_mode:00000000 set_deep_standby_mode
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:542    .text.set_power_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:547    .text.set_power_mode:00000000 set_power_mode
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:581    .text.set_iir_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:586    .text.set_iir_config:00000000 set_iir_config
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:639    .text.set_nvm_addr:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:644    .text.set_nvm_addr:00000000 set_nvm_addr
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:695    .text.bmp5_get_interrupt_status:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:701    .text.bmp5_get_interrupt_status:00000000 bmp5_get_interrupt_status
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:717    .text.power_up_check:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:722    .text.power_up_check:00000000 power_up_check
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:755    .text.bmp5_init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:761    .text.bmp5_init:00000000 bmp5_init
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:815    .text.bmp5_soft_reset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:821    .text.bmp5_soft_reset:00000000 bmp5_soft_reset
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:871    .text.bmp5_get_sensor_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:877    .text.bmp5_get_sensor_data:00000000 bmp5_get_sensor_data
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:934    .text.bmp5_get_sensor_data:00000084 $d
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:938    .text.bmp5_int_source_select:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:944    .text.bmp5_int_source_select:00000000 bmp5_int_source_select
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:999    .text.bmp5_configure_interrupt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1005   .text.bmp5_configure_interrupt:00000000 bmp5_configure_interrupt
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1072   .text.bmp5_get_osr_odr_press_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1078   .text.bmp5_get_osr_odr_press_config:00000000 bmp5_get_osr_odr_press_config
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1110   .text.bmp5_get_iir_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1116   .text.bmp5_get_iir_config:00000000 bmp5_get_iir_config
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1148   .text.check_deepstandby_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1153   .text.check_deepstandby_mode:00000000 check_deepstandby_mode
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1201   .text.bmp5_get_power_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1207   .text.bmp5_get_power_mode:00000000 bmp5_get_power_mode
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1227   .text.bmp5_get_power_mode:0000002a $d
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1231   .text.bmp5_get_power_mode:0000002e $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1266   .text.bmp5_set_power_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1272   .text.bmp5_set_power_mode:00000000 bmp5_set_power_mode
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1329   .text.set_standby_mode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1334   .text.set_standby_mode:00000000 set_standby_mode
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1358   .text.bmp5_set_osr_odr_press_config:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s 			page 42
+
+
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1364   .text.bmp5_set_osr_odr_press_config:00000000 bmp5_set_osr_odr_press_config
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1433   .text.set_fifo_iir_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1438   .text.set_fifo_iir_config:00000000 set_fifo_iir_config
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1506   .text.set_oor_iir_count_limit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1511   .text.set_oor_iir_count_limit:00000000 set_oor_iir_count_limit
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1594   .text.nvm_write_addr:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1599   .text.nvm_write_addr:00000000 nvm_write_addr
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1637   .text.bmp5_set_iir_config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1643   .text.bmp5_set_iir_config:00000000 bmp5_set_iir_config
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1702   .text.bmp5_get_osr_odr_eff:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1708   .text.bmp5_get_osr_odr_eff:00000000 bmp5_get_osr_odr_eff
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1737   .text.bmp5_get_fifo_configuration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1743   .text.bmp5_get_fifo_configuration:00000000 bmp5_get_fifo_configuration
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1797   .text.bmp5_set_fifo_configuration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1803   .text.bmp5_set_fifo_configuration:00000000 bmp5_set_fifo_configuration
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1893   .text.bmp5_get_fifo_len:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1899   .text.bmp5_get_fifo_len:00000000 bmp5_get_fifo_len
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1943   .text.bmp5_get_fifo_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1949   .text.bmp5_get_fifo_data:00000000 bmp5_get_fifo_data
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1982   .text.bmp5_extract_fifo_data:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:1988   .text.bmp5_extract_fifo_data:00000000 bmp5_extract_fifo_data
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:2027   .text.bmp5_get_oor_configuration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:2033   .text.bmp5_get_oor_configuration:00000000 bmp5_get_oor_configuration
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:2080   .text.bmp5_set_oor_configuration:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:2086   .text.bmp5_set_oor_configuration:00000000 bmp5_set_oor_configuration
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:2133   .text.bmp5_nvm_read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:2139   .text.bmp5_nvm_read:00000000 bmp5_nvm_read
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:2213   .text.bmp5_nvm_write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cctvnUS2.s:2219   .text.bmp5_nvm_write:00000000 bmp5_nvm_write
+
+UNDEFINED SYMBOLS
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_d2f
+__aeabi_ui2d

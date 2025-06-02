@@ -1,0 +1,1658 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32f4xx_ll_sdmmc.c"
+  16              		.text
+  17              		.section	.text.SDMMC_GetCmdError,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	SDMMC_GetCmdError:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 0B4B     		ldr	r3, .L5
+  28 0002 1B68     		ldr	r3, [r3]
+  29 0004 0B4A     		ldr	r2, .L5+4
+  30 0006 A2FB0323 		umull	r2, r3, r2, r3
+  31 000a 5B0A     		lsrs	r3, r3, #9
+  32 000c 41F28832 		movw	r2, #5000
+  33 0010 02FB03F3 		mul	r3, r2, r3
+  34              	.L3:
+  35 0014 1A46     		mov	r2, r3
+  36 0016 013B     		subs	r3, r3, #1
+  37 0018 3AB1     		cbz	r2, .L4
+  38 001a 426B     		ldr	r2, [r0, #52]
+  39 001c 12F0800F 		tst	r2, #128
+  40 0020 F8D0     		beq	.L3
+  41 0022 C523     		movs	r3, #197
+  42 0024 8363     		str	r3, [r0, #56]
+  43 0026 0020     		movs	r0, #0
+  44 0028 7047     		bx	lr
+  45              	.L4:
+  46 002a 4FF00040 		mov	r0, #-2147483648
+  47 002e 7047     		bx	lr
+  48              	.L6:
+  49              		.align	2
+  50              	.L5:
+  51 0030 00000000 		.word	SystemCoreClock
+  52 0034 D34D6210 		.word	274877907
+  54              		.section	.text.SDIO_Init,"ax",%progbits
+  55              		.align	1
+  56              		.global	SDIO_Init
+  57              		.syntax unified
+  58              		.thumb
+  59              		.thumb_func
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 2
+
+
+  61              	SDIO_Init:
+  62              		@ args = 28, pretend = 16, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  65 0000 84B0     		sub	sp, sp, #16
+  66 0002 0DF1040C 		add	ip, sp, #4
+  67 0006 8CE80E00 		stm	ip, {r1, r2, r3}
+  68 000a 0B46     		mov	r3, r1
+  69 000c 1343     		orrs	r3, r3, r2
+  70 000e 039A     		ldr	r2, [sp, #12]
+  71 0010 1343     		orrs	r3, r3, r2
+  72 0012 049A     		ldr	r2, [sp, #16]
+  73 0014 1343     		orrs	r3, r3, r2
+  74 0016 059A     		ldr	r2, [sp, #20]
+  75 0018 1343     		orrs	r3, r3, r2
+  76 001a 069A     		ldr	r2, [sp, #24]
+  77 001c 1343     		orrs	r3, r3, r2
+  78 001e 4268     		ldr	r2, [r0, #4]
+  79 0020 22F4FD42 		bic	r2, r2, #32384
+  80 0024 22F07F02 		bic	r2, r2, #127
+  81 0028 1343     		orrs	r3, r3, r2
+  82 002a 4360     		str	r3, [r0, #4]
+  83 002c 0020     		movs	r0, #0
+  84 002e 04B0     		add	sp, sp, #16
+  85 0030 7047     		bx	lr
+  87              		.section	.text.SDIO_ReadFIFO,"ax",%progbits
+  88              		.align	1
+  89              		.global	SDIO_ReadFIFO
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  94              	SDIO_ReadFIFO:
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97              		@ link register save eliminated.
+  98 0000 D0F88000 		ldr	r0, [r0, #128]
+  99 0004 7047     		bx	lr
+ 101              		.section	.text.SDIO_WriteFIFO,"ax",%progbits
+ 102              		.align	1
+ 103              		.global	SDIO_WriteFIFO
+ 104              		.syntax unified
+ 105              		.thumb
+ 106              		.thumb_func
+ 108              	SDIO_WriteFIFO:
+ 109              		@ args = 0, pretend = 0, frame = 0
+ 110              		@ frame_needed = 0, uses_anonymous_args = 0
+ 111              		@ link register save eliminated.
+ 112 0000 0B68     		ldr	r3, [r1]
+ 113 0002 C0F88030 		str	r3, [r0, #128]
+ 114 0006 0020     		movs	r0, #0
+ 115 0008 7047     		bx	lr
+ 117              		.section	.text.SDIO_PowerState_ON,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	SDIO_PowerState_ON
+ 120              		.syntax unified
+ 121              		.thumb
+ 122              		.thumb_func
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 3
+
+
+ 124              	SDIO_PowerState_ON:
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 0, uses_anonymous_args = 0
+ 127              		@ link register save eliminated.
+ 128 0000 0323     		movs	r3, #3
+ 129 0002 0360     		str	r3, [r0]
+ 130 0004 0020     		movs	r0, #0
+ 131 0006 7047     		bx	lr
+ 133              		.section	.text.SDIO_PowerState_OFF,"ax",%progbits
+ 134              		.align	1
+ 135              		.global	SDIO_PowerState_OFF
+ 136              		.syntax unified
+ 137              		.thumb
+ 138              		.thumb_func
+ 140              	SDIO_PowerState_OFF:
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 0, uses_anonymous_args = 0
+ 143              		@ link register save eliminated.
+ 144 0000 0346     		mov	r3, r0
+ 145 0002 0020     		movs	r0, #0
+ 146 0004 1860     		str	r0, [r3]
+ 147 0006 7047     		bx	lr
+ 149              		.section	.text.SDIO_GetPowerState,"ax",%progbits
+ 150              		.align	1
+ 151              		.global	SDIO_GetPowerState
+ 152              		.syntax unified
+ 153              		.thumb
+ 154              		.thumb_func
+ 156              	SDIO_GetPowerState:
+ 157              		@ args = 0, pretend = 0, frame = 0
+ 158              		@ frame_needed = 0, uses_anonymous_args = 0
+ 159              		@ link register save eliminated.
+ 160 0000 0068     		ldr	r0, [r0]
+ 161 0002 00F00300 		and	r0, r0, #3
+ 162 0006 7047     		bx	lr
+ 164              		.section	.text.SDIO_SendCommand,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	SDIO_SendCommand
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 171              	SDIO_SendCommand:
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		@ link register save eliminated.
+ 175 0000 0B68     		ldr	r3, [r1]
+ 176 0002 8360     		str	r3, [r0, #8]
+ 177 0004 4B68     		ldr	r3, [r1, #4]
+ 178 0006 8A68     		ldr	r2, [r1, #8]
+ 179 0008 1343     		orrs	r3, r3, r2
+ 180 000a CA68     		ldr	r2, [r1, #12]
+ 181 000c 1343     		orrs	r3, r3, r2
+ 182 000e 0A69     		ldr	r2, [r1, #16]
+ 183 0010 1343     		orrs	r3, r3, r2
+ 184 0012 C268     		ldr	r2, [r0, #12]
+ 185 0014 6FF30B02 		bfc	r2, #0, #12
+ 186 0018 1343     		orrs	r3, r3, r2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 4
+
+
+ 187 001a C360     		str	r3, [r0, #12]
+ 188 001c 0020     		movs	r0, #0
+ 189 001e 7047     		bx	lr
+ 191              		.section	.text.SDIO_GetCommandResponse,"ax",%progbits
+ 192              		.align	1
+ 193              		.global	SDIO_GetCommandResponse
+ 194              		.syntax unified
+ 195              		.thumb
+ 196              		.thumb_func
+ 198              	SDIO_GetCommandResponse:
+ 199              		@ args = 0, pretend = 0, frame = 0
+ 200              		@ frame_needed = 0, uses_anonymous_args = 0
+ 201              		@ link register save eliminated.
+ 202 0000 0069     		ldr	r0, [r0, #16]
+ 203 0002 C0B2     		uxtb	r0, r0
+ 204 0004 7047     		bx	lr
+ 206              		.section	.text.SDIO_GetResponse,"ax",%progbits
+ 207              		.align	1
+ 208              		.global	SDIO_GetResponse
+ 209              		.syntax unified
+ 210              		.thumb
+ 211              		.thumb_func
+ 213              	SDIO_GetResponse:
+ 214              		@ args = 0, pretend = 0, frame = 0
+ 215              		@ frame_needed = 0, uses_anonymous_args = 0
+ 216              		@ link register save eliminated.
+ 217 0000 1430     		adds	r0, r0, #20
+ 218 0002 4058     		ldr	r0, [r0, r1]
+ 219 0004 7047     		bx	lr
+ 221              		.section	.text.SDIO_ConfigData,"ax",%progbits
+ 222              		.align	1
+ 223              		.global	SDIO_ConfigData
+ 224              		.syntax unified
+ 225              		.thumb
+ 226              		.thumb_func
+ 228              	SDIO_ConfigData:
+ 229              		@ args = 0, pretend = 0, frame = 0
+ 230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231              		@ link register save eliminated.
+ 232 0000 0B68     		ldr	r3, [r1]
+ 233 0002 4362     		str	r3, [r0, #36]
+ 234 0004 4B68     		ldr	r3, [r1, #4]
+ 235 0006 8362     		str	r3, [r0, #40]
+ 236 0008 8B68     		ldr	r3, [r1, #8]
+ 237 000a CA68     		ldr	r2, [r1, #12]
+ 238 000c 1343     		orrs	r3, r3, r2
+ 239 000e 0A69     		ldr	r2, [r1, #16]
+ 240 0010 1343     		orrs	r3, r3, r2
+ 241 0012 4A69     		ldr	r2, [r1, #20]
+ 242 0014 1343     		orrs	r3, r3, r2
+ 243 0016 C26A     		ldr	r2, [r0, #44]
+ 244 0018 22F0F702 		bic	r2, r2, #247
+ 245 001c 1343     		orrs	r3, r3, r2
+ 246 001e C362     		str	r3, [r0, #44]
+ 247 0020 0020     		movs	r0, #0
+ 248 0022 7047     		bx	lr
+ 250              		.section	.text.SDIO_GetDataCounter,"ax",%progbits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 5
+
+
+ 251              		.align	1
+ 252              		.global	SDIO_GetDataCounter
+ 253              		.syntax unified
+ 254              		.thumb
+ 255              		.thumb_func
+ 257              	SDIO_GetDataCounter:
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260              		@ link register save eliminated.
+ 261 0000 006B     		ldr	r0, [r0, #48]
+ 262 0002 7047     		bx	lr
+ 264              		.section	.text.SDIO_GetFIFOCount,"ax",%progbits
+ 265              		.align	1
+ 266              		.global	SDIO_GetFIFOCount
+ 267              		.syntax unified
+ 268              		.thumb
+ 269              		.thumb_func
+ 271              	SDIO_GetFIFOCount:
+ 272              		@ args = 0, pretend = 0, frame = 0
+ 273              		@ frame_needed = 0, uses_anonymous_args = 0
+ 274              		@ link register save eliminated.
+ 275 0000 D0F88000 		ldr	r0, [r0, #128]
+ 276 0004 7047     		bx	lr
+ 278              		.section	.text.SDIO_SetSDMMCReadWaitMode,"ax",%progbits
+ 279              		.align	1
+ 280              		.global	SDIO_SetSDMMCReadWaitMode
+ 281              		.syntax unified
+ 282              		.thumb
+ 283              		.thumb_func
+ 285              	SDIO_SetSDMMCReadWaitMode:
+ 286              		@ args = 0, pretend = 0, frame = 0
+ 287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 288              		@ link register save eliminated.
+ 289 0000 C36A     		ldr	r3, [r0, #44]
+ 290 0002 23F48063 		bic	r3, r3, #1024
+ 291 0006 0B43     		orrs	r3, r3, r1
+ 292 0008 C362     		str	r3, [r0, #44]
+ 293 000a 0020     		movs	r0, #0
+ 294 000c 7047     		bx	lr
+ 296              		.section	.text.SDMMC_CmdGoIdleState,"ax",%progbits
+ 297              		.align	1
+ 298              		.global	SDMMC_CmdGoIdleState
+ 299              		.syntax unified
+ 300              		.thumb
+ 301              		.thumb_func
+ 303              	SDMMC_CmdGoIdleState:
+ 304              		@ args = 0, pretend = 0, frame = 24
+ 305              		@ frame_needed = 0, uses_anonymous_args = 0
+ 306 0000 10B5     		push	{r4, lr}
+ 307 0002 86B0     		sub	sp, sp, #24
+ 308 0004 0446     		mov	r4, r0
+ 309 0006 0023     		movs	r3, #0
+ 310 0008 0193     		str	r3, [sp, #4]
+ 311 000a 0293     		str	r3, [sp, #8]
+ 312 000c 0393     		str	r3, [sp, #12]
+ 313 000e 0493     		str	r3, [sp, #16]
+ 314 0010 4FF48063 		mov	r3, #1024
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 6
+
+
+ 315 0014 0593     		str	r3, [sp, #20]
+ 316 0016 01A9     		add	r1, sp, #4
+ 317 0018 FFF7FEFF 		bl	SDIO_SendCommand
+ 318 001c 2046     		mov	r0, r4
+ 319 001e FFF7FEFF 		bl	SDMMC_GetCmdError
+ 320 0022 06B0     		add	sp, sp, #24
+ 321              		@ sp needed
+ 322 0024 10BD     		pop	{r4, pc}
+ 324              		.section	.text.SDMMC_GetCmdResp1,"ax",%progbits
+ 325              		.align	1
+ 326              		.global	SDMMC_GetCmdResp1
+ 327              		.syntax unified
+ 328              		.thumb
+ 329              		.thumb_func
+ 331              	SDMMC_GetCmdResp1:
+ 332              		@ args = 0, pretend = 0, frame = 0
+ 333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 334 0000 38B5     		push	{r3, r4, r5, lr}
+ 335 0002 0446     		mov	r4, r0
+ 336 0004 0D46     		mov	r5, r1
+ 337 0006 504B     		ldr	r3, .L51
+ 338 0008 1B68     		ldr	r3, [r3]
+ 339 000a 5049     		ldr	r1, .L51+4
+ 340 000c A1FB0313 		umull	r1, r3, r1, r3
+ 341 0010 5B0A     		lsrs	r3, r3, #9
+ 342 0012 03FB02F2 		mul	r2, r3, r2
+ 343              	.L25:
+ 344 0016 1346     		mov	r3, r2
+ 345 0018 013A     		subs	r2, r2, #1
+ 346 001a 002B     		cmp	r3, #0
+ 347 001c 5DD0     		beq	.L28
+ 348 001e 636B     		ldr	r3, [r4, #52]
+ 349 0020 13F0450F 		tst	r3, #69
+ 350 0024 F7D0     		beq	.L25
+ 351 0026 13F4006F 		tst	r3, #2048
+ 352 002a F4D1     		bne	.L25
+ 353 002c 636B     		ldr	r3, [r4, #52]
+ 354 002e 13F0040F 		tst	r3, #4
+ 355 0032 06D1     		bne	.L49
+ 356 0034 636B     		ldr	r3, [r4, #52]
+ 357 0036 13F0010F 		tst	r3, #1
+ 358 003a 05D0     		beq	.L27
+ 359 003c 0120     		movs	r0, #1
+ 360 003e A063     		str	r0, [r4, #56]
+ 361 0040 4DE0     		b	.L23
+ 362              	.L49:
+ 363 0042 0420     		movs	r0, #4
+ 364 0044 A063     		str	r0, [r4, #56]
+ 365 0046 4AE0     		b	.L23
+ 366              	.L27:
+ 367 0048 C523     		movs	r3, #197
+ 368 004a A363     		str	r3, [r4, #56]
+ 369 004c 2046     		mov	r0, r4
+ 370 004e FFF7FEFF 		bl	SDIO_GetCommandResponse
+ 371 0052 A842     		cmp	r0, r5
+ 372 0054 01D0     		beq	.L50
+ 373 0056 0120     		movs	r0, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 7
+
+
+ 374 0058 41E0     		b	.L23
+ 375              	.L50:
+ 376 005a 0021     		movs	r1, #0
+ 377 005c 2046     		mov	r0, r4
+ 378 005e FFF7FEFF 		bl	SDIO_GetResponse
+ 379 0062 0346     		mov	r3, r0
+ 380 0064 3A48     		ldr	r0, .L51+8
+ 381 0066 1840     		ands	r0, r0, r3
+ 382 0068 C8B3     		cbz	r0, .L23
+ 383 006a 002B     		cmp	r3, #0
+ 384 006c 38DB     		blt	.L30
+ 385 006e 13F0804F 		tst	r3, #1073741824
+ 386 0072 38D1     		bne	.L31
+ 387 0074 13F0005F 		tst	r3, #536870912
+ 388 0078 37D1     		bne	.L32
+ 389 007a 13F0805F 		tst	r3, #268435456
+ 390 007e 36D1     		bne	.L33
+ 391 0080 13F0006F 		tst	r3, #134217728
+ 392 0084 36D1     		bne	.L34
+ 393 0086 13F0806F 		tst	r3, #67108864
+ 394 008a 36D1     		bne	.L35
+ 395 008c 13F0807F 		tst	r3, #16777216
+ 396 0090 36D1     		bne	.L36
+ 397 0092 13F4000F 		tst	r3, #8388608
+ 398 0096 36D1     		bne	.L37
+ 399 0098 13F4800F 		tst	r3, #4194304
+ 400 009c 36D1     		bne	.L38
+ 401 009e 13F4001F 		tst	r3, #2097152
+ 402 00a2 36D1     		bne	.L39
+ 403 00a4 13F4801F 		tst	r3, #1048576
+ 404 00a8 36D1     		bne	.L40
+ 405 00aa 13F4802F 		tst	r3, #262144
+ 406 00ae 36D1     		bne	.L41
+ 407 00b0 13F4003F 		tst	r3, #131072
+ 408 00b4 36D1     		bne	.L42
+ 409 00b6 13F4803F 		tst	r3, #65536
+ 410 00ba 36D1     		bne	.L43
+ 411 00bc 13F4004F 		tst	r3, #32768
+ 412 00c0 36D1     		bne	.L44
+ 413 00c2 13F4804F 		tst	r3, #16384
+ 414 00c6 36D1     		bne	.L45
+ 415 00c8 13F4005F 		tst	r3, #8192
+ 416 00cc 36D1     		bne	.L46
+ 417 00ce 13F0080F 		tst	r3, #8
+ 418 00d2 36D0     		beq	.L47
+ 419 00d4 4FF40000 		mov	r0, #8388608
+ 420 00d8 01E0     		b	.L23
+ 421              	.L28:
+ 422 00da 4FF00040 		mov	r0, #-2147483648
+ 423              	.L23:
+ 424 00de 38BD     		pop	{r3, r4, r5, pc}
+ 425              	.L30:
+ 426 00e0 4FF00070 		mov	r0, #33554432
+ 427 00e4 FBE7     		b	.L23
+ 428              	.L31:
+ 429 00e6 4020     		movs	r0, #64
+ 430 00e8 F9E7     		b	.L23
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 8
+
+
+ 431              	.L32:
+ 432 00ea 8020     		movs	r0, #128
+ 433 00ec F7E7     		b	.L23
+ 434              	.L33:
+ 435 00ee 4FF48070 		mov	r0, #256
+ 436 00f2 F4E7     		b	.L23
+ 437              	.L34:
+ 438 00f4 4FF40070 		mov	r0, #512
+ 439 00f8 F1E7     		b	.L23
+ 440              	.L35:
+ 441 00fa 4FF48060 		mov	r0, #1024
+ 442 00fe EEE7     		b	.L23
+ 443              	.L36:
+ 444 0100 4FF40060 		mov	r0, #2048
+ 445 0104 EBE7     		b	.L23
+ 446              	.L37:
+ 447 0106 4FF48050 		mov	r0, #4096
+ 448 010a E8E7     		b	.L23
+ 449              	.L38:
+ 450 010c 4FF40050 		mov	r0, #8192
+ 451 0110 E5E7     		b	.L23
+ 452              	.L39:
+ 453 0112 4FF48040 		mov	r0, #16384
+ 454 0116 E2E7     		b	.L23
+ 455              	.L40:
+ 456 0118 4FF40040 		mov	r0, #32768
+ 457 011c DFE7     		b	.L23
+ 458              	.L41:
+ 459 011e 4FF40030 		mov	r0, #131072
+ 460 0122 DCE7     		b	.L23
+ 461              	.L42:
+ 462 0124 4FF48020 		mov	r0, #262144
+ 463 0128 D9E7     		b	.L23
+ 464              	.L43:
+ 465 012a 4FF40020 		mov	r0, #524288
+ 466 012e D6E7     		b	.L23
+ 467              	.L44:
+ 468 0130 4FF48010 		mov	r0, #1048576
+ 469 0134 D3E7     		b	.L23
+ 470              	.L45:
+ 471 0136 4FF40010 		mov	r0, #2097152
+ 472 013a D0E7     		b	.L23
+ 473              	.L46:
+ 474 013c 4FF48000 		mov	r0, #4194304
+ 475 0140 CDE7     		b	.L23
+ 476              	.L47:
+ 477 0142 4FF48030 		mov	r0, #65536
+ 478 0146 CAE7     		b	.L23
+ 479              	.L52:
+ 480              		.align	2
+ 481              	.L51:
+ 482 0148 00000000 		.word	SystemCoreClock
+ 483 014c D34D6210 		.word	274877907
+ 484 0150 08E0FFFD 		.word	-33562616
+ 486              		.section	.text.SDMMC_CmdBlockLength,"ax",%progbits
+ 487              		.align	1
+ 488              		.global	SDMMC_CmdBlockLength
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 9
+
+
+ 489              		.syntax unified
+ 490              		.thumb
+ 491              		.thumb_func
+ 493              	SDMMC_CmdBlockLength:
+ 494              		@ args = 0, pretend = 0, frame = 24
+ 495              		@ frame_needed = 0, uses_anonymous_args = 0
+ 496 0000 30B5     		push	{r4, r5, lr}
+ 497 0002 87B0     		sub	sp, sp, #28
+ 498 0004 0446     		mov	r4, r0
+ 499 0006 0191     		str	r1, [sp, #4]
+ 500 0008 1025     		movs	r5, #16
+ 501 000a 0295     		str	r5, [sp, #8]
+ 502 000c 4023     		movs	r3, #64
+ 503 000e 0393     		str	r3, [sp, #12]
+ 504 0010 0023     		movs	r3, #0
+ 505 0012 0493     		str	r3, [sp, #16]
+ 506 0014 4FF48063 		mov	r3, #1024
+ 507 0018 0593     		str	r3, [sp, #20]
+ 508 001a 01A9     		add	r1, sp, #4
+ 509 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 510 0020 41F28832 		movw	r2, #5000
+ 511 0024 2946     		mov	r1, r5
+ 512 0026 2046     		mov	r0, r4
+ 513 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 514 002c 07B0     		add	sp, sp, #28
+ 515              		@ sp needed
+ 516 002e 30BD     		pop	{r4, r5, pc}
+ 518              		.section	.text.SDMMC_CmdReadSingleBlock,"ax",%progbits
+ 519              		.align	1
+ 520              		.global	SDMMC_CmdReadSingleBlock
+ 521              		.syntax unified
+ 522              		.thumb
+ 523              		.thumb_func
+ 525              	SDMMC_CmdReadSingleBlock:
+ 526              		@ args = 0, pretend = 0, frame = 24
+ 527              		@ frame_needed = 0, uses_anonymous_args = 0
+ 528 0000 30B5     		push	{r4, r5, lr}
+ 529 0002 87B0     		sub	sp, sp, #28
+ 530 0004 0446     		mov	r4, r0
+ 531 0006 0191     		str	r1, [sp, #4]
+ 532 0008 1125     		movs	r5, #17
+ 533 000a 0295     		str	r5, [sp, #8]
+ 534 000c 4023     		movs	r3, #64
+ 535 000e 0393     		str	r3, [sp, #12]
+ 536 0010 0023     		movs	r3, #0
+ 537 0012 0493     		str	r3, [sp, #16]
+ 538 0014 4FF48063 		mov	r3, #1024
+ 539 0018 0593     		str	r3, [sp, #20]
+ 540 001a 01A9     		add	r1, sp, #4
+ 541 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 542 0020 41F28832 		movw	r2, #5000
+ 543 0024 2946     		mov	r1, r5
+ 544 0026 2046     		mov	r0, r4
+ 545 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 546 002c 07B0     		add	sp, sp, #28
+ 547              		@ sp needed
+ 548 002e 30BD     		pop	{r4, r5, pc}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 10
+
+
+ 550              		.section	.text.SDMMC_CmdReadMultiBlock,"ax",%progbits
+ 551              		.align	1
+ 552              		.global	SDMMC_CmdReadMultiBlock
+ 553              		.syntax unified
+ 554              		.thumb
+ 555              		.thumb_func
+ 557              	SDMMC_CmdReadMultiBlock:
+ 558              		@ args = 0, pretend = 0, frame = 24
+ 559              		@ frame_needed = 0, uses_anonymous_args = 0
+ 560 0000 30B5     		push	{r4, r5, lr}
+ 561 0002 87B0     		sub	sp, sp, #28
+ 562 0004 0446     		mov	r4, r0
+ 563 0006 0191     		str	r1, [sp, #4]
+ 564 0008 1225     		movs	r5, #18
+ 565 000a 0295     		str	r5, [sp, #8]
+ 566 000c 4023     		movs	r3, #64
+ 567 000e 0393     		str	r3, [sp, #12]
+ 568 0010 0023     		movs	r3, #0
+ 569 0012 0493     		str	r3, [sp, #16]
+ 570 0014 4FF48063 		mov	r3, #1024
+ 571 0018 0593     		str	r3, [sp, #20]
+ 572 001a 01A9     		add	r1, sp, #4
+ 573 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 574 0020 41F28832 		movw	r2, #5000
+ 575 0024 2946     		mov	r1, r5
+ 576 0026 2046     		mov	r0, r4
+ 577 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 578 002c 07B0     		add	sp, sp, #28
+ 579              		@ sp needed
+ 580 002e 30BD     		pop	{r4, r5, pc}
+ 582              		.section	.text.SDMMC_CmdWriteSingleBlock,"ax",%progbits
+ 583              		.align	1
+ 584              		.global	SDMMC_CmdWriteSingleBlock
+ 585              		.syntax unified
+ 586              		.thumb
+ 587              		.thumb_func
+ 589              	SDMMC_CmdWriteSingleBlock:
+ 590              		@ args = 0, pretend = 0, frame = 24
+ 591              		@ frame_needed = 0, uses_anonymous_args = 0
+ 592 0000 30B5     		push	{r4, r5, lr}
+ 593 0002 87B0     		sub	sp, sp, #28
+ 594 0004 0446     		mov	r4, r0
+ 595 0006 0191     		str	r1, [sp, #4]
+ 596 0008 1825     		movs	r5, #24
+ 597 000a 0295     		str	r5, [sp, #8]
+ 598 000c 4023     		movs	r3, #64
+ 599 000e 0393     		str	r3, [sp, #12]
+ 600 0010 0023     		movs	r3, #0
+ 601 0012 0493     		str	r3, [sp, #16]
+ 602 0014 4FF48063 		mov	r3, #1024
+ 603 0018 0593     		str	r3, [sp, #20]
+ 604 001a 01A9     		add	r1, sp, #4
+ 605 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 606 0020 41F28832 		movw	r2, #5000
+ 607 0024 2946     		mov	r1, r5
+ 608 0026 2046     		mov	r0, r4
+ 609 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 11
+
+
+ 610 002c 07B0     		add	sp, sp, #28
+ 611              		@ sp needed
+ 612 002e 30BD     		pop	{r4, r5, pc}
+ 614              		.section	.text.SDMMC_CmdWriteMultiBlock,"ax",%progbits
+ 615              		.align	1
+ 616              		.global	SDMMC_CmdWriteMultiBlock
+ 617              		.syntax unified
+ 618              		.thumb
+ 619              		.thumb_func
+ 621              	SDMMC_CmdWriteMultiBlock:
+ 622              		@ args = 0, pretend = 0, frame = 24
+ 623              		@ frame_needed = 0, uses_anonymous_args = 0
+ 624 0000 30B5     		push	{r4, r5, lr}
+ 625 0002 87B0     		sub	sp, sp, #28
+ 626 0004 0446     		mov	r4, r0
+ 627 0006 0191     		str	r1, [sp, #4]
+ 628 0008 1925     		movs	r5, #25
+ 629 000a 0295     		str	r5, [sp, #8]
+ 630 000c 4023     		movs	r3, #64
+ 631 000e 0393     		str	r3, [sp, #12]
+ 632 0010 0023     		movs	r3, #0
+ 633 0012 0493     		str	r3, [sp, #16]
+ 634 0014 4FF48063 		mov	r3, #1024
+ 635 0018 0593     		str	r3, [sp, #20]
+ 636 001a 01A9     		add	r1, sp, #4
+ 637 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 638 0020 41F28832 		movw	r2, #5000
+ 639 0024 2946     		mov	r1, r5
+ 640 0026 2046     		mov	r0, r4
+ 641 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 642 002c 07B0     		add	sp, sp, #28
+ 643              		@ sp needed
+ 644 002e 30BD     		pop	{r4, r5, pc}
+ 646              		.section	.text.SDMMC_CmdSDEraseStartAdd,"ax",%progbits
+ 647              		.align	1
+ 648              		.global	SDMMC_CmdSDEraseStartAdd
+ 649              		.syntax unified
+ 650              		.thumb
+ 651              		.thumb_func
+ 653              	SDMMC_CmdSDEraseStartAdd:
+ 654              		@ args = 0, pretend = 0, frame = 24
+ 655              		@ frame_needed = 0, uses_anonymous_args = 0
+ 656 0000 30B5     		push	{r4, r5, lr}
+ 657 0002 87B0     		sub	sp, sp, #28
+ 658 0004 0446     		mov	r4, r0
+ 659 0006 0191     		str	r1, [sp, #4]
+ 660 0008 2025     		movs	r5, #32
+ 661 000a 0295     		str	r5, [sp, #8]
+ 662 000c 4023     		movs	r3, #64
+ 663 000e 0393     		str	r3, [sp, #12]
+ 664 0010 0023     		movs	r3, #0
+ 665 0012 0493     		str	r3, [sp, #16]
+ 666 0014 4FF48063 		mov	r3, #1024
+ 667 0018 0593     		str	r3, [sp, #20]
+ 668 001a 01A9     		add	r1, sp, #4
+ 669 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 670 0020 41F28832 		movw	r2, #5000
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 12
+
+
+ 671 0024 2946     		mov	r1, r5
+ 672 0026 2046     		mov	r0, r4
+ 673 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 674 002c 07B0     		add	sp, sp, #28
+ 675              		@ sp needed
+ 676 002e 30BD     		pop	{r4, r5, pc}
+ 678              		.section	.text.SDMMC_CmdSDEraseEndAdd,"ax",%progbits
+ 679              		.align	1
+ 680              		.global	SDMMC_CmdSDEraseEndAdd
+ 681              		.syntax unified
+ 682              		.thumb
+ 683              		.thumb_func
+ 685              	SDMMC_CmdSDEraseEndAdd:
+ 686              		@ args = 0, pretend = 0, frame = 24
+ 687              		@ frame_needed = 0, uses_anonymous_args = 0
+ 688 0000 30B5     		push	{r4, r5, lr}
+ 689 0002 87B0     		sub	sp, sp, #28
+ 690 0004 0446     		mov	r4, r0
+ 691 0006 0191     		str	r1, [sp, #4]
+ 692 0008 2125     		movs	r5, #33
+ 693 000a 0295     		str	r5, [sp, #8]
+ 694 000c 4023     		movs	r3, #64
+ 695 000e 0393     		str	r3, [sp, #12]
+ 696 0010 0023     		movs	r3, #0
+ 697 0012 0493     		str	r3, [sp, #16]
+ 698 0014 4FF48063 		mov	r3, #1024
+ 699 0018 0593     		str	r3, [sp, #20]
+ 700 001a 01A9     		add	r1, sp, #4
+ 701 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 702 0020 41F28832 		movw	r2, #5000
+ 703 0024 2946     		mov	r1, r5
+ 704 0026 2046     		mov	r0, r4
+ 705 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 706 002c 07B0     		add	sp, sp, #28
+ 707              		@ sp needed
+ 708 002e 30BD     		pop	{r4, r5, pc}
+ 710              		.section	.text.SDMMC_CmdEraseStartAdd,"ax",%progbits
+ 711              		.align	1
+ 712              		.global	SDMMC_CmdEraseStartAdd
+ 713              		.syntax unified
+ 714              		.thumb
+ 715              		.thumb_func
+ 717              	SDMMC_CmdEraseStartAdd:
+ 718              		@ args = 0, pretend = 0, frame = 24
+ 719              		@ frame_needed = 0, uses_anonymous_args = 0
+ 720 0000 30B5     		push	{r4, r5, lr}
+ 721 0002 87B0     		sub	sp, sp, #28
+ 722 0004 0446     		mov	r4, r0
+ 723 0006 0191     		str	r1, [sp, #4]
+ 724 0008 2325     		movs	r5, #35
+ 725 000a 0295     		str	r5, [sp, #8]
+ 726 000c 4023     		movs	r3, #64
+ 727 000e 0393     		str	r3, [sp, #12]
+ 728 0010 0023     		movs	r3, #0
+ 729 0012 0493     		str	r3, [sp, #16]
+ 730 0014 4FF48063 		mov	r3, #1024
+ 731 0018 0593     		str	r3, [sp, #20]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 13
+
+
+ 732 001a 01A9     		add	r1, sp, #4
+ 733 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 734 0020 41F28832 		movw	r2, #5000
+ 735 0024 2946     		mov	r1, r5
+ 736 0026 2046     		mov	r0, r4
+ 737 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 738 002c 07B0     		add	sp, sp, #28
+ 739              		@ sp needed
+ 740 002e 30BD     		pop	{r4, r5, pc}
+ 742              		.section	.text.SDMMC_CmdEraseEndAdd,"ax",%progbits
+ 743              		.align	1
+ 744              		.global	SDMMC_CmdEraseEndAdd
+ 745              		.syntax unified
+ 746              		.thumb
+ 747              		.thumb_func
+ 749              	SDMMC_CmdEraseEndAdd:
+ 750              		@ args = 0, pretend = 0, frame = 24
+ 751              		@ frame_needed = 0, uses_anonymous_args = 0
+ 752 0000 30B5     		push	{r4, r5, lr}
+ 753 0002 87B0     		sub	sp, sp, #28
+ 754 0004 0446     		mov	r4, r0
+ 755 0006 0191     		str	r1, [sp, #4]
+ 756 0008 2425     		movs	r5, #36
+ 757 000a 0295     		str	r5, [sp, #8]
+ 758 000c 4023     		movs	r3, #64
+ 759 000e 0393     		str	r3, [sp, #12]
+ 760 0010 0023     		movs	r3, #0
+ 761 0012 0493     		str	r3, [sp, #16]
+ 762 0014 4FF48063 		mov	r3, #1024
+ 763 0018 0593     		str	r3, [sp, #20]
+ 764 001a 01A9     		add	r1, sp, #4
+ 765 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 766 0020 41F28832 		movw	r2, #5000
+ 767 0024 2946     		mov	r1, r5
+ 768 0026 2046     		mov	r0, r4
+ 769 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 770 002c 07B0     		add	sp, sp, #28
+ 771              		@ sp needed
+ 772 002e 30BD     		pop	{r4, r5, pc}
+ 774              		.section	.text.SDMMC_CmdErase,"ax",%progbits
+ 775              		.align	1
+ 776              		.global	SDMMC_CmdErase
+ 777              		.syntax unified
+ 778              		.thumb
+ 779              		.thumb_func
+ 781              	SDMMC_CmdErase:
+ 782              		@ args = 0, pretend = 0, frame = 24
+ 783              		@ frame_needed = 0, uses_anonymous_args = 0
+ 784 0000 30B5     		push	{r4, r5, lr}
+ 785 0002 87B0     		sub	sp, sp, #28
+ 786 0004 0446     		mov	r4, r0
+ 787 0006 0023     		movs	r3, #0
+ 788 0008 0193     		str	r3, [sp, #4]
+ 789 000a 2625     		movs	r5, #38
+ 790 000c 0295     		str	r5, [sp, #8]
+ 791 000e 4022     		movs	r2, #64
+ 792 0010 0392     		str	r2, [sp, #12]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 14
+
+
+ 793 0012 0493     		str	r3, [sp, #16]
+ 794 0014 4FF48063 		mov	r3, #1024
+ 795 0018 0593     		str	r3, [sp, #20]
+ 796 001a 01A9     		add	r1, sp, #4
+ 797 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 798 0020 4FF21862 		movw	r2, #63000
+ 799 0024 2946     		mov	r1, r5
+ 800 0026 2046     		mov	r0, r4
+ 801 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 802 002c 07B0     		add	sp, sp, #28
+ 803              		@ sp needed
+ 804 002e 30BD     		pop	{r4, r5, pc}
+ 806              		.section	.text.SDMMC_CmdStopTransfer,"ax",%progbits
+ 807              		.align	1
+ 808              		.global	SDMMC_CmdStopTransfer
+ 809              		.syntax unified
+ 810              		.thumb
+ 811              		.thumb_func
+ 813              	SDMMC_CmdStopTransfer:
+ 814              		@ args = 0, pretend = 0, frame = 24
+ 815              		@ frame_needed = 0, uses_anonymous_args = 0
+ 816 0000 30B5     		push	{r4, r5, lr}
+ 817 0002 87B0     		sub	sp, sp, #28
+ 818 0004 0446     		mov	r4, r0
+ 819 0006 0023     		movs	r3, #0
+ 820 0008 0193     		str	r3, [sp, #4]
+ 821 000a 0C25     		movs	r5, #12
+ 822 000c 0295     		str	r5, [sp, #8]
+ 823 000e 4022     		movs	r2, #64
+ 824 0010 0392     		str	r2, [sp, #12]
+ 825 0012 0493     		str	r3, [sp, #16]
+ 826 0014 4FF48063 		mov	r3, #1024
+ 827 0018 0593     		str	r3, [sp, #20]
+ 828 001a 01A9     		add	r1, sp, #4
+ 829 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 830 0020 034A     		ldr	r2, .L75
+ 831 0022 2946     		mov	r1, r5
+ 832 0024 2046     		mov	r0, r4
+ 833 0026 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 834 002a 07B0     		add	sp, sp, #28
+ 835              		@ sp needed
+ 836 002c 30BD     		pop	{r4, r5, pc}
+ 837              	.L76:
+ 838 002e 00BF     		.align	2
+ 839              	.L75:
+ 840 0030 00E1F505 		.word	100000000
+ 842              		.section	.text.SDMMC_CmdSelDesel,"ax",%progbits
+ 843              		.align	1
+ 844              		.global	SDMMC_CmdSelDesel
+ 845              		.syntax unified
+ 846              		.thumb
+ 847              		.thumb_func
+ 849              	SDMMC_CmdSelDesel:
+ 850              		@ args = 0, pretend = 0, frame = 24
+ 851              		@ frame_needed = 0, uses_anonymous_args = 0
+ 852 0000 30B5     		push	{r4, r5, lr}
+ 853 0002 87B0     		sub	sp, sp, #28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 15
+
+
+ 854 0004 0446     		mov	r4, r0
+ 855 0006 0192     		str	r2, [sp, #4]
+ 856 0008 0725     		movs	r5, #7
+ 857 000a 0295     		str	r5, [sp, #8]
+ 858 000c 4023     		movs	r3, #64
+ 859 000e 0393     		str	r3, [sp, #12]
+ 860 0010 0023     		movs	r3, #0
+ 861 0012 0493     		str	r3, [sp, #16]
+ 862 0014 4FF48063 		mov	r3, #1024
+ 863 0018 0593     		str	r3, [sp, #20]
+ 864 001a 01A9     		add	r1, sp, #4
+ 865 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 866 0020 41F28832 		movw	r2, #5000
+ 867 0024 2946     		mov	r1, r5
+ 868 0026 2046     		mov	r0, r4
+ 869 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 870 002c 07B0     		add	sp, sp, #28
+ 871              		@ sp needed
+ 872 002e 30BD     		pop	{r4, r5, pc}
+ 874              		.section	.text.SDMMC_CmdAppCommand,"ax",%progbits
+ 875              		.align	1
+ 876              		.global	SDMMC_CmdAppCommand
+ 877              		.syntax unified
+ 878              		.thumb
+ 879              		.thumb_func
+ 881              	SDMMC_CmdAppCommand:
+ 882              		@ args = 0, pretend = 0, frame = 24
+ 883              		@ frame_needed = 0, uses_anonymous_args = 0
+ 884 0000 30B5     		push	{r4, r5, lr}
+ 885 0002 87B0     		sub	sp, sp, #28
+ 886 0004 0446     		mov	r4, r0
+ 887 0006 0191     		str	r1, [sp, #4]
+ 888 0008 3725     		movs	r5, #55
+ 889 000a 0295     		str	r5, [sp, #8]
+ 890 000c 4023     		movs	r3, #64
+ 891 000e 0393     		str	r3, [sp, #12]
+ 892 0010 0023     		movs	r3, #0
+ 893 0012 0493     		str	r3, [sp, #16]
+ 894 0014 4FF48063 		mov	r3, #1024
+ 895 0018 0593     		str	r3, [sp, #20]
+ 896 001a 01A9     		add	r1, sp, #4
+ 897 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 898 0020 41F28832 		movw	r2, #5000
+ 899 0024 2946     		mov	r1, r5
+ 900 0026 2046     		mov	r0, r4
+ 901 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 902 002c 07B0     		add	sp, sp, #28
+ 903              		@ sp needed
+ 904 002e 30BD     		pop	{r4, r5, pc}
+ 906              		.section	.text.SDMMC_CmdBusWidth,"ax",%progbits
+ 907              		.align	1
+ 908              		.global	SDMMC_CmdBusWidth
+ 909              		.syntax unified
+ 910              		.thumb
+ 911              		.thumb_func
+ 913              	SDMMC_CmdBusWidth:
+ 914              		@ args = 0, pretend = 0, frame = 24
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 16
+
+
+ 915              		@ frame_needed = 0, uses_anonymous_args = 0
+ 916 0000 30B5     		push	{r4, r5, lr}
+ 917 0002 87B0     		sub	sp, sp, #28
+ 918 0004 0446     		mov	r4, r0
+ 919 0006 0191     		str	r1, [sp, #4]
+ 920 0008 0625     		movs	r5, #6
+ 921 000a 0295     		str	r5, [sp, #8]
+ 922 000c 4023     		movs	r3, #64
+ 923 000e 0393     		str	r3, [sp, #12]
+ 924 0010 0023     		movs	r3, #0
+ 925 0012 0493     		str	r3, [sp, #16]
+ 926 0014 4FF48063 		mov	r3, #1024
+ 927 0018 0593     		str	r3, [sp, #20]
+ 928 001a 01A9     		add	r1, sp, #4
+ 929 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 930 0020 41F28832 		movw	r2, #5000
+ 931 0024 2946     		mov	r1, r5
+ 932 0026 2046     		mov	r0, r4
+ 933 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 934 002c 07B0     		add	sp, sp, #28
+ 935              		@ sp needed
+ 936 002e 30BD     		pop	{r4, r5, pc}
+ 938              		.section	.text.SDMMC_CmdSendSCR,"ax",%progbits
+ 939              		.align	1
+ 940              		.global	SDMMC_CmdSendSCR
+ 941              		.syntax unified
+ 942              		.thumb
+ 943              		.thumb_func
+ 945              	SDMMC_CmdSendSCR:
+ 946              		@ args = 0, pretend = 0, frame = 24
+ 947              		@ frame_needed = 0, uses_anonymous_args = 0
+ 948 0000 30B5     		push	{r4, r5, lr}
+ 949 0002 87B0     		sub	sp, sp, #28
+ 950 0004 0446     		mov	r4, r0
+ 951 0006 0023     		movs	r3, #0
+ 952 0008 0193     		str	r3, [sp, #4]
+ 953 000a 3325     		movs	r5, #51
+ 954 000c 0295     		str	r5, [sp, #8]
+ 955 000e 4022     		movs	r2, #64
+ 956 0010 0392     		str	r2, [sp, #12]
+ 957 0012 0493     		str	r3, [sp, #16]
+ 958 0014 4FF48063 		mov	r3, #1024
+ 959 0018 0593     		str	r3, [sp, #20]
+ 960 001a 01A9     		add	r1, sp, #4
+ 961 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 962 0020 41F28832 		movw	r2, #5000
+ 963 0024 2946     		mov	r1, r5
+ 964 0026 2046     		mov	r0, r4
+ 965 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 966 002c 07B0     		add	sp, sp, #28
+ 967              		@ sp needed
+ 968 002e 30BD     		pop	{r4, r5, pc}
+ 970              		.section	.text.SDMMC_CmdSetRelAddMmc,"ax",%progbits
+ 971              		.align	1
+ 972              		.global	SDMMC_CmdSetRelAddMmc
+ 973              		.syntax unified
+ 974              		.thumb
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 17
+
+
+ 975              		.thumb_func
+ 977              	SDMMC_CmdSetRelAddMmc:
+ 978              		@ args = 0, pretend = 0, frame = 24
+ 979              		@ frame_needed = 0, uses_anonymous_args = 0
+ 980 0000 30B5     		push	{r4, r5, lr}
+ 981 0002 87B0     		sub	sp, sp, #28
+ 982 0004 0446     		mov	r4, r0
+ 983 0006 0904     		lsls	r1, r1, #16
+ 984 0008 0191     		str	r1, [sp, #4]
+ 985 000a 0325     		movs	r5, #3
+ 986 000c 0295     		str	r5, [sp, #8]
+ 987 000e 4023     		movs	r3, #64
+ 988 0010 0393     		str	r3, [sp, #12]
+ 989 0012 0023     		movs	r3, #0
+ 990 0014 0493     		str	r3, [sp, #16]
+ 991 0016 4FF48063 		mov	r3, #1024
+ 992 001a 0593     		str	r3, [sp, #20]
+ 993 001c 01A9     		add	r1, sp, #4
+ 994 001e FFF7FEFF 		bl	SDIO_SendCommand
+ 995 0022 41F28832 		movw	r2, #5000
+ 996 0026 2946     		mov	r1, r5
+ 997 0028 2046     		mov	r0, r4
+ 998 002a FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 999 002e 07B0     		add	sp, sp, #28
+ 1000              		@ sp needed
+ 1001 0030 30BD     		pop	{r4, r5, pc}
+ 1003              		.section	.text.SDMMC_CmdSendStatus,"ax",%progbits
+ 1004              		.align	1
+ 1005              		.global	SDMMC_CmdSendStatus
+ 1006              		.syntax unified
+ 1007              		.thumb
+ 1008              		.thumb_func
+ 1010              	SDMMC_CmdSendStatus:
+ 1011              		@ args = 0, pretend = 0, frame = 24
+ 1012              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1013 0000 30B5     		push	{r4, r5, lr}
+ 1014 0002 87B0     		sub	sp, sp, #28
+ 1015 0004 0446     		mov	r4, r0
+ 1016 0006 0191     		str	r1, [sp, #4]
+ 1017 0008 0D25     		movs	r5, #13
+ 1018 000a 0295     		str	r5, [sp, #8]
+ 1019 000c 4023     		movs	r3, #64
+ 1020 000e 0393     		str	r3, [sp, #12]
+ 1021 0010 0023     		movs	r3, #0
+ 1022 0012 0493     		str	r3, [sp, #16]
+ 1023 0014 4FF48063 		mov	r3, #1024
+ 1024 0018 0593     		str	r3, [sp, #20]
+ 1025 001a 01A9     		add	r1, sp, #4
+ 1026 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 1027 0020 41F28832 		movw	r2, #5000
+ 1028 0024 2946     		mov	r1, r5
+ 1029 0026 2046     		mov	r0, r4
+ 1030 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 1031 002c 07B0     		add	sp, sp, #28
+ 1032              		@ sp needed
+ 1033 002e 30BD     		pop	{r4, r5, pc}
+ 1035              		.section	.text.SDMMC_CmdStatusRegister,"ax",%progbits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 18
+
+
+ 1036              		.align	1
+ 1037              		.global	SDMMC_CmdStatusRegister
+ 1038              		.syntax unified
+ 1039              		.thumb
+ 1040              		.thumb_func
+ 1042              	SDMMC_CmdStatusRegister:
+ 1043              		@ args = 0, pretend = 0, frame = 24
+ 1044              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1045 0000 30B5     		push	{r4, r5, lr}
+ 1046 0002 87B0     		sub	sp, sp, #28
+ 1047 0004 0446     		mov	r4, r0
+ 1048 0006 0023     		movs	r3, #0
+ 1049 0008 0193     		str	r3, [sp, #4]
+ 1050 000a 0D25     		movs	r5, #13
+ 1051 000c 0295     		str	r5, [sp, #8]
+ 1052 000e 4022     		movs	r2, #64
+ 1053 0010 0392     		str	r2, [sp, #12]
+ 1054 0012 0493     		str	r3, [sp, #16]
+ 1055 0014 4FF48063 		mov	r3, #1024
+ 1056 0018 0593     		str	r3, [sp, #20]
+ 1057 001a 01A9     		add	r1, sp, #4
+ 1058 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 1059 0020 41F28832 		movw	r2, #5000
+ 1060 0024 2946     		mov	r1, r5
+ 1061 0026 2046     		mov	r0, r4
+ 1062 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 1063 002c 07B0     		add	sp, sp, #28
+ 1064              		@ sp needed
+ 1065 002e 30BD     		pop	{r4, r5, pc}
+ 1067              		.section	.text.SDMMC_CmdSwitch,"ax",%progbits
+ 1068              		.align	1
+ 1069              		.global	SDMMC_CmdSwitch
+ 1070              		.syntax unified
+ 1071              		.thumb
+ 1072              		.thumb_func
+ 1074              	SDMMC_CmdSwitch:
+ 1075              		@ args = 0, pretend = 0, frame = 24
+ 1076              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1077 0000 30B5     		push	{r4, r5, lr}
+ 1078 0002 87B0     		sub	sp, sp, #28
+ 1079 0004 0446     		mov	r4, r0
+ 1080 0006 0191     		str	r1, [sp, #4]
+ 1081 0008 0625     		movs	r5, #6
+ 1082 000a 0295     		str	r5, [sp, #8]
+ 1083 000c 4023     		movs	r3, #64
+ 1084 000e 0393     		str	r3, [sp, #12]
+ 1085 0010 0023     		movs	r3, #0
+ 1086 0012 0493     		str	r3, [sp, #16]
+ 1087 0014 4FF48063 		mov	r3, #1024
+ 1088 0018 0593     		str	r3, [sp, #20]
+ 1089 001a 01A9     		add	r1, sp, #4
+ 1090 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 1091 0020 41F28832 		movw	r2, #5000
+ 1092 0024 2946     		mov	r1, r5
+ 1093 0026 2046     		mov	r0, r4
+ 1094 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 1095 002c 07B0     		add	sp, sp, #28
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 19
+
+
+ 1096              		@ sp needed
+ 1097 002e 30BD     		pop	{r4, r5, pc}
+ 1099              		.section	.text.SDMMC_CmdSendEXTCSD,"ax",%progbits
+ 1100              		.align	1
+ 1101              		.global	SDMMC_CmdSendEXTCSD
+ 1102              		.syntax unified
+ 1103              		.thumb
+ 1104              		.thumb_func
+ 1106              	SDMMC_CmdSendEXTCSD:
+ 1107              		@ args = 0, pretend = 0, frame = 24
+ 1108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1109 0000 30B5     		push	{r4, r5, lr}
+ 1110 0002 87B0     		sub	sp, sp, #28
+ 1111 0004 0446     		mov	r4, r0
+ 1112 0006 0191     		str	r1, [sp, #4]
+ 1113 0008 0825     		movs	r5, #8
+ 1114 000a 0295     		str	r5, [sp, #8]
+ 1115 000c 4023     		movs	r3, #64
+ 1116 000e 0393     		str	r3, [sp, #12]
+ 1117 0010 0023     		movs	r3, #0
+ 1118 0012 0493     		str	r3, [sp, #16]
+ 1119 0014 4FF48063 		mov	r3, #1024
+ 1120 0018 0593     		str	r3, [sp, #20]
+ 1121 001a 01A9     		add	r1, sp, #4
+ 1122 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 1123 0020 41F28832 		movw	r2, #5000
+ 1124 0024 2946     		mov	r1, r5
+ 1125 0026 2046     		mov	r0, r4
+ 1126 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp1
+ 1127 002c 07B0     		add	sp, sp, #28
+ 1128              		@ sp needed
+ 1129 002e 30BD     		pop	{r4, r5, pc}
+ 1131              		.section	.text.SDMMC_GetCmdResp2,"ax",%progbits
+ 1132              		.align	1
+ 1133              		.global	SDMMC_GetCmdResp2
+ 1134              		.syntax unified
+ 1135              		.thumb
+ 1136              		.thumb_func
+ 1138              	SDMMC_GetCmdResp2:
+ 1139              		@ args = 0, pretend = 0, frame = 0
+ 1140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1141              		@ link register save eliminated.
+ 1142 0000 0146     		mov	r1, r0
+ 1143 0002 144B     		ldr	r3, .L103
+ 1144 0004 1B68     		ldr	r3, [r3]
+ 1145 0006 144A     		ldr	r2, .L103+4
+ 1146 0008 A2FB0323 		umull	r2, r3, r2, r3
+ 1147 000c 5B0A     		lsrs	r3, r3, #9
+ 1148 000e 41F28832 		movw	r2, #5000
+ 1149 0012 02FB03F3 		mul	r3, r2, r3
+ 1150              	.L97:
+ 1151 0016 1A46     		mov	r2, r3
+ 1152 0018 013B     		subs	r3, r3, #1
+ 1153 001a BAB1     		cbz	r2, .L100
+ 1154 001c 4A6B     		ldr	r2, [r1, #52]
+ 1155 001e 12F0450F 		tst	r2, #69
+ 1156 0022 F8D0     		beq	.L97
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 20
+
+
+ 1157 0024 12F4006F 		tst	r2, #2048
+ 1158 0028 F5D1     		bne	.L97
+ 1159 002a 4B6B     		ldr	r3, [r1, #52]
+ 1160 002c 13F0040F 		tst	r3, #4
+ 1161 0030 06D1     		bne	.L101
+ 1162 0032 486B     		ldr	r0, [r1, #52]
+ 1163 0034 10F00100 		ands	r0, r0, #1
+ 1164 0038 05D1     		bne	.L102
+ 1165 003a C523     		movs	r3, #197
+ 1166 003c 8B63     		str	r3, [r1, #56]
+ 1167 003e 7047     		bx	lr
+ 1168              	.L101:
+ 1169 0040 0420     		movs	r0, #4
+ 1170 0042 8863     		str	r0, [r1, #56]
+ 1171 0044 7047     		bx	lr
+ 1172              	.L102:
+ 1173 0046 0120     		movs	r0, #1
+ 1174 0048 8863     		str	r0, [r1, #56]
+ 1175 004a 7047     		bx	lr
+ 1176              	.L100:
+ 1177 004c 4FF00040 		mov	r0, #-2147483648
+ 1178 0050 7047     		bx	lr
+ 1179              	.L104:
+ 1180 0052 00BF     		.align	2
+ 1181              	.L103:
+ 1182 0054 00000000 		.word	SystemCoreClock
+ 1183 0058 D34D6210 		.word	274877907
+ 1185              		.section	.text.SDMMC_CmdSendCID,"ax",%progbits
+ 1186              		.align	1
+ 1187              		.global	SDMMC_CmdSendCID
+ 1188              		.syntax unified
+ 1189              		.thumb
+ 1190              		.thumb_func
+ 1192              	SDMMC_CmdSendCID:
+ 1193              		@ args = 0, pretend = 0, frame = 24
+ 1194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1195 0000 10B5     		push	{r4, lr}
+ 1196 0002 86B0     		sub	sp, sp, #24
+ 1197 0004 0446     		mov	r4, r0
+ 1198 0006 0023     		movs	r3, #0
+ 1199 0008 0193     		str	r3, [sp, #4]
+ 1200 000a 0222     		movs	r2, #2
+ 1201 000c 0292     		str	r2, [sp, #8]
+ 1202 000e C022     		movs	r2, #192
+ 1203 0010 0392     		str	r2, [sp, #12]
+ 1204 0012 0493     		str	r3, [sp, #16]
+ 1205 0014 4FF48063 		mov	r3, #1024
+ 1206 0018 0593     		str	r3, [sp, #20]
+ 1207 001a 01A9     		add	r1, sp, #4
+ 1208 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 1209 0020 2046     		mov	r0, r4
+ 1210 0022 FFF7FEFF 		bl	SDMMC_GetCmdResp2
+ 1211 0026 06B0     		add	sp, sp, #24
+ 1212              		@ sp needed
+ 1213 0028 10BD     		pop	{r4, pc}
+ 1215              		.section	.text.SDMMC_CmdSendCSD,"ax",%progbits
+ 1216              		.align	1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 21
+
+
+ 1217              		.global	SDMMC_CmdSendCSD
+ 1218              		.syntax unified
+ 1219              		.thumb
+ 1220              		.thumb_func
+ 1222              	SDMMC_CmdSendCSD:
+ 1223              		@ args = 0, pretend = 0, frame = 24
+ 1224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1225 0000 10B5     		push	{r4, lr}
+ 1226 0002 86B0     		sub	sp, sp, #24
+ 1227 0004 0446     		mov	r4, r0
+ 1228 0006 0191     		str	r1, [sp, #4]
+ 1229 0008 0923     		movs	r3, #9
+ 1230 000a 0293     		str	r3, [sp, #8]
+ 1231 000c C023     		movs	r3, #192
+ 1232 000e 0393     		str	r3, [sp, #12]
+ 1233 0010 0023     		movs	r3, #0
+ 1234 0012 0493     		str	r3, [sp, #16]
+ 1235 0014 4FF48063 		mov	r3, #1024
+ 1236 0018 0593     		str	r3, [sp, #20]
+ 1237 001a 01A9     		add	r1, sp, #4
+ 1238 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 1239 0020 2046     		mov	r0, r4
+ 1240 0022 FFF7FEFF 		bl	SDMMC_GetCmdResp2
+ 1241 0026 06B0     		add	sp, sp, #24
+ 1242              		@ sp needed
+ 1243 0028 10BD     		pop	{r4, pc}
+ 1245              		.section	.text.SDMMC_GetCmdResp3,"ax",%progbits
+ 1246              		.align	1
+ 1247              		.global	SDMMC_GetCmdResp3
+ 1248              		.syntax unified
+ 1249              		.thumb
+ 1250              		.thumb_func
+ 1252              	SDMMC_GetCmdResp3:
+ 1253              		@ args = 0, pretend = 0, frame = 0
+ 1254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1255              		@ link register save eliminated.
+ 1256 0000 0146     		mov	r1, r0
+ 1257 0002 104B     		ldr	r3, .L115
+ 1258 0004 1B68     		ldr	r3, [r3]
+ 1259 0006 104A     		ldr	r2, .L115+4
+ 1260 0008 A2FB0323 		umull	r2, r3, r2, r3
+ 1261 000c 5B0A     		lsrs	r3, r3, #9
+ 1262 000e 41F28832 		movw	r2, #5000
+ 1263 0012 02FB03F3 		mul	r3, r2, r3
+ 1264              	.L111:
+ 1265 0016 1A46     		mov	r2, r3
+ 1266 0018 013B     		subs	r3, r3, #1
+ 1267 001a 82B1     		cbz	r2, .L113
+ 1268 001c 4A6B     		ldr	r2, [r1, #52]
+ 1269 001e 12F0450F 		tst	r2, #69
+ 1270 0022 F8D0     		beq	.L111
+ 1271 0024 12F4006F 		tst	r2, #2048
+ 1272 0028 F5D1     		bne	.L111
+ 1273 002a 486B     		ldr	r0, [r1, #52]
+ 1274 002c 10F00400 		ands	r0, r0, #4
+ 1275 0030 02D1     		bne	.L114
+ 1276 0032 C523     		movs	r3, #197
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 22
+
+
+ 1277 0034 8B63     		str	r3, [r1, #56]
+ 1278 0036 7047     		bx	lr
+ 1279              	.L114:
+ 1280 0038 0420     		movs	r0, #4
+ 1281 003a 8863     		str	r0, [r1, #56]
+ 1282 003c 7047     		bx	lr
+ 1283              	.L113:
+ 1284 003e 4FF00040 		mov	r0, #-2147483648
+ 1285 0042 7047     		bx	lr
+ 1286              	.L116:
+ 1287              		.align	2
+ 1288              	.L115:
+ 1289 0044 00000000 		.word	SystemCoreClock
+ 1290 0048 D34D6210 		.word	274877907
+ 1292              		.section	.text.SDMMC_CmdAppOperCommand,"ax",%progbits
+ 1293              		.align	1
+ 1294              		.global	SDMMC_CmdAppOperCommand
+ 1295              		.syntax unified
+ 1296              		.thumb
+ 1297              		.thumb_func
+ 1299              	SDMMC_CmdAppOperCommand:
+ 1300              		@ args = 0, pretend = 0, frame = 24
+ 1301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1302 0000 10B5     		push	{r4, lr}
+ 1303 0002 86B0     		sub	sp, sp, #24
+ 1304 0004 0446     		mov	r4, r0
+ 1305 0006 41F00041 		orr	r1, r1, #-2147483648
+ 1306 000a 41F48011 		orr	r1, r1, #1048576
+ 1307 000e 0191     		str	r1, [sp, #4]
+ 1308 0010 2923     		movs	r3, #41
+ 1309 0012 0293     		str	r3, [sp, #8]
+ 1310 0014 4023     		movs	r3, #64
+ 1311 0016 0393     		str	r3, [sp, #12]
+ 1312 0018 0023     		movs	r3, #0
+ 1313 001a 0493     		str	r3, [sp, #16]
+ 1314 001c 4FF48063 		mov	r3, #1024
+ 1315 0020 0593     		str	r3, [sp, #20]
+ 1316 0022 01A9     		add	r1, sp, #4
+ 1317 0024 FFF7FEFF 		bl	SDIO_SendCommand
+ 1318 0028 2046     		mov	r0, r4
+ 1319 002a FFF7FEFF 		bl	SDMMC_GetCmdResp3
+ 1320 002e 06B0     		add	sp, sp, #24
+ 1321              		@ sp needed
+ 1322 0030 10BD     		pop	{r4, pc}
+ 1324              		.section	.text.SDMMC_CmdOpCondition,"ax",%progbits
+ 1325              		.align	1
+ 1326              		.global	SDMMC_CmdOpCondition
+ 1327              		.syntax unified
+ 1328              		.thumb
+ 1329              		.thumb_func
+ 1331              	SDMMC_CmdOpCondition:
+ 1332              		@ args = 0, pretend = 0, frame = 24
+ 1333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1334 0000 10B5     		push	{r4, lr}
+ 1335 0002 86B0     		sub	sp, sp, #24
+ 1336 0004 0446     		mov	r4, r0
+ 1337 0006 0191     		str	r1, [sp, #4]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 23
+
+
+ 1338 0008 0123     		movs	r3, #1
+ 1339 000a 0293     		str	r3, [sp, #8]
+ 1340 000c 4023     		movs	r3, #64
+ 1341 000e 0393     		str	r3, [sp, #12]
+ 1342 0010 0023     		movs	r3, #0
+ 1343 0012 0493     		str	r3, [sp, #16]
+ 1344 0014 4FF48063 		mov	r3, #1024
+ 1345 0018 0593     		str	r3, [sp, #20]
+ 1346 001a 01A9     		add	r1, sp, #4
+ 1347 001c FFF7FEFF 		bl	SDIO_SendCommand
+ 1348 0020 2046     		mov	r0, r4
+ 1349 0022 FFF7FEFF 		bl	SDMMC_GetCmdResp3
+ 1350 0026 06B0     		add	sp, sp, #24
+ 1351              		@ sp needed
+ 1352 0028 10BD     		pop	{r4, pc}
+ 1354              		.section	.text.SDMMC_GetCmdResp6,"ax",%progbits
+ 1355              		.align	1
+ 1356              		.global	SDMMC_GetCmdResp6
+ 1357              		.syntax unified
+ 1358              		.thumb
+ 1359              		.thumb_func
+ 1361              	SDMMC_GetCmdResp6:
+ 1362              		@ args = 0, pretend = 0, frame = 0
+ 1363              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1364 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1365 0002 0546     		mov	r5, r0
+ 1366 0004 0E46     		mov	r6, r1
+ 1367 0006 1746     		mov	r7, r2
+ 1368 0008 234B     		ldr	r3, .L135
+ 1369 000a 1B68     		ldr	r3, [r3]
+ 1370 000c 234A     		ldr	r2, .L135+4
+ 1371 000e A2FB0323 		umull	r2, r3, r2, r3
+ 1372 0012 5B0A     		lsrs	r3, r3, #9
+ 1373 0014 41F28832 		movw	r2, #5000
+ 1374 0018 02FB03F3 		mul	r3, r2, r3
+ 1375              	.L123:
+ 1376 001c 1A46     		mov	r2, r3
+ 1377 001e 013B     		subs	r3, r3, #1
+ 1378 0020 8AB3     		cbz	r2, .L127
+ 1379 0022 6C6B     		ldr	r4, [r5, #52]
+ 1380 0024 14F0450F 		tst	r4, #69
+ 1381 0028 F8D0     		beq	.L123
+ 1382 002a 14F4006F 		tst	r4, #2048
+ 1383 002e F5D1     		bne	.L123
+ 1384 0030 6B6B     		ldr	r3, [r5, #52]
+ 1385 0032 13F0040F 		tst	r3, #4
+ 1386 0036 06D1     		bne	.L132
+ 1387 0038 6B6B     		ldr	r3, [r5, #52]
+ 1388 003a 13F0010F 		tst	r3, #1
+ 1389 003e 05D0     		beq	.L125
+ 1390 0040 0120     		movs	r0, #1
+ 1391 0042 A863     		str	r0, [r5, #56]
+ 1392 0044 21E0     		b	.L121
+ 1393              	.L132:
+ 1394 0046 0420     		movs	r0, #4
+ 1395 0048 A863     		str	r0, [r5, #56]
+ 1396 004a 1EE0     		b	.L121
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 24
+
+
+ 1397              	.L125:
+ 1398 004c 2846     		mov	r0, r5
+ 1399 004e FFF7FEFF 		bl	SDIO_GetCommandResponse
+ 1400 0052 B042     		cmp	r0, r6
+ 1401 0054 01D0     		beq	.L133
+ 1402 0056 0120     		movs	r0, #1
+ 1403 0058 17E0     		b	.L121
+ 1404              	.L133:
+ 1405 005a C523     		movs	r3, #197
+ 1406 005c AB63     		str	r3, [r5, #56]
+ 1407 005e 0021     		movs	r1, #0
+ 1408 0060 2846     		mov	r0, r5
+ 1409 0062 FFF7FEFF 		bl	SDIO_GetResponse
+ 1410 0066 0346     		mov	r3, r0
+ 1411 0068 10F46040 		ands	r0, r0, #57344
+ 1412 006c 08D0     		beq	.L134
+ 1413 006e 13F4804F 		tst	r3, #16384
+ 1414 0072 0BD1     		bne	.L129
+ 1415 0074 13F4004F 		tst	r3, #32768
+ 1416 0078 0BD0     		beq	.L130
+ 1417 007a 4FF48050 		mov	r0, #4096
+ 1418 007e 04E0     		b	.L121
+ 1419              	.L134:
+ 1420 0080 1B0C     		lsrs	r3, r3, #16
+ 1421 0082 3B80     		strh	r3, [r7]	@ movhi
+ 1422 0084 01E0     		b	.L121
+ 1423              	.L127:
+ 1424 0086 4FF00040 		mov	r0, #-2147483648
+ 1425              	.L121:
+ 1426 008a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1427              	.L129:
+ 1428 008c 4FF40050 		mov	r0, #8192
+ 1429 0090 FBE7     		b	.L121
+ 1430              	.L130:
+ 1431 0092 4FF48030 		mov	r0, #65536
+ 1432 0096 F8E7     		b	.L121
+ 1433              	.L136:
+ 1434              		.align	2
+ 1435              	.L135:
+ 1436 0098 00000000 		.word	SystemCoreClock
+ 1437 009c D34D6210 		.word	274877907
+ 1439              		.section	.text.SDMMC_CmdSetRelAdd,"ax",%progbits
+ 1440              		.align	1
+ 1441              		.global	SDMMC_CmdSetRelAdd
+ 1442              		.syntax unified
+ 1443              		.thumb
+ 1444              		.thumb_func
+ 1446              	SDMMC_CmdSetRelAdd:
+ 1447              		@ args = 0, pretend = 0, frame = 24
+ 1448              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1449 0000 70B5     		push	{r4, r5, r6, lr}
+ 1450 0002 86B0     		sub	sp, sp, #24
+ 1451 0004 0446     		mov	r4, r0
+ 1452 0006 0D46     		mov	r5, r1
+ 1453 0008 0023     		movs	r3, #0
+ 1454 000a 0193     		str	r3, [sp, #4]
+ 1455 000c 0326     		movs	r6, #3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 25
+
+
+ 1456 000e 0296     		str	r6, [sp, #8]
+ 1457 0010 4022     		movs	r2, #64
+ 1458 0012 0392     		str	r2, [sp, #12]
+ 1459 0014 0493     		str	r3, [sp, #16]
+ 1460 0016 4FF48063 		mov	r3, #1024
+ 1461 001a 0593     		str	r3, [sp, #20]
+ 1462 001c 01A9     		add	r1, sp, #4
+ 1463 001e FFF7FEFF 		bl	SDIO_SendCommand
+ 1464 0022 2A46     		mov	r2, r5
+ 1465 0024 3146     		mov	r1, r6
+ 1466 0026 2046     		mov	r0, r4
+ 1467 0028 FFF7FEFF 		bl	SDMMC_GetCmdResp6
+ 1468 002c 06B0     		add	sp, sp, #24
+ 1469              		@ sp needed
+ 1470 002e 70BD     		pop	{r4, r5, r6, pc}
+ 1472              		.section	.text.SDMMC_GetCmdResp7,"ax",%progbits
+ 1473              		.align	1
+ 1474              		.global	SDMMC_GetCmdResp7
+ 1475              		.syntax unified
+ 1476              		.thumb
+ 1477              		.thumb_func
+ 1479              	SDMMC_GetCmdResp7:
+ 1480              		@ args = 0, pretend = 0, frame = 0
+ 1481              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1482              		@ link register save eliminated.
+ 1483 0000 0146     		mov	r1, r0
+ 1484 0002 164B     		ldr	r3, .L147
+ 1485 0004 1B68     		ldr	r3, [r3]
+ 1486 0006 164A     		ldr	r2, .L147+4
+ 1487 0008 A2FB0323 		umull	r2, r3, r2, r3
+ 1488 000c 5B0A     		lsrs	r3, r3, #9
+ 1489 000e 41F28832 		movw	r2, #5000
+ 1490 0012 02FB03F3 		mul	r3, r2, r3
+ 1491              	.L141:
+ 1492 0016 1A46     		mov	r2, r3
+ 1493 0018 013B     		subs	r3, r3, #1
+ 1494 001a E2B1     		cbz	r2, .L144
+ 1495 001c 4A6B     		ldr	r2, [r1, #52]
+ 1496 001e 12F0450F 		tst	r2, #69
+ 1497 0022 F8D0     		beq	.L141
+ 1498 0024 12F4006F 		tst	r2, #2048
+ 1499 0028 F5D1     		bne	.L141
+ 1500 002a 4B6B     		ldr	r3, [r1, #52]
+ 1501 002c 13F0040F 		tst	r3, #4
+ 1502 0030 0BD1     		bne	.L145
+ 1503 0032 4B6B     		ldr	r3, [r1, #52]
+ 1504 0034 13F00103 		ands	r3, r3, #1
+ 1505 0038 0AD1     		bne	.L146
+ 1506 003a 486B     		ldr	r0, [r1, #52]
+ 1507 003c 10F04000 		ands	r0, r0, #64
+ 1508 0040 0BD0     		beq	.L139
+ 1509 0042 4022     		movs	r2, #64
+ 1510 0044 8A63     		str	r2, [r1, #56]
+ 1511 0046 1846     		mov	r0, r3
+ 1512 0048 7047     		bx	lr
+ 1513              	.L145:
+ 1514 004a 0420     		movs	r0, #4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 26
+
+
+ 1515 004c 8863     		str	r0, [r1, #56]
+ 1516 004e 7047     		bx	lr
+ 1517              	.L146:
+ 1518 0050 0120     		movs	r0, #1
+ 1519 0052 8863     		str	r0, [r1, #56]
+ 1520 0054 7047     		bx	lr
+ 1521              	.L144:
+ 1522 0056 4FF00040 		mov	r0, #-2147483648
+ 1523              	.L139:
+ 1524 005a 7047     		bx	lr
+ 1525              	.L148:
+ 1526              		.align	2
+ 1527              	.L147:
+ 1528 005c 00000000 		.word	SystemCoreClock
+ 1529 0060 D34D6210 		.word	274877907
+ 1531              		.section	.text.SDMMC_CmdOperCond,"ax",%progbits
+ 1532              		.align	1
+ 1533              		.global	SDMMC_CmdOperCond
+ 1534              		.syntax unified
+ 1535              		.thumb
+ 1536              		.thumb_func
+ 1538              	SDMMC_CmdOperCond:
+ 1539              		@ args = 0, pretend = 0, frame = 24
+ 1540              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1541 0000 10B5     		push	{r4, lr}
+ 1542 0002 86B0     		sub	sp, sp, #24
+ 1543 0004 0446     		mov	r4, r0
+ 1544 0006 4FF4D573 		mov	r3, #426
+ 1545 000a 0193     		str	r3, [sp, #4]
+ 1546 000c 0823     		movs	r3, #8
+ 1547 000e 0293     		str	r3, [sp, #8]
+ 1548 0010 4023     		movs	r3, #64
+ 1549 0012 0393     		str	r3, [sp, #12]
+ 1550 0014 0023     		movs	r3, #0
+ 1551 0016 0493     		str	r3, [sp, #16]
+ 1552 0018 4FF48063 		mov	r3, #1024
+ 1553 001c 0593     		str	r3, [sp, #20]
+ 1554 001e 01A9     		add	r1, sp, #4
+ 1555 0020 FFF7FEFF 		bl	SDIO_SendCommand
+ 1556 0024 2046     		mov	r0, r4
+ 1557 0026 FFF7FEFF 		bl	SDMMC_GetCmdResp7
+ 1558 002a 06B0     		add	sp, sp, #24
+ 1559              		@ sp needed
+ 1560 002c 10BD     		pop	{r4, pc}
+ 1562              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 27
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_ll_sdmmc.c
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:18     .text.SDMMC_GetCmdError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:23     .text.SDMMC_GetCmdError:00000000 SDMMC_GetCmdError
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:51     .text.SDMMC_GetCmdError:00000030 $d
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:55     .text.SDIO_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:61     .text.SDIO_Init:00000000 SDIO_Init
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:88     .text.SDIO_ReadFIFO:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:94     .text.SDIO_ReadFIFO:00000000 SDIO_ReadFIFO
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:102    .text.SDIO_WriteFIFO:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:108    .text.SDIO_WriteFIFO:00000000 SDIO_WriteFIFO
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:118    .text.SDIO_PowerState_ON:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:124    .text.SDIO_PowerState_ON:00000000 SDIO_PowerState_ON
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:134    .text.SDIO_PowerState_OFF:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:140    .text.SDIO_PowerState_OFF:00000000 SDIO_PowerState_OFF
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:150    .text.SDIO_GetPowerState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:156    .text.SDIO_GetPowerState:00000000 SDIO_GetPowerState
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:165    .text.SDIO_SendCommand:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:171    .text.SDIO_SendCommand:00000000 SDIO_SendCommand
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:192    .text.SDIO_GetCommandResponse:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:198    .text.SDIO_GetCommandResponse:00000000 SDIO_GetCommandResponse
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:207    .text.SDIO_GetResponse:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:213    .text.SDIO_GetResponse:00000000 SDIO_GetResponse
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:222    .text.SDIO_ConfigData:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:228    .text.SDIO_ConfigData:00000000 SDIO_ConfigData
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:251    .text.SDIO_GetDataCounter:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:257    .text.SDIO_GetDataCounter:00000000 SDIO_GetDataCounter
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:265    .text.SDIO_GetFIFOCount:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:271    .text.SDIO_GetFIFOCount:00000000 SDIO_GetFIFOCount
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:279    .text.SDIO_SetSDMMCReadWaitMode:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:285    .text.SDIO_SetSDMMCReadWaitMode:00000000 SDIO_SetSDMMCReadWaitMode
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:297    .text.SDMMC_CmdGoIdleState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:303    .text.SDMMC_CmdGoIdleState:00000000 SDMMC_CmdGoIdleState
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:325    .text.SDMMC_GetCmdResp1:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:331    .text.SDMMC_GetCmdResp1:00000000 SDMMC_GetCmdResp1
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:482    .text.SDMMC_GetCmdResp1:00000148 $d
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:487    .text.SDMMC_CmdBlockLength:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:493    .text.SDMMC_CmdBlockLength:00000000 SDMMC_CmdBlockLength
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:519    .text.SDMMC_CmdReadSingleBlock:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:525    .text.SDMMC_CmdReadSingleBlock:00000000 SDMMC_CmdReadSingleBlock
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:551    .text.SDMMC_CmdReadMultiBlock:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:557    .text.SDMMC_CmdReadMultiBlock:00000000 SDMMC_CmdReadMultiBlock
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:583    .text.SDMMC_CmdWriteSingleBlock:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:589    .text.SDMMC_CmdWriteSingleBlock:00000000 SDMMC_CmdWriteSingleBlock
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:615    .text.SDMMC_CmdWriteMultiBlock:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:621    .text.SDMMC_CmdWriteMultiBlock:00000000 SDMMC_CmdWriteMultiBlock
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:647    .text.SDMMC_CmdSDEraseStartAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:653    .text.SDMMC_CmdSDEraseStartAdd:00000000 SDMMC_CmdSDEraseStartAdd
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:679    .text.SDMMC_CmdSDEraseEndAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:685    .text.SDMMC_CmdSDEraseEndAdd:00000000 SDMMC_CmdSDEraseEndAdd
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:711    .text.SDMMC_CmdEraseStartAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:717    .text.SDMMC_CmdEraseStartAdd:00000000 SDMMC_CmdEraseStartAdd
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:743    .text.SDMMC_CmdEraseEndAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:749    .text.SDMMC_CmdEraseEndAdd:00000000 SDMMC_CmdEraseEndAdd
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:775    .text.SDMMC_CmdErase:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:781    .text.SDMMC_CmdErase:00000000 SDMMC_CmdErase
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:807    .text.SDMMC_CmdStopTransfer:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s 			page 28
+
+
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:813    .text.SDMMC_CmdStopTransfer:00000000 SDMMC_CmdStopTransfer
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:840    .text.SDMMC_CmdStopTransfer:00000030 $d
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:843    .text.SDMMC_CmdSelDesel:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:849    .text.SDMMC_CmdSelDesel:00000000 SDMMC_CmdSelDesel
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:875    .text.SDMMC_CmdAppCommand:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:881    .text.SDMMC_CmdAppCommand:00000000 SDMMC_CmdAppCommand
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:907    .text.SDMMC_CmdBusWidth:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:913    .text.SDMMC_CmdBusWidth:00000000 SDMMC_CmdBusWidth
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:939    .text.SDMMC_CmdSendSCR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:945    .text.SDMMC_CmdSendSCR:00000000 SDMMC_CmdSendSCR
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:971    .text.SDMMC_CmdSetRelAddMmc:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:977    .text.SDMMC_CmdSetRelAddMmc:00000000 SDMMC_CmdSetRelAddMmc
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1004   .text.SDMMC_CmdSendStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1010   .text.SDMMC_CmdSendStatus:00000000 SDMMC_CmdSendStatus
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1036   .text.SDMMC_CmdStatusRegister:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1042   .text.SDMMC_CmdStatusRegister:00000000 SDMMC_CmdStatusRegister
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1068   .text.SDMMC_CmdSwitch:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1074   .text.SDMMC_CmdSwitch:00000000 SDMMC_CmdSwitch
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1100   .text.SDMMC_CmdSendEXTCSD:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1106   .text.SDMMC_CmdSendEXTCSD:00000000 SDMMC_CmdSendEXTCSD
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1132   .text.SDMMC_GetCmdResp2:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1138   .text.SDMMC_GetCmdResp2:00000000 SDMMC_GetCmdResp2
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1182   .text.SDMMC_GetCmdResp2:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1186   .text.SDMMC_CmdSendCID:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1192   .text.SDMMC_CmdSendCID:00000000 SDMMC_CmdSendCID
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1216   .text.SDMMC_CmdSendCSD:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1222   .text.SDMMC_CmdSendCSD:00000000 SDMMC_CmdSendCSD
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1246   .text.SDMMC_GetCmdResp3:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1252   .text.SDMMC_GetCmdResp3:00000000 SDMMC_GetCmdResp3
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1289   .text.SDMMC_GetCmdResp3:00000044 $d
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1293   .text.SDMMC_CmdAppOperCommand:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1299   .text.SDMMC_CmdAppOperCommand:00000000 SDMMC_CmdAppOperCommand
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1325   .text.SDMMC_CmdOpCondition:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1331   .text.SDMMC_CmdOpCondition:00000000 SDMMC_CmdOpCondition
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1355   .text.SDMMC_GetCmdResp6:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1361   .text.SDMMC_GetCmdResp6:00000000 SDMMC_GetCmdResp6
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1436   .text.SDMMC_GetCmdResp6:00000098 $d
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1440   .text.SDMMC_CmdSetRelAdd:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1446   .text.SDMMC_CmdSetRelAdd:00000000 SDMMC_CmdSetRelAdd
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1473   .text.SDMMC_GetCmdResp7:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1479   .text.SDMMC_GetCmdResp7:00000000 SDMMC_GetCmdResp7
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1528   .text.SDMMC_GetCmdResp7:0000005c $d
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1532   .text.SDMMC_CmdOperCond:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccse7dgR.s:1538   .text.SDMMC_CmdOperCond:00000000 SDMMC_CmdOperCond
+
+UNDEFINED SYMBOLS
+SystemCoreClock

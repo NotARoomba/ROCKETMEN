@@ -1,0 +1,3451 @@
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32f4xx_hal_sd.c"
+  16              		.text
+  17              		.section	.text.SD_DMATransmitCplt,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	SD_DMATransmitCplt:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 836B     		ldr	r3, [r0, #56]
+  28 0002 1A68     		ldr	r2, [r3]
+  29 0004 D36B     		ldr	r3, [r2, #60]
+  30 0006 43F48073 		orr	r3, r3, #256
+  31 000a D363     		str	r3, [r2, #60]
+  32 000c 7047     		bx	lr
+  34              		.section	.text.SD_PowerON,"ax",%progbits
+  35              		.align	1
+  36              		.syntax unified
+  37              		.thumb
+  38              		.thumb_func
+  40              	SD_PowerON:
+  41              		@ args = 0, pretend = 0, frame = 8
+  42              		@ frame_needed = 0, uses_anonymous_args = 0
+  43 0000 70B5     		push	{r4, r5, r6, lr}
+  44 0002 82B0     		sub	sp, sp, #8
+  45 0004 0446     		mov	r4, r0
+  46 0006 0023     		movs	r3, #0
+  47 0008 0193     		str	r3, [sp, #4]
+  48 000a 0068     		ldr	r0, [r0]
+  49 000c FFF7FEFF 		bl	SDMMC_CmdGoIdleState
+  50 0010 0546     		mov	r5, r0
+  51 0012 10B1     		cbz	r0, .L19
+  52              	.L2:
+  53 0014 2846     		mov	r0, r5
+  54 0016 02B0     		add	sp, sp, #8
+  55              		@ sp needed
+  56 0018 70BD     		pop	{r4, r5, r6, pc}
+  57              	.L19:
+  58 001a 2068     		ldr	r0, [r4]
+  59 001c FFF7FEFF 		bl	SDMMC_CmdOperCond
+  60 0020 38B9     		cbnz	r0, .L20
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 2
+
+
+  61 0022 0123     		movs	r3, #1
+  62 0024 A364     		str	r3, [r4, #72]
+  63              	.L5:
+  64 0026 A36C     		ldr	r3, [r4, #72]
+  65 0028 012B     		cmp	r3, #1
+  66 002a 0BD0     		beq	.L6
+  67              	.L8:
+  68 002c 2E46     		mov	r6, r5
+  69 002e 2846     		mov	r0, r5
+  70 0030 14E0     		b	.L7
+  71              	.L20:
+  72 0032 0023     		movs	r3, #0
+  73 0034 A364     		str	r3, [r4, #72]
+  74 0036 2068     		ldr	r0, [r4]
+  75 0038 FFF7FEFF 		bl	SDMMC_CmdGoIdleState
+  76 003c 0028     		cmp	r0, #0
+  77 003e F2D0     		beq	.L5
+  78 0040 0546     		mov	r5, r0
+  79 0042 E7E7     		b	.L2
+  80              	.L6:
+  81 0044 0021     		movs	r1, #0
+  82 0046 2068     		ldr	r0, [r4]
+  83 0048 FFF7FEFF 		bl	SDMMC_CmdAppCommand
+  84 004c 0028     		cmp	r0, #0
+  85 004e EDD0     		beq	.L8
+  86 0050 4FF08055 		mov	r5, #268435456
+  87 0054 DEE7     		b	.L2
+  88              	.L9:
+  89 0056 019B     		ldr	r3, [sp, #4]
+  90 0058 0133     		adds	r3, r3, #1
+  91 005a 0193     		str	r3, [sp, #4]
+  92              	.L7:
+  93 005c 019A     		ldr	r2, [sp, #4]
+  94 005e 4FF6FE73 		movw	r3, #65534
+  95 0062 9A42     		cmp	r2, r3
+  96 0064 13D8     		bhi	.L10
+  97 0066 96B9     		cbnz	r6, .L10
+  98 0068 0021     		movs	r1, #0
+  99 006a 2068     		ldr	r0, [r4]
+ 100 006c FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 101 0070 E0B9     		cbnz	r0, .L15
+ 102 0072 1249     		ldr	r1, .L21
+ 103 0074 2068     		ldr	r0, [r4]
+ 104 0076 FFF7FEFF 		bl	SDMMC_CmdAppOperCommand
+ 105 007a 0646     		mov	r6, r0
+ 106 007c C0B9     		cbnz	r0, .L16
+ 107 007e 0021     		movs	r1, #0
+ 108 0080 2068     		ldr	r0, [r4]
+ 109 0082 FFF7FEFF 		bl	SDIO_GetResponse
+ 110 0086 C30F     		lsrs	r3, r0, #31
+ 111 0088 E5D0     		beq	.L9
+ 112 008a 1E46     		mov	r6, r3
+ 113 008c E3E7     		b	.L9
+ 114              	.L10:
+ 115 008e 019A     		ldr	r2, [sp, #4]
+ 116 0090 4FF6FE73 		movw	r3, #65534
+ 117 0094 9A42     		cmp	r2, r3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 3
+
+
+ 118 0096 0ED8     		bhi	.L17
+ 119 0098 10F08043 		ands	r3, r0, #1073741824
+ 120 009c 02D0     		beq	.L12
+ 121 009e 0123     		movs	r3, #1
+ 122 00a0 6364     		str	r3, [r4, #68]
+ 123 00a2 B7E7     		b	.L2
+ 124              	.L12:
+ 125 00a4 0022     		movs	r2, #0
+ 126 00a6 6264     		str	r2, [r4, #68]
+ 127 00a8 1D46     		mov	r5, r3
+ 128 00aa B3E7     		b	.L2
+ 129              	.L15:
+ 130 00ac 0546     		mov	r5, r0
+ 131 00ae B1E7     		b	.L2
+ 132              	.L16:
+ 133 00b0 4FF08055 		mov	r5, #268435456
+ 134 00b4 AEE7     		b	.L2
+ 135              	.L17:
+ 136 00b6 4FF08075 		mov	r5, #16777216
+ 137 00ba ABE7     		b	.L2
+ 138              	.L22:
+ 139              		.align	2
+ 140              	.L21:
+ 141 00bc 000010C1 		.word	-1055916032
+ 143              		.section	.text.SD_PowerOFF,"ax",%progbits
+ 144              		.align	1
+ 145              		.syntax unified
+ 146              		.thumb
+ 147              		.thumb_func
+ 149              	SD_PowerOFF:
+ 150              		@ args = 0, pretend = 0, frame = 0
+ 151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 152 0000 08B5     		push	{r3, lr}
+ 153 0002 0068     		ldr	r0, [r0]
+ 154 0004 FFF7FEFF 		bl	SDIO_PowerState_OFF
+ 155 0008 08BD     		pop	{r3, pc}
+ 157              		.section	.text.SD_Read_IT,"ax",%progbits
+ 158              		.align	1
+ 159              		.syntax unified
+ 160              		.thumb
+ 161              		.thumb_func
+ 163              	SD_Read_IT:
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 167 0002 846A     		ldr	r4, [r0, #40]
+ 168 0004 C66A     		ldr	r6, [r0, #44]
+ 169 0006 A6B9     		cbnz	r6, .L29
+ 170              	.L25:
+ 171 0008 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 172              	.L28:
+ 173 000a 3868     		ldr	r0, [r7]
+ 174 000c FFF7FEFF 		bl	SDIO_ReadFIFO
+ 175 0010 2070     		strb	r0, [r4]
+ 176 0012 C0F30723 		ubfx	r3, r0, #8, #8
+ 177 0016 6370     		strb	r3, [r4, #1]
+ 178 0018 C0F30743 		ubfx	r3, r0, #16, #8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 4
+
+
+ 179 001c A370     		strb	r3, [r4, #2]
+ 180 001e 000E     		lsrs	r0, r0, #24
+ 181 0020 E070     		strb	r0, [r4, #3]
+ 182 0022 0434     		adds	r4, r4, #4
+ 183 0024 043E     		subs	r6, r6, #4
+ 184 0026 0135     		adds	r5, r5, #1
+ 185              	.L26:
+ 186 0028 072D     		cmp	r5, #7
+ 187 002a EED9     		bls	.L28
+ 188 002c BC62     		str	r4, [r7, #40]
+ 189 002e FE62     		str	r6, [r7, #44]
+ 190 0030 EAE7     		b	.L25
+ 191              	.L29:
+ 192 0032 0746     		mov	r7, r0
+ 193 0034 0025     		movs	r5, #0
+ 194 0036 F7E7     		b	.L26
+ 196              		.section	.text.SD_Write_IT,"ax",%progbits
+ 197              		.align	1
+ 198              		.syntax unified
+ 199              		.thumb
+ 200              		.thumb_func
+ 202              	SD_Write_IT:
+ 203              		@ args = 0, pretend = 0, frame = 8
+ 204              		@ frame_needed = 0, uses_anonymous_args = 0
+ 205 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 206 0002 83B0     		sub	sp, sp, #12
+ 207 0004 046A     		ldr	r4, [r0, #32]
+ 208 0006 466A     		ldr	r6, [r0, #36]
+ 209 0008 DEB9     		cbnz	r6, .L35
+ 210              	.L31:
+ 211 000a 03B0     		add	sp, sp, #12
+ 212              		@ sp needed
+ 213 000c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 214              	.L34:
+ 215 000e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 216 0010 0193     		str	r3, [sp, #4]
+ 217 0012 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 218 0014 43EA0223 		orr	r3, r3, r2, lsl #8
+ 219 0018 0193     		str	r3, [sp, #4]
+ 220 001a A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
+ 221 001c 43EA0243 		orr	r3, r3, r2, lsl #16
+ 222 0020 0193     		str	r3, [sp, #4]
+ 223 0022 E278     		ldrb	r2, [r4, #3]	@ zero_extendqisi2
+ 224 0024 43EA0263 		orr	r3, r3, r2, lsl #24
+ 225 0028 0193     		str	r3, [sp, #4]
+ 226 002a 0434     		adds	r4, r4, #4
+ 227 002c 043E     		subs	r6, r6, #4
+ 228 002e 01A9     		add	r1, sp, #4
+ 229 0030 3868     		ldr	r0, [r7]
+ 230 0032 FFF7FEFF 		bl	SDIO_WriteFIFO
+ 231 0036 0135     		adds	r5, r5, #1
+ 232              	.L32:
+ 233 0038 072D     		cmp	r5, #7
+ 234 003a E8D9     		bls	.L34
+ 235 003c 3C62     		str	r4, [r7, #32]
+ 236 003e 7E62     		str	r6, [r7, #36]
+ 237 0040 E3E7     		b	.L31
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 5
+
+
+ 238              	.L35:
+ 239 0042 0746     		mov	r7, r0
+ 240 0044 0025     		movs	r5, #0
+ 241 0046 F7E7     		b	.L32
+ 243              		.section	.text.SD_SendSDStatus,"ax",%progbits
+ 244              		.align	1
+ 245              		.syntax unified
+ 246              		.thumb
+ 247              		.thumb_func
+ 249              	SD_SendSDStatus:
+ 250              		@ args = 0, pretend = 0, frame = 24
+ 251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 252 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 253 0002 87B0     		sub	sp, sp, #28
+ 254 0004 0546     		mov	r5, r0
+ 255 0006 0E46     		mov	r6, r1
+ 256 0008 FFF7FEFF 		bl	HAL_GetTick
+ 257 000c 0746     		mov	r7, r0
+ 258 000e 0021     		movs	r1, #0
+ 259 0010 2868     		ldr	r0, [r5]
+ 260 0012 FFF7FEFF 		bl	SDIO_GetResponse
+ 261 0016 10F0007F 		tst	r0, #33554432
+ 262 001a 6AD1     		bne	.L48
+ 263 001c 4021     		movs	r1, #64
+ 264 001e 2868     		ldr	r0, [r5]
+ 265 0020 FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 266 0024 0346     		mov	r3, r0
+ 267 0026 10B1     		cbz	r0, .L39
+ 268 0028 AA6B     		ldr	r2, [r5, #56]
+ 269 002a AA63     		str	r2, [r5, #56]
+ 270 002c 63E0     		b	.L37
+ 271              	.L39:
+ 272 002e 296D     		ldr	r1, [r5, #80]
+ 273 0030 0904     		lsls	r1, r1, #16
+ 274 0032 2868     		ldr	r0, [r5]
+ 275 0034 FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 276 0038 0346     		mov	r3, r0
+ 277 003a 10B1     		cbz	r0, .L40
+ 278 003c AA6B     		ldr	r2, [r5, #56]
+ 279 003e AA63     		str	r2, [r5, #56]
+ 280 0040 59E0     		b	.L37
+ 281              	.L40:
+ 282 0042 4FF0FF33 		mov	r3, #-1
+ 283 0046 0093     		str	r3, [sp]
+ 284 0048 4023     		movs	r3, #64
+ 285 004a 0193     		str	r3, [sp, #4]
+ 286 004c 6023     		movs	r3, #96
+ 287 004e 0293     		str	r3, [sp, #8]
+ 288 0050 0223     		movs	r3, #2
+ 289 0052 0393     		str	r3, [sp, #12]
+ 290 0054 0023     		movs	r3, #0
+ 291 0056 0493     		str	r3, [sp, #16]
+ 292 0058 0123     		movs	r3, #1
+ 293 005a 0593     		str	r3, [sp, #20]
+ 294 005c 6946     		mov	r1, sp
+ 295 005e 2868     		ldr	r0, [r5]
+ 296 0060 FFF7FEFF 		bl	SDIO_ConfigData
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 6
+
+
+ 297 0064 2868     		ldr	r0, [r5]
+ 298 0066 FFF7FEFF 		bl	SDMMC_CmdStatusRegister
+ 299 006a 0346     		mov	r3, r0
+ 300 006c 80B1     		cbz	r0, .L41
+ 301 006e AA6B     		ldr	r2, [r5, #56]
+ 302 0070 AA63     		str	r2, [r5, #56]
+ 303 0072 40E0     		b	.L37
+ 304              	.L44:
+ 305 0074 2868     		ldr	r0, [r5]
+ 306 0076 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 307 007a 46F8040B 		str	r0, [r6], #4
+ 308 007e 0134     		adds	r4, r4, #1
+ 309              	.L42:
+ 310 0080 072C     		cmp	r4, #7
+ 311 0082 F7D9     		bls	.L44
+ 312              	.L43:
+ 313 0084 FFF7FEFF 		bl	HAL_GetTick
+ 314 0088 C01B     		subs	r0, r0, r7
+ 315 008a B0F1FF3F 		cmp	r0, #-1
+ 316 008e 35D0     		beq	.L49
+ 317              	.L41:
+ 318 0090 2B68     		ldr	r3, [r5]
+ 319 0092 5C6B     		ldr	r4, [r3, #52]
+ 320 0094 40F22A42 		movw	r2, #1066
+ 321 0098 1440     		ands	r4, r4, r2
+ 322 009a 04D1     		bne	.L56
+ 323 009c 5B6B     		ldr	r3, [r3, #52]
+ 324 009e 13F4004F 		tst	r3, #32768
+ 325 00a2 EFD0     		beq	.L43
+ 326 00a4 ECE7     		b	.L42
+ 327              	.L56:
+ 328 00a6 5A6B     		ldr	r2, [r3, #52]
+ 329 00a8 12F0080F 		tst	r2, #8
+ 330 00ac 29D1     		bne	.L50
+ 331 00ae 5A6B     		ldr	r2, [r3, #52]
+ 332 00b0 12F4007F 		tst	r2, #512
+ 333 00b4 27D1     		bne	.L51
+ 334 00b6 5A6B     		ldr	r2, [r3, #52]
+ 335 00b8 12F0020F 		tst	r2, #2
+ 336 00bc 25D1     		bne	.L52
+ 337 00be 5B6B     		ldr	r3, [r3, #52]
+ 338 00c0 13F0200F 		tst	r3, #32
+ 339 00c4 23D1     		bne	.L57
+ 340              	.L46:
+ 341 00c6 2868     		ldr	r0, [r5]
+ 342 00c8 436B     		ldr	r3, [r0, #52]
+ 343 00ca 13F40013 		ands	r3, r3, #2097152
+ 344 00ce 0CD0     		beq	.L58
+ 345 00d0 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 346 00d4 46F8040B 		str	r0, [r6], #4
+ 347 00d8 FFF7FEFF 		bl	HAL_GetTick
+ 348 00dc C01B     		subs	r0, r0, r7
+ 349 00de B0F1FF3F 		cmp	r0, #-1
+ 350 00e2 F0D1     		bne	.L46
+ 351 00e4 4FF00043 		mov	r3, #-2147483648
+ 352 00e8 05E0     		b	.L37
+ 353              	.L58:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 7
+
+
+ 354 00ea 40F23A52 		movw	r2, #1338
+ 355 00ee 8263     		str	r2, [r0, #56]
+ 356 00f0 01E0     		b	.L37
+ 357              	.L48:
+ 358 00f2 4FF40063 		mov	r3, #2048
+ 359              	.L37:
+ 360 00f6 1846     		mov	r0, r3
+ 361 00f8 07B0     		add	sp, sp, #28
+ 362              		@ sp needed
+ 363 00fa F0BD     		pop	{r4, r5, r6, r7, pc}
+ 364              	.L49:
+ 365 00fc 4FF00043 		mov	r3, #-2147483648
+ 366 0100 F9E7     		b	.L37
+ 367              	.L50:
+ 368 0102 0823     		movs	r3, #8
+ 369 0104 F7E7     		b	.L37
+ 370              	.L51:
+ 371 0106 0823     		movs	r3, #8
+ 372 0108 F5E7     		b	.L37
+ 373              	.L52:
+ 374 010a 0223     		movs	r3, #2
+ 375 010c F3E7     		b	.L37
+ 376              	.L57:
+ 377 010e 2023     		movs	r3, #32
+ 378 0110 F1E7     		b	.L37
+ 380              		.section	.text.SD_FindSCR,"ax",%progbits
+ 381              		.align	1
+ 382              		.syntax unified
+ 383              		.thumb
+ 384              		.thumb_func
+ 386              	SD_FindSCR:
+ 387              		@ args = 0, pretend = 0, frame = 32
+ 388              		@ frame_needed = 0, uses_anonymous_args = 0
+ 389 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 390 0002 89B0     		sub	sp, sp, #36
+ 391 0004 0446     		mov	r4, r0
+ 392 0006 0F46     		mov	r7, r1
+ 393 0008 FFF7FEFF 		bl	HAL_GetTick
+ 394 000c 0646     		mov	r6, r0
+ 395 000e 0023     		movs	r3, #0
+ 396 0010 0093     		str	r3, [sp]
+ 397 0012 0193     		str	r3, [sp, #4]
+ 398 0014 0821     		movs	r1, #8
+ 399 0016 2068     		ldr	r0, [r4]
+ 400 0018 FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 401 001c 0546     		mov	r5, r0
+ 402 001e 10B1     		cbz	r0, .L72
+ 403              	.L59:
+ 404 0020 2846     		mov	r0, r5
+ 405 0022 09B0     		add	sp, sp, #36
+ 406              		@ sp needed
+ 407 0024 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 408              	.L72:
+ 409 0026 216D     		ldr	r1, [r4, #80]
+ 410 0028 0904     		lsls	r1, r1, #16
+ 411 002a 2068     		ldr	r0, [r4]
+ 412 002c FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 8
+
+
+ 413 0030 0546     		mov	r5, r0
+ 414 0032 0028     		cmp	r0, #0
+ 415 0034 F4D1     		bne	.L59
+ 416 0036 4FF0FF33 		mov	r3, #-1
+ 417 003a 0293     		str	r3, [sp, #8]
+ 418 003c 0823     		movs	r3, #8
+ 419 003e 0393     		str	r3, [sp, #12]
+ 420 0040 3023     		movs	r3, #48
+ 421 0042 0493     		str	r3, [sp, #16]
+ 422 0044 0223     		movs	r3, #2
+ 423 0046 0593     		str	r3, [sp, #20]
+ 424 0048 0023     		movs	r3, #0
+ 425 004a 0693     		str	r3, [sp, #24]
+ 426 004c 0123     		movs	r3, #1
+ 427 004e 0793     		str	r3, [sp, #28]
+ 428 0050 02A9     		add	r1, sp, #8
+ 429 0052 2068     		ldr	r0, [r4]
+ 430 0054 FFF7FEFF 		bl	SDIO_ConfigData
+ 431 0058 2068     		ldr	r0, [r4]
+ 432 005a FFF7FEFF 		bl	SDMMC_CmdSendSCR
+ 433 005e 0546     		mov	r5, r0
+ 434 0060 58B1     		cbz	r0, .L61
+ 435 0062 DDE7     		b	.L59
+ 436              	.L73:
+ 437 0064 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 438 0068 4DF82500 		str	r0, [sp, r5, lsl #2]
+ 439 006c 0135     		adds	r5, r5, #1
+ 440              	.L63:
+ 441 006e FFF7FEFF 		bl	HAL_GetTick
+ 442 0072 831B     		subs	r3, r0, r6
+ 443 0074 B3F1FF3F 		cmp	r3, #-1
+ 444 0078 43D0     		beq	.L70
+ 445              	.L61:
+ 446 007a 2068     		ldr	r0, [r4]
+ 447 007c 436B     		ldr	r3, [r0, #52]
+ 448 007e 13F02A0F 		tst	r3, #42
+ 449 0082 07D1     		bne	.L64
+ 450 0084 436B     		ldr	r3, [r0, #52]
+ 451 0086 13F4001F 		tst	r3, #2097152
+ 452 008a EBD1     		bne	.L73
+ 453 008c 436B     		ldr	r3, [r0, #52]
+ 454 008e 13F4005F 		tst	r3, #8192
+ 455 0092 ECD1     		bne	.L63
+ 456              	.L64:
+ 457 0094 436B     		ldr	r3, [r0, #52]
+ 458 0096 13F0080F 		tst	r3, #8
+ 459 009a 29D1     		bne	.L66
+ 460 009c 436B     		ldr	r3, [r0, #52]
+ 461 009e 13F4007F 		tst	r3, #512
+ 462 00a2 25D1     		bne	.L66
+ 463 00a4 436B     		ldr	r3, [r0, #52]
+ 464 00a6 13F0020F 		tst	r3, #2
+ 465 00aa 24D1     		bne	.L74
+ 466 00ac 456B     		ldr	r5, [r0, #52]
+ 467 00ae 15F02005 		ands	r5, r5, #32
+ 468 00b2 23D1     		bne	.L75
+ 469 00b4 40F23A53 		movw	r3, #1338
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 9
+
+
+ 470 00b8 8363     		str	r3, [r0, #56]
+ 471 00ba 019A     		ldr	r2, [sp, #4]
+ 472 00bc 1302     		lsls	r3, r2, #8
+ 473 00be 03F47F03 		and	r3, r3, #16711680
+ 474 00c2 43EA0263 		orr	r3, r3, r2, lsl #24
+ 475 00c6 110A     		lsrs	r1, r2, #8
+ 476 00c8 01F47F41 		and	r1, r1, #65280
+ 477 00cc 0B43     		orrs	r3, r3, r1
+ 478 00ce 43EA1263 		orr	r3, r3, r2, lsr #24
+ 479 00d2 3B60     		str	r3, [r7]
+ 480 00d4 009A     		ldr	r2, [sp]
+ 481 00d6 1302     		lsls	r3, r2, #8
+ 482 00d8 03F47F03 		and	r3, r3, #16711680
+ 483 00dc 43EA0263 		orr	r3, r3, r2, lsl #24
+ 484 00e0 110A     		lsrs	r1, r2, #8
+ 485 00e2 01F47F41 		and	r1, r1, #65280
+ 486 00e6 0B43     		orrs	r3, r3, r1
+ 487 00e8 43EA1263 		orr	r3, r3, r2, lsr #24
+ 488 00ec 7B60     		str	r3, [r7, #4]
+ 489 00ee 97E7     		b	.L59
+ 490              	.L66:
+ 491 00f0 0825     		movs	r5, #8
+ 492 00f2 8563     		str	r5, [r0, #56]
+ 493 00f4 94E7     		b	.L59
+ 494              	.L74:
+ 495 00f6 0225     		movs	r5, #2
+ 496 00f8 8563     		str	r5, [r0, #56]
+ 497 00fa 91E7     		b	.L59
+ 498              	.L75:
+ 499 00fc 2025     		movs	r5, #32
+ 500 00fe 8563     		str	r5, [r0, #56]
+ 501 0100 8EE7     		b	.L59
+ 502              	.L70:
+ 503 0102 4FF00045 		mov	r5, #-2147483648
+ 504 0106 8BE7     		b	.L59
+ 506              		.section	.text.SD_WideBus_Enable,"ax",%progbits
+ 507              		.align	1
+ 508              		.syntax unified
+ 509              		.thumb
+ 510              		.thumb_func
+ 512              	SD_WideBus_Enable:
+ 513              		@ args = 0, pretend = 0, frame = 8
+ 514              		@ frame_needed = 0, uses_anonymous_args = 0
+ 515 0000 10B5     		push	{r4, lr}
+ 516 0002 82B0     		sub	sp, sp, #8
+ 517 0004 0446     		mov	r4, r0
+ 518 0006 0021     		movs	r1, #0
+ 519 0008 0091     		str	r1, [sp]
+ 520 000a 0191     		str	r1, [sp, #4]
+ 521 000c 0068     		ldr	r0, [r0]
+ 522 000e FFF7FEFF 		bl	SDIO_GetResponse
+ 523 0012 10F0007F 		tst	r0, #33554432
+ 524 0016 13D1     		bne	.L78
+ 525 0018 6946     		mov	r1, sp
+ 526 001a 2046     		mov	r0, r4
+ 527 001c FFF7FEFF 		bl	SD_FindSCR
+ 528 0020 80B9     		cbnz	r0, .L76
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 10
+
+
+ 529 0022 019B     		ldr	r3, [sp, #4]
+ 530 0024 13F4802F 		tst	r3, #262144
+ 531 0028 0ED0     		beq	.L79
+ 532 002a 216D     		ldr	r1, [r4, #80]
+ 533 002c 0904     		lsls	r1, r1, #16
+ 534 002e 2068     		ldr	r0, [r4]
+ 535 0030 FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 536 0034 30B9     		cbnz	r0, .L76
+ 537 0036 0221     		movs	r1, #2
+ 538 0038 2068     		ldr	r0, [r4]
+ 539 003a FFF7FEFF 		bl	SDMMC_CmdBusWidth
+ 540 003e 01E0     		b	.L76
+ 541              	.L78:
+ 542 0040 4FF40060 		mov	r0, #2048
+ 543              	.L76:
+ 544 0044 02B0     		add	sp, sp, #8
+ 545              		@ sp needed
+ 546 0046 10BD     		pop	{r4, pc}
+ 547              	.L79:
+ 548 0048 4FF08060 		mov	r0, #67108864
+ 549 004c FAE7     		b	.L76
+ 551              		.section	.text.SD_WideBus_Disable,"ax",%progbits
+ 552              		.align	1
+ 553              		.syntax unified
+ 554              		.thumb
+ 555              		.thumb_func
+ 557              	SD_WideBus_Disable:
+ 558              		@ args = 0, pretend = 0, frame = 8
+ 559              		@ frame_needed = 0, uses_anonymous_args = 0
+ 560 0000 10B5     		push	{r4, lr}
+ 561 0002 82B0     		sub	sp, sp, #8
+ 562 0004 0446     		mov	r4, r0
+ 563 0006 0021     		movs	r1, #0
+ 564 0008 0091     		str	r1, [sp]
+ 565 000a 0191     		str	r1, [sp, #4]
+ 566 000c 0068     		ldr	r0, [r0]
+ 567 000e FFF7FEFF 		bl	SDIO_GetResponse
+ 568 0012 10F0007F 		tst	r0, #33554432
+ 569 0016 13D1     		bne	.L83
+ 570 0018 6946     		mov	r1, sp
+ 571 001a 2046     		mov	r0, r4
+ 572 001c FFF7FEFF 		bl	SD_FindSCR
+ 573 0020 80B9     		cbnz	r0, .L81
+ 574 0022 019B     		ldr	r3, [sp, #4]
+ 575 0024 13F4803F 		tst	r3, #65536
+ 576 0028 0ED0     		beq	.L84
+ 577 002a 216D     		ldr	r1, [r4, #80]
+ 578 002c 0904     		lsls	r1, r1, #16
+ 579 002e 2068     		ldr	r0, [r4]
+ 580 0030 FFF7FEFF 		bl	SDMMC_CmdAppCommand
+ 581 0034 30B9     		cbnz	r0, .L81
+ 582 0036 0021     		movs	r1, #0
+ 583 0038 2068     		ldr	r0, [r4]
+ 584 003a FFF7FEFF 		bl	SDMMC_CmdBusWidth
+ 585 003e 01E0     		b	.L81
+ 586              	.L83:
+ 587 0040 4FF40060 		mov	r0, #2048
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 11
+
+
+ 588              	.L81:
+ 589 0044 02B0     		add	sp, sp, #8
+ 590              		@ sp needed
+ 591 0046 10BD     		pop	{r4, pc}
+ 592              	.L84:
+ 593 0048 4FF08060 		mov	r0, #67108864
+ 594 004c FAE7     		b	.L81
+ 596              		.section	.text.SD_SendStatus,"ax",%progbits
+ 597              		.align	1
+ 598              		.syntax unified
+ 599              		.thumb
+ 600              		.thumb_func
+ 602              	SD_SendStatus:
+ 603              		@ args = 0, pretend = 0, frame = 0
+ 604              		@ frame_needed = 0, uses_anonymous_args = 0
+ 605 0000 70B5     		push	{r4, r5, r6, lr}
+ 606 0002 81B1     		cbz	r1, .L88
+ 607 0004 0446     		mov	r4, r0
+ 608 0006 0E46     		mov	r6, r1
+ 609 0008 016D     		ldr	r1, [r0, #80]
+ 610 000a 0904     		lsls	r1, r1, #16
+ 611 000c 0068     		ldr	r0, [r0]
+ 612 000e FFF7FEFF 		bl	SDMMC_CmdSendStatus
+ 613 0012 0546     		mov	r5, r0
+ 614 0014 08B1     		cbz	r0, .L90
+ 615              	.L86:
+ 616 0016 2846     		mov	r0, r5
+ 617 0018 70BD     		pop	{r4, r5, r6, pc}
+ 618              	.L90:
+ 619 001a 0021     		movs	r1, #0
+ 620 001c 2068     		ldr	r0, [r4]
+ 621 001e FFF7FEFF 		bl	SDIO_GetResponse
+ 622 0022 3060     		str	r0, [r6]
+ 623 0024 F7E7     		b	.L86
+ 624              	.L88:
+ 625 0026 4FF00065 		mov	r5, #134217728
+ 626 002a F4E7     		b	.L86
+ 628              		.section	.text.HAL_SD_MspInit,"ax",%progbits
+ 629              		.align	1
+ 630              		.weak	HAL_SD_MspInit
+ 631              		.syntax unified
+ 632              		.thumb
+ 633              		.thumb_func
+ 635              	HAL_SD_MspInit:
+ 636              		@ args = 0, pretend = 0, frame = 0
+ 637              		@ frame_needed = 0, uses_anonymous_args = 0
+ 638              		@ link register save eliminated.
+ 639 0000 7047     		bx	lr
+ 641              		.section	.text.HAL_SD_MspDeInit,"ax",%progbits
+ 642              		.align	1
+ 643              		.weak	HAL_SD_MspDeInit
+ 644              		.syntax unified
+ 645              		.thumb
+ 646              		.thumb_func
+ 648              	HAL_SD_MspDeInit:
+ 649              		@ args = 0, pretend = 0, frame = 0
+ 650              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 12
+
+
+ 651              		@ link register save eliminated.
+ 652 0000 7047     		bx	lr
+ 654              		.section	.text.HAL_SD_DeInit,"ax",%progbits
+ 655              		.align	1
+ 656              		.global	HAL_SD_DeInit
+ 657              		.syntax unified
+ 658              		.thumb
+ 659              		.thumb_func
+ 661              	HAL_SD_DeInit:
+ 662              		@ args = 0, pretend = 0, frame = 0
+ 663              		@ frame_needed = 0, uses_anonymous_args = 0
+ 664 0000 70B1     		cbz	r0, .L95
+ 665 0002 10B5     		push	{r4, lr}
+ 666 0004 0446     		mov	r4, r0
+ 667 0006 0323     		movs	r3, #3
+ 668 0008 80F83430 		strb	r3, [r0, #52]
+ 669 000c FFF7FEFF 		bl	SD_PowerOFF
+ 670 0010 2046     		mov	r0, r4
+ 671 0012 FFF7FEFF 		bl	HAL_SD_MspDeInit
+ 672 0016 0020     		movs	r0, #0
+ 673 0018 A063     		str	r0, [r4, #56]
+ 674 001a 84F83400 		strb	r0, [r4, #52]
+ 675 001e 10BD     		pop	{r4, pc}
+ 676              	.L95:
+ 677 0020 0120     		movs	r0, #1
+ 678 0022 7047     		bx	lr
+ 680              		.section	.text.HAL_SD_ReadBlocks,"ax",%progbits
+ 681              		.align	1
+ 682              		.global	HAL_SD_ReadBlocks
+ 683              		.syntax unified
+ 684              		.thumb
+ 685              		.thumb_func
+ 687              	HAL_SD_ReadBlocks:
+ 688              		@ args = 4, pretend = 0, frame = 24
+ 689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 690 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 691 0004 87B0     		sub	sp, sp, #28
+ 692 0006 0546     		mov	r5, r0
+ 693 0008 0C46     		mov	r4, r1
+ 694 000a 1646     		mov	r6, r2
+ 695 000c 9B46     		mov	fp, r3
+ 696 000e DDF840A0 		ldr	r10, [sp, #64]
+ 697 0012 FFF7FEFF 		bl	HAL_GetTick
+ 698 0016 002C     		cmp	r4, #0
+ 699 0018 36D0     		beq	.L124
+ 700 001a 8146     		mov	r9, r0
+ 701 001c 95F83470 		ldrb	r7, [r5, #52]	@ zero_extendqisi2
+ 702 0020 FFB2     		uxtb	r7, r7
+ 703 0022 012F     		cmp	r7, #1
+ 704 0024 40F00981 		bne	.L103
+ 705 0028 0023     		movs	r3, #0
+ 706 002a AB63     		str	r3, [r5, #56]
+ 707 002c 06EB0B03 		add	r3, r6, fp
+ 708 0030 EA6D     		ldr	r2, [r5, #92]
+ 709 0032 9342     		cmp	r3, r2
+ 710 0034 2ED8     		bhi	.L125
+ 711 0036 0323     		movs	r3, #3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 13
+
+
+ 712 0038 85F83430 		strb	r3, [r5, #52]
+ 713 003c 2B68     		ldr	r3, [r5]
+ 714 003e 0022     		movs	r2, #0
+ 715 0040 DA62     		str	r2, [r3, #44]
+ 716 0042 6B6C     		ldr	r3, [r5, #68]
+ 717 0044 012B     		cmp	r3, #1
+ 718 0046 00D0     		beq	.L105
+ 719 0048 7602     		lsls	r6, r6, #9
+ 720              	.L105:
+ 721 004a 4FF0FF33 		mov	r3, #-1
+ 722 004e 0093     		str	r3, [sp]
+ 723 0050 4FEA4B23 		lsl	r3, fp, #9
+ 724 0054 0193     		str	r3, [sp, #4]
+ 725 0056 9023     		movs	r3, #144
+ 726 0058 0293     		str	r3, [sp, #8]
+ 727 005a 0223     		movs	r3, #2
+ 728 005c 0393     		str	r3, [sp, #12]
+ 729 005e 0023     		movs	r3, #0
+ 730 0060 0493     		str	r3, [sp, #16]
+ 731 0062 0123     		movs	r3, #1
+ 732 0064 0593     		str	r3, [sp, #20]
+ 733 0066 6946     		mov	r1, sp
+ 734 0068 2868     		ldr	r0, [r5]
+ 735 006a FFF7FEFF 		bl	SDIO_ConfigData
+ 736 006e BBF1010F 		cmp	fp, #1
+ 737 0072 14D9     		bls	.L106
+ 738 0074 0223     		movs	r3, #2
+ 739 0076 2B63     		str	r3, [r5, #48]
+ 740 0078 3146     		mov	r1, r6
+ 741 007a 2868     		ldr	r0, [r5]
+ 742 007c FFF7FEFF 		bl	SDMMC_CmdReadMultiBlock
+ 743              	.L107:
+ 744 0080 A0B9     		cbnz	r0, .L126
+ 745 0082 DDF80480 		ldr	r8, [sp, #4]
+ 746 0086 38E0     		b	.L109
+ 747              	.L124:
+ 748 0088 AB6B     		ldr	r3, [r5, #56]
+ 749 008a 43F00063 		orr	r3, r3, #134217728
+ 750 008e AB63     		str	r3, [r5, #56]
+ 751 0090 0127     		movs	r7, #1
+ 752 0092 D7E0     		b	.L102
+ 753              	.L125:
+ 754 0094 AB6B     		ldr	r3, [r5, #56]
+ 755 0096 43F00073 		orr	r3, r3, #33554432
+ 756 009a AB63     		str	r3, [r5, #56]
+ 757 009c D2E0     		b	.L102
+ 758              	.L106:
+ 759 009e 0123     		movs	r3, #1
+ 760 00a0 2B63     		str	r3, [r5, #48]
+ 761 00a2 3146     		mov	r1, r6
+ 762 00a4 2868     		ldr	r0, [r5]
+ 763 00a6 FFF7FEFF 		bl	SDMMC_CmdReadSingleBlock
+ 764 00aa E9E7     		b	.L107
+ 765              	.L126:
+ 766 00ac 2B68     		ldr	r3, [r5]
+ 767 00ae 674A     		ldr	r2, .L131
+ 768 00b0 9A63     		str	r2, [r3, #56]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 14
+
+
+ 769 00b2 AB6B     		ldr	r3, [r5, #56]
+ 770 00b4 0343     		orrs	r3, r3, r0
+ 771 00b6 AB63     		str	r3, [r5, #56]
+ 772 00b8 0123     		movs	r3, #1
+ 773 00ba 85F83430 		strb	r3, [r5, #52]
+ 774 00be 0023     		movs	r3, #0
+ 775 00c0 2B63     		str	r3, [r5, #48]
+ 776 00c2 BFE0     		b	.L102
+ 777              	.L112:
+ 778 00c4 2868     		ldr	r0, [r5]
+ 779 00c6 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 780 00ca 2070     		strb	r0, [r4]
+ 781 00cc C0F30723 		ubfx	r3, r0, #8, #8
+ 782 00d0 6370     		strb	r3, [r4, #1]
+ 783 00d2 C0F30743 		ubfx	r3, r0, #16, #8
+ 784 00d6 A370     		strb	r3, [r4, #2]
+ 785 00d8 000E     		lsrs	r0, r0, #24
+ 786 00da E070     		strb	r0, [r4, #3]
+ 787 00dc 0434     		adds	r4, r4, #4
+ 788 00de A8F10408 		sub	r8, r8, #4
+ 789 00e2 0136     		adds	r6, r6, #1
+ 790              	.L111:
+ 791 00e4 072E     		cmp	r6, #7
+ 792 00e6 EDD9     		bls	.L112
+ 793              	.L110:
+ 794 00e8 FFF7FEFF 		bl	HAL_GetTick
+ 795 00ec A0EB0900 		sub	r0, r0, r9
+ 796 00f0 5045     		cmp	r0, r10
+ 797 00f2 10D2     		bcs	.L113
+ 798 00f4 BAF1000F 		cmp	r10, #0
+ 799 00f8 0DD0     		beq	.L113
+ 800              	.L109:
+ 801 00fa 2868     		ldr	r0, [r5]
+ 802 00fc 466B     		ldr	r6, [r0, #52]
+ 803 00fe 40F22A33 		movw	r3, #810
+ 804 0102 1E40     		ands	r6, r6, r3
+ 805 0104 15D1     		bne	.L127
+ 806 0106 436B     		ldr	r3, [r0, #52]
+ 807 0108 13F4004F 		tst	r3, #32768
+ 808 010c ECD0     		beq	.L110
+ 809 010e B8F1000F 		cmp	r8, #0
+ 810 0112 E9D0     		beq	.L110
+ 811 0114 E6E7     		b	.L111
+ 812              	.L113:
+ 813 0116 2B68     		ldr	r3, [r5]
+ 814 0118 4C4A     		ldr	r2, .L131
+ 815 011a 9A63     		str	r2, [r3, #56]
+ 816 011c AB6B     		ldr	r3, [r5, #56]
+ 817 011e 43F00043 		orr	r3, r3, #-2147483648
+ 818 0122 AB63     		str	r3, [r5, #56]
+ 819 0124 0123     		movs	r3, #1
+ 820 0126 85F83430 		strb	r3, [r5, #52]
+ 821 012a 0023     		movs	r3, #0
+ 822 012c 2B63     		str	r3, [r5, #48]
+ 823 012e 0327     		movs	r7, #3
+ 824 0130 88E0     		b	.L102
+ 825              	.L127:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 15
+
+
+ 826 0132 436B     		ldr	r3, [r0, #52]
+ 827 0134 13F4807F 		tst	r3, #256
+ 828 0138 05D0     		beq	.L115
+ 829 013a BBF1010F 		cmp	fp, #1
+ 830 013e 02D9     		bls	.L115
+ 831 0140 6B6C     		ldr	r3, [r5, #68]
+ 832 0142 032B     		cmp	r3, #3
+ 833 0144 3CD1     		bne	.L128
+ 834              	.L115:
+ 835 0146 2B68     		ldr	r3, [r5]
+ 836 0148 5A6B     		ldr	r2, [r3, #52]
+ 837 014a 12F0080F 		tst	r2, #8
+ 838 014e 48D1     		bne	.L116
+ 839 0150 5A6B     		ldr	r2, [r3, #52]
+ 840 0152 12F4007F 		tst	r2, #512
+ 841 0156 44D1     		bne	.L116
+ 842 0158 5A6B     		ldr	r2, [r3, #52]
+ 843 015a 12F0020F 		tst	r2, #2
+ 844 015e 4CD1     		bne	.L129
+ 845 0160 5A6B     		ldr	r2, [r3, #52]
+ 846 0162 12F0200F 		tst	r2, #32
+ 847 0166 54D1     		bne	.L130
+ 848              	.L119:
+ 849 0168 2868     		ldr	r0, [r5]
+ 850 016a 436B     		ldr	r3, [r0, #52]
+ 851 016c 13F4001F 		tst	r3, #2097152
+ 852 0170 5BD0     		beq	.L121
+ 853 0172 B8F1000F 		cmp	r8, #0
+ 854 0176 58D0     		beq	.L121
+ 855 0178 FFF7FEFF 		bl	SDIO_ReadFIFO
+ 856 017c 2070     		strb	r0, [r4]
+ 857 017e C0F30723 		ubfx	r3, r0, #8, #8
+ 858 0182 6370     		strb	r3, [r4, #1]
+ 859 0184 C0F30743 		ubfx	r3, r0, #16, #8
+ 860 0188 A370     		strb	r3, [r4, #2]
+ 861 018a 000E     		lsrs	r0, r0, #24
+ 862 018c E070     		strb	r0, [r4, #3]
+ 863 018e 0434     		adds	r4, r4, #4
+ 864 0190 A8F10408 		sub	r8, r8, #4
+ 865 0194 FFF7FEFF 		bl	HAL_GetTick
+ 866 0198 A0EB0900 		sub	r0, r0, r9
+ 867 019c 5045     		cmp	r0, r10
+ 868 019e 02D2     		bcs	.L120
+ 869 01a0 BAF1000F 		cmp	r10, #0
+ 870 01a4 E0D1     		bne	.L119
+ 871              	.L120:
+ 872 01a6 2B68     		ldr	r3, [r5]
+ 873 01a8 284A     		ldr	r2, .L131
+ 874 01aa 9A63     		str	r2, [r3, #56]
+ 875 01ac AB6B     		ldr	r3, [r5, #56]
+ 876 01ae 43F00043 		orr	r3, r3, #-2147483648
+ 877 01b2 AB63     		str	r3, [r5, #56]
+ 878 01b4 0123     		movs	r3, #1
+ 879 01b6 85F83430 		strb	r3, [r5, #52]
+ 880 01ba 0023     		movs	r3, #0
+ 881 01bc 2B63     		str	r3, [r5, #48]
+ 882 01be 41E0     		b	.L102
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 16
+
+
+ 883              	.L128:
+ 884 01c0 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 885 01c4 0346     		mov	r3, r0
+ 886 01c6 0028     		cmp	r0, #0
+ 887 01c8 BDD0     		beq	.L115
+ 888 01ca 2A68     		ldr	r2, [r5]
+ 889 01cc 1F49     		ldr	r1, .L131
+ 890 01ce 9163     		str	r1, [r2, #56]
+ 891 01d0 AA6B     		ldr	r2, [r5, #56]
+ 892 01d2 1343     		orrs	r3, r3, r2
+ 893 01d4 AB63     		str	r3, [r5, #56]
+ 894 01d6 0123     		movs	r3, #1
+ 895 01d8 85F83430 		strb	r3, [r5, #52]
+ 896 01dc 0023     		movs	r3, #0
+ 897 01de 2B63     		str	r3, [r5, #48]
+ 898 01e0 30E0     		b	.L102
+ 899              	.L116:
+ 900 01e2 1A4A     		ldr	r2, .L131
+ 901 01e4 9A63     		str	r2, [r3, #56]
+ 902 01e6 AB6B     		ldr	r3, [r5, #56]
+ 903 01e8 43F00803 		orr	r3, r3, #8
+ 904 01ec AB63     		str	r3, [r5, #56]
+ 905 01ee 0123     		movs	r3, #1
+ 906 01f0 85F83430 		strb	r3, [r5, #52]
+ 907 01f4 0023     		movs	r3, #0
+ 908 01f6 2B63     		str	r3, [r5, #48]
+ 909 01f8 24E0     		b	.L102
+ 910              	.L129:
+ 911 01fa 144A     		ldr	r2, .L131
+ 912 01fc 9A63     		str	r2, [r3, #56]
+ 913 01fe AB6B     		ldr	r3, [r5, #56]
+ 914 0200 43F00203 		orr	r3, r3, #2
+ 915 0204 AB63     		str	r3, [r5, #56]
+ 916 0206 0123     		movs	r3, #1
+ 917 0208 85F83430 		strb	r3, [r5, #52]
+ 918 020c 0023     		movs	r3, #0
+ 919 020e 2B63     		str	r3, [r5, #48]
+ 920 0210 18E0     		b	.L102
+ 921              	.L130:
+ 922 0212 0E4A     		ldr	r2, .L131
+ 923 0214 9A63     		str	r2, [r3, #56]
+ 924 0216 AB6B     		ldr	r3, [r5, #56]
+ 925 0218 43F02003 		orr	r3, r3, #32
+ 926 021c AB63     		str	r3, [r5, #56]
+ 927 021e 0123     		movs	r3, #1
+ 928 0220 85F83430 		strb	r3, [r5, #52]
+ 929 0224 0023     		movs	r3, #0
+ 930 0226 2B63     		str	r3, [r5, #48]
+ 931 0228 0CE0     		b	.L102
+ 932              	.L121:
+ 933 022a 40F23A53 		movw	r3, #1338
+ 934 022e 8363     		str	r3, [r0, #56]
+ 935 0230 0123     		movs	r3, #1
+ 936 0232 85F83430 		strb	r3, [r5, #52]
+ 937 0236 0027     		movs	r7, #0
+ 938 0238 04E0     		b	.L102
+ 939              	.L103:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 17
+
+
+ 940 023a AB6B     		ldr	r3, [r5, #56]
+ 941 023c 43F00053 		orr	r3, r3, #536870912
+ 942 0240 AB63     		str	r3, [r5, #56]
+ 943 0242 0127     		movs	r7, #1
+ 944              	.L102:
+ 945 0244 3846     		mov	r0, r7
+ 946 0246 07B0     		add	sp, sp, #28
+ 947              		@ sp needed
+ 948 0248 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 949              	.L132:
+ 950              		.align	2
+ 951              	.L131:
+ 952 024c FF054000 		.word	4195839
+ 954              		.section	.text.HAL_SD_WriteBlocks,"ax",%progbits
+ 955              		.align	1
+ 956              		.global	HAL_SD_WriteBlocks
+ 957              		.syntax unified
+ 958              		.thumb
+ 959              		.thumb_func
+ 961              	HAL_SD_WriteBlocks:
+ 962              		@ args = 4, pretend = 0, frame = 40
+ 963              		@ frame_needed = 0, uses_anonymous_args = 0
+ 964 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 965 0004 8BB0     		sub	sp, sp, #44
+ 966 0006 0546     		mov	r5, r0
+ 967 0008 0C46     		mov	r4, r1
+ 968 000a 1646     		mov	r6, r2
+ 969 000c 9B46     		mov	fp, r3
+ 970 000e DDF850A0 		ldr	r10, [sp, #80]
+ 971 0012 FFF7FEFF 		bl	HAL_GetTick
+ 972 0016 002C     		cmp	r4, #0
+ 973 0018 37D0     		beq	.L154
+ 974 001a 8046     		mov	r8, r0
+ 975 001c 95F83470 		ldrb	r7, [r5, #52]	@ zero_extendqisi2
+ 976 0020 FFB2     		uxtb	r7, r7
+ 977 0022 012F     		cmp	r7, #1
+ 978 0024 40F0E680 		bne	.L136
+ 979 0028 0023     		movs	r3, #0
+ 980 002a AB63     		str	r3, [r5, #56]
+ 981 002c 06EB0B03 		add	r3, r6, fp
+ 982 0030 EA6D     		ldr	r2, [r5, #92]
+ 983 0032 9342     		cmp	r3, r2
+ 984 0034 2FD8     		bhi	.L155
+ 985 0036 0323     		movs	r3, #3
+ 986 0038 85F83430 		strb	r3, [r5, #52]
+ 987 003c 2B68     		ldr	r3, [r5]
+ 988 003e 0022     		movs	r2, #0
+ 989 0040 DA62     		str	r2, [r3, #44]
+ 990 0042 6B6C     		ldr	r3, [r5, #68]
+ 991 0044 012B     		cmp	r3, #1
+ 992 0046 00D0     		beq	.L138
+ 993 0048 7602     		lsls	r6, r6, #9
+ 994              	.L138:
+ 995 004a 4FF0FF33 		mov	r3, #-1
+ 996 004e 0493     		str	r3, [sp, #16]
+ 997 0050 4FEA4B23 		lsl	r3, fp, #9
+ 998 0054 0593     		str	r3, [sp, #20]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 18
+
+
+ 999 0056 9023     		movs	r3, #144
+ 1000 0058 0693     		str	r3, [sp, #24]
+ 1001 005a 0023     		movs	r3, #0
+ 1002 005c 0793     		str	r3, [sp, #28]
+ 1003 005e 0893     		str	r3, [sp, #32]
+ 1004 0060 0123     		movs	r3, #1
+ 1005 0062 0993     		str	r3, [sp, #36]
+ 1006 0064 04A9     		add	r1, sp, #16
+ 1007 0066 2868     		ldr	r0, [r5]
+ 1008 0068 FFF7FEFF 		bl	SDIO_ConfigData
+ 1009 006c BBF1010F 		cmp	fp, #1
+ 1010 0070 16D9     		bls	.L139
+ 1011 0072 2023     		movs	r3, #32
+ 1012 0074 2B63     		str	r3, [r5, #48]
+ 1013 0076 3146     		mov	r1, r6
+ 1014 0078 2868     		ldr	r0, [r5]
+ 1015 007a FFF7FEFF 		bl	SDMMC_CmdWriteMultiBlock
+ 1016 007e 0190     		str	r0, [sp, #4]
+ 1017              	.L140:
+ 1018 0080 019B     		ldr	r3, [sp, #4]
+ 1019 0082 ABB9     		cbnz	r3, .L156
+ 1020 0084 DDF81490 		ldr	r9, [sp, #20]
+ 1021 0088 40E0     		b	.L142
+ 1022              	.L154:
+ 1023 008a AB6B     		ldr	r3, [r5, #56]
+ 1024 008c 43F00063 		orr	r3, r3, #134217728
+ 1025 0090 AB63     		str	r3, [r5, #56]
+ 1026 0092 0127     		movs	r7, #1
+ 1027 0094 B3E0     		b	.L135
+ 1028              	.L155:
+ 1029 0096 AB6B     		ldr	r3, [r5, #56]
+ 1030 0098 43F00073 		orr	r3, r3, #33554432
+ 1031 009c AB63     		str	r3, [r5, #56]
+ 1032 009e AEE0     		b	.L135
+ 1033              	.L139:
+ 1034 00a0 1023     		movs	r3, #16
+ 1035 00a2 2B63     		str	r3, [r5, #48]
+ 1036 00a4 3146     		mov	r1, r6
+ 1037 00a6 2868     		ldr	r0, [r5]
+ 1038 00a8 FFF7FEFF 		bl	SDMMC_CmdWriteSingleBlock
+ 1039 00ac 0190     		str	r0, [sp, #4]
+ 1040 00ae E7E7     		b	.L140
+ 1041              	.L156:
+ 1042 00b0 2B68     		ldr	r3, [r5]
+ 1043 00b2 554A     		ldr	r2, .L160
+ 1044 00b4 9A63     		str	r2, [r3, #56]
+ 1045 00b6 AB6B     		ldr	r3, [r5, #56]
+ 1046 00b8 019A     		ldr	r2, [sp, #4]
+ 1047 00ba 1343     		orrs	r3, r3, r2
+ 1048 00bc AB63     		str	r3, [r5, #56]
+ 1049 00be 0123     		movs	r3, #1
+ 1050 00c0 85F83430 		strb	r3, [r5, #52]
+ 1051 00c4 0023     		movs	r3, #0
+ 1052 00c6 2B63     		str	r3, [r5, #48]
+ 1053 00c8 99E0     		b	.L135
+ 1054              	.L145:
+ 1055 00ca 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 19
+
+
+ 1056 00cc 0393     		str	r3, [sp, #12]
+ 1057 00ce 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 1058 00d0 43EA0223 		orr	r3, r3, r2, lsl #8
+ 1059 00d4 0393     		str	r3, [sp, #12]
+ 1060 00d6 A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
+ 1061 00d8 43EA0243 		orr	r3, r3, r2, lsl #16
+ 1062 00dc 0393     		str	r3, [sp, #12]
+ 1063 00de E278     		ldrb	r2, [r4, #3]	@ zero_extendqisi2
+ 1064 00e0 43EA0263 		orr	r3, r3, r2, lsl #24
+ 1065 00e4 0393     		str	r3, [sp, #12]
+ 1066 00e6 0434     		adds	r4, r4, #4
+ 1067 00e8 A9F10409 		sub	r9, r9, #4
+ 1068 00ec 03A9     		add	r1, sp, #12
+ 1069 00ee 2868     		ldr	r0, [r5]
+ 1070 00f0 FFF7FEFF 		bl	SDIO_WriteFIFO
+ 1071 00f4 0136     		adds	r6, r6, #1
+ 1072              	.L144:
+ 1073 00f6 072E     		cmp	r6, #7
+ 1074 00f8 E7D9     		bls	.L145
+ 1075              	.L143:
+ 1076 00fa FFF7FEFF 		bl	HAL_GetTick
+ 1077 00fe A0EB0800 		sub	r0, r0, r8
+ 1078 0102 5045     		cmp	r0, r10
+ 1079 0104 10D2     		bcs	.L146
+ 1080 0106 BAF1000F 		cmp	r10, #0
+ 1081 010a 0DD0     		beq	.L146
+ 1082              	.L142:
+ 1083 010c 2868     		ldr	r0, [r5]
+ 1084 010e 466B     		ldr	r6, [r0, #52]
+ 1085 0110 40F21A33 		movw	r3, #794
+ 1086 0114 1E40     		ands	r6, r6, r3
+ 1087 0116 15D1     		bne	.L157
+ 1088 0118 436B     		ldr	r3, [r0, #52]
+ 1089 011a 13F4804F 		tst	r3, #16384
+ 1090 011e ECD0     		beq	.L143
+ 1091 0120 B9F1000F 		cmp	r9, #0
+ 1092 0124 E9D0     		beq	.L143
+ 1093 0126 E6E7     		b	.L144
+ 1094              	.L146:
+ 1095 0128 2B68     		ldr	r3, [r5]
+ 1096 012a 374A     		ldr	r2, .L160
+ 1097 012c 9A63     		str	r2, [r3, #56]
+ 1098 012e AB6B     		ldr	r3, [r5, #56]
+ 1099 0130 019A     		ldr	r2, [sp, #4]
+ 1100 0132 1343     		orrs	r3, r3, r2
+ 1101 0134 AB63     		str	r3, [r5, #56]
+ 1102 0136 0123     		movs	r3, #1
+ 1103 0138 85F83430 		strb	r3, [r5, #52]
+ 1104 013c 0023     		movs	r3, #0
+ 1105 013e 2B63     		str	r3, [r5, #48]
+ 1106 0140 0327     		movs	r7, #3
+ 1107 0142 5CE0     		b	.L135
+ 1108              	.L157:
+ 1109 0144 436B     		ldr	r3, [r0, #52]
+ 1110 0146 13F4807F 		tst	r3, #256
+ 1111 014a 05D0     		beq	.L148
+ 1112 014c BBF1010F 		cmp	fp, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 20
+
+
+ 1113 0150 02D9     		bls	.L148
+ 1114 0152 6B6C     		ldr	r3, [r5, #68]
+ 1115 0154 032B     		cmp	r3, #3
+ 1116 0156 1CD1     		bne	.L158
+ 1117              	.L148:
+ 1118 0158 2B68     		ldr	r3, [r5]
+ 1119 015a 5A6B     		ldr	r2, [r3, #52]
+ 1120 015c 12F0080F 		tst	r2, #8
+ 1121 0160 28D1     		bne	.L149
+ 1122 0162 5A6B     		ldr	r2, [r3, #52]
+ 1123 0164 12F4007F 		tst	r2, #512
+ 1124 0168 24D1     		bne	.L149
+ 1125 016a 5A6B     		ldr	r2, [r3, #52]
+ 1126 016c 12F0020F 		tst	r2, #2
+ 1127 0170 2CD1     		bne	.L159
+ 1128 0172 5A6B     		ldr	r2, [r3, #52]
+ 1129 0174 12F0100F 		tst	r2, #16
+ 1130 0178 34D0     		beq	.L152
+ 1131 017a 234A     		ldr	r2, .L160
+ 1132 017c 9A63     		str	r2, [r3, #56]
+ 1133 017e AB6B     		ldr	r3, [r5, #56]
+ 1134 0180 43F01003 		orr	r3, r3, #16
+ 1135 0184 AB63     		str	r3, [r5, #56]
+ 1136 0186 0123     		movs	r3, #1
+ 1137 0188 85F83430 		strb	r3, [r5, #52]
+ 1138 018c 0023     		movs	r3, #0
+ 1139 018e 2B63     		str	r3, [r5, #48]
+ 1140 0190 35E0     		b	.L135
+ 1141              	.L158:
+ 1142 0192 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 1143 0196 0346     		mov	r3, r0
+ 1144 0198 0028     		cmp	r0, #0
+ 1145 019a DDD0     		beq	.L148
+ 1146 019c 2A68     		ldr	r2, [r5]
+ 1147 019e 1A49     		ldr	r1, .L160
+ 1148 01a0 9163     		str	r1, [r2, #56]
+ 1149 01a2 AA6B     		ldr	r2, [r5, #56]
+ 1150 01a4 1343     		orrs	r3, r3, r2
+ 1151 01a6 AB63     		str	r3, [r5, #56]
+ 1152 01a8 0123     		movs	r3, #1
+ 1153 01aa 85F83430 		strb	r3, [r5, #52]
+ 1154 01ae 0023     		movs	r3, #0
+ 1155 01b0 2B63     		str	r3, [r5, #48]
+ 1156 01b2 24E0     		b	.L135
+ 1157              	.L149:
+ 1158 01b4 144A     		ldr	r2, .L160
+ 1159 01b6 9A63     		str	r2, [r3, #56]
+ 1160 01b8 AB6B     		ldr	r3, [r5, #56]
+ 1161 01ba 43F00803 		orr	r3, r3, #8
+ 1162 01be AB63     		str	r3, [r5, #56]
+ 1163 01c0 0123     		movs	r3, #1
+ 1164 01c2 85F83430 		strb	r3, [r5, #52]
+ 1165 01c6 0023     		movs	r3, #0
+ 1166 01c8 2B63     		str	r3, [r5, #48]
+ 1167 01ca 18E0     		b	.L135
+ 1168              	.L159:
+ 1169 01cc 0E4A     		ldr	r2, .L160
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 21
+
+
+ 1170 01ce 9A63     		str	r2, [r3, #56]
+ 1171 01d0 AB6B     		ldr	r3, [r5, #56]
+ 1172 01d2 43F00203 		orr	r3, r3, #2
+ 1173 01d6 AB63     		str	r3, [r5, #56]
+ 1174 01d8 0123     		movs	r3, #1
+ 1175 01da 85F83430 		strb	r3, [r5, #52]
+ 1176 01de 0023     		movs	r3, #0
+ 1177 01e0 2B63     		str	r3, [r5, #48]
+ 1178 01e2 0CE0     		b	.L135
+ 1179              	.L152:
+ 1180 01e4 40F23A52 		movw	r2, #1338
+ 1181 01e8 9A63     		str	r2, [r3, #56]
+ 1182 01ea 0123     		movs	r3, #1
+ 1183 01ec 85F83430 		strb	r3, [r5, #52]
+ 1184 01f0 0027     		movs	r7, #0
+ 1185 01f2 04E0     		b	.L135
+ 1186              	.L136:
+ 1187 01f4 AB6B     		ldr	r3, [r5, #56]
+ 1188 01f6 43F00053 		orr	r3, r3, #536870912
+ 1189 01fa AB63     		str	r3, [r5, #56]
+ 1190 01fc 0127     		movs	r7, #1
+ 1191              	.L135:
+ 1192 01fe 3846     		mov	r0, r7
+ 1193 0200 0BB0     		add	sp, sp, #44
+ 1194              		@ sp needed
+ 1195 0202 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1196              	.L161:
+ 1197 0206 00BF     		.align	2
+ 1198              	.L160:
+ 1199 0208 FF054000 		.word	4195839
+ 1201              		.section	.text.HAL_SD_ReadBlocks_IT,"ax",%progbits
+ 1202              		.align	1
+ 1203              		.global	HAL_SD_ReadBlocks_IT
+ 1204              		.syntax unified
+ 1205              		.thumb
+ 1206              		.thumb_func
+ 1208              	HAL_SD_ReadBlocks_IT:
+ 1209              		@ args = 0, pretend = 0, frame = 24
+ 1210              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1211 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1212 0002 87B0     		sub	sp, sp, #28
+ 1213 0004 0446     		mov	r4, r0
+ 1214 0006 0029     		cmp	r1, #0
+ 1215 0008 46D0     		beq	.L172
+ 1216 000a 1646     		mov	r6, r2
+ 1217 000c 1F46     		mov	r7, r3
+ 1218 000e 0A46     		mov	r2, r1
+ 1219 0010 90F83450 		ldrb	r5, [r0, #52]	@ zero_extendqisi2
+ 1220 0014 EDB2     		uxtb	r5, r5
+ 1221 0016 012D     		cmp	r5, #1
+ 1222 0018 50D1     		bne	.L169
+ 1223 001a 0023     		movs	r3, #0
+ 1224 001c 8363     		str	r3, [r0, #56]
+ 1225 001e F319     		adds	r3, r6, r7
+ 1226 0020 C16D     		ldr	r1, [r0, #92]
+ 1227 0022 8B42     		cmp	r3, r1
+ 1228 0024 3ED8     		bhi	.L173
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 22
+
+
+ 1229 0026 0323     		movs	r3, #3
+ 1230 0028 80F83430 		strb	r3, [r0, #52]
+ 1231 002c 0368     		ldr	r3, [r0]
+ 1232 002e 0021     		movs	r1, #0
+ 1233 0030 D962     		str	r1, [r3, #44]
+ 1234 0032 8262     		str	r2, [r0, #40]
+ 1235 0034 7A02     		lsls	r2, r7, #9
+ 1236 0036 C262     		str	r2, [r0, #44]
+ 1237 0038 0168     		ldr	r1, [r0]
+ 1238 003a CB6B     		ldr	r3, [r1, #60]
+ 1239 003c 43F40343 		orr	r3, r3, #33536
+ 1240 0040 43F02A03 		orr	r3, r3, #42
+ 1241 0044 CB63     		str	r3, [r1, #60]
+ 1242 0046 436C     		ldr	r3, [r0, #68]
+ 1243 0048 012B     		cmp	r3, #1
+ 1244 004a 00D0     		beq	.L166
+ 1245 004c 7602     		lsls	r6, r6, #9
+ 1246              	.L166:
+ 1247 004e 4FF0FF33 		mov	r3, #-1
+ 1248 0052 0093     		str	r3, [sp]
+ 1249 0054 0192     		str	r2, [sp, #4]
+ 1250 0056 9023     		movs	r3, #144
+ 1251 0058 0293     		str	r3, [sp, #8]
+ 1252 005a 0223     		movs	r3, #2
+ 1253 005c 0393     		str	r3, [sp, #12]
+ 1254 005e 0023     		movs	r3, #0
+ 1255 0060 0493     		str	r3, [sp, #16]
+ 1256 0062 0123     		movs	r3, #1
+ 1257 0064 0593     		str	r3, [sp, #20]
+ 1258 0066 6946     		mov	r1, sp
+ 1259 0068 2068     		ldr	r0, [r4]
+ 1260 006a FFF7FEFF 		bl	SDIO_ConfigData
+ 1261 006e 012F     		cmp	r7, #1
+ 1262 0070 1DD9     		bls	.L167
+ 1263 0072 0A23     		movs	r3, #10
+ 1264 0074 2363     		str	r3, [r4, #48]
+ 1265 0076 3146     		mov	r1, r6
+ 1266 0078 2068     		ldr	r0, [r4]
+ 1267 007a FFF7FEFF 		bl	SDMMC_CmdReadMultiBlock
+ 1268              	.L168:
+ 1269 007e 08B3     		cbz	r0, .L170
+ 1270 0080 2368     		ldr	r3, [r4]
+ 1271 0082 114A     		ldr	r2, .L174
+ 1272 0084 9A63     		str	r2, [r3, #56]
+ 1273 0086 A36B     		ldr	r3, [r4, #56]
+ 1274 0088 0343     		orrs	r3, r3, r0
+ 1275 008a A363     		str	r3, [r4, #56]
+ 1276 008c 0123     		movs	r3, #1
+ 1277 008e 84F83430 		strb	r3, [r4, #52]
+ 1278 0092 0023     		movs	r3, #0
+ 1279 0094 2363     		str	r3, [r4, #48]
+ 1280 0096 12E0     		b	.L164
+ 1281              	.L172:
+ 1282 0098 836B     		ldr	r3, [r0, #56]
+ 1283 009a 43F00063 		orr	r3, r3, #134217728
+ 1284 009e 8363     		str	r3, [r0, #56]
+ 1285 00a0 0125     		movs	r5, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 23
+
+
+ 1286 00a2 0CE0     		b	.L164
+ 1287              	.L173:
+ 1288 00a4 836B     		ldr	r3, [r0, #56]
+ 1289 00a6 43F00073 		orr	r3, r3, #33554432
+ 1290 00aa 8363     		str	r3, [r0, #56]
+ 1291 00ac 07E0     		b	.L164
+ 1292              	.L167:
+ 1293 00ae 0923     		movs	r3, #9
+ 1294 00b0 2363     		str	r3, [r4, #48]
+ 1295 00b2 3146     		mov	r1, r6
+ 1296 00b4 2068     		ldr	r0, [r4]
+ 1297 00b6 FFF7FEFF 		bl	SDMMC_CmdReadSingleBlock
+ 1298 00ba E0E7     		b	.L168
+ 1299              	.L169:
+ 1300 00bc 0225     		movs	r5, #2
+ 1301              	.L164:
+ 1302 00be 2846     		mov	r0, r5
+ 1303 00c0 07B0     		add	sp, sp, #28
+ 1304              		@ sp needed
+ 1305 00c2 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1306              	.L170:
+ 1307 00c4 0025     		movs	r5, #0
+ 1308 00c6 FAE7     		b	.L164
+ 1309              	.L175:
+ 1310              		.align	2
+ 1311              	.L174:
+ 1312 00c8 FF054000 		.word	4195839
+ 1314              		.section	.text.HAL_SD_WriteBlocks_IT,"ax",%progbits
+ 1315              		.align	1
+ 1316              		.global	HAL_SD_WriteBlocks_IT
+ 1317              		.syntax unified
+ 1318              		.thumb
+ 1319              		.thumb_func
+ 1321              	HAL_SD_WriteBlocks_IT:
+ 1322              		@ args = 0, pretend = 0, frame = 24
+ 1323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1324 0000 70B5     		push	{r4, r5, r6, lr}
+ 1325 0002 86B0     		sub	sp, sp, #24
+ 1326 0004 0446     		mov	r4, r0
+ 1327 0006 0029     		cmp	r1, #0
+ 1328 0008 34D0     		beq	.L186
+ 1329 000a 0846     		mov	r0, r1
+ 1330 000c 94F83450 		ldrb	r5, [r4, #52]	@ zero_extendqisi2
+ 1331 0010 EDB2     		uxtb	r5, r5
+ 1332 0012 012D     		cmp	r5, #1
+ 1333 0014 50D1     		bne	.L184
+ 1334 0016 0021     		movs	r1, #0
+ 1335 0018 A163     		str	r1, [r4, #56]
+ 1336 001a D118     		adds	r1, r2, r3
+ 1337 001c E66D     		ldr	r6, [r4, #92]
+ 1338 001e B142     		cmp	r1, r6
+ 1339 0020 2ED8     		bhi	.L187
+ 1340 0022 0321     		movs	r1, #3
+ 1341 0024 84F83410 		strb	r1, [r4, #52]
+ 1342 0028 2168     		ldr	r1, [r4]
+ 1343 002a 0026     		movs	r6, #0
+ 1344 002c CE62     		str	r6, [r1, #44]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 24
+
+
+ 1345 002e 2062     		str	r0, [r4, #32]
+ 1346 0030 5E02     		lsls	r6, r3, #9
+ 1347 0032 6662     		str	r6, [r4, #36]
+ 1348 0034 2068     		ldr	r0, [r4]
+ 1349 0036 C16B     		ldr	r1, [r0, #60]
+ 1350 0038 41F48641 		orr	r1, r1, #17152
+ 1351 003c 41F01A01 		orr	r1, r1, #26
+ 1352 0040 C163     		str	r1, [r0, #60]
+ 1353 0042 616C     		ldr	r1, [r4, #68]
+ 1354 0044 0129     		cmp	r1, #1
+ 1355 0046 00D0     		beq	.L180
+ 1356 0048 5202     		lsls	r2, r2, #9
+ 1357              	.L180:
+ 1358 004a 012B     		cmp	r3, #1
+ 1359 004c 1DD9     		bls	.L181
+ 1360 004e 2823     		movs	r3, #40
+ 1361 0050 2363     		str	r3, [r4, #48]
+ 1362 0052 1146     		mov	r1, r2
+ 1363 0054 2068     		ldr	r0, [r4]
+ 1364 0056 FFF7FEFF 		bl	SDMMC_CmdWriteMultiBlock
+ 1365              	.L182:
+ 1366 005a E8B1     		cbz	r0, .L183
+ 1367 005c 2368     		ldr	r3, [r4]
+ 1368 005e 184A     		ldr	r2, .L188
+ 1369 0060 9A63     		str	r2, [r3, #56]
+ 1370 0062 A36B     		ldr	r3, [r4, #56]
+ 1371 0064 0343     		orrs	r3, r3, r0
+ 1372 0066 A363     		str	r3, [r4, #56]
+ 1373 0068 0123     		movs	r3, #1
+ 1374 006a 84F83430 		strb	r3, [r4, #52]
+ 1375 006e 0023     		movs	r3, #0
+ 1376 0070 2363     		str	r3, [r4, #48]
+ 1377 0072 22E0     		b	.L178
+ 1378              	.L186:
+ 1379 0074 836B     		ldr	r3, [r0, #56]
+ 1380 0076 43F00063 		orr	r3, r3, #134217728
+ 1381 007a 8363     		str	r3, [r0, #56]
+ 1382 007c 0125     		movs	r5, #1
+ 1383 007e 1CE0     		b	.L178
+ 1384              	.L187:
+ 1385 0080 A36B     		ldr	r3, [r4, #56]
+ 1386 0082 43F00073 		orr	r3, r3, #33554432
+ 1387 0086 A363     		str	r3, [r4, #56]
+ 1388 0088 17E0     		b	.L178
+ 1389              	.L181:
+ 1390 008a 1823     		movs	r3, #24
+ 1391 008c 2363     		str	r3, [r4, #48]
+ 1392 008e 1146     		mov	r1, r2
+ 1393 0090 2068     		ldr	r0, [r4]
+ 1394 0092 FFF7FEFF 		bl	SDMMC_CmdWriteSingleBlock
+ 1395 0096 E0E7     		b	.L182
+ 1396              	.L183:
+ 1397 0098 4FF0FF33 		mov	r3, #-1
+ 1398 009c 0093     		str	r3, [sp]
+ 1399 009e 0196     		str	r6, [sp, #4]
+ 1400 00a0 9023     		movs	r3, #144
+ 1401 00a2 0293     		str	r3, [sp, #8]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 25
+
+
+ 1402 00a4 0025     		movs	r5, #0
+ 1403 00a6 0395     		str	r5, [sp, #12]
+ 1404 00a8 0495     		str	r5, [sp, #16]
+ 1405 00aa 0123     		movs	r3, #1
+ 1406 00ac 0593     		str	r3, [sp, #20]
+ 1407 00ae 6946     		mov	r1, sp
+ 1408 00b0 2068     		ldr	r0, [r4]
+ 1409 00b2 FFF7FEFF 		bl	SDIO_ConfigData
+ 1410 00b6 00E0     		b	.L178
+ 1411              	.L184:
+ 1412 00b8 0225     		movs	r5, #2
+ 1413              	.L178:
+ 1414 00ba 2846     		mov	r0, r5
+ 1415 00bc 06B0     		add	sp, sp, #24
+ 1416              		@ sp needed
+ 1417 00be 70BD     		pop	{r4, r5, r6, pc}
+ 1418              	.L189:
+ 1419              		.align	2
+ 1420              	.L188:
+ 1421 00c0 FF054000 		.word	4195839
+ 1423              		.section	.text.HAL_SD_ReadBlocks_DMA,"ax",%progbits
+ 1424              		.align	1
+ 1425              		.global	HAL_SD_ReadBlocks_DMA
+ 1426              		.syntax unified
+ 1427              		.thumb
+ 1428              		.thumb_func
+ 1430              	HAL_SD_ReadBlocks_DMA:
+ 1431              		@ args = 0, pretend = 0, frame = 24
+ 1432              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1433 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 1434 0004 87B0     		sub	sp, sp, #28
+ 1435 0006 0446     		mov	r4, r0
+ 1436 0008 91B1     		cbz	r1, .L201
+ 1437 000a 1646     		mov	r6, r2
+ 1438 000c 1F46     		mov	r7, r3
+ 1439 000e 0A46     		mov	r2, r1
+ 1440 0010 90F83450 		ldrb	r5, [r0, #52]	@ zero_extendqisi2
+ 1441 0014 EDB2     		uxtb	r5, r5
+ 1442 0016 012D     		cmp	r5, #1
+ 1443 0018 7FD1     		bne	.L198
+ 1444 001a 0023     		movs	r3, #0
+ 1445 001c 8363     		str	r3, [r0, #56]
+ 1446 001e F019     		adds	r0, r6, r7
+ 1447 0020 E36D     		ldr	r3, [r4, #92]
+ 1448 0022 9842     		cmp	r0, r3
+ 1449 0024 0AD9     		bls	.L193
+ 1450 0026 A36B     		ldr	r3, [r4, #56]
+ 1451 0028 43F00073 		orr	r3, r3, #33554432
+ 1452 002c A363     		str	r3, [r4, #56]
+ 1453 002e 75E0     		b	.L192
+ 1454              	.L201:
+ 1455 0030 836B     		ldr	r3, [r0, #56]
+ 1456 0032 43F00063 		orr	r3, r3, #134217728
+ 1457 0036 8363     		str	r3, [r0, #56]
+ 1458 0038 0125     		movs	r5, #1
+ 1459 003a 6FE0     		b	.L192
+ 1460              	.L193:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 26
+
+
+ 1461 003c 0323     		movs	r3, #3
+ 1462 003e 84F83430 		strb	r3, [r4, #52]
+ 1463 0042 2368     		ldr	r3, [r4]
+ 1464 0044 0021     		movs	r1, #0
+ 1465 0046 D962     		str	r1, [r3, #44]
+ 1466 0048 2068     		ldr	r0, [r4]
+ 1467 004a C36B     		ldr	r3, [r0, #60]
+ 1468 004c 43F44A73 		orr	r3, r3, #808
+ 1469 0050 43F00203 		orr	r3, r3, #2
+ 1470 0054 C363     		str	r3, [r0, #60]
+ 1471 0056 236C     		ldr	r3, [r4, #64]
+ 1472 0058 3348     		ldr	r0, .L203
+ 1473 005a D863     		str	r0, [r3, #60]
+ 1474 005c 236C     		ldr	r3, [r4, #64]
+ 1475 005e 3348     		ldr	r0, .L203+4
+ 1476 0060 D864     		str	r0, [r3, #76]
+ 1477 0062 236C     		ldr	r3, [r4, #64]
+ 1478 0064 1965     		str	r1, [r3, #80]
+ 1479 0066 236C     		ldr	r3, [r4, #64]
+ 1480 0068 9960     		str	r1, [r3, #8]
+ 1481 006a 206C     		ldr	r0, [r4, #64]
+ 1482 006c 0168     		ldr	r1, [r0]
+ 1483 006e 0B68     		ldr	r3, [r1]
+ 1484 0070 23F0C003 		bic	r3, r3, #192
+ 1485 0074 8068     		ldr	r0, [r0, #8]
+ 1486 0076 0343     		orrs	r3, r3, r0
+ 1487 0078 0B60     		str	r3, [r1]
+ 1488 007a 2168     		ldr	r1, [r4]
+ 1489 007c 4FEA4729 		lsl	r9, r7, #9
+ 1490 0080 4FEA9903 		lsr	r3, r9, #2
+ 1491 0084 8031     		adds	r1, r1, #128
+ 1492 0086 206C     		ldr	r0, [r4, #64]
+ 1493 0088 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 1494 008c 8046     		mov	r8, r0
+ 1495 008e 68BB     		cbnz	r0, .L202
+ 1496 0090 274B     		ldr	r3, .L203+8
+ 1497 0092 0122     		movs	r2, #1
+ 1498 0094 C3F88C25 		str	r2, [r3, #1420]
+ 1499 0098 636C     		ldr	r3, [r4, #68]
+ 1500 009a 9342     		cmp	r3, r2
+ 1501 009c 00D0     		beq	.L195
+ 1502 009e 7602     		lsls	r6, r6, #9
+ 1503              	.L195:
+ 1504 00a0 4FF0FF33 		mov	r3, #-1
+ 1505 00a4 0093     		str	r3, [sp]
+ 1506 00a6 CDF80490 		str	r9, [sp, #4]
+ 1507 00aa 9023     		movs	r3, #144
+ 1508 00ac 0293     		str	r3, [sp, #8]
+ 1509 00ae 0223     		movs	r3, #2
+ 1510 00b0 0393     		str	r3, [sp, #12]
+ 1511 00b2 0023     		movs	r3, #0
+ 1512 00b4 0493     		str	r3, [sp, #16]
+ 1513 00b6 0123     		movs	r3, #1
+ 1514 00b8 0593     		str	r3, [sp, #20]
+ 1515 00ba 6946     		mov	r1, sp
+ 1516 00bc 2068     		ldr	r0, [r4]
+ 1517 00be FFF7FEFF 		bl	SDIO_ConfigData
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 27
+
+
+ 1518 00c2 012F     		cmp	r7, #1
+ 1519 00c4 22D9     		bls	.L196
+ 1520 00c6 8223     		movs	r3, #130
+ 1521 00c8 2363     		str	r3, [r4, #48]
+ 1522 00ca 3146     		mov	r1, r6
+ 1523 00cc 2068     		ldr	r0, [r4]
+ 1524 00ce FFF7FEFF 		bl	SDMMC_CmdReadMultiBlock
+ 1525              	.L197:
+ 1526 00d2 38B3     		cbz	r0, .L199
+ 1527 00d4 2368     		ldr	r3, [r4]
+ 1528 00d6 174A     		ldr	r2, .L203+12
+ 1529 00d8 9A63     		str	r2, [r3, #56]
+ 1530 00da A36B     		ldr	r3, [r4, #56]
+ 1531 00dc 0343     		orrs	r3, r3, r0
+ 1532 00de A363     		str	r3, [r4, #56]
+ 1533 00e0 0123     		movs	r3, #1
+ 1534 00e2 84F83430 		strb	r3, [r4, #52]
+ 1535 00e6 0023     		movs	r3, #0
+ 1536 00e8 2363     		str	r3, [r4, #48]
+ 1537 00ea 17E0     		b	.L192
+ 1538              	.L202:
+ 1539 00ec 2268     		ldr	r2, [r4]
+ 1540 00ee D36B     		ldr	r3, [r2, #60]
+ 1541 00f0 23F49573 		bic	r3, r3, #298
+ 1542 00f4 D363     		str	r3, [r2, #60]
+ 1543 00f6 2368     		ldr	r3, [r4]
+ 1544 00f8 0E4A     		ldr	r2, .L203+12
+ 1545 00fa 9A63     		str	r2, [r3, #56]
+ 1546 00fc A36B     		ldr	r3, [r4, #56]
+ 1547 00fe 43F08043 		orr	r3, r3, #1073741824
+ 1548 0102 A363     		str	r3, [r4, #56]
+ 1549 0104 0123     		movs	r3, #1
+ 1550 0106 84F83430 		strb	r3, [r4, #52]
+ 1551 010a 07E0     		b	.L192
+ 1552              	.L196:
+ 1553 010c 8123     		movs	r3, #129
+ 1554 010e 2363     		str	r3, [r4, #48]
+ 1555 0110 3146     		mov	r1, r6
+ 1556 0112 2068     		ldr	r0, [r4]
+ 1557 0114 FFF7FEFF 		bl	SDMMC_CmdReadSingleBlock
+ 1558 0118 DBE7     		b	.L197
+ 1559              	.L198:
+ 1560 011a 0225     		movs	r5, #2
+ 1561              	.L192:
+ 1562 011c 2846     		mov	r0, r5
+ 1563 011e 07B0     		add	sp, sp, #28
+ 1564              		@ sp needed
+ 1565 0120 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 1566              	.L199:
+ 1567 0124 4546     		mov	r5, r8
+ 1568 0126 F9E7     		b	.L192
+ 1569              	.L204:
+ 1570              		.align	2
+ 1571              	.L203:
+ 1572 0128 00000000 		.word	SD_DMAReceiveCplt
+ 1573 012c 00000000 		.word	SD_DMAError
+ 1574 0130 00802542 		.word	1109753856
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 28
+
+
+ 1575 0134 FF054000 		.word	4195839
+ 1577              		.section	.text.HAL_SD_WriteBlocks_DMA,"ax",%progbits
+ 1578              		.align	1
+ 1579              		.global	HAL_SD_WriteBlocks_DMA
+ 1580              		.syntax unified
+ 1581              		.thumb
+ 1582              		.thumb_func
+ 1584              	HAL_SD_WriteBlocks_DMA:
+ 1585              		@ args = 0, pretend = 0, frame = 24
+ 1586              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1587 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1588 0002 87B0     		sub	sp, sp, #28
+ 1589 0004 0446     		mov	r4, r0
+ 1590 0006 0029     		cmp	r1, #0
+ 1591 0008 3BD0     		beq	.L216
+ 1592 000a 1E46     		mov	r6, r3
+ 1593 000c 0F46     		mov	r7, r1
+ 1594 000e 90F83450 		ldrb	r5, [r0, #52]	@ zero_extendqisi2
+ 1595 0012 EDB2     		uxtb	r5, r5
+ 1596 0014 012D     		cmp	r5, #1
+ 1597 0016 40F08480 		bne	.L214
+ 1598 001a 0023     		movs	r3, #0
+ 1599 001c 8363     		str	r3, [r0, #56]
+ 1600 001e 9319     		adds	r3, r2, r6
+ 1601 0020 C16D     		ldr	r1, [r0, #92]
+ 1602 0022 8B42     		cmp	r3, r1
+ 1603 0024 33D8     		bhi	.L217
+ 1604 0026 0323     		movs	r3, #3
+ 1605 0028 80F83430 		strb	r3, [r0, #52]
+ 1606 002c 0368     		ldr	r3, [r0]
+ 1607 002e 0021     		movs	r1, #0
+ 1608 0030 D962     		str	r1, [r3, #44]
+ 1609 0032 0068     		ldr	r0, [r0]
+ 1610 0034 C36B     		ldr	r3, [r0, #60]
+ 1611 0036 43F40673 		orr	r3, r3, #536
+ 1612 003a 43F00203 		orr	r3, r3, #2
+ 1613 003e C363     		str	r3, [r0, #60]
+ 1614 0040 E36B     		ldr	r3, [r4, #60]
+ 1615 0042 3A48     		ldr	r0, .L218
+ 1616 0044 D863     		str	r0, [r3, #60]
+ 1617 0046 E36B     		ldr	r3, [r4, #60]
+ 1618 0048 3948     		ldr	r0, .L218+4
+ 1619 004a D864     		str	r0, [r3, #76]
+ 1620 004c E36B     		ldr	r3, [r4, #60]
+ 1621 004e 1965     		str	r1, [r3, #80]
+ 1622 0050 636C     		ldr	r3, [r4, #68]
+ 1623 0052 012B     		cmp	r3, #1
+ 1624 0054 00D0     		beq	.L209
+ 1625 0056 5202     		lsls	r2, r2, #9
+ 1626              	.L209:
+ 1627 0058 012E     		cmp	r6, #1
+ 1628 005a 1DD9     		bls	.L210
+ 1629 005c A023     		movs	r3, #160
+ 1630 005e 2363     		str	r3, [r4, #48]
+ 1631 0060 1146     		mov	r1, r2
+ 1632 0062 2068     		ldr	r0, [r4]
+ 1633 0064 FFF7FEFF 		bl	SDMMC_CmdWriteMultiBlock
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 29
+
+
+ 1634              	.L211:
+ 1635 0068 E8B1     		cbz	r0, .L212
+ 1636 006a 2368     		ldr	r3, [r4]
+ 1637 006c 314A     		ldr	r2, .L218+8
+ 1638 006e 9A63     		str	r2, [r3, #56]
+ 1639 0070 A36B     		ldr	r3, [r4, #56]
+ 1640 0072 0343     		orrs	r3, r3, r0
+ 1641 0074 A363     		str	r3, [r4, #56]
+ 1642 0076 0123     		movs	r3, #1
+ 1643 0078 84F83430 		strb	r3, [r4, #52]
+ 1644 007c 0023     		movs	r3, #0
+ 1645 007e 2363     		str	r3, [r4, #48]
+ 1646 0080 50E0     		b	.L207
+ 1647              	.L216:
+ 1648 0082 836B     		ldr	r3, [r0, #56]
+ 1649 0084 43F00063 		orr	r3, r3, #134217728
+ 1650 0088 8363     		str	r3, [r0, #56]
+ 1651 008a 0125     		movs	r5, #1
+ 1652 008c 4AE0     		b	.L207
+ 1653              	.L217:
+ 1654 008e 836B     		ldr	r3, [r0, #56]
+ 1655 0090 43F00073 		orr	r3, r3, #33554432
+ 1656 0094 8363     		str	r3, [r0, #56]
+ 1657 0096 45E0     		b	.L207
+ 1658              	.L210:
+ 1659 0098 9023     		movs	r3, #144
+ 1660 009a 2363     		str	r3, [r4, #48]
+ 1661 009c 1146     		mov	r1, r2
+ 1662 009e 2068     		ldr	r0, [r4]
+ 1663 00a0 FFF7FEFF 		bl	SDMMC_CmdWriteSingleBlock
+ 1664 00a4 E0E7     		b	.L211
+ 1665              	.L212:
+ 1666 00a6 244B     		ldr	r3, .L218+12
+ 1667 00a8 0122     		movs	r2, #1
+ 1668 00aa C3F88C25 		str	r2, [r3, #1420]
+ 1669 00ae E36B     		ldr	r3, [r4, #60]
+ 1670 00b0 4022     		movs	r2, #64
+ 1671 00b2 9A60     		str	r2, [r3, #8]
+ 1672 00b4 E16B     		ldr	r1, [r4, #60]
+ 1673 00b6 0A68     		ldr	r2, [r1]
+ 1674 00b8 1368     		ldr	r3, [r2]
+ 1675 00ba 23F0C003 		bic	r3, r3, #192
+ 1676 00be 8968     		ldr	r1, [r1, #8]
+ 1677 00c0 0B43     		orrs	r3, r3, r1
+ 1678 00c2 1360     		str	r3, [r2]
+ 1679 00c4 2268     		ldr	r2, [r4]
+ 1680 00c6 7602     		lsls	r6, r6, #9
+ 1681 00c8 B308     		lsrs	r3, r6, #2
+ 1682 00ca 8032     		adds	r2, r2, #128
+ 1683 00cc 3946     		mov	r1, r7
+ 1684 00ce E06B     		ldr	r0, [r4, #60]
+ 1685 00d0 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 1686 00d4 0746     		mov	r7, r0
+ 1687 00d6 98B1     		cbz	r0, .L213
+ 1688 00d8 2268     		ldr	r2, [r4]
+ 1689 00da D36B     		ldr	r3, [r2, #60]
+ 1690 00dc 23F40673 		bic	r3, r3, #536
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 30
+
+
+ 1691 00e0 23F00203 		bic	r3, r3, #2
+ 1692 00e4 D363     		str	r3, [r2, #60]
+ 1693 00e6 2368     		ldr	r3, [r4]
+ 1694 00e8 124A     		ldr	r2, .L218+8
+ 1695 00ea 9A63     		str	r2, [r3, #56]
+ 1696 00ec A36B     		ldr	r3, [r4, #56]
+ 1697 00ee 43F08043 		orr	r3, r3, #1073741824
+ 1698 00f2 A363     		str	r3, [r4, #56]
+ 1699 00f4 0123     		movs	r3, #1
+ 1700 00f6 84F83430 		strb	r3, [r4, #52]
+ 1701 00fa 0023     		movs	r3, #0
+ 1702 00fc 2363     		str	r3, [r4, #48]
+ 1703 00fe 11E0     		b	.L207
+ 1704              	.L213:
+ 1705 0100 4FF0FF33 		mov	r3, #-1
+ 1706 0104 0093     		str	r3, [sp]
+ 1707 0106 0196     		str	r6, [sp, #4]
+ 1708 0108 9023     		movs	r3, #144
+ 1709 010a 0293     		str	r3, [sp, #8]
+ 1710 010c 0023     		movs	r3, #0
+ 1711 010e 0393     		str	r3, [sp, #12]
+ 1712 0110 0493     		str	r3, [sp, #16]
+ 1713 0112 0123     		movs	r3, #1
+ 1714 0114 0593     		str	r3, [sp, #20]
+ 1715 0116 6946     		mov	r1, sp
+ 1716 0118 2068     		ldr	r0, [r4]
+ 1717 011a FFF7FEFF 		bl	SDIO_ConfigData
+ 1718 011e 3D46     		mov	r5, r7
+ 1719 0120 00E0     		b	.L207
+ 1720              	.L214:
+ 1721 0122 0225     		movs	r5, #2
+ 1722              	.L207:
+ 1723 0124 2846     		mov	r0, r5
+ 1724 0126 07B0     		add	sp, sp, #28
+ 1725              		@ sp needed
+ 1726 0128 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1727              	.L219:
+ 1728 012a 00BF     		.align	2
+ 1729              	.L218:
+ 1730 012c 00000000 		.word	SD_DMATransmitCplt
+ 1731 0130 00000000 		.word	SD_DMAError
+ 1732 0134 FF054000 		.word	4195839
+ 1733 0138 00802542 		.word	1109753856
+ 1735              		.section	.text.HAL_SD_Erase,"ax",%progbits
+ 1736              		.align	1
+ 1737              		.global	HAL_SD_Erase
+ 1738              		.syntax unified
+ 1739              		.thumb
+ 1740              		.thumb_func
+ 1742              	HAL_SD_Erase:
+ 1743              		@ args = 0, pretend = 0, frame = 0
+ 1744              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1745 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1746 0002 90F83450 		ldrb	r5, [r0, #52]	@ zero_extendqisi2
+ 1747 0006 EDB2     		uxtb	r5, r5
+ 1748 0008 012D     		cmp	r5, #1
+ 1749 000a 6FD1     		bne	.L230
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 31
+
+
+ 1750 000c 0446     		mov	r4, r0
+ 1751 000e 0F46     		mov	r7, r1
+ 1752 0010 1646     		mov	r6, r2
+ 1753 0012 0023     		movs	r3, #0
+ 1754 0014 8363     		str	r3, [r0, #56]
+ 1755 0016 9142     		cmp	r1, r2
+ 1756 0018 14D8     		bhi	.L232
+ 1757 001a C36D     		ldr	r3, [r0, #92]
+ 1758 001c 9342     		cmp	r3, r2
+ 1759 001e 16D3     		bcc	.L233
+ 1760 0020 0323     		movs	r3, #3
+ 1761 0022 80F83430 		strb	r3, [r0, #52]
+ 1762 0026 C36C     		ldr	r3, [r0, #76]
+ 1763 0028 13F0200F 		tst	r3, #32
+ 1764 002c 14D1     		bne	.L224
+ 1765 002e 0368     		ldr	r3, [r0]
+ 1766 0030 304A     		ldr	r2, .L236
+ 1767 0032 9A63     		str	r2, [r3, #56]
+ 1768 0034 836B     		ldr	r3, [r0, #56]
+ 1769 0036 43F08063 		orr	r3, r3, #67108864
+ 1770 003a 8363     		str	r3, [r0, #56]
+ 1771 003c 0123     		movs	r3, #1
+ 1772 003e 80F83430 		strb	r3, [r0, #52]
+ 1773 0042 54E0     		b	.L221
+ 1774              	.L232:
+ 1775 0044 836B     		ldr	r3, [r0, #56]
+ 1776 0046 43F00063 		orr	r3, r3, #134217728
+ 1777 004a 8363     		str	r3, [r0, #56]
+ 1778 004c 4FE0     		b	.L221
+ 1779              	.L233:
+ 1780 004e 836B     		ldr	r3, [r0, #56]
+ 1781 0050 43F00073 		orr	r3, r3, #33554432
+ 1782 0054 8363     		str	r3, [r0, #56]
+ 1783 0056 4AE0     		b	.L221
+ 1784              	.L224:
+ 1785 0058 0021     		movs	r1, #0
+ 1786 005a 0068     		ldr	r0, [r0]
+ 1787 005c FFF7FEFF 		bl	SDIO_GetResponse
+ 1788 0060 10F0007F 		tst	r0, #33554432
+ 1789 0064 15D1     		bne	.L234
+ 1790 0066 636C     		ldr	r3, [r4, #68]
+ 1791 0068 012B     		cmp	r3, #1
+ 1792 006a 01D0     		beq	.L226
+ 1793 006c 7F02     		lsls	r7, r7, #9
+ 1794 006e 7602     		lsls	r6, r6, #9
+ 1795              	.L226:
+ 1796 0070 032B     		cmp	r3, #3
+ 1797 0072 1ED0     		beq	.L227
+ 1798 0074 3946     		mov	r1, r7
+ 1799 0076 2068     		ldr	r0, [r4]
+ 1800 0078 FFF7FEFF 		bl	SDMMC_CmdSDEraseStartAdd
+ 1801 007c A0B1     		cbz	r0, .L228
+ 1802 007e 2368     		ldr	r3, [r4]
+ 1803 0080 1C49     		ldr	r1, .L236
+ 1804 0082 9963     		str	r1, [r3, #56]
+ 1805 0084 A36B     		ldr	r3, [r4, #56]
+ 1806 0086 0343     		orrs	r3, r3, r0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 32
+
+
+ 1807 0088 A363     		str	r3, [r4, #56]
+ 1808 008a 0123     		movs	r3, #1
+ 1809 008c 84F83430 		strb	r3, [r4, #52]
+ 1810 0090 2DE0     		b	.L221
+ 1811              	.L234:
+ 1812 0092 2368     		ldr	r3, [r4]
+ 1813 0094 174A     		ldr	r2, .L236
+ 1814 0096 9A63     		str	r2, [r3, #56]
+ 1815 0098 A36B     		ldr	r3, [r4, #56]
+ 1816 009a 43F40063 		orr	r3, r3, #2048
+ 1817 009e A363     		str	r3, [r4, #56]
+ 1818 00a0 0123     		movs	r3, #1
+ 1819 00a2 84F83430 		strb	r3, [r4, #52]
+ 1820 00a6 22E0     		b	.L221
+ 1821              	.L228:
+ 1822 00a8 3146     		mov	r1, r6
+ 1823 00aa 2068     		ldr	r0, [r4]
+ 1824 00ac FFF7FEFF 		bl	SDMMC_CmdSDEraseEndAdd
+ 1825 00b0 68B9     		cbnz	r0, .L235
+ 1826              	.L227:
+ 1827 00b2 2068     		ldr	r0, [r4]
+ 1828 00b4 FFF7FEFF 		bl	SDMMC_CmdErase
+ 1829 00b8 98B1     		cbz	r0, .L229
+ 1830 00ba 2368     		ldr	r3, [r4]
+ 1831 00bc 0D49     		ldr	r1, .L236
+ 1832 00be 9963     		str	r1, [r3, #56]
+ 1833 00c0 A36B     		ldr	r3, [r4, #56]
+ 1834 00c2 0343     		orrs	r3, r3, r0
+ 1835 00c4 A363     		str	r3, [r4, #56]
+ 1836 00c6 0123     		movs	r3, #1
+ 1837 00c8 84F83430 		strb	r3, [r4, #52]
+ 1838 00cc 0FE0     		b	.L221
+ 1839              	.L235:
+ 1840 00ce 2368     		ldr	r3, [r4]
+ 1841 00d0 0849     		ldr	r1, .L236
+ 1842 00d2 9963     		str	r1, [r3, #56]
+ 1843 00d4 A36B     		ldr	r3, [r4, #56]
+ 1844 00d6 0343     		orrs	r3, r3, r0
+ 1845 00d8 A363     		str	r3, [r4, #56]
+ 1846 00da 0123     		movs	r3, #1
+ 1847 00dc 84F83430 		strb	r3, [r4, #52]
+ 1848 00e0 05E0     		b	.L221
+ 1849              	.L229:
+ 1850 00e2 0123     		movs	r3, #1
+ 1851 00e4 84F83430 		strb	r3, [r4, #52]
+ 1852 00e8 0025     		movs	r5, #0
+ 1853 00ea 00E0     		b	.L221
+ 1854              	.L230:
+ 1855 00ec 0225     		movs	r5, #2
+ 1856              	.L221:
+ 1857 00ee 2846     		mov	r0, r5
+ 1858 00f0 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1859              	.L237:
+ 1860 00f2 00BF     		.align	2
+ 1861              	.L236:
+ 1862 00f4 FF054000 		.word	4195839
+ 1864              		.section	.text.HAL_SD_GetState,"ax",%progbits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 33
+
+
+ 1865              		.align	1
+ 1866              		.global	HAL_SD_GetState
+ 1867              		.syntax unified
+ 1868              		.thumb
+ 1869              		.thumb_func
+ 1871              	HAL_SD_GetState:
+ 1872              		@ args = 0, pretend = 0, frame = 0
+ 1873              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1874              		@ link register save eliminated.
+ 1875 0000 90F83400 		ldrb	r0, [r0, #52]	@ zero_extendqisi2
+ 1876 0004 7047     		bx	lr
+ 1878              		.section	.text.HAL_SD_GetError,"ax",%progbits
+ 1879              		.align	1
+ 1880              		.global	HAL_SD_GetError
+ 1881              		.syntax unified
+ 1882              		.thumb
+ 1883              		.thumb_func
+ 1885              	HAL_SD_GetError:
+ 1886              		@ args = 0, pretend = 0, frame = 0
+ 1887              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1888              		@ link register save eliminated.
+ 1889 0000 806B     		ldr	r0, [r0, #56]
+ 1890 0002 7047     		bx	lr
+ 1892              		.section	.text.HAL_SD_TxCpltCallback,"ax",%progbits
+ 1893              		.align	1
+ 1894              		.weak	HAL_SD_TxCpltCallback
+ 1895              		.syntax unified
+ 1896              		.thumb
+ 1897              		.thumb_func
+ 1899              	HAL_SD_TxCpltCallback:
+ 1900              		@ args = 0, pretend = 0, frame = 0
+ 1901              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1902              		@ link register save eliminated.
+ 1903 0000 7047     		bx	lr
+ 1905              		.section	.text.HAL_SD_RxCpltCallback,"ax",%progbits
+ 1906              		.align	1
+ 1907              		.weak	HAL_SD_RxCpltCallback
+ 1908              		.syntax unified
+ 1909              		.thumb
+ 1910              		.thumb_func
+ 1912              	HAL_SD_RxCpltCallback:
+ 1913              		@ args = 0, pretend = 0, frame = 0
+ 1914              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1915              		@ link register save eliminated.
+ 1916 0000 7047     		bx	lr
+ 1918              		.section	.text.HAL_SD_ErrorCallback,"ax",%progbits
+ 1919              		.align	1
+ 1920              		.weak	HAL_SD_ErrorCallback
+ 1921              		.syntax unified
+ 1922              		.thumb
+ 1923              		.thumb_func
+ 1925              	HAL_SD_ErrorCallback:
+ 1926              		@ args = 0, pretend = 0, frame = 0
+ 1927              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1928              		@ link register save eliminated.
+ 1929 0000 7047     		bx	lr
+ 1931              		.section	.text.SD_DMAReceiveCplt,"ax",%progbits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 34
+
+
+ 1932              		.align	1
+ 1933              		.syntax unified
+ 1934              		.thumb
+ 1935              		.thumb_func
+ 1937              	SD_DMAReceiveCplt:
+ 1938              		@ args = 0, pretend = 0, frame = 0
+ 1939              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1940 0000 10B5     		push	{r4, lr}
+ 1941 0002 846B     		ldr	r4, [r0, #56]
+ 1942 0004 236B     		ldr	r3, [r4, #48]
+ 1943 0006 822B     		cmp	r3, #130
+ 1944 0008 11D0     		beq	.L246
+ 1945              	.L244:
+ 1946 000a 2268     		ldr	r2, [r4]
+ 1947 000c D36A     		ldr	r3, [r2, #44]
+ 1948 000e 23F00803 		bic	r3, r3, #8
+ 1949 0012 D362     		str	r3, [r2, #44]
+ 1950 0014 2368     		ldr	r3, [r4]
+ 1951 0016 40F23A52 		movw	r2, #1338
+ 1952 001a 9A63     		str	r2, [r3, #56]
+ 1953 001c 0123     		movs	r3, #1
+ 1954 001e 84F83430 		strb	r3, [r4, #52]
+ 1955 0022 0023     		movs	r3, #0
+ 1956 0024 2363     		str	r3, [r4, #48]
+ 1957 0026 2046     		mov	r0, r4
+ 1958 0028 FFF7FEFF 		bl	HAL_SD_RxCpltCallback
+ 1959 002c 10BD     		pop	{r4, pc}
+ 1960              	.L246:
+ 1961 002e 2068     		ldr	r0, [r4]
+ 1962 0030 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 1963 0034 0346     		mov	r3, r0
+ 1964 0036 0028     		cmp	r0, #0
+ 1965 0038 E7D0     		beq	.L244
+ 1966 003a A26B     		ldr	r2, [r4, #56]
+ 1967 003c 1343     		orrs	r3, r3, r2
+ 1968 003e A363     		str	r3, [r4, #56]
+ 1969 0040 2046     		mov	r0, r4
+ 1970 0042 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 1971 0046 E0E7     		b	.L244
+ 1973              		.section	.text.HAL_SD_AbortCallback,"ax",%progbits
+ 1974              		.align	1
+ 1975              		.weak	HAL_SD_AbortCallback
+ 1976              		.syntax unified
+ 1977              		.thumb
+ 1978              		.thumb_func
+ 1980              	HAL_SD_AbortCallback:
+ 1981              		@ args = 0, pretend = 0, frame = 0
+ 1982              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1983              		@ link register save eliminated.
+ 1984 0000 7047     		bx	lr
+ 1986              		.section	.text.HAL_SD_GetCardCID,"ax",%progbits
+ 1987              		.align	1
+ 1988              		.global	HAL_SD_GetCardCID
+ 1989              		.syntax unified
+ 1990              		.thumb
+ 1991              		.thumb_func
+ 1993              	HAL_SD_GetCardCID:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 35
+
+
+ 1994              		@ args = 0, pretend = 0, frame = 0
+ 1995              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1996              		@ link register save eliminated.
+ 1997 0000 90F87730 		ldrb	r3, [r0, #119]	@ zero_extendqisi2
+ 1998 0004 0B70     		strb	r3, [r1]
+ 1999 0006 436F     		ldr	r3, [r0, #116]
+ 2000 0008 C3F30F23 		ubfx	r3, r3, #8, #16
+ 2001 000c 4B80     		strh	r3, [r1, #2]	@ movhi
+ 2002 000e 426F     		ldr	r2, [r0, #116]
+ 2003 0010 836F     		ldr	r3, [r0, #120]
+ 2004 0012 1B0A     		lsrs	r3, r3, #8
+ 2005 0014 43EA0263 		orr	r3, r3, r2, lsl #24
+ 2006 0018 4B60     		str	r3, [r1, #4]
+ 2007 001a 90F87830 		ldrb	r3, [r0, #120]	@ zero_extendqisi2
+ 2008 001e 0B72     		strb	r3, [r1, #8]
+ 2009 0020 90F87F30 		ldrb	r3, [r0, #127]	@ zero_extendqisi2
+ 2010 0024 4B72     		strb	r3, [r1, #9]
+ 2011 0026 C26F     		ldr	r2, [r0, #124]
+ 2012 0028 90F88330 		ldrb	r3, [r0, #131]	@ zero_extendqisi2
+ 2013 002c 43EA0223 		orr	r3, r3, r2, lsl #8
+ 2014 0030 CB60     		str	r3, [r1, #12]
+ 2015 0032 D0F88030 		ldr	r3, [r0, #128]
+ 2016 0036 C3F30353 		ubfx	r3, r3, #20, #4
+ 2017 003a 0B74     		strb	r3, [r1, #16]
+ 2018 003c D0F88030 		ldr	r3, [r0, #128]
+ 2019 0040 C3F30B23 		ubfx	r3, r3, #8, #12
+ 2020 0044 4B82     		strh	r3, [r1, #18]	@ movhi
+ 2021 0046 D0F88030 		ldr	r3, [r0, #128]
+ 2022 004a C3F34603 		ubfx	r3, r3, #1, #7
+ 2023 004e 0B75     		strb	r3, [r1, #20]
+ 2024 0050 0123     		movs	r3, #1
+ 2025 0052 4B75     		strb	r3, [r1, #21]
+ 2026 0054 0020     		movs	r0, #0
+ 2027 0056 7047     		bx	lr
+ 2029              		.section	.text.HAL_SD_GetCardCSD,"ax",%progbits
+ 2030              		.align	1
+ 2031              		.global	HAL_SD_GetCardCSD
+ 2032              		.syntax unified
+ 2033              		.thumb
+ 2034              		.thumb_func
+ 2036              	HAL_SD_GetCardCSD:
+ 2037              		@ args = 0, pretend = 0, frame = 0
+ 2038              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2039              		@ link register save eliminated.
+ 2040 0000 0346     		mov	r3, r0
+ 2041 0002 426E     		ldr	r2, [r0, #100]
+ 2042 0004 920F     		lsrs	r2, r2, #30
+ 2043 0006 0A70     		strb	r2, [r1]
+ 2044 0008 426E     		ldr	r2, [r0, #100]
+ 2045 000a C2F38362 		ubfx	r2, r2, #26, #4
+ 2046 000e 4A70     		strb	r2, [r1, #1]
+ 2047 0010 90F86720 		ldrb	r2, [r0, #103]	@ zero_extendqisi2
+ 2048 0014 02F00302 		and	r2, r2, #3
+ 2049 0018 8A70     		strb	r2, [r1, #2]
+ 2050 001a 90F86620 		ldrb	r2, [r0, #102]	@ zero_extendqisi2
+ 2051 001e CA70     		strb	r2, [r1, #3]
+ 2052 0020 90F86520 		ldrb	r2, [r0, #101]	@ zero_extendqisi2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 36
+
+
+ 2053 0024 0A71     		strb	r2, [r1, #4]
+ 2054 0026 90F86420 		ldrb	r2, [r0, #100]	@ zero_extendqisi2
+ 2055 002a 4A71     		strb	r2, [r1, #5]
+ 2056 002c 826E     		ldr	r2, [r0, #104]
+ 2057 002e 120D     		lsrs	r2, r2, #20
+ 2058 0030 CA80     		strh	r2, [r1, #6]	@ movhi
+ 2059 0032 B0F86A20 		ldrh	r2, [r0, #106]
+ 2060 0036 02F00F02 		and	r2, r2, #15
+ 2061 003a 0A72     		strb	r2, [r1, #8]
+ 2062 003c 826E     		ldr	r2, [r0, #104]
+ 2063 003e C2F3C032 		ubfx	r2, r2, #15, #1
+ 2064 0042 4A72     		strb	r2, [r1, #9]
+ 2065 0044 826E     		ldr	r2, [r0, #104]
+ 2066 0046 C2F38032 		ubfx	r2, r2, #14, #1
+ 2067 004a 8A72     		strb	r2, [r1, #10]
+ 2068 004c 826E     		ldr	r2, [r0, #104]
+ 2069 004e C2F34032 		ubfx	r2, r2, #13, #1
+ 2070 0052 CA72     		strb	r2, [r1, #11]
+ 2071 0054 826E     		ldr	r2, [r0, #104]
+ 2072 0056 C2F30032 		ubfx	r2, r2, #12, #1
+ 2073 005a 0A73     		strb	r2, [r1, #12]
+ 2074 005c 0022     		movs	r2, #0
+ 2075 005e 4A73     		strb	r2, [r1, #13]
+ 2076 0060 426C     		ldr	r2, [r0, #68]
+ 2077 0062 002A     		cmp	r2, #0
+ 2078 0064 40F08680 		bne	.L250
+ 2079 0068 806E     		ldr	r0, [r0, #104]
+ 2080 006a 40F6FC72 		movw	r2, #4092
+ 2081 006e 02EA8002 		and	r2, r2, r0, lsl #2
+ 2082 0072 D86E     		ldr	r0, [r3, #108]
+ 2083 0074 42EA9072 		orr	r2, r2, r0, lsr #30
+ 2084 0078 0A61     		str	r2, [r1, #16]
+ 2085 007a DA6E     		ldr	r2, [r3, #108]
+ 2086 007c C2F3C262 		ubfx	r2, r2, #27, #3
+ 2087 0080 0A75     		strb	r2, [r1, #20]
+ 2088 0082 93F86F20 		ldrb	r2, [r3, #111]	@ zero_extendqisi2
+ 2089 0086 02F00702 		and	r2, r2, #7
+ 2090 008a 4A75     		strb	r2, [r1, #21]
+ 2091 008c DA6E     		ldr	r2, [r3, #108]
+ 2092 008e C2F34252 		ubfx	r2, r2, #21, #3
+ 2093 0092 8A75     		strb	r2, [r1, #22]
+ 2094 0094 DA6E     		ldr	r2, [r3, #108]
+ 2095 0096 C2F38242 		ubfx	r2, r2, #18, #3
+ 2096 009a CA75     		strb	r2, [r1, #23]
+ 2097 009c DA6E     		ldr	r2, [r3, #108]
+ 2098 009e C2F3C232 		ubfx	r2, r2, #15, #3
+ 2099 00a2 0A76     		strb	r2, [r1, #24]
+ 2100 00a4 0A69     		ldr	r2, [r1, #16]
+ 2101 00a6 0132     		adds	r2, r2, #1
+ 2102 00a8 5A65     		str	r2, [r3, #84]
+ 2103 00aa 087E     		ldrb	r0, [r1, #24]	@ zero_extendqisi2
+ 2104 00ac 00F00700 		and	r0, r0, #7
+ 2105 00b0 0230     		adds	r0, r0, #2
+ 2106 00b2 8240     		lsls	r2, r2, r0
+ 2107 00b4 5A65     		str	r2, [r3, #84]
+ 2108 00b6 91F808C0 		ldrb	ip, [r1, #8]	@ zero_extendqisi2
+ 2109 00ba 0CF00F0C 		and	ip, ip, #15
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 37
+
+
+ 2110 00be 0120     		movs	r0, #1
+ 2111 00c0 00FA0CF0 		lsl	r0, r0, ip
+ 2112 00c4 9865     		str	r0, [r3, #88]
+ 2113 00c6 400A     		lsrs	r0, r0, #9
+ 2114 00c8 00FB02F2 		mul	r2, r0, r2
+ 2115 00cc DA65     		str	r2, [r3, #92]
+ 2116 00ce 4FF40072 		mov	r2, #512
+ 2117 00d2 1A66     		str	r2, [r3, #96]
+ 2118              	.L251:
+ 2119 00d4 DA6E     		ldr	r2, [r3, #108]
+ 2120 00d6 C2F38032 		ubfx	r2, r2, #14, #1
+ 2121 00da 4A76     		strb	r2, [r1, #25]
+ 2122 00dc DA6E     		ldr	r2, [r3, #108]
+ 2123 00de C2F3C612 		ubfx	r2, r2, #7, #7
+ 2124 00e2 8A76     		strb	r2, [r1, #26]
+ 2125 00e4 DA6E     		ldr	r2, [r3, #108]
+ 2126 00e6 02F07F02 		and	r2, r2, #127
+ 2127 00ea CA76     		strb	r2, [r1, #27]
+ 2128 00ec 1A6F     		ldr	r2, [r3, #112]
+ 2129 00ee D20F     		lsrs	r2, r2, #31
+ 2130 00f0 0A77     		strb	r2, [r1, #28]
+ 2131 00f2 1A6F     		ldr	r2, [r3, #112]
+ 2132 00f4 C2F34172 		ubfx	r2, r2, #29, #2
+ 2133 00f8 4A77     		strb	r2, [r1, #29]
+ 2134 00fa 1A6F     		ldr	r2, [r3, #112]
+ 2135 00fc C2F38262 		ubfx	r2, r2, #26, #3
+ 2136 0100 8A77     		strb	r2, [r1, #30]
+ 2137 0102 1A6F     		ldr	r2, [r3, #112]
+ 2138 0104 C2F38352 		ubfx	r2, r2, #22, #4
+ 2139 0108 CA77     		strb	r2, [r1, #31]
+ 2140 010a 1A6F     		ldr	r2, [r3, #112]
+ 2141 010c C2F34052 		ubfx	r2, r2, #21, #1
+ 2142 0110 81F82020 		strb	r2, [r1, #32]
+ 2143 0114 0020     		movs	r0, #0
+ 2144 0116 81F82100 		strb	r0, [r1, #33]
+ 2145 011a B3F87220 		ldrh	r2, [r3, #114]
+ 2146 011e 02F00102 		and	r2, r2, #1
+ 2147 0122 81F82220 		strb	r2, [r1, #34]
+ 2148 0126 1A6F     		ldr	r2, [r3, #112]
+ 2149 0128 C2F3C032 		ubfx	r2, r2, #15, #1
+ 2150 012c 81F82320 		strb	r2, [r1, #35]
+ 2151 0130 1A6F     		ldr	r2, [r3, #112]
+ 2152 0132 C2F38032 		ubfx	r2, r2, #14, #1
+ 2153 0136 81F82420 		strb	r2, [r1, #36]
+ 2154 013a 1A6F     		ldr	r2, [r3, #112]
+ 2155 013c C2F34032 		ubfx	r2, r2, #13, #1
+ 2156 0140 81F82520 		strb	r2, [r1, #37]
+ 2157 0144 1A6F     		ldr	r2, [r3, #112]
+ 2158 0146 C2F30032 		ubfx	r2, r2, #12, #1
+ 2159 014a 81F82620 		strb	r2, [r1, #38]
+ 2160 014e 1A6F     		ldr	r2, [r3, #112]
+ 2161 0150 C2F38122 		ubfx	r2, r2, #10, #2
+ 2162 0154 81F82720 		strb	r2, [r1, #39]
+ 2163 0158 1A6F     		ldr	r2, [r3, #112]
+ 2164 015a C2F30122 		ubfx	r2, r2, #8, #2
+ 2165 015e 81F82820 		strb	r2, [r1, #40]
+ 2166 0162 1B6F     		ldr	r3, [r3, #112]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 38
+
+
+ 2167 0164 C3F34603 		ubfx	r3, r3, #1, #7
+ 2168 0168 81F82930 		strb	r3, [r1, #41]
+ 2169 016c 0123     		movs	r3, #1
+ 2170 016e 81F82A30 		strb	r3, [r1, #42]
+ 2171 0172 7047     		bx	lr
+ 2172              	.L250:
+ 2173 0174 012A     		cmp	r2, #1
+ 2174 0176 11D1     		bne	.L252
+ 2175 0178 826E     		ldr	r2, [r0, #104]
+ 2176 017a 1204     		lsls	r2, r2, #16
+ 2177 017c 02F47C12 		and	r2, r2, #4128768
+ 2178 0180 B0F86E00 		ldrh	r0, [r0, #110]
+ 2179 0184 0243     		orrs	r2, r2, r0
+ 2180 0186 0A61     		str	r2, [r1, #16]
+ 2181 0188 0A69     		ldr	r2, [r1, #16]
+ 2182 018a 0132     		adds	r2, r2, #1
+ 2183 018c 9202     		lsls	r2, r2, #10
+ 2184 018e 5A65     		str	r2, [r3, #84]
+ 2185 0190 DA65     		str	r2, [r3, #92]
+ 2186 0192 4FF40072 		mov	r2, #512
+ 2187 0196 9A65     		str	r2, [r3, #88]
+ 2188 0198 1A66     		str	r2, [r3, #96]
+ 2189 019a 9BE7     		b	.L251
+ 2190              	.L252:
+ 2191 019c 0268     		ldr	r2, [r0]
+ 2192 019e 0549     		ldr	r1, .L254
+ 2193 01a0 9163     		str	r1, [r2, #56]
+ 2194 01a2 826B     		ldr	r2, [r0, #56]
+ 2195 01a4 42F08052 		orr	r2, r2, #268435456
+ 2196 01a8 8263     		str	r2, [r0, #56]
+ 2197 01aa 0120     		movs	r0, #1
+ 2198 01ac 83F83400 		strb	r0, [r3, #52]
+ 2199 01b0 7047     		bx	lr
+ 2200              	.L255:
+ 2201 01b2 00BF     		.align	2
+ 2202              	.L254:
+ 2203 01b4 FF054000 		.word	4195839
+ 2205              		.section	.text.SD_InitCard,"ax",%progbits
+ 2206              		.align	1
+ 2207              		.syntax unified
+ 2208              		.thumb
+ 2209              		.thumb_func
+ 2211              	SD_InitCard:
+ 2212              		@ args = 0, pretend = 0, frame = 48
+ 2213              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2214 0000 70B5     		push	{r4, r5, r6, lr}
+ 2215 0002 90B0     		sub	sp, sp, #64
+ 2216 0004 0446     		mov	r4, r0
+ 2217 0006 0123     		movs	r3, #1
+ 2218 0008 ADF81230 		strh	r3, [sp, #18]	@ movhi
+ 2219 000c 0068     		ldr	r0, [r0]
+ 2220 000e FFF7FEFF 		bl	SDIO_GetPowerState
+ 2221 0012 0028     		cmp	r0, #0
+ 2222 0014 6CD0     		beq	.L261
+ 2223 0016 636C     		ldr	r3, [r4, #68]
+ 2224 0018 032B     		cmp	r3, #3
+ 2225 001a 45D1     		bne	.L264
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 39
+
+
+ 2226              	.L258:
+ 2227 001c 636C     		ldr	r3, [r4, #68]
+ 2228 001e 032B     		cmp	r3, #3
+ 2229 0020 5DD1     		bne	.L265
+ 2230              	.L259:
+ 2231 0022 636C     		ldr	r3, [r4, #68]
+ 2232 0024 032B     		cmp	r3, #3
+ 2233 0026 1DD0     		beq	.L260
+ 2234 0028 BDF81210 		ldrh	r1, [sp, #18]
+ 2235 002c 2165     		str	r1, [r4, #80]
+ 2236 002e 0904     		lsls	r1, r1, #16
+ 2237 0030 2068     		ldr	r0, [r4]
+ 2238 0032 FFF7FEFF 		bl	SDMMC_CmdSendCSD
+ 2239 0036 0546     		mov	r5, r0
+ 2240 0038 0028     		cmp	r0, #0
+ 2241 003a 5BD1     		bne	.L256
+ 2242 003c 0021     		movs	r1, #0
+ 2243 003e 2068     		ldr	r0, [r4]
+ 2244 0040 FFF7FEFF 		bl	SDIO_GetResponse
+ 2245 0044 6066     		str	r0, [r4, #100]
+ 2246 0046 0421     		movs	r1, #4
+ 2247 0048 2068     		ldr	r0, [r4]
+ 2248 004a FFF7FEFF 		bl	SDIO_GetResponse
+ 2249 004e A066     		str	r0, [r4, #104]
+ 2250 0050 0821     		movs	r1, #8
+ 2251 0052 2068     		ldr	r0, [r4]
+ 2252 0054 FFF7FEFF 		bl	SDIO_GetResponse
+ 2253 0058 E066     		str	r0, [r4, #108]
+ 2254 005a 0C21     		movs	r1, #12
+ 2255 005c 2068     		ldr	r0, [r4]
+ 2256 005e FFF7FEFF 		bl	SDIO_GetResponse
+ 2257 0062 2067     		str	r0, [r4, #112]
+ 2258              	.L260:
+ 2259 0064 0421     		movs	r1, #4
+ 2260 0066 2068     		ldr	r0, [r4]
+ 2261 0068 FFF7FEFF 		bl	SDIO_GetResponse
+ 2262 006c 000D     		lsrs	r0, r0, #20
+ 2263 006e E064     		str	r0, [r4, #76]
+ 2264 0070 05A9     		add	r1, sp, #20
+ 2265 0072 2046     		mov	r0, r4
+ 2266 0074 FFF7FEFF 		bl	HAL_SD_GetCardCSD
+ 2267 0078 0028     		cmp	r0, #0
+ 2268 007a 3ED1     		bne	.L262
+ 2269 007c 226D     		ldr	r2, [r4, #80]
+ 2270 007e 1204     		lsls	r2, r2, #16
+ 2271 0080 0023     		movs	r3, #0
+ 2272 0082 2068     		ldr	r0, [r4]
+ 2273 0084 FFF7FEFF 		bl	SDMMC_CmdSelDesel
+ 2274 0088 0546     		mov	r5, r0
+ 2275 008a 98BB     		cbnz	r0, .L256
+ 2276 008c 2346     		mov	r3, r4
+ 2277 008e 53F8106B 		ldr	r6, [r3], #16
+ 2278 0092 93E80700 		ldm	r3, {r0, r1, r2}
+ 2279 0096 8DE80700 		stm	sp, {r0, r1, r2}
+ 2280 009a 0434     		adds	r4, r4, #4
+ 2281 009c 94E80E00 		ldm	r4, {r1, r2, r3}
+ 2282 00a0 3046     		mov	r0, r6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 40
+
+
+ 2283 00a2 FFF7FEFF 		bl	SDIO_Init
+ 2284 00a6 25E0     		b	.L256
+ 2285              	.L264:
+ 2286 00a8 2068     		ldr	r0, [r4]
+ 2287 00aa FFF7FEFF 		bl	SDMMC_CmdSendCID
+ 2288 00ae 0546     		mov	r5, r0
+ 2289 00b0 00BB     		cbnz	r0, .L256
+ 2290 00b2 0021     		movs	r1, #0
+ 2291 00b4 2068     		ldr	r0, [r4]
+ 2292 00b6 FFF7FEFF 		bl	SDIO_GetResponse
+ 2293 00ba 6067     		str	r0, [r4, #116]
+ 2294 00bc 0421     		movs	r1, #4
+ 2295 00be 2068     		ldr	r0, [r4]
+ 2296 00c0 FFF7FEFF 		bl	SDIO_GetResponse
+ 2297 00c4 A067     		str	r0, [r4, #120]
+ 2298 00c6 0821     		movs	r1, #8
+ 2299 00c8 2068     		ldr	r0, [r4]
+ 2300 00ca FFF7FEFF 		bl	SDIO_GetResponse
+ 2301 00ce E067     		str	r0, [r4, #124]
+ 2302 00d0 0C21     		movs	r1, #12
+ 2303 00d2 2068     		ldr	r0, [r4]
+ 2304 00d4 FFF7FEFF 		bl	SDIO_GetResponse
+ 2305 00d8 C4F88000 		str	r0, [r4, #128]
+ 2306 00dc 9EE7     		b	.L258
+ 2307              	.L265:
+ 2308 00de 0DF11201 		add	r1, sp, #18
+ 2309 00e2 2068     		ldr	r0, [r4]
+ 2310 00e4 FFF7FEFF 		bl	SDMMC_CmdSetRelAdd
+ 2311 00e8 0546     		mov	r5, r0
+ 2312 00ea 0028     		cmp	r0, #0
+ 2313 00ec 99D0     		beq	.L259
+ 2314 00ee 01E0     		b	.L256
+ 2315              	.L261:
+ 2316 00f0 4FF08065 		mov	r5, #67108864
+ 2317              	.L256:
+ 2318 00f4 2846     		mov	r0, r5
+ 2319 00f6 10B0     		add	sp, sp, #64
+ 2320              		@ sp needed
+ 2321 00f8 70BD     		pop	{r4, r5, r6, pc}
+ 2322              	.L262:
+ 2323 00fa 4FF08055 		mov	r5, #268435456
+ 2324 00fe F9E7     		b	.L256
+ 2326              		.section	.text.HAL_SD_InitCard,"ax",%progbits
+ 2327              		.align	1
+ 2328              		.global	HAL_SD_InitCard
+ 2329              		.syntax unified
+ 2330              		.thumb
+ 2331              		.thumb_func
+ 2333              	HAL_SD_InitCard:
+ 2334              		@ args = 0, pretend = 0, frame = 24
+ 2335              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2336 0000 70B5     		push	{r4, r5, r6, lr}
+ 2337 0002 8AB0     		sub	sp, sp, #40
+ 2338 0004 0446     		mov	r4, r0
+ 2339 0006 0023     		movs	r3, #0
+ 2340 0008 0493     		str	r3, [sp, #16]
+ 2341 000a 0593     		str	r3, [sp, #20]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 41
+
+
+ 2342 000c 0693     		str	r3, [sp, #24]
+ 2343 000e 0793     		str	r3, [sp, #28]
+ 2344 0010 0893     		str	r3, [sp, #32]
+ 2345 0012 7623     		movs	r3, #118
+ 2346 0014 0993     		str	r3, [sp, #36]
+ 2347 0016 0AAB     		add	r3, sp, #40
+ 2348 0018 13E90700 		ldmdb	r3, {r0, r1, r2}
+ 2349 001c 8DE80700 		stm	sp, {r0, r1, r2}
+ 2350 0020 04AB     		add	r3, sp, #16
+ 2351 0022 0ECB     		ldm	r3, {r1, r2, r3}
+ 2352 0024 2068     		ldr	r0, [r4]
+ 2353 0026 FFF7FEFF 		bl	SDIO_Init
+ 2354 002a 18B1     		cbz	r0, .L272
+ 2355 002c 0125     		movs	r5, #1
+ 2356              	.L267:
+ 2357 002e 2846     		mov	r0, r5
+ 2358 0030 0AB0     		add	sp, sp, #40
+ 2359              		@ sp needed
+ 2360 0032 70BD     		pop	{r4, r5, r6, pc}
+ 2361              	.L272:
+ 2362 0034 0546     		mov	r5, r0
+ 2363 0036 1A4E     		ldr	r6, .L273
+ 2364 0038 0023     		movs	r3, #0
+ 2365 003a C6F8A030 		str	r3, [r6, #160]
+ 2366 003e 2068     		ldr	r0, [r4]
+ 2367 0040 FFF7FEFF 		bl	SDIO_PowerState_ON
+ 2368 0044 0123     		movs	r3, #1
+ 2369 0046 C6F8A030 		str	r3, [r6, #160]
+ 2370 004a 0220     		movs	r0, #2
+ 2371 004c FFF7FEFF 		bl	HAL_Delay
+ 2372 0050 2046     		mov	r0, r4
+ 2373 0052 FFF7FEFF 		bl	SD_PowerON
+ 2374 0056 30B1     		cbz	r0, .L268
+ 2375 0058 0125     		movs	r5, #1
+ 2376 005a 84F83450 		strb	r5, [r4, #52]
+ 2377 005e A36B     		ldr	r3, [r4, #56]
+ 2378 0060 0343     		orrs	r3, r3, r0
+ 2379 0062 A363     		str	r3, [r4, #56]
+ 2380 0064 E3E7     		b	.L267
+ 2381              	.L268:
+ 2382 0066 2046     		mov	r0, r4
+ 2383 0068 FFF7FEFF 		bl	SD_InitCard
+ 2384 006c 30B1     		cbz	r0, .L269
+ 2385 006e 0125     		movs	r5, #1
+ 2386 0070 84F83450 		strb	r5, [r4, #52]
+ 2387 0074 A36B     		ldr	r3, [r4, #56]
+ 2388 0076 0343     		orrs	r3, r3, r0
+ 2389 0078 A363     		str	r3, [r4, #56]
+ 2390 007a D8E7     		b	.L267
+ 2391              	.L269:
+ 2392 007c 4FF40071 		mov	r1, #512
+ 2393 0080 2068     		ldr	r0, [r4]
+ 2394 0082 FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 2395 0086 0028     		cmp	r0, #0
+ 2396 0088 D1D0     		beq	.L267
+ 2397 008a 2368     		ldr	r3, [r4]
+ 2398 008c 0549     		ldr	r1, .L273+4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 42
+
+
+ 2399 008e 9963     		str	r1, [r3, #56]
+ 2400 0090 A36B     		ldr	r3, [r4, #56]
+ 2401 0092 0343     		orrs	r3, r3, r0
+ 2402 0094 A363     		str	r3, [r4, #56]
+ 2403 0096 0125     		movs	r5, #1
+ 2404 0098 84F83450 		strb	r5, [r4, #52]
+ 2405 009c C7E7     		b	.L267
+ 2406              	.L274:
+ 2407 009e 00BF     		.align	2
+ 2408              	.L273:
+ 2409 00a0 00802542 		.word	1109753856
+ 2410 00a4 FF054000 		.word	4195839
+ 2412              		.section	.text.HAL_SD_Init,"ax",%progbits
+ 2413              		.align	1
+ 2414              		.global	HAL_SD_Init
+ 2415              		.syntax unified
+ 2416              		.thumb
+ 2417              		.thumb_func
+ 2419              	HAL_SD_Init:
+ 2420              		@ args = 0, pretend = 0, frame = 0
+ 2421              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2422 0000 A8B1     		cbz	r0, .L278
+ 2423 0002 10B5     		push	{r4, lr}
+ 2424 0004 0446     		mov	r4, r0
+ 2425 0006 90F83430 		ldrb	r3, [r0, #52]	@ zero_extendqisi2
+ 2426 000a 63B1     		cbz	r3, .L284
+ 2427              	.L277:
+ 2428 000c 0323     		movs	r3, #3
+ 2429 000e 84F83430 		strb	r3, [r4, #52]
+ 2430 0012 2046     		mov	r0, r4
+ 2431 0014 FFF7FEFF 		bl	HAL_SD_InitCard
+ 2432 0018 58B9     		cbnz	r0, .L279
+ 2433 001a A063     		str	r0, [r4, #56]
+ 2434 001c 2063     		str	r0, [r4, #48]
+ 2435 001e 0123     		movs	r3, #1
+ 2436 0020 84F83430 		strb	r3, [r4, #52]
+ 2437              	.L276:
+ 2438 0024 10BD     		pop	{r4, pc}
+ 2439              	.L284:
+ 2440 0026 0377     		strb	r3, [r0, #28]
+ 2441 0028 FFF7FEFF 		bl	HAL_SD_MspInit
+ 2442 002c EEE7     		b	.L277
+ 2443              	.L278:
+ 2444 002e 0120     		movs	r0, #1
+ 2445 0030 7047     		bx	lr
+ 2446              	.L279:
+ 2447 0032 0120     		movs	r0, #1
+ 2448 0034 F6E7     		b	.L276
+ 2450              		.section	.text.HAL_SD_GetCardStatus,"ax",%progbits
+ 2451              		.align	1
+ 2452              		.global	HAL_SD_GetCardStatus
+ 2453              		.syntax unified
+ 2454              		.thumb
+ 2455              		.thumb_func
+ 2457              	HAL_SD_GetCardStatus:
+ 2458              		@ args = 0, pretend = 0, frame = 64
+ 2459              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 43
+
+
+ 2460 0000 30B5     		push	{r4, r5, lr}
+ 2461 0002 91B0     		sub	sp, sp, #68
+ 2462 0004 0546     		mov	r5, r0
+ 2463 0006 0C46     		mov	r4, r1
+ 2464 0008 6946     		mov	r1, sp
+ 2465 000a FFF7FEFF 		bl	SD_SendSDStatus
+ 2466 000e C0B1     		cbz	r0, .L286
+ 2467 0010 2B68     		ldr	r3, [r5]
+ 2468 0012 2549     		ldr	r1, .L290
+ 2469 0014 9963     		str	r1, [r3, #56]
+ 2470 0016 AB6B     		ldr	r3, [r5, #56]
+ 2471 0018 0343     		orrs	r3, r3, r0
+ 2472 001a AB63     		str	r3, [r5, #56]
+ 2473 001c 0124     		movs	r4, #1
+ 2474 001e 85F83440 		strb	r4, [r5, #52]
+ 2475              	.L287:
+ 2476 0022 4FF40071 		mov	r1, #512
+ 2477 0026 2868     		ldr	r0, [r5]
+ 2478 0028 FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 2479 002c 30B1     		cbz	r0, .L288
+ 2480 002e 2A68     		ldr	r2, [r5]
+ 2481 0030 1D49     		ldr	r1, .L290
+ 2482 0032 9163     		str	r1, [r2, #56]
+ 2483 0034 A863     		str	r0, [r5, #56]
+ 2484 0036 0124     		movs	r4, #1
+ 2485 0038 85F83440 		strb	r4, [r5, #52]
+ 2486              	.L288:
+ 2487 003c 2046     		mov	r0, r4
+ 2488 003e 11B0     		add	sp, sp, #68
+ 2489              		@ sp needed
+ 2490 0040 30BD     		pop	{r4, r5, pc}
+ 2491              	.L286:
+ 2492 0042 009A     		ldr	r2, [sp]
+ 2493 0044 C2F38113 		ubfx	r3, r2, #6, #2
+ 2494 0048 2370     		strb	r3, [r4]
+ 2495 004a C2F34013 		ubfx	r3, r2, #5, #1
+ 2496 004e 6370     		strb	r3, [r4, #1]
+ 2497 0050 130A     		lsrs	r3, r2, #8
+ 2498 0052 23F0FF03 		bic	r3, r3, #255
+ 2499 0056 43EA1263 		orr	r3, r3, r2, lsr #24
+ 2500 005a 9BB2     		uxth	r3, r3
+ 2501 005c 6380     		strh	r3, [r4, #2]	@ movhi
+ 2502 005e 019A     		ldr	r2, [sp, #4]
+ 2503 0060 1302     		lsls	r3, r2, #8
+ 2504 0062 03F47F03 		and	r3, r3, #16711680
+ 2505 0066 43EA0263 		orr	r3, r3, r2, lsl #24
+ 2506 006a 110A     		lsrs	r1, r2, #8
+ 2507 006c 01F47F41 		and	r1, r1, #65280
+ 2508 0070 0B43     		orrs	r3, r3, r1
+ 2509 0072 43EA1263 		orr	r3, r3, r2, lsr #24
+ 2510 0076 6360     		str	r3, [r4, #4]
+ 2511 0078 029B     		ldr	r3, [sp, #8]
+ 2512 007a DAB2     		uxtb	r2, r3
+ 2513 007c 2272     		strb	r2, [r4, #8]
+ 2514 007e C3F30722 		ubfx	r2, r3, #8, #8
+ 2515 0082 6272     		strb	r2, [r4, #9]
+ 2516 0084 C3F30352 		ubfx	r2, r3, #20, #4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 44
+
+
+ 2517 0088 A272     		strb	r2, [r4, #10]
+ 2518 008a 1B0C     		lsrs	r3, r3, #16
+ 2519 008c 039A     		ldr	r2, [sp, #12]
+ 2520 008e D1B2     		uxtb	r1, r2
+ 2521 0090 23F0FF03 		bic	r3, r3, #255
+ 2522 0094 0B43     		orrs	r3, r3, r1
+ 2523 0096 A381     		strh	r3, [r4, #12]	@ movhi
+ 2524 0098 C2F38523 		ubfx	r3, r2, #10, #6
+ 2525 009c A373     		strb	r3, [r4, #14]
+ 2526 009e C2F30122 		ubfx	r2, r2, #8, #2
+ 2527 00a2 E273     		strb	r2, [r4, #15]
+ 2528 00a4 0024     		movs	r4, #0
+ 2529 00a6 BCE7     		b	.L287
+ 2530              	.L291:
+ 2531              		.align	2
+ 2532              	.L290:
+ 2533 00a8 FF054000 		.word	4195839
+ 2535              		.section	.text.HAL_SD_GetCardInfo,"ax",%progbits
+ 2536              		.align	1
+ 2537              		.global	HAL_SD_GetCardInfo
+ 2538              		.syntax unified
+ 2539              		.thumb
+ 2540              		.thumb_func
+ 2542              	HAL_SD_GetCardInfo:
+ 2543              		@ args = 0, pretend = 0, frame = 0
+ 2544              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2545              		@ link register save eliminated.
+ 2546 0000 436C     		ldr	r3, [r0, #68]
+ 2547 0002 0B60     		str	r3, [r1]
+ 2548 0004 836C     		ldr	r3, [r0, #72]
+ 2549 0006 4B60     		str	r3, [r1, #4]
+ 2550 0008 C36C     		ldr	r3, [r0, #76]
+ 2551 000a 8B60     		str	r3, [r1, #8]
+ 2552 000c 036D     		ldr	r3, [r0, #80]
+ 2553 000e CB60     		str	r3, [r1, #12]
+ 2554 0010 436D     		ldr	r3, [r0, #84]
+ 2555 0012 0B61     		str	r3, [r1, #16]
+ 2556 0014 836D     		ldr	r3, [r0, #88]
+ 2557 0016 4B61     		str	r3, [r1, #20]
+ 2558 0018 C36D     		ldr	r3, [r0, #92]
+ 2559 001a 8B61     		str	r3, [r1, #24]
+ 2560 001c 036E     		ldr	r3, [r0, #96]
+ 2561 001e CB61     		str	r3, [r1, #28]
+ 2562 0020 0020     		movs	r0, #0
+ 2563 0022 7047     		bx	lr
+ 2565              		.section	.text.HAL_SD_ConfigWideBusOperation,"ax",%progbits
+ 2566              		.align	1
+ 2567              		.global	HAL_SD_ConfigWideBusOperation
+ 2568              		.syntax unified
+ 2569              		.thumb
+ 2570              		.thumb_func
+ 2572              	HAL_SD_ConfigWideBusOperation:
+ 2573              		@ args = 0, pretend = 0, frame = 24
+ 2574              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2575 0000 30B5     		push	{r4, r5, lr}
+ 2576 0002 8BB0     		sub	sp, sp, #44
+ 2577 0004 0446     		mov	r4, r0
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 45
+
+
+ 2578 0006 0D46     		mov	r5, r1
+ 2579 0008 0323     		movs	r3, #3
+ 2580 000a 80F83430 		strb	r3, [r0, #52]
+ 2581 000e 436C     		ldr	r3, [r0, #68]
+ 2582 0010 032B     		cmp	r3, #3
+ 2583 0012 1CD0     		beq	.L294
+ 2584 0014 B1F5805F 		cmp	r1, #4096
+ 2585 0018 08D0     		beq	.L303
+ 2586 001a B1F5006F 		cmp	r1, #2048
+ 2587 001e 0AD0     		beq	.L304
+ 2588 0020 79B1     		cbz	r1, .L305
+ 2589 0022 836B     		ldr	r3, [r0, #56]
+ 2590 0024 43F00063 		orr	r3, r3, #134217728
+ 2591 0028 8363     		str	r3, [r0, #56]
+ 2592 002a 14E0     		b	.L296
+ 2593              	.L303:
+ 2594 002c 836B     		ldr	r3, [r0, #56]
+ 2595 002e 43F08053 		orr	r3, r3, #268435456
+ 2596 0032 8363     		str	r3, [r0, #56]
+ 2597 0034 0FE0     		b	.L296
+ 2598              	.L304:
+ 2599 0036 FFF7FEFF 		bl	SD_WideBus_Enable
+ 2600 003a A36B     		ldr	r3, [r4, #56]
+ 2601 003c 0343     		orrs	r3, r3, r0
+ 2602 003e A363     		str	r3, [r4, #56]
+ 2603 0040 09E0     		b	.L296
+ 2604              	.L305:
+ 2605 0042 FFF7FEFF 		bl	SD_WideBus_Disable
+ 2606 0046 A36B     		ldr	r3, [r4, #56]
+ 2607 0048 0343     		orrs	r3, r3, r0
+ 2608 004a A363     		str	r3, [r4, #56]
+ 2609 004c 03E0     		b	.L296
+ 2610              	.L294:
+ 2611 004e 836B     		ldr	r3, [r0, #56]
+ 2612 0050 43F08053 		orr	r3, r3, #268435456
+ 2613 0054 8363     		str	r3, [r0, #56]
+ 2614              	.L296:
+ 2615 0056 A36B     		ldr	r3, [r4, #56]
+ 2616 0058 C3B1     		cbz	r3, .L299
+ 2617 005a 2368     		ldr	r3, [r4]
+ 2618 005c 174A     		ldr	r2, .L306
+ 2619 005e 9A63     		str	r2, [r3, #56]
+ 2620 0060 0125     		movs	r5, #1
+ 2621 0062 84F83450 		strb	r5, [r4, #52]
+ 2622              	.L300:
+ 2623 0066 4FF40071 		mov	r1, #512
+ 2624 006a 2068     		ldr	r0, [r4]
+ 2625 006c FFF7FEFF 		bl	SDMMC_CmdBlockLength
+ 2626 0070 30B1     		cbz	r0, .L301
+ 2627 0072 2368     		ldr	r3, [r4]
+ 2628 0074 1149     		ldr	r1, .L306
+ 2629 0076 9963     		str	r1, [r3, #56]
+ 2630 0078 A36B     		ldr	r3, [r4, #56]
+ 2631 007a 0343     		orrs	r3, r3, r0
+ 2632 007c A363     		str	r3, [r4, #56]
+ 2633 007e 0125     		movs	r5, #1
+ 2634              	.L301:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 46
+
+
+ 2635 0080 0123     		movs	r3, #1
+ 2636 0082 84F83430 		strb	r3, [r4, #52]
+ 2637 0086 2846     		mov	r0, r5
+ 2638 0088 0BB0     		add	sp, sp, #44
+ 2639              		@ sp needed
+ 2640 008a 30BD     		pop	{r4, r5, pc}
+ 2641              	.L299:
+ 2642 008c 6368     		ldr	r3, [r4, #4]
+ 2643 008e 0493     		str	r3, [sp, #16]
+ 2644 0090 A368     		ldr	r3, [r4, #8]
+ 2645 0092 0593     		str	r3, [sp, #20]
+ 2646 0094 E368     		ldr	r3, [r4, #12]
+ 2647 0096 0693     		str	r3, [sp, #24]
+ 2648 0098 0795     		str	r5, [sp, #28]
+ 2649 009a 6369     		ldr	r3, [r4, #20]
+ 2650 009c 0893     		str	r3, [sp, #32]
+ 2651 009e A369     		ldr	r3, [r4, #24]
+ 2652 00a0 0993     		str	r3, [sp, #36]
+ 2653 00a2 0AAB     		add	r3, sp, #40
+ 2654 00a4 13E90700 		ldmdb	r3, {r0, r1, r2}
+ 2655 00a8 8DE80700 		stm	sp, {r0, r1, r2}
+ 2656 00ac 04AB     		add	r3, sp, #16
+ 2657 00ae 0ECB     		ldm	r3, {r1, r2, r3}
+ 2658 00b0 2068     		ldr	r0, [r4]
+ 2659 00b2 FFF7FEFF 		bl	SDIO_Init
+ 2660 00b6 0025     		movs	r5, #0
+ 2661 00b8 D5E7     		b	.L300
+ 2662              	.L307:
+ 2663 00ba 00BF     		.align	2
+ 2664              	.L306:
+ 2665 00bc FF054000 		.word	4195839
+ 2667              		.section	.text.HAL_SD_GetCardState,"ax",%progbits
+ 2668              		.align	1
+ 2669              		.global	HAL_SD_GetCardState
+ 2670              		.syntax unified
+ 2671              		.thumb
+ 2672              		.thumb_func
+ 2674              	HAL_SD_GetCardState:
+ 2675              		@ args = 0, pretend = 0, frame = 8
+ 2676              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2677 0000 10B5     		push	{r4, lr}
+ 2678 0002 82B0     		sub	sp, sp, #8
+ 2679 0004 0446     		mov	r4, r0
+ 2680 0006 0023     		movs	r3, #0
+ 2681 0008 0193     		str	r3, [sp, #4]
+ 2682 000a 01A9     		add	r1, sp, #4
+ 2683 000c FFF7FEFF 		bl	SD_SendStatus
+ 2684 0010 10B1     		cbz	r0, .L309
+ 2685 0012 A36B     		ldr	r3, [r4, #56]
+ 2686 0014 0343     		orrs	r3, r3, r0
+ 2687 0016 A363     		str	r3, [r4, #56]
+ 2688              	.L309:
+ 2689 0018 0198     		ldr	r0, [sp, #4]
+ 2690 001a C0F34320 		ubfx	r0, r0, #9, #4
+ 2691 001e 02B0     		add	sp, sp, #8
+ 2692              		@ sp needed
+ 2693 0020 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 47
+
+
+ 2695              		.section	.text.SD_DMAError,"ax",%progbits
+ 2696              		.align	1
+ 2697              		.syntax unified
+ 2698              		.thumb
+ 2699              		.thumb_func
+ 2701              	SD_DMAError:
+ 2702              		@ args = 0, pretend = 0, frame = 0
+ 2703              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2704 0000 10B5     		push	{r4, lr}
+ 2705 0002 846B     		ldr	r4, [r0, #56]
+ 2706 0004 FFF7FEFF 		bl	HAL_DMA_GetError
+ 2707 0008 0228     		cmp	r0, #2
+ 2708 000a 0AD0     		beq	.L311
+ 2709 000c 236C     		ldr	r3, [r4, #64]
+ 2710 000e 5B6D     		ldr	r3, [r3, #84]
+ 2711 0010 E26B     		ldr	r2, [r4, #60]
+ 2712 0012 526D     		ldr	r2, [r2, #84]
+ 2713 0014 012B     		cmp	r3, #1
+ 2714 0016 05D0     		beq	.L313
+ 2715 0018 012A     		cmp	r2, #1
+ 2716 001a 03D0     		beq	.L313
+ 2717              	.L314:
+ 2718 001c 2046     		mov	r0, r4
+ 2719 001e FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 2720              	.L311:
+ 2721 0022 10BD     		pop	{r4, pc}
+ 2722              	.L313:
+ 2723 0024 2368     		ldr	r3, [r4]
+ 2724 0026 0F4A     		ldr	r2, .L318
+ 2725 0028 9A63     		str	r2, [r3, #56]
+ 2726 002a 2268     		ldr	r2, [r4]
+ 2727 002c D36B     		ldr	r3, [r2, #60]
+ 2728 002e 23F49D73 		bic	r3, r3, #314
+ 2729 0032 D363     		str	r3, [r2, #60]
+ 2730 0034 A36B     		ldr	r3, [r4, #56]
+ 2731 0036 43F08043 		orr	r3, r3, #1073741824
+ 2732 003a A363     		str	r3, [r4, #56]
+ 2733 003c 2046     		mov	r0, r4
+ 2734 003e FFF7FEFF 		bl	HAL_SD_GetCardState
+ 2735 0042 0538     		subs	r0, r0, #5
+ 2736 0044 0128     		cmp	r0, #1
+ 2737 0046 05D9     		bls	.L317
+ 2738              	.L315:
+ 2739 0048 0123     		movs	r3, #1
+ 2740 004a 84F83430 		strb	r3, [r4, #52]
+ 2741 004e 0023     		movs	r3, #0
+ 2742 0050 2363     		str	r3, [r4, #48]
+ 2743 0052 E3E7     		b	.L314
+ 2744              	.L317:
+ 2745 0054 2068     		ldr	r0, [r4]
+ 2746 0056 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 2747 005a A36B     		ldr	r3, [r4, #56]
+ 2748 005c 0343     		orrs	r3, r3, r0
+ 2749 005e A363     		str	r3, [r4, #56]
+ 2750 0060 F2E7     		b	.L315
+ 2751              	.L319:
+ 2752 0062 00BF     		.align	2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 48
+
+
+ 2753              	.L318:
+ 2754 0064 FF054000 		.word	4195839
+ 2756              		.section	.text.SD_DMATxAbort,"ax",%progbits
+ 2757              		.align	1
+ 2758              		.syntax unified
+ 2759              		.thumb
+ 2760              		.thumb_func
+ 2762              	SD_DMATxAbort:
+ 2763              		@ args = 0, pretend = 0, frame = 0
+ 2764              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2765 0000 10B5     		push	{r4, lr}
+ 2766 0002 846B     		ldr	r4, [r0, #56]
+ 2767 0004 2368     		ldr	r3, [r4]
+ 2768 0006 40F23A52 		movw	r2, #1338
+ 2769 000a 9A63     		str	r2, [r3, #56]
+ 2770 000c 2046     		mov	r0, r4
+ 2771 000e FFF7FEFF 		bl	HAL_SD_GetCardState
+ 2772 0012 0123     		movs	r3, #1
+ 2773 0014 84F83430 		strb	r3, [r4, #52]
+ 2774 0018 0023     		movs	r3, #0
+ 2775 001a 2363     		str	r3, [r4, #48]
+ 2776 001c 0538     		subs	r0, r0, #5
+ 2777 001e 0128     		cmp	r0, #1
+ 2778 0020 05D9     		bls	.L325
+ 2779              	.L321:
+ 2780 0022 A36B     		ldr	r3, [r4, #56]
+ 2781 0024 53B9     		cbnz	r3, .L322
+ 2782 0026 2046     		mov	r0, r4
+ 2783 0028 FFF7FEFF 		bl	HAL_SD_AbortCallback
+ 2784              	.L320:
+ 2785 002c 10BD     		pop	{r4, pc}
+ 2786              	.L325:
+ 2787 002e 2068     		ldr	r0, [r4]
+ 2788 0030 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 2789 0034 A36B     		ldr	r3, [r4, #56]
+ 2790 0036 0343     		orrs	r3, r3, r0
+ 2791 0038 A363     		str	r3, [r4, #56]
+ 2792 003a F2E7     		b	.L321
+ 2793              	.L322:
+ 2794 003c 2046     		mov	r0, r4
+ 2795 003e FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 2796 0042 F3E7     		b	.L320
+ 2798              		.section	.text.SD_DMARxAbort,"ax",%progbits
+ 2799              		.align	1
+ 2800              		.syntax unified
+ 2801              		.thumb
+ 2802              		.thumb_func
+ 2804              	SD_DMARxAbort:
+ 2805              		@ args = 0, pretend = 0, frame = 0
+ 2806              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2807 0000 10B5     		push	{r4, lr}
+ 2808 0002 846B     		ldr	r4, [r0, #56]
+ 2809 0004 2368     		ldr	r3, [r4]
+ 2810 0006 40F23A52 		movw	r2, #1338
+ 2811 000a 9A63     		str	r2, [r3, #56]
+ 2812 000c 2046     		mov	r0, r4
+ 2813 000e FFF7FEFF 		bl	HAL_SD_GetCardState
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 49
+
+
+ 2814 0012 0123     		movs	r3, #1
+ 2815 0014 84F83430 		strb	r3, [r4, #52]
+ 2816 0018 0023     		movs	r3, #0
+ 2817 001a 2363     		str	r3, [r4, #48]
+ 2818 001c 0538     		subs	r0, r0, #5
+ 2819 001e 0128     		cmp	r0, #1
+ 2820 0020 05D9     		bls	.L331
+ 2821              	.L327:
+ 2822 0022 A36B     		ldr	r3, [r4, #56]
+ 2823 0024 53B9     		cbnz	r3, .L328
+ 2824 0026 2046     		mov	r0, r4
+ 2825 0028 FFF7FEFF 		bl	HAL_SD_AbortCallback
+ 2826              	.L326:
+ 2827 002c 10BD     		pop	{r4, pc}
+ 2828              	.L331:
+ 2829 002e 2068     		ldr	r0, [r4]
+ 2830 0030 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 2831 0034 A36B     		ldr	r3, [r4, #56]
+ 2832 0036 0343     		orrs	r3, r3, r0
+ 2833 0038 A363     		str	r3, [r4, #56]
+ 2834 003a F2E7     		b	.L327
+ 2835              	.L328:
+ 2836 003c 2046     		mov	r0, r4
+ 2837 003e FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 2838 0042 F3E7     		b	.L326
+ 2840              		.section	.text.HAL_SD_IRQHandler,"ax",%progbits
+ 2841              		.align	1
+ 2842              		.global	HAL_SD_IRQHandler
+ 2843              		.syntax unified
+ 2844              		.thumb
+ 2845              		.thumb_func
+ 2847              	HAL_SD_IRQHandler:
+ 2848              		@ args = 0, pretend = 0, frame = 0
+ 2849              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2850 0000 38B5     		push	{r3, r4, r5, lr}
+ 2851 0002 0446     		mov	r4, r0
+ 2852 0004 056B     		ldr	r5, [r0, #48]
+ 2853 0006 0368     		ldr	r3, [r0]
+ 2854 0008 5A6B     		ldr	r2, [r3, #52]
+ 2855 000a 12F4004F 		tst	r2, #32768
+ 2856 000e 02D0     		beq	.L333
+ 2857 0010 15F0080F 		tst	r5, #8
+ 2858 0014 28D1     		bne	.L350
+ 2859              	.L333:
+ 2860 0016 5A6B     		ldr	r2, [r3, #52]
+ 2861 0018 12F4807F 		tst	r2, #256
+ 2862 001c 5AD0     		beq	.L335
+ 2863 001e 4FF48072 		mov	r2, #256
+ 2864 0022 9A63     		str	r2, [r3, #56]
+ 2865 0024 2268     		ldr	r2, [r4]
+ 2866 0026 D36B     		ldr	r3, [r2, #60]
+ 2867 0028 23F44343 		bic	r3, r3, #49920
+ 2868 002c 23F03A03 		bic	r3, r3, #58
+ 2869 0030 D363     		str	r3, [r2, #60]
+ 2870 0032 2268     		ldr	r2, [r4]
+ 2871 0034 D36A     		ldr	r3, [r2, #44]
+ 2872 0036 23F00103 		bic	r3, r3, #1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 50
+
+
+ 2873 003a D362     		str	r3, [r2, #44]
+ 2874 003c 15F0080F 		tst	r5, #8
+ 2875 0040 26D0     		beq	.L336
+ 2876 0042 15F0220F 		tst	r5, #34
+ 2877 0046 12D1     		bne	.L351
+ 2878              	.L337:
+ 2879 0048 2368     		ldr	r3, [r4]
+ 2880 004a 40F23A52 		movw	r2, #1338
+ 2881 004e 9A63     		str	r2, [r3, #56]
+ 2882 0050 0123     		movs	r3, #1
+ 2883 0052 84F83430 		strb	r3, [r4, #52]
+ 2884 0056 0023     		movs	r3, #0
+ 2885 0058 2363     		str	r3, [r4, #48]
+ 2886 005a 15F0030F 		tst	r5, #3
+ 2887 005e 13D0     		beq	.L338
+ 2888 0060 2046     		mov	r0, r4
+ 2889 0062 FFF7FEFF 		bl	HAL_SD_RxCpltCallback
+ 2890 0066 01E0     		b	.L332
+ 2891              	.L350:
+ 2892 0068 FFF7FEFF 		bl	SD_Read_IT
+ 2893              	.L332:
+ 2894 006c 38BD     		pop	{r3, r4, r5, pc}
+ 2895              	.L351:
+ 2896 006e 2068     		ldr	r0, [r4]
+ 2897 0070 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 2898 0074 0346     		mov	r3, r0
+ 2899 0076 0028     		cmp	r0, #0
+ 2900 0078 E6D0     		beq	.L337
+ 2901 007a A26B     		ldr	r2, [r4, #56]
+ 2902 007c 1343     		orrs	r3, r3, r2
+ 2903 007e A363     		str	r3, [r4, #56]
+ 2904 0080 2046     		mov	r0, r4
+ 2905 0082 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 2906 0086 DFE7     		b	.L337
+ 2907              	.L338:
+ 2908 0088 2046     		mov	r0, r4
+ 2909 008a FFF7FEFF 		bl	HAL_SD_TxCpltCallback
+ 2910 008e EDE7     		b	.L332
+ 2911              	.L336:
+ 2912 0090 15F0800F 		tst	r5, #128
+ 2913 0094 EAD0     		beq	.L332
+ 2914 0096 15F0200F 		tst	r5, #32
+ 2915 009a 0ED1     		bne	.L352
+ 2916              	.L339:
+ 2917 009c 15F0030F 		tst	r5, #3
+ 2918 00a0 E4D1     		bne	.L332
+ 2919 00a2 2268     		ldr	r2, [r4]
+ 2920 00a4 D36A     		ldr	r3, [r2, #44]
+ 2921 00a6 23F00803 		bic	r3, r3, #8
+ 2922 00aa D362     		str	r3, [r2, #44]
+ 2923 00ac 0123     		movs	r3, #1
+ 2924 00ae 84F83430 		strb	r3, [r4, #52]
+ 2925 00b2 2046     		mov	r0, r4
+ 2926 00b4 FFF7FEFF 		bl	HAL_SD_TxCpltCallback
+ 2927 00b8 D8E7     		b	.L332
+ 2928              	.L352:
+ 2929 00ba 2068     		ldr	r0, [r4]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 51
+
+
+ 2930 00bc FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 2931 00c0 0346     		mov	r3, r0
+ 2932 00c2 0028     		cmp	r0, #0
+ 2933 00c4 EAD0     		beq	.L339
+ 2934 00c6 A26B     		ldr	r2, [r4, #56]
+ 2935 00c8 1343     		orrs	r3, r3, r2
+ 2936 00ca A363     		str	r3, [r4, #56]
+ 2937 00cc 2046     		mov	r0, r4
+ 2938 00ce FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 2939 00d2 E3E7     		b	.L339
+ 2940              	.L335:
+ 2941 00d4 5A6B     		ldr	r2, [r3, #52]
+ 2942 00d6 12F4804F 		tst	r2, #16384
+ 2943 00da 02D0     		beq	.L340
+ 2944 00dc 15F0080F 		tst	r5, #8
+ 2945 00e0 55D1     		bne	.L353
+ 2946              	.L340:
+ 2947 00e2 596B     		ldr	r1, [r3, #52]
+ 2948 00e4 40F23A22 		movw	r2, #570
+ 2949 00e8 1142     		tst	r1, r2
+ 2950 00ea BFD0     		beq	.L332
+ 2951 00ec 5A6B     		ldr	r2, [r3, #52]
+ 2952 00ee 12F0020F 		tst	r2, #2
+ 2953 00f2 03D0     		beq	.L341
+ 2954 00f4 A26B     		ldr	r2, [r4, #56]
+ 2955 00f6 42F00202 		orr	r2, r2, #2
+ 2956 00fa A263     		str	r2, [r4, #56]
+ 2957              	.L341:
+ 2958 00fc 5A6B     		ldr	r2, [r3, #52]
+ 2959 00fe 12F0080F 		tst	r2, #8
+ 2960 0102 03D0     		beq	.L342
+ 2961 0104 A26B     		ldr	r2, [r4, #56]
+ 2962 0106 42F00802 		orr	r2, r2, #8
+ 2963 010a A263     		str	r2, [r4, #56]
+ 2964              	.L342:
+ 2965 010c 5A6B     		ldr	r2, [r3, #52]
+ 2966 010e 12F0200F 		tst	r2, #32
+ 2967 0112 03D0     		beq	.L343
+ 2968 0114 A26B     		ldr	r2, [r4, #56]
+ 2969 0116 42F02002 		orr	r2, r2, #32
+ 2970 011a A263     		str	r2, [r4, #56]
+ 2971              	.L343:
+ 2972 011c 5A6B     		ldr	r2, [r3, #52]
+ 2973 011e 12F0100F 		tst	r2, #16
+ 2974 0122 03D0     		beq	.L344
+ 2975 0124 A26B     		ldr	r2, [r4, #56]
+ 2976 0126 42F01002 		orr	r2, r2, #16
+ 2977 012a A263     		str	r2, [r4, #56]
+ 2978              	.L344:
+ 2979 012c 5A6B     		ldr	r2, [r3, #52]
+ 2980 012e 12F4007F 		tst	r2, #512
+ 2981 0132 03D0     		beq	.L345
+ 2982 0134 A26B     		ldr	r2, [r4, #56]
+ 2983 0136 42F00802 		orr	r2, r2, #8
+ 2984 013a A263     		str	r2, [r4, #56]
+ 2985              	.L345:
+ 2986 013c 40F23A72 		movw	r2, #1850
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 52
+
+
+ 2987 0140 9A63     		str	r2, [r3, #56]
+ 2988 0142 2268     		ldr	r2, [r4]
+ 2989 0144 D36B     		ldr	r3, [r2, #60]
+ 2990 0146 23F44E73 		bic	r3, r3, #824
+ 2991 014a 23F00203 		bic	r3, r3, #2
+ 2992 014e D363     		str	r3, [r2, #60]
+ 2993 0150 2068     		ldr	r0, [r4]
+ 2994 0152 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 2995 0156 A36B     		ldr	r3, [r4, #56]
+ 2996 0158 0343     		orrs	r3, r3, r0
+ 2997 015a A363     		str	r3, [r4, #56]
+ 2998 015c 15F0080F 		tst	r5, #8
+ 2999 0160 19D1     		bne	.L354
+ 3000 0162 15F0800F 		tst	r5, #128
+ 3001 0166 81D0     		beq	.L332
+ 3002 0168 15F0300F 		tst	r5, #48
+ 3003 016c 1CD1     		bne	.L355
+ 3004 016e 15F0030F 		tst	r5, #3
+ 3005 0172 26D0     		beq	.L348
+ 3006 0174 236C     		ldr	r3, [r4, #64]
+ 3007 0176 184A     		ldr	r2, .L356
+ 3008 0178 1A65     		str	r2, [r3, #80]
+ 3009 017a 206C     		ldr	r0, [r4, #64]
+ 3010 017c FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 3011 0180 0028     		cmp	r0, #0
+ 3012 0182 3FF473AF 		beq	.L332
+ 3013 0186 206C     		ldr	r0, [r4, #64]
+ 3014 0188 FFF7FEFF 		bl	SD_DMARxAbort
+ 3015 018c 6EE7     		b	.L332
+ 3016              	.L353:
+ 3017 018e 2046     		mov	r0, r4
+ 3018 0190 FFF7FEFF 		bl	SD_Write_IT
+ 3019 0194 6AE7     		b	.L332
+ 3020              	.L354:
+ 3021 0196 0123     		movs	r3, #1
+ 3022 0198 84F83430 		strb	r3, [r4, #52]
+ 3023 019c 0023     		movs	r3, #0
+ 3024 019e 2363     		str	r3, [r4, #48]
+ 3025 01a0 2046     		mov	r0, r4
+ 3026 01a2 FFF7FEFF 		bl	HAL_SD_ErrorCallback
+ 3027 01a6 61E7     		b	.L332
+ 3028              	.L355:
+ 3029 01a8 E36B     		ldr	r3, [r4, #60]
+ 3030 01aa 0C4A     		ldr	r2, .L356+4
+ 3031 01ac 1A65     		str	r2, [r3, #80]
+ 3032 01ae E06B     		ldr	r0, [r4, #60]
+ 3033 01b0 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 3034 01b4 0028     		cmp	r0, #0
+ 3035 01b6 3FF459AF 		beq	.L332
+ 3036 01ba E06B     		ldr	r0, [r4, #60]
+ 3037 01bc FFF7FEFF 		bl	SD_DMATxAbort
+ 3038 01c0 54E7     		b	.L332
+ 3039              	.L348:
+ 3040 01c2 0023     		movs	r3, #0
+ 3041 01c4 A363     		str	r3, [r4, #56]
+ 3042 01c6 0122     		movs	r2, #1
+ 3043 01c8 84F83420 		strb	r2, [r4, #52]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 53
+
+
+ 3044 01cc 2363     		str	r3, [r4, #48]
+ 3045 01ce 2046     		mov	r0, r4
+ 3046 01d0 FFF7FEFF 		bl	HAL_SD_AbortCallback
+ 3047 01d4 4AE7     		b	.L332
+ 3048              	.L357:
+ 3049 01d6 00BF     		.align	2
+ 3050              	.L356:
+ 3051 01d8 00000000 		.word	SD_DMARxAbort
+ 3052 01dc 00000000 		.word	SD_DMATxAbort
+ 3054              		.section	.text.HAL_SD_Abort,"ax",%progbits
+ 3055              		.align	1
+ 3056              		.global	HAL_SD_Abort
+ 3057              		.syntax unified
+ 3058              		.thumb
+ 3059              		.thumb_func
+ 3061              	HAL_SD_Abort:
+ 3062              		@ args = 0, pretend = 0, frame = 0
+ 3063              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3064 0000 10B5     		push	{r4, lr}
+ 3065 0002 0446     		mov	r4, r0
+ 3066 0004 016B     		ldr	r1, [r0, #48]
+ 3067 0006 0268     		ldr	r2, [r0]
+ 3068 0008 D36B     		ldr	r3, [r2, #60]
+ 3069 000a 23F49D73 		bic	r3, r3, #314
+ 3070 000e D363     		str	r3, [r2, #60]
+ 3071 0010 0368     		ldr	r3, [r0]
+ 3072 0012 40F23A52 		movw	r2, #1338
+ 3073 0016 9A63     		str	r2, [r3, #56]
+ 3074 0018 0268     		ldr	r2, [r0]
+ 3075 001a D36A     		ldr	r3, [r2, #44]
+ 3076 001c 23F00103 		bic	r3, r3, #1
+ 3077 0020 D362     		str	r3, [r2, #44]
+ 3078 0022 11F0800F 		tst	r1, #128
+ 3079 0026 0AD0     		beq	.L359
+ 3080 0028 0268     		ldr	r2, [r0]
+ 3081 002a D36A     		ldr	r3, [r2, #44]
+ 3082 002c 23F00803 		bic	r3, r3, #8
+ 3083 0030 D362     		str	r3, [r2, #44]
+ 3084 0032 11F0300F 		tst	r1, #48
+ 3085 0036 11D1     		bne	.L365
+ 3086 0038 11F0030F 		tst	r1, #3
+ 3087 003c 18D1     		bne	.L366
+ 3088              	.L359:
+ 3089 003e 0123     		movs	r3, #1
+ 3090 0040 84F83430 		strb	r3, [r4, #52]
+ 3091 0044 0023     		movs	r3, #0
+ 3092 0046 2363     		str	r3, [r4, #48]
+ 3093 0048 2046     		mov	r0, r4
+ 3094 004a FFF7FEFF 		bl	HAL_SD_GetCardState
+ 3095 004e 0538     		subs	r0, r0, #5
+ 3096 0050 0128     		cmp	r0, #1
+ 3097 0052 17D9     		bls	.L367
+ 3098              	.L361:
+ 3099 0054 A36B     		ldr	r3, [r4, #56]
+ 3100 0056 D3B9     		cbnz	r3, .L363
+ 3101 0058 0020     		movs	r0, #0
+ 3102              	.L362:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 54
+
+
+ 3103 005a 10BD     		pop	{r4, pc}
+ 3104              	.L365:
+ 3105 005c C06B     		ldr	r0, [r0, #60]
+ 3106 005e FFF7FEFF 		bl	HAL_DMA_Abort
+ 3107 0062 0028     		cmp	r0, #0
+ 3108 0064 EBD0     		beq	.L359
+ 3109 0066 A36B     		ldr	r3, [r4, #56]
+ 3110 0068 43F08043 		orr	r3, r3, #1073741824
+ 3111 006c A363     		str	r3, [r4, #56]
+ 3112 006e E6E7     		b	.L359
+ 3113              	.L366:
+ 3114 0070 006C     		ldr	r0, [r0, #64]
+ 3115 0072 FFF7FEFF 		bl	HAL_DMA_Abort
+ 3116 0076 0028     		cmp	r0, #0
+ 3117 0078 E1D0     		beq	.L359
+ 3118 007a A36B     		ldr	r3, [r4, #56]
+ 3119 007c 43F08043 		orr	r3, r3, #1073741824
+ 3120 0080 A363     		str	r3, [r4, #56]
+ 3121 0082 DCE7     		b	.L359
+ 3122              	.L367:
+ 3123 0084 2068     		ldr	r0, [r4]
+ 3124 0086 FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 3125 008a A063     		str	r0, [r4, #56]
+ 3126 008c E2E7     		b	.L361
+ 3127              	.L363:
+ 3128 008e 0120     		movs	r0, #1
+ 3129 0090 E3E7     		b	.L362
+ 3131              		.section	.text.HAL_SD_Abort_IT,"ax",%progbits
+ 3132              		.align	1
+ 3133              		.global	HAL_SD_Abort_IT
+ 3134              		.syntax unified
+ 3135              		.thumb
+ 3136              		.thumb_func
+ 3138              	HAL_SD_Abort_IT:
+ 3139              		@ args = 0, pretend = 0, frame = 0
+ 3140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3141 0000 10B5     		push	{r4, lr}
+ 3142 0002 0446     		mov	r4, r0
+ 3143 0004 026B     		ldr	r2, [r0, #48]
+ 3144 0006 0168     		ldr	r1, [r0]
+ 3145 0008 CB6B     		ldr	r3, [r1, #60]
+ 3146 000a 23F49D73 		bic	r3, r3, #314
+ 3147 000e CB63     		str	r3, [r1, #60]
+ 3148 0010 0168     		ldr	r1, [r0]
+ 3149 0012 CB6A     		ldr	r3, [r1, #44]
+ 3150 0014 23F00103 		bic	r3, r3, #1
+ 3151 0018 CB62     		str	r3, [r1, #44]
+ 3152 001a 12F0800F 		tst	r2, #128
+ 3153 001e 22D0     		beq	.L369
+ 3154 0020 0168     		ldr	r1, [r0]
+ 3155 0022 CB6A     		ldr	r3, [r1, #44]
+ 3156 0024 23F00803 		bic	r3, r3, #8
+ 3157 0028 CB62     		str	r3, [r1, #44]
+ 3158 002a 12F0300F 		tst	r2, #48
+ 3159 002e 04D1     		bne	.L376
+ 3160 0030 12F0030F 		tst	r2, #3
+ 3161 0034 0CD1     		bne	.L377
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 55
+
+
+ 3162 0036 0020     		movs	r0, #0
+ 3163              	.L371:
+ 3164 0038 10BD     		pop	{r4, pc}
+ 3165              	.L376:
+ 3166 003a C36B     		ldr	r3, [r0, #60]
+ 3167 003c 184A     		ldr	r2, .L380
+ 3168 003e 1A65     		str	r2, [r3, #80]
+ 3169 0040 C06B     		ldr	r0, [r0, #60]
+ 3170 0042 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 3171 0046 0028     		cmp	r0, #0
+ 3172 0048 F6D0     		beq	.L371
+ 3173 004a 0020     		movs	r0, #0
+ 3174 004c E063     		str	r0, [r4, #60]
+ 3175 004e F3E7     		b	.L371
+ 3176              	.L377:
+ 3177 0050 036C     		ldr	r3, [r0, #64]
+ 3178 0052 144A     		ldr	r2, .L380+4
+ 3179 0054 1A65     		str	r2, [r3, #80]
+ 3180 0056 006C     		ldr	r0, [r0, #64]
+ 3181 0058 FFF7FEFF 		bl	HAL_DMA_Abort_IT
+ 3182 005c 0028     		cmp	r0, #0
+ 3183 005e EBD0     		beq	.L371
+ 3184 0060 0020     		movs	r0, #0
+ 3185 0062 2064     		str	r0, [r4, #64]
+ 3186 0064 E8E7     		b	.L371
+ 3187              	.L369:
+ 3188 0066 0368     		ldr	r3, [r0]
+ 3189 0068 40F23A52 		movw	r2, #1338
+ 3190 006c 9A63     		str	r2, [r3, #56]
+ 3191 006e FFF7FEFF 		bl	HAL_SD_GetCardState
+ 3192 0072 0123     		movs	r3, #1
+ 3193 0074 84F83430 		strb	r3, [r4, #52]
+ 3194 0078 0023     		movs	r3, #0
+ 3195 007a 2363     		str	r3, [r4, #48]
+ 3196 007c 0538     		subs	r0, r0, #5
+ 3197 007e 0128     		cmp	r0, #1
+ 3198 0080 03D9     		bls	.L378
+ 3199              	.L372:
+ 3200 0082 A36B     		ldr	r3, [r4, #56]
+ 3201 0084 33B1     		cbz	r3, .L379
+ 3202 0086 0120     		movs	r0, #1
+ 3203 0088 D6E7     		b	.L371
+ 3204              	.L378:
+ 3205 008a 2068     		ldr	r0, [r4]
+ 3206 008c FFF7FEFF 		bl	SDMMC_CmdStopTransfer
+ 3207 0090 A063     		str	r0, [r4, #56]
+ 3208 0092 F6E7     		b	.L372
+ 3209              	.L379:
+ 3210 0094 2046     		mov	r0, r4
+ 3211 0096 FFF7FEFF 		bl	HAL_SD_AbortCallback
+ 3212 009a 0020     		movs	r0, #0
+ 3213 009c CCE7     		b	.L371
+ 3214              	.L381:
+ 3215 009e 00BF     		.align	2
+ 3216              	.L380:
+ 3217 00a0 00000000 		.word	SD_DMATxAbort
+ 3218 00a4 00000000 		.word	SD_DMARxAbort
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 56
+
+
+ 3220              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 57
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_sd.c
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:18     .text.SD_DMATransmitCplt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:23     .text.SD_DMATransmitCplt:00000000 SD_DMATransmitCplt
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:35     .text.SD_PowerON:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:40     .text.SD_PowerON:00000000 SD_PowerON
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:141    .text.SD_PowerON:000000bc $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:144    .text.SD_PowerOFF:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:149    .text.SD_PowerOFF:00000000 SD_PowerOFF
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:158    .text.SD_Read_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:163    .text.SD_Read_IT:00000000 SD_Read_IT
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:197    .text.SD_Write_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:202    .text.SD_Write_IT:00000000 SD_Write_IT
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:244    .text.SD_SendSDStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:249    .text.SD_SendSDStatus:00000000 SD_SendSDStatus
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:381    .text.SD_FindSCR:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:386    .text.SD_FindSCR:00000000 SD_FindSCR
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:507    .text.SD_WideBus_Enable:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:512    .text.SD_WideBus_Enable:00000000 SD_WideBus_Enable
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:552    .text.SD_WideBus_Disable:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:557    .text.SD_WideBus_Disable:00000000 SD_WideBus_Disable
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:597    .text.SD_SendStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:602    .text.SD_SendStatus:00000000 SD_SendStatus
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:629    .text.HAL_SD_MspInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:635    .text.HAL_SD_MspInit:00000000 HAL_SD_MspInit
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:642    .text.HAL_SD_MspDeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:648    .text.HAL_SD_MspDeInit:00000000 HAL_SD_MspDeInit
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:655    .text.HAL_SD_DeInit:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:661    .text.HAL_SD_DeInit:00000000 HAL_SD_DeInit
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:681    .text.HAL_SD_ReadBlocks:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:687    .text.HAL_SD_ReadBlocks:00000000 HAL_SD_ReadBlocks
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:952    .text.HAL_SD_ReadBlocks:0000024c $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:955    .text.HAL_SD_WriteBlocks:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:961    .text.HAL_SD_WriteBlocks:00000000 HAL_SD_WriteBlocks
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1199   .text.HAL_SD_WriteBlocks:00000208 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1202   .text.HAL_SD_ReadBlocks_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1208   .text.HAL_SD_ReadBlocks_IT:00000000 HAL_SD_ReadBlocks_IT
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1312   .text.HAL_SD_ReadBlocks_IT:000000c8 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1315   .text.HAL_SD_WriteBlocks_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1321   .text.HAL_SD_WriteBlocks_IT:00000000 HAL_SD_WriteBlocks_IT
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1421   .text.HAL_SD_WriteBlocks_IT:000000c0 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1424   .text.HAL_SD_ReadBlocks_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1430   .text.HAL_SD_ReadBlocks_DMA:00000000 HAL_SD_ReadBlocks_DMA
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1572   .text.HAL_SD_ReadBlocks_DMA:00000128 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1937   .text.SD_DMAReceiveCplt:00000000 SD_DMAReceiveCplt
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2701   .text.SD_DMAError:00000000 SD_DMAError
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1578   .text.HAL_SD_WriteBlocks_DMA:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1584   .text.HAL_SD_WriteBlocks_DMA:00000000 HAL_SD_WriteBlocks_DMA
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1730   .text.HAL_SD_WriteBlocks_DMA:0000012c $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1736   .text.HAL_SD_Erase:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1742   .text.HAL_SD_Erase:00000000 HAL_SD_Erase
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1862   .text.HAL_SD_Erase:000000f4 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1865   .text.HAL_SD_GetState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1871   .text.HAL_SD_GetState:00000000 HAL_SD_GetState
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1879   .text.HAL_SD_GetError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1885   .text.HAL_SD_GetError:00000000 HAL_SD_GetError
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1893   .text.HAL_SD_TxCpltCallback:00000000 $t
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 58
+
+
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1899   .text.HAL_SD_TxCpltCallback:00000000 HAL_SD_TxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1906   .text.HAL_SD_RxCpltCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1912   .text.HAL_SD_RxCpltCallback:00000000 HAL_SD_RxCpltCallback
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1919   .text.HAL_SD_ErrorCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1925   .text.HAL_SD_ErrorCallback:00000000 HAL_SD_ErrorCallback
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1932   .text.SD_DMAReceiveCplt:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1974   .text.HAL_SD_AbortCallback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1980   .text.HAL_SD_AbortCallback:00000000 HAL_SD_AbortCallback
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1987   .text.HAL_SD_GetCardCID:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:1993   .text.HAL_SD_GetCardCID:00000000 HAL_SD_GetCardCID
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2030   .text.HAL_SD_GetCardCSD:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2036   .text.HAL_SD_GetCardCSD:00000000 HAL_SD_GetCardCSD
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2203   .text.HAL_SD_GetCardCSD:000001b4 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2206   .text.SD_InitCard:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2211   .text.SD_InitCard:00000000 SD_InitCard
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2327   .text.HAL_SD_InitCard:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2333   .text.HAL_SD_InitCard:00000000 HAL_SD_InitCard
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2409   .text.HAL_SD_InitCard:000000a0 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2413   .text.HAL_SD_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2419   .text.HAL_SD_Init:00000000 HAL_SD_Init
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2451   .text.HAL_SD_GetCardStatus:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2457   .text.HAL_SD_GetCardStatus:00000000 HAL_SD_GetCardStatus
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2533   .text.HAL_SD_GetCardStatus:000000a8 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2536   .text.HAL_SD_GetCardInfo:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2542   .text.HAL_SD_GetCardInfo:00000000 HAL_SD_GetCardInfo
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2566   .text.HAL_SD_ConfigWideBusOperation:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2572   .text.HAL_SD_ConfigWideBusOperation:00000000 HAL_SD_ConfigWideBusOperation
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2665   .text.HAL_SD_ConfigWideBusOperation:000000bc $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2668   .text.HAL_SD_GetCardState:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2674   .text.HAL_SD_GetCardState:00000000 HAL_SD_GetCardState
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2696   .text.SD_DMAError:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2754   .text.SD_DMAError:00000064 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2757   .text.SD_DMATxAbort:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2762   .text.SD_DMATxAbort:00000000 SD_DMATxAbort
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2799   .text.SD_DMARxAbort:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2804   .text.SD_DMARxAbort:00000000 SD_DMARxAbort
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2841   .text.HAL_SD_IRQHandler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:2847   .text.HAL_SD_IRQHandler:00000000 HAL_SD_IRQHandler
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:3051   .text.HAL_SD_IRQHandler:000001d8 $d
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:3055   .text.HAL_SD_Abort:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:3061   .text.HAL_SD_Abort:00000000 HAL_SD_Abort
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:3132   .text.HAL_SD_Abort_IT:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:3138   .text.HAL_SD_Abort_IT:00000000 HAL_SD_Abort_IT
+C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s:3217   .text.HAL_SD_Abort_IT:000000a0 $d
+
+UNDEFINED SYMBOLS
+SDMMC_CmdGoIdleState
+SDMMC_CmdOperCond
+SDMMC_CmdAppCommand
+SDMMC_CmdAppOperCommand
+SDIO_GetResponse
+SDIO_PowerState_OFF
+SDIO_ReadFIFO
+SDIO_WriteFIFO
+HAL_GetTick
+SDMMC_CmdBlockLength
+SDIO_ConfigData
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\cccuPv4K.s 			page 59
+
+
+SDMMC_CmdStatusRegister
+SDMMC_CmdSendSCR
+SDMMC_CmdBusWidth
+SDMMC_CmdSendStatus
+SDMMC_CmdReadMultiBlock
+SDMMC_CmdReadSingleBlock
+SDMMC_CmdStopTransfer
+SDMMC_CmdWriteMultiBlock
+SDMMC_CmdWriteSingleBlock
+HAL_DMA_Start_IT
+SDMMC_CmdSDEraseStartAdd
+SDMMC_CmdSDEraseEndAdd
+SDMMC_CmdErase
+SDIO_GetPowerState
+SDMMC_CmdSendCSD
+SDMMC_CmdSelDesel
+SDIO_Init
+SDMMC_CmdSendCID
+SDMMC_CmdSetRelAdd
+SDIO_PowerState_ON
+HAL_Delay
+HAL_DMA_GetError
+HAL_DMA_Abort_IT
+HAL_DMA_Abort
