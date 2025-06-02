@@ -163,14 +163,14 @@ int main(void)
   platform_delay(1000);
 
   // PRESSURE SENSOR CONFIGURATION
-  bmp5_read(BMP5_REG_CHIP_ID, &whoamI, 1, &hspi1);
-  printf("Pressure sensor who am I: %d\n", whoamI);
-  rslt = bmp5_init(&bmp5_ctx);
-  bmp5_error_codes_print_result("bmp5_init", rslt);
-  if (rslt == BMP5_OK) {
-    rslt = bmp5_set_config(&osr_odr_press_cfg, &bmp5_ctx);
-    bmp5_error_codes_print_result("set_config", rslt);
-  }
+  // bmp5_read(BMP5_REG_CHIP_ID, &whoamI, 1, &hspi1);
+  // printf("Pressure sensor who am I: %d\n", whoamI);
+  // rslt = bmp5_init(&bmp5_ctx);
+  // bmp5_error_codes_print_result("bmp5_init", rslt);
+  // if (rslt == BMP5_OK) {
+  //   rslt = bmp5_set_config(&osr_odr_press_cfg, &bmp5_ctx);
+  //   bmp5_error_codes_print_result("set_config", rslt);
+  // }
 
   // IMU CONFIGURATION
 
@@ -376,21 +376,21 @@ int main(void)
       // temperature_degC = 0;
 
 
-      uint8_t int_status;
-      struct bmp5_sensor_data bmp5_data;
-        rslt = bmp5_get_interrupt_status(&int_status, &bmp5_ctx);
-        bmp5_error_codes_print_result("bmp5_get_interrupt_status", rslt);
+      // uint8_t int_status;
+      // struct bmp5_sensor_data bmp5_data;
+      //   rslt = bmp5_get_interrupt_status(&int_status, &bmp5_ctx);
+      //   bmp5_error_codes_print_result("bmp5_get_interrupt_status", rslt);
 
-        if (int_status & BMP5_INT_ASSERTED_DRDY)
-        {
-            rslt = bmp5_get_sensor_data(&bmp5_data, &osr_odr_press_cfg, &bmp5_ctx);
-            bmp5_error_codes_print_result("bmp5_get_sensor_data", rslt);
+      //   if (int_status & BMP5_INT_ASSERTED_DRDY)
+      //   {
+      //       rslt = bmp5_get_sensor_data(&bmp5_data, &osr_odr_press_cfg, &bmp5_ctx);
+      //       bmp5_error_codes_print_result("bmp5_get_sensor_data", rslt);
 
-            if (rslt == BMP5_OK)
-            {
-                printf("%f\r\n", bmp5_data.pressure);
-            }
-        }
+      //       if (rslt == BMP5_OK)
+      //       {
+      //           printf("%f\r\n", bmp5_data.pressure);
+      //       }
+      //   }
     //   llcc68_set_buffer_base_address(&radio_ctx, 0x00, 0x00);
     // llcc68_write_buffer(&radio_ctx, 0x00, (uint8_t*)"Hello World!\r\n", 14);
     // llcc68_set_lora_mod_params(&radio_ctx, &mod_params);
