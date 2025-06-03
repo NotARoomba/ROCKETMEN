@@ -57,13 +57,16 @@ export default function App() {
     const subscription = buffered$.subscribe((bufferedData) => {
       if (bufferedData.length > 0) {
         console.log(bufferedData);
-        // setData((prevData) => [...prevData, ...bufferedData]);
-        setData((prevData) => {
-          const newData = [...prevData, ...bufferedData];
-          return newData.length > 50000
-            ? newData.slice(newData.length - 500000)
-            : newData;
-        });
+        setData((prevData) => [
+          ...prevData,
+          ...bufferedData.map((d) => ({ ...d, time: Date.now() })),
+        ]);
+        // setData((prevData) => {
+        //   const newData = [...prevData, ...bufferedData];
+        //   return newData.length > 10000
+        //     ? newData.slice(newData.length - 10000)
+        //     : newData;
+        // });
       }
     });
 
@@ -311,6 +314,7 @@ export default function App() {
                 <Line
                   type="monotone"
                   dataKey="accel_x"
+                  isAnimationActive={false}
                   stroke="#ff0000"
                   activeDot={{ r: 4 }}
                   dot={false}
@@ -319,6 +323,7 @@ export default function App() {
                   type="monotone"
                   dataKey="accel_y"
                   stroke="#00ff00"
+                  isAnimationActive={false}
                   activeDot={{ r: 4 }}
                   dot={false}
                 />
@@ -326,6 +331,7 @@ export default function App() {
                   type="monotone"
                   dataKey="accel_z"
                   stroke="#0000ff"
+                  isAnimationActive={false}
                   activeDot={{ r: 4 }}
                   dot={false}
                 />
@@ -375,6 +381,7 @@ export default function App() {
                 <Line
                   type="monotone"
                   dataKey="vel_x"
+                  isAnimationActive={false}
                   stroke="#ff0000"
                   activeDot={{ r: 4 }}
                   dot={false}
@@ -382,6 +389,7 @@ export default function App() {
                 <Line
                   type="monotone"
                   dataKey="vel_y"
+                  isAnimationActive={false}
                   stroke="#00ff00"
                   activeDot={{ r: 4 }}
                   dot={false}
@@ -389,6 +397,7 @@ export default function App() {
                 <Line
                   type="monotone"
                   dataKey="vel_z"
+                  isAnimationActive={false}
                   stroke="#0000ff"
                   activeDot={{ r: 4 }}
                   dot={false}
@@ -440,6 +449,7 @@ export default function App() {
               <Line
                 type="monotone"
                 dataKey="accel_x"
+                isAnimationActive={false}
                 stroke="#ff0000"
                 activeDot={{ r: 4 }}
                 dot={false}
@@ -447,6 +457,7 @@ export default function App() {
               <Line
                 type="monotone"
                 dataKey="accel_y"
+                isAnimationActive={false}
                 stroke="#00ff00"
                 activeDot={{ r: 4 }}
                 dot={false}
@@ -454,6 +465,7 @@ export default function App() {
               <Line
                 type="monotone"
                 dataKey="accel_z"
+                isAnimationActive={false}
                 stroke="#0000ff"
                 activeDot={{ r: 4 }}
                 dot={false}
@@ -505,6 +517,7 @@ export default function App() {
                 type="monotone"
                 dataKey="vel_x"
                 stroke="#ff0000"
+                isAnimationActive={false}
                 activeDot={{ r: 4 }}
                 dot={false}
               />
@@ -512,6 +525,7 @@ export default function App() {
                 type="monotone"
                 dataKey="vel_y"
                 stroke="#00ff00"
+                isAnimationActive={false}
                 activeDot={{ r: 4 }}
                 dot={false}
               />
@@ -519,6 +533,7 @@ export default function App() {
                 type="monotone"
                 dataKey="vel_z"
                 stroke="#0000ff"
+                isAnimationActive={false}
                 activeDot={{ r: 4 }}
                 dot={false}
               />

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 1
   58 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
   59 000e 0120     		movs	r0, #1
   60 0010 FFF7FEFF 		bl	HAL_Delay
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 2
 
 
   61 0014 0122     		movs	r2, #1
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 1
  119 003e FFF7FEFF 		bl	HAL_GPIO_WritePin
  120 0042 0020     		movs	r0, #0
  121 0044 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 3
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 3
 
 
  122              	.L13:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 1
  180 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
  181 0004 0D46     		mov	r5, r1
  182 0006 1646     		mov	r6, r2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 4
 
 
  183 0008 1C46     		mov	r4, r3
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 1
  239 0030 FFF7FEFF 		bl	HAL_SPI_Transmit
  240 0034 4FF47A73 		mov	r3, #1000
  241 0038 3246     		mov	r2, r6
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 5
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 5
 
 
  242 003a 2946     		mov	r1, r5
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 1
  298 004c 0292     		str	r2, [sp, #8]
  299 004e 029A     		ldr	r2, [sp, #8]
  300 0050 0394     		str	r4, [sp, #12]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 6
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 6
 
 
  301 0052 1A6B     		ldr	r2, [r3, #48]
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 1
  355 00d6 0794     		str	r4, [sp, #28]
  356 00d8 0894     		str	r4, [sp, #32]
  357 00da 05A9     		add	r1, sp, #20
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 7
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 7
 
 
  358 00dc 3046     		mov	r0, r6
@@ -387,1021 +387,1140 @@ ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 1
  381 010c 00380240 		.word	1073887232
  382 0110 00080240 		.word	1073874944
  383 0114 00000240 		.word	1073872896
- 385              		.section	.text._write,"ax",%progbits
+ 385              		.section	.text.kalman_init,"ax",%progbits
  386              		.align	1
- 387              		.global	_write
+ 387              		.global	kalman_init
  388              		.syntax unified
  389              		.thumb
  390              		.thumb_func
- 392              	_write:
+ 392              	kalman_init:
  393              		@ args = 0, pretend = 0, frame = 0
  394              		@ frame_needed = 0, uses_anonymous_args = 0
- 395 0000 10B5     		push	{r4, lr}
- 396 0002 1446     		mov	r4, r2
- 397 0004 6FF07F43 		mvn	r3, #-16777216
- 398 0008 92B2     		uxth	r2, r2
- 399 000a 0248     		ldr	r0, .L32
- 400 000c FFF7FEFF 		bl	HAL_UART_Transmit
- 401 0010 2046     		mov	r0, r4
- 402 0012 10BD     		pop	{r4, pc}
- 403              	.L33:
- 404              		.align	2
- 405              	.L32:
- 406 0014 00000000 		.word	huart1
- 408              		.section	.rodata.HAL_GPIO_EXTI_Callback.str1.4,"aMS",%progbits,1
- 409              		.align	2
- 410              	.LC0:
- 411 0000 49525120 		.ascii	"IRQ HANDLEDDD FORM THE ANTENAAAAAAA\000"
- 411      48414E44 
- 411      4C454444 
- 411      4420464F 
- 411      524D2054 
- 412              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
- 413              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 8
+ 395              		@ link register save eliminated.
+ 396 0000 80ED000A 		vstr.32	s0, [r0]
+ 397 0004 C0ED010A 		vstr.32	s1, [r0, #4]
+ 398 0008 80ED021A 		vstr.32	s2, [r0, #8]
+ 399 000c 4FF07E53 		mov	r3, #1065353216
+ 400 0010 C360     		str	r3, [r0, #12]	@ float
+ 401 0012 0023     		movs	r3, #0
+ 402 0014 0361     		str	r3, [r0, #16]	@ float
+ 403 0016 7047     		bx	lr
+ 405              		.section	.text.kalman_update,"ax",%progbits
+ 406              		.align	1
+ 407              		.global	kalman_update
+ 408              		.syntax unified
+ 409              		.thumb
+ 410              		.thumb_func
+ 412              	kalman_update:
+ 413              		@ args = 0, pretend = 0, frame = 0
+ 414              		@ frame_needed = 0, uses_anonymous_args = 0
+ 415              		@ link register save eliminated.
+ 416 0000 D0ED037A 		vldr.32	s15, [r0, #12]
+ 417 0004 90ED007A 		vldr.32	s14, [r0]
+ 418 0008 77EE877A 		vadd.f32	s15, s15, s14
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 8
 
 
- 414              		.global	HAL_GPIO_EXTI_Callback
- 415              		.syntax unified
- 416              		.thumb
- 417              		.thumb_func
- 419              	HAL_GPIO_EXTI_Callback:
- 420              		@ args = 0, pretend = 0, frame = 0
- 421              		@ frame_needed = 0, uses_anonymous_args = 0
- 422 0000 2028     		cmp	r0, #32
- 423 0002 01D0     		beq	.L41
- 424              		.syntax unified
- 425              	@ 686 "Core/Src/main.c" 1
- 426 0004 00BF     		nop
- 427              	@ 0 "" 2
- 428              		.thumb
- 429              		.syntax unified
- 430 0006 7047     		bx	lr
- 431              	.L41:
- 432 0008 08B5     		push	{r3, lr}
- 433 000a 0248     		ldr	r0, .L42
- 434 000c FFF7FEFF 		bl	printf
- 435 0010 08BD     		pop	{r3, pc}
- 436              	.L43:
- 437 0012 00BF     		.align	2
- 438              	.L42:
- 439 0014 00000000 		.word	.LC0
- 441              		.section	.rodata.bmp5_error_codes_print_result.str1.4,"aMS",%progbits,1
- 442              		.align	2
- 443              	.LC1:
- 444 0000 25730900 		.ascii	"%s\011\000"
- 445              		.align	2
- 446              	.LC2:
- 447 0004 4572726F 		.ascii	"Error [%d] : Null pointer\015\012\000"
- 447      72205B25 
- 447      645D203A 
- 447      204E756C 
- 447      6C20706F 
- 448              		.align	2
- 449              	.LC3:
- 450 0020 4572726F 		.ascii	"Error [%d] : Communication failure\015\012\000"
- 450      72205B25 
- 450      645D203A 
- 450      20436F6D 
- 450      6D756E69 
- 451 0045 000000   		.align	2
- 452              	.LC4:
- 453 0048 4572726F 		.ascii	"Error [%d] : Device not found\015\012\000"
- 453      72205B25 
- 453      645D203A 
- 453      20446576 
- 453      69636520 
+ 419 000c C0ED037A 		vstr.32	s15, [r0, #12]
+ 420 0010 90ED017A 		vldr.32	s14, [r0, #4]
+ 421 0014 37EE877A 		vadd.f32	s14, s15, s14
+ 422 0018 C7EE876A 		vdiv.f32	s13, s15, s14
+ 423 001c C0ED046A 		vstr.32	s13, [r0, #16]
+ 424 0020 90ED027A 		vldr.32	s14, [r0, #8]
+ 425 0024 30EE470A 		vsub.f32	s0, s0, s14
+ 426 0028 26EE800A 		vmul.f32	s0, s13, s0
+ 427 002c 37EE000A 		vadd.f32	s0, s14, s0
+ 428 0030 80ED020A 		vstr.32	s0, [r0, #8]
+ 429 0034 B7EE007A 		vmov.f32	s14, #1.0e+0
+ 430 0038 37EE667A 		vsub.f32	s14, s14, s13
+ 431 003c 67EE877A 		vmul.f32	s15, s15, s14
+ 432 0040 C0ED037A 		vstr.32	s15, [r0, #12]
+ 433 0044 7047     		bx	lr
+ 435              		.section	.text._write,"ax",%progbits
+ 436              		.align	1
+ 437              		.global	_write
+ 438              		.syntax unified
+ 439              		.thumb
+ 440              		.thumb_func
+ 442              	_write:
+ 443              		@ args = 0, pretend = 0, frame = 0
+ 444              		@ frame_needed = 0, uses_anonymous_args = 0
+ 445 0000 10B5     		push	{r4, lr}
+ 446 0002 1446     		mov	r4, r2
+ 447 0004 6FF07F43 		mvn	r3, #-16777216
+ 448 0008 92B2     		uxth	r2, r2
+ 449 000a 0248     		ldr	r0, .L34
+ 450 000c FFF7FEFF 		bl	HAL_UART_Transmit
+ 451 0010 2046     		mov	r0, r4
+ 452 0012 10BD     		pop	{r4, pc}
+ 453              	.L35:
  454              		.align	2
- 455              	.LC5:
- 456 0068 4572726F 		.ascii	"Error [%d] : Invalid chip id\015\012\000"
- 456      72205B25 
- 456      645D203A 
- 456      20496E76 
- 456      616C6964 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 9
+ 455              	.L34:
+ 456 0014 00000000 		.word	huart1
+ 458              		.section	.rodata.HAL_GPIO_EXTI_Callback.str1.4,"aMS",%progbits,1
+ 459              		.align	2
+ 460              	.LC0:
+ 461 0000 49525120 		.ascii	"IRQ HANDLEDDD FORM THE ANTENAAAAAAA\000"
+ 461      48414E44 
+ 461      4C454444 
+ 461      4420464F 
+ 461      524D2054 
+ 462              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+ 463              		.align	1
+ 464              		.global	HAL_GPIO_EXTI_Callback
+ 465              		.syntax unified
+ 466              		.thumb
+ 467              		.thumb_func
+ 469              	HAL_GPIO_EXTI_Callback:
+ 470              		@ args = 0, pretend = 0, frame = 0
+ 471              		@ frame_needed = 0, uses_anonymous_args = 0
+ 472 0000 2028     		cmp	r0, #32
+ 473 0002 01D0     		beq	.L43
+ 474              		.syntax unified
+ 475              	@ 728 "Core/Src/main.c" 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 9
 
 
- 457 0087 00       		.align	2
- 458              	.LC6:
- 459 0088 4572726F 		.ascii	"Error [%d] : Power up error\015\012\000"
- 459      72205B25 
- 459      645D203A 
- 459      20506F77 
- 459      65722075 
- 460 00a6 0000     		.align	2
- 461              	.LC7:
- 462 00a8 4572726F 		.ascii	"Error [%d] : Power-on reset/softreset failure\015\012"
- 462      72205B25 
- 462      645D203A 
- 462      20506F77 
- 462      65722D6F 
- 463 00d7 00       		.ascii	"\000"
- 464              		.align	2
- 465              	.LC8:
- 466 00d8 4572726F 		.ascii	"Error [%d] : Invalid powermode\015\012\000"
- 466      72205B25 
- 466      645D203A 
- 466      20496E76 
- 466      616C6964 
- 467 00f9 000000   		.align	2
- 468              	.LC9:
- 469 00fc 4572726F 		.ascii	"Error [%d] : Unknown error code\015\012\000"
- 469      72205B25 
- 469      645D203A 
- 469      20556E6B 
- 469      6E6F776E 
- 470              		.section	.text.bmp5_error_codes_print_result,"ax",%progbits
- 471              		.align	1
- 472              		.global	bmp5_error_codes_print_result
- 473              		.syntax unified
- 474              		.thumb
- 475              		.thumb_func
- 477              	bmp5_error_codes_print_result:
- 478              		@ args = 0, pretend = 0, frame = 0
- 479              		@ frame_needed = 0, uses_anonymous_args = 0
- 480 0000 01B9     		cbnz	r1, .L59
- 481 0002 7047     		bx	lr
- 482              	.L59:
- 483 0004 10B5     		push	{r4, lr}
- 484 0006 0C46     		mov	r4, r1
- 485 0008 0146     		mov	r1, r0
- 486 000a 1A48     		ldr	r0, .L60
- 487 000c FFF7FEFF 		bl	printf
- 488 0010 E31D     		adds	r3, r4, #7
- 489 0012 062B     		cmp	r3, #6
- 490 0014 28D8     		bhi	.L46
- 491 0016 DFE803F0 		tbb	[pc, r3]
- 492              	.L48:
- 493 001a 22       		.byte	(.L54-.L48)/2
- 494 001b 1D       		.byte	(.L53-.L48)/2
- 495 001c 18       		.byte	(.L52-.L48)/2
- 496 001d 13       		.byte	(.L51-.L48)/2
- 497 001e 0E       		.byte	(.L50-.L48)/2
- 498 001f 09       		.byte	(.L49-.L48)/2
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 10
+ 476 0004 00BF     		nop
+ 477              	@ 0 "" 2
+ 478              		.thumb
+ 479              		.syntax unified
+ 480 0006 7047     		bx	lr
+ 481              	.L43:
+ 482 0008 08B5     		push	{r3, lr}
+ 483 000a 0248     		ldr	r0, .L44
+ 484 000c FFF7FEFF 		bl	printf
+ 485 0010 08BD     		pop	{r3, pc}
+ 486              	.L45:
+ 487 0012 00BF     		.align	2
+ 488              	.L44:
+ 489 0014 00000000 		.word	.LC0
+ 491              		.section	.rodata.bmp5_error_codes_print_result.str1.4,"aMS",%progbits,1
+ 492              		.align	2
+ 493              	.LC1:
+ 494 0000 25730900 		.ascii	"%s\011\000"
+ 495              		.align	2
+ 496              	.LC2:
+ 497 0004 4572726F 		.ascii	"Error [%d] : Null pointer\015\012\000"
+ 497      72205B25 
+ 497      645D203A 
+ 497      204E756C 
+ 497      6C20706F 
+ 498              		.align	2
+ 499              	.LC3:
+ 500 0020 4572726F 		.ascii	"Error [%d] : Communication failure\015\012\000"
+ 500      72205B25 
+ 500      645D203A 
+ 500      20436F6D 
+ 500      6D756E69 
+ 501 0045 000000   		.align	2
+ 502              	.LC4:
+ 503 0048 4572726F 		.ascii	"Error [%d] : Device not found\015\012\000"
+ 503      72205B25 
+ 503      645D203A 
+ 503      20446576 
+ 503      69636520 
+ 504              		.align	2
+ 505              	.LC5:
+ 506 0068 4572726F 		.ascii	"Error [%d] : Invalid chip id\015\012\000"
+ 506      72205B25 
+ 506      645D203A 
+ 506      20496E76 
+ 506      616C6964 
+ 507 0087 00       		.align	2
+ 508              	.LC6:
+ 509 0088 4572726F 		.ascii	"Error [%d] : Power up error\015\012\000"
+ 509      72205B25 
+ 509      645D203A 
+ 509      20506F77 
+ 509      65722075 
+ 510 00a6 0000     		.align	2
+ 511              	.LC7:
+ 512 00a8 4572726F 		.ascii	"Error [%d] : Power-on reset/softreset failure\015\012"
+ 512      72205B25 
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 10
 
 
- 499 0020 04       		.byte	(.L47-.L48)/2
- 500 0021 00       		.p2align 1
- 501              	.L47:
- 502 0022 2146     		mov	r1, r4
- 503 0024 1448     		ldr	r0, .L60+4
- 504 0026 FFF7FEFF 		bl	printf
- 505              	.L44:
- 506 002a 10BD     		pop	{r4, pc}
- 507              	.L49:
- 508 002c 2146     		mov	r1, r4
- 509 002e 1348     		ldr	r0, .L60+8
- 510 0030 FFF7FEFF 		bl	printf
- 511 0034 F9E7     		b	.L44
- 512              	.L50:
- 513 0036 2146     		mov	r1, r4
- 514 0038 1148     		ldr	r0, .L60+12
- 515 003a FFF7FEFF 		bl	printf
- 516 003e F4E7     		b	.L44
- 517              	.L51:
- 518 0040 2146     		mov	r1, r4
- 519 0042 1048     		ldr	r0, .L60+16
- 520 0044 FFF7FEFF 		bl	printf
- 521 0048 EFE7     		b	.L44
- 522              	.L52:
- 523 004a 2146     		mov	r1, r4
- 524 004c 0E48     		ldr	r0, .L60+20
- 525 004e FFF7FEFF 		bl	printf
- 526 0052 EAE7     		b	.L44
- 527              	.L53:
- 528 0054 2146     		mov	r1, r4
- 529 0056 0D48     		ldr	r0, .L60+24
- 530 0058 FFF7FEFF 		bl	printf
- 531 005c E5E7     		b	.L44
- 532              	.L54:
- 533 005e 2146     		mov	r1, r4
- 534 0060 0B48     		ldr	r0, .L60+28
- 535 0062 FFF7FEFF 		bl	printf
- 536 0066 E0E7     		b	.L44
- 537              	.L46:
- 538 0068 2146     		mov	r1, r4
- 539 006a 0A48     		ldr	r0, .L60+32
- 540 006c FFF7FEFF 		bl	printf
- 541 0070 DBE7     		b	.L44
- 542              	.L61:
- 543 0072 00BF     		.align	2
- 544              	.L60:
- 545 0074 00000000 		.word	.LC1
- 546 0078 04000000 		.word	.LC2
- 547 007c 20000000 		.word	.LC3
- 548 0080 48000000 		.word	.LC4
- 549 0084 68000000 		.word	.LC5
- 550 0088 88000000 		.word	.LC6
- 551 008c A8000000 		.word	.LC7
- 552 0090 D8000000 		.word	.LC8
- 553 0094 FC000000 		.word	.LC9
- 555              		.section	.text.Error_Handler,"ax",%progbits
- 556              		.align	1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 11
+ 512      645D203A 
+ 512      20506F77 
+ 512      65722D6F 
+ 513 00d7 00       		.ascii	"\000"
+ 514              		.align	2
+ 515              	.LC8:
+ 516 00d8 4572726F 		.ascii	"Error [%d] : Invalid powermode\015\012\000"
+ 516      72205B25 
+ 516      645D203A 
+ 516      20496E76 
+ 516      616C6964 
+ 517 00f9 000000   		.align	2
+ 518              	.LC9:
+ 519 00fc 4572726F 		.ascii	"Error [%d] : Unknown error code\015\012\000"
+ 519      72205B25 
+ 519      645D203A 
+ 519      20556E6B 
+ 519      6E6F776E 
+ 520              		.section	.text.bmp5_error_codes_print_result,"ax",%progbits
+ 521              		.align	1
+ 522              		.global	bmp5_error_codes_print_result
+ 523              		.syntax unified
+ 524              		.thumb
+ 525              		.thumb_func
+ 527              	bmp5_error_codes_print_result:
+ 528              		@ args = 0, pretend = 0, frame = 0
+ 529              		@ frame_needed = 0, uses_anonymous_args = 0
+ 530 0000 01B9     		cbnz	r1, .L61
+ 531 0002 7047     		bx	lr
+ 532              	.L61:
+ 533 0004 10B5     		push	{r4, lr}
+ 534 0006 0C46     		mov	r4, r1
+ 535 0008 0146     		mov	r1, r0
+ 536 000a 1A48     		ldr	r0, .L62
+ 537 000c FFF7FEFF 		bl	printf
+ 538 0010 E31D     		adds	r3, r4, #7
+ 539 0012 062B     		cmp	r3, #6
+ 540 0014 28D8     		bhi	.L48
+ 541 0016 DFE803F0 		tbb	[pc, r3]
+ 542              	.L50:
+ 543 001a 22       		.byte	(.L56-.L50)/2
+ 544 001b 1D       		.byte	(.L55-.L50)/2
+ 545 001c 18       		.byte	(.L54-.L50)/2
+ 546 001d 13       		.byte	(.L53-.L50)/2
+ 547 001e 0E       		.byte	(.L52-.L50)/2
+ 548 001f 09       		.byte	(.L51-.L50)/2
+ 549 0020 04       		.byte	(.L49-.L50)/2
+ 550 0021 00       		.p2align 1
+ 551              	.L49:
+ 552 0022 2146     		mov	r1, r4
+ 553 0024 1448     		ldr	r0, .L62+4
+ 554 0026 FFF7FEFF 		bl	printf
+ 555              	.L46:
+ 556 002a 10BD     		pop	{r4, pc}
+ 557              	.L51:
+ 558 002c 2146     		mov	r1, r4
+ 559 002e 1348     		ldr	r0, .L62+8
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 11
 
 
- 557              		.global	Error_Handler
- 558              		.syntax unified
- 559              		.thumb
- 560              		.thumb_func
- 562              	Error_Handler:
- 563              		@ Volatile: function does not return.
- 564              		@ args = 0, pretend = 0, frame = 0
- 565              		@ frame_needed = 0, uses_anonymous_args = 0
- 566              		@ link register save eliminated.
- 567              		.syntax unified
- 568              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 569 0000 72B6     		cpsid i
- 570              	@ 0 "" 2
- 571              		.thumb
- 572              		.syntax unified
- 573              	.L63:
- 574 0002 FEE7     		b	.L63
- 576              		.section	.text.MX_USART1_UART_Init,"ax",%progbits
- 577              		.align	1
- 578              		.syntax unified
- 579              		.thumb
- 580              		.thumb_func
- 582              	MX_USART1_UART_Init:
- 583              		@ args = 0, pretend = 0, frame = 0
- 584              		@ frame_needed = 0, uses_anonymous_args = 0
- 585 0000 08B5     		push	{r3, lr}
- 586 0002 0A48     		ldr	r0, .L68
- 587 0004 0A4B     		ldr	r3, .L68+4
- 588 0006 0360     		str	r3, [r0]
- 589 0008 4FF4E133 		mov	r3, #115200
- 590 000c 4360     		str	r3, [r0, #4]
- 591 000e 0023     		movs	r3, #0
- 592 0010 8360     		str	r3, [r0, #8]
- 593 0012 C360     		str	r3, [r0, #12]
- 594 0014 0361     		str	r3, [r0, #16]
- 595 0016 0C22     		movs	r2, #12
- 596 0018 4261     		str	r2, [r0, #20]
- 597 001a 8361     		str	r3, [r0, #24]
- 598 001c C361     		str	r3, [r0, #28]
- 599 001e FFF7FEFF 		bl	HAL_UART_Init
- 600 0022 00B9     		cbnz	r0, .L67
- 601 0024 08BD     		pop	{r3, pc}
- 602              	.L67:
- 603 0026 FFF7FEFF 		bl	Error_Handler
- 604              	.L69:
- 605 002a 00BF     		.align	2
- 606              	.L68:
- 607 002c 00000000 		.word	huart1
- 608 0030 00100140 		.word	1073811456
- 610              		.section	.rodata.MX_I2C1_Init.str1.4,"aMS",%progbits,1
- 611              		.align	2
- 612              	.LC10:
- 613 0000 54656D70 		.ascii	"Temperature not ready\015\012\000"
- 613      65726174 
- 613      75726520 
- 613      6E6F7420 
- 613      72656164 
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 12
+ 560 0030 FFF7FEFF 		bl	printf
+ 561 0034 F9E7     		b	.L46
+ 562              	.L52:
+ 563 0036 2146     		mov	r1, r4
+ 564 0038 1148     		ldr	r0, .L62+12
+ 565 003a FFF7FEFF 		bl	printf
+ 566 003e F4E7     		b	.L46
+ 567              	.L53:
+ 568 0040 2146     		mov	r1, r4
+ 569 0042 1048     		ldr	r0, .L62+16
+ 570 0044 FFF7FEFF 		bl	printf
+ 571 0048 EFE7     		b	.L46
+ 572              	.L54:
+ 573 004a 2146     		mov	r1, r4
+ 574 004c 0E48     		ldr	r0, .L62+20
+ 575 004e FFF7FEFF 		bl	printf
+ 576 0052 EAE7     		b	.L46
+ 577              	.L55:
+ 578 0054 2146     		mov	r1, r4
+ 579 0056 0D48     		ldr	r0, .L62+24
+ 580 0058 FFF7FEFF 		bl	printf
+ 581 005c E5E7     		b	.L46
+ 582              	.L56:
+ 583 005e 2146     		mov	r1, r4
+ 584 0060 0B48     		ldr	r0, .L62+28
+ 585 0062 FFF7FEFF 		bl	printf
+ 586 0066 E0E7     		b	.L46
+ 587              	.L48:
+ 588 0068 2146     		mov	r1, r4
+ 589 006a 0A48     		ldr	r0, .L62+32
+ 590 006c FFF7FEFF 		bl	printf
+ 591 0070 DBE7     		b	.L46
+ 592              	.L63:
+ 593 0072 00BF     		.align	2
+ 594              	.L62:
+ 595 0074 00000000 		.word	.LC1
+ 596 0078 04000000 		.word	.LC2
+ 597 007c 20000000 		.word	.LC3
+ 598 0080 48000000 		.word	.LC4
+ 599 0084 68000000 		.word	.LC5
+ 600 0088 88000000 		.word	.LC6
+ 601 008c A8000000 		.word	.LC7
+ 602 0090 D8000000 		.word	.LC8
+ 603 0094 FC000000 		.word	.LC9
+ 605              		.section	.text.Error_Handler,"ax",%progbits
+ 606              		.align	1
+ 607              		.global	Error_Handler
+ 608              		.syntax unified
+ 609              		.thumb
+ 610              		.thumb_func
+ 612              	Error_Handler:
+ 613              		@ Volatile: function does not return.
+ 614              		@ args = 0, pretend = 0, frame = 0
+ 615              		@ frame_needed = 0, uses_anonymous_args = 0
+ 616              		@ link register save eliminated.
+ 617              		.syntax unified
+ 618              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 12
 
 
- 614              		.section	.text.MX_I2C1_Init,"ax",%progbits
- 615              		.align	1
- 616              		.syntax unified
- 617              		.thumb
- 618              		.thumb_func
- 620              	MX_I2C1_Init:
- 621              		@ args = 0, pretend = 0, frame = 0
- 622              		@ frame_needed = 0, uses_anonymous_args = 0
- 623 0000 00B5     		push	{lr}
- 624 0002 85B0     		sub	sp, sp, #20
- 625 0004 1948     		ldr	r0, .L76
- 626 0006 1A4B     		ldr	r3, .L76+4
- 627 0008 0360     		str	r3, [r0]
- 628 000a 1A4B     		ldr	r3, .L76+8
- 629 000c 4360     		str	r3, [r0, #4]
- 630 000e 0023     		movs	r3, #0
- 631 0010 8360     		str	r3, [r0, #8]
- 632 0012 8222     		movs	r2, #130
- 633 0014 C260     		str	r2, [r0, #12]
- 634 0016 4FF48042 		mov	r2, #16384
- 635 001a 0261     		str	r2, [r0, #16]
- 636 001c 4361     		str	r3, [r0, #20]
- 637 001e 8361     		str	r3, [r0, #24]
- 638 0020 C361     		str	r3, [r0, #28]
- 639 0022 0362     		str	r3, [r0, #32]
- 640 0024 FFF7FEFF 		bl	HAL_I2C_Init
- 641 0028 88B9     		cbnz	r0, .L75
- 642 002a 4FF47A73 		mov	r3, #1000
- 643 002e 0222     		movs	r2, #2
- 644 0030 8221     		movs	r1, #130
- 645 0032 0E48     		ldr	r0, .L76
- 646 0034 FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
- 647 0038 58B1     		cbz	r0, .L72
- 648 003a 4FF47A73 		mov	r3, #1000
- 649 003e 2022     		movs	r2, #32
- 650 0040 0D49     		ldr	r1, .L76+12
- 651 0042 0E48     		ldr	r0, .L76+16
- 652 0044 FFF7FEFF 		bl	HAL_UART_Transmit
- 653              	.L70:
- 654 0048 05B0     		add	sp, sp, #20
- 655              		@ sp needed
- 656 004a 5DF804FB 		ldr	pc, [sp], #4
- 657              	.L75:
- 658 004e FFF7FEFF 		bl	Error_Handler
- 659              	.L72:
- 660 0052 4FF47A73 		mov	r3, #1000
- 661 0056 0293     		str	r3, [sp, #8]
- 662 0058 0123     		movs	r3, #1
- 663 005a 0193     		str	r3, [sp, #4]
- 664 005c 0022     		movs	r2, #0
- 665 005e 0092     		str	r2, [sp]
- 666 0060 0422     		movs	r2, #4
- 667 0062 8221     		movs	r1, #130
- 668 0064 0148     		ldr	r0, .L76
- 669 0066 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 670 006a EDE7     		b	.L70
- 671              	.L77:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 13
+ 619 0000 72B6     		cpsid i
+ 620              	@ 0 "" 2
+ 621              		.thumb
+ 622              		.syntax unified
+ 623              	.L65:
+ 624 0002 FEE7     		b	.L65
+ 626              		.section	.text.MX_USART1_UART_Init,"ax",%progbits
+ 627              		.align	1
+ 628              		.syntax unified
+ 629              		.thumb
+ 630              		.thumb_func
+ 632              	MX_USART1_UART_Init:
+ 633              		@ args = 0, pretend = 0, frame = 0
+ 634              		@ frame_needed = 0, uses_anonymous_args = 0
+ 635 0000 08B5     		push	{r3, lr}
+ 636 0002 0A48     		ldr	r0, .L70
+ 637 0004 0A4B     		ldr	r3, .L70+4
+ 638 0006 0360     		str	r3, [r0]
+ 639 0008 4FF4E133 		mov	r3, #115200
+ 640 000c 4360     		str	r3, [r0, #4]
+ 641 000e 0023     		movs	r3, #0
+ 642 0010 8360     		str	r3, [r0, #8]
+ 643 0012 C360     		str	r3, [r0, #12]
+ 644 0014 0361     		str	r3, [r0, #16]
+ 645 0016 0C22     		movs	r2, #12
+ 646 0018 4261     		str	r2, [r0, #20]
+ 647 001a 8361     		str	r3, [r0, #24]
+ 648 001c C361     		str	r3, [r0, #28]
+ 649 001e FFF7FEFF 		bl	HAL_UART_Init
+ 650 0022 00B9     		cbnz	r0, .L69
+ 651 0024 08BD     		pop	{r3, pc}
+ 652              	.L69:
+ 653 0026 FFF7FEFF 		bl	Error_Handler
+ 654              	.L71:
+ 655 002a 00BF     		.align	2
+ 656              	.L70:
+ 657 002c 00000000 		.word	huart1
+ 658 0030 00100140 		.word	1073811456
+ 660              		.section	.rodata.MX_I2C1_Init.str1.4,"aMS",%progbits,1
+ 661              		.align	2
+ 662              	.LC10:
+ 663 0000 54656D70 		.ascii	"Temperature not ready\015\012\000"
+ 663      65726174 
+ 663      75726520 
+ 663      6E6F7420 
+ 663      72656164 
+ 664              		.section	.text.MX_I2C1_Init,"ax",%progbits
+ 665              		.align	1
+ 666              		.syntax unified
+ 667              		.thumb
+ 668              		.thumb_func
+ 670              	MX_I2C1_Init:
+ 671              		@ args = 0, pretend = 0, frame = 0
+ 672              		@ frame_needed = 0, uses_anonymous_args = 0
+ 673 0000 00B5     		push	{lr}
+ 674 0002 85B0     		sub	sp, sp, #20
+ 675 0004 1948     		ldr	r0, .L78
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 13
 
 
- 672              		.align	2
- 673              	.L76:
- 674 006c 00000000 		.word	hi2c1
- 675 0070 00540040 		.word	1073763328
- 676 0074 A0860100 		.word	100000
- 677 0078 00000000 		.word	.LC10
- 678 007c 00000000 		.word	huart1
- 680              		.section	.text.MX_SPI1_Init,"ax",%progbits
- 681              		.align	1
- 682              		.syntax unified
- 683              		.thumb
- 684              		.thumb_func
- 686              	MX_SPI1_Init:
- 687              		@ args = 0, pretend = 0, frame = 0
- 688              		@ frame_needed = 0, uses_anonymous_args = 0
- 689 0000 08B5     		push	{r3, lr}
- 690 0002 0D48     		ldr	r0, .L82
- 691 0004 0D4B     		ldr	r3, .L82+4
- 692 0006 0360     		str	r3, [r0]
- 693 0008 4FF48273 		mov	r3, #260
- 694 000c 4360     		str	r3, [r0, #4]
- 695 000e 0023     		movs	r3, #0
- 696 0010 8360     		str	r3, [r0, #8]
- 697 0012 C360     		str	r3, [r0, #12]
- 698 0014 0361     		str	r3, [r0, #16]
- 699 0016 4361     		str	r3, [r0, #20]
- 700 0018 4FF40072 		mov	r2, #512
- 701 001c 8261     		str	r2, [r0, #24]
- 702 001e C361     		str	r3, [r0, #28]
- 703 0020 0362     		str	r3, [r0, #32]
- 704 0022 4362     		str	r3, [r0, #36]
- 705 0024 8362     		str	r3, [r0, #40]
- 706 0026 0A23     		movs	r3, #10
- 707 0028 C362     		str	r3, [r0, #44]
- 708 002a FFF7FEFF 		bl	HAL_SPI_Init
- 709 002e 00B9     		cbnz	r0, .L81
- 710 0030 08BD     		pop	{r3, pc}
- 711              	.L81:
- 712 0032 FFF7FEFF 		bl	Error_Handler
- 713              	.L83:
- 714 0036 00BF     		.align	2
- 715              	.L82:
- 716 0038 00000000 		.word	hspi1
- 717 003c 00300140 		.word	1073819648
- 719              		.section	.text.SystemClock_Config,"ax",%progbits
- 720              		.align	1
- 721              		.global	SystemClock_Config
- 722              		.syntax unified
- 723              		.thumb
- 724              		.thumb_func
- 726              	SystemClock_Config:
- 727              		@ args = 0, pretend = 0, frame = 80
- 728              		@ frame_needed = 0, uses_anonymous_args = 0
- 729 0000 00B5     		push	{lr}
- 730 0002 95B0     		sub	sp, sp, #84
- 731 0004 3022     		movs	r2, #48
- 732 0006 0021     		movs	r1, #0
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 14
+ 676 0006 1A4B     		ldr	r3, .L78+4
+ 677 0008 0360     		str	r3, [r0]
+ 678 000a 1A4B     		ldr	r3, .L78+8
+ 679 000c 4360     		str	r3, [r0, #4]
+ 680 000e 0023     		movs	r3, #0
+ 681 0010 8360     		str	r3, [r0, #8]
+ 682 0012 8222     		movs	r2, #130
+ 683 0014 C260     		str	r2, [r0, #12]
+ 684 0016 4FF48042 		mov	r2, #16384
+ 685 001a 0261     		str	r2, [r0, #16]
+ 686 001c 4361     		str	r3, [r0, #20]
+ 687 001e 8361     		str	r3, [r0, #24]
+ 688 0020 C361     		str	r3, [r0, #28]
+ 689 0022 0362     		str	r3, [r0, #32]
+ 690 0024 FFF7FEFF 		bl	HAL_I2C_Init
+ 691 0028 88B9     		cbnz	r0, .L77
+ 692 002a 4FF47A73 		mov	r3, #1000
+ 693 002e 0222     		movs	r2, #2
+ 694 0030 8221     		movs	r1, #130
+ 695 0032 0E48     		ldr	r0, .L78
+ 696 0034 FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
+ 697 0038 58B1     		cbz	r0, .L74
+ 698 003a 4FF47A73 		mov	r3, #1000
+ 699 003e 2022     		movs	r2, #32
+ 700 0040 0D49     		ldr	r1, .L78+12
+ 701 0042 0E48     		ldr	r0, .L78+16
+ 702 0044 FFF7FEFF 		bl	HAL_UART_Transmit
+ 703              	.L72:
+ 704 0048 05B0     		add	sp, sp, #20
+ 705              		@ sp needed
+ 706 004a 5DF804FB 		ldr	pc, [sp], #4
+ 707              	.L77:
+ 708 004e FFF7FEFF 		bl	Error_Handler
+ 709              	.L74:
+ 710 0052 4FF47A73 		mov	r3, #1000
+ 711 0056 0293     		str	r3, [sp, #8]
+ 712 0058 0123     		movs	r3, #1
+ 713 005a 0193     		str	r3, [sp, #4]
+ 714 005c 0022     		movs	r2, #0
+ 715 005e 0092     		str	r2, [sp]
+ 716 0060 0422     		movs	r2, #4
+ 717 0062 8221     		movs	r1, #130
+ 718 0064 0148     		ldr	r0, .L78
+ 719 0066 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 720 006a EDE7     		b	.L72
+ 721              	.L79:
+ 722              		.align	2
+ 723              	.L78:
+ 724 006c 00000000 		.word	hi2c1
+ 725 0070 00540040 		.word	1073763328
+ 726 0074 A0860100 		.word	100000
+ 727 0078 00000000 		.word	.LC10
+ 728 007c 00000000 		.word	huart1
+ 730              		.section	.text.MX_SPI1_Init,"ax",%progbits
+ 731              		.align	1
+ 732              		.syntax unified
+ 733              		.thumb
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 14
 
 
- 733 0008 08A8     		add	r0, sp, #32
- 734 000a FFF7FEFF 		bl	memset
- 735 000e 0023     		movs	r3, #0
- 736 0010 0393     		str	r3, [sp, #12]
- 737 0012 0493     		str	r3, [sp, #16]
- 738 0014 0593     		str	r3, [sp, #20]
- 739 0016 0693     		str	r3, [sp, #24]
- 740 0018 0793     		str	r3, [sp, #28]
- 741 001a 0193     		str	r3, [sp, #4]
- 742 001c 1F4A     		ldr	r2, .L90
- 743 001e 116C     		ldr	r1, [r2, #64]
- 744 0020 41F08051 		orr	r1, r1, #268435456
- 745 0024 1164     		str	r1, [r2, #64]
- 746 0026 126C     		ldr	r2, [r2, #64]
- 747 0028 02F08052 		and	r2, r2, #268435456
- 748 002c 0192     		str	r2, [sp, #4]
- 749 002e 019A     		ldr	r2, [sp, #4]
- 750 0030 0293     		str	r3, [sp, #8]
- 751 0032 1B4A     		ldr	r2, .L90+4
- 752 0034 1168     		ldr	r1, [r2]
- 753 0036 41F48041 		orr	r1, r1, #16384
- 754 003a 1160     		str	r1, [r2]
- 755 003c 1268     		ldr	r2, [r2]
- 756 003e 02F48042 		and	r2, r2, #16384
- 757 0042 0292     		str	r2, [sp, #8]
- 758 0044 029A     		ldr	r2, [sp, #8]
- 759 0046 0222     		movs	r2, #2
- 760 0048 0892     		str	r2, [sp, #32]
- 761 004a 0121     		movs	r1, #1
- 762 004c 0B91     		str	r1, [sp, #44]
- 763 004e 1021     		movs	r1, #16
- 764 0050 0C91     		str	r1, [sp, #48]
- 765 0052 0E92     		str	r2, [sp, #56]
- 766 0054 0F93     		str	r3, [sp, #60]
- 767 0056 0823     		movs	r3, #8
- 768 0058 1093     		str	r3, [sp, #64]
- 769 005a 8023     		movs	r3, #128
- 770 005c 1193     		str	r3, [sp, #68]
- 771 005e 1292     		str	r2, [sp, #72]
- 772 0060 0623     		movs	r3, #6
- 773 0062 1393     		str	r3, [sp, #76]
- 774 0064 08A8     		add	r0, sp, #32
- 775 0066 FFF7FEFF 		bl	HAL_RCC_OscConfig
- 776 006a 98B9     		cbnz	r0, .L88
- 777 006c 0F23     		movs	r3, #15
- 778 006e 0393     		str	r3, [sp, #12]
- 779 0070 0223     		movs	r3, #2
- 780 0072 0493     		str	r3, [sp, #16]
- 781 0074 0023     		movs	r3, #0
- 782 0076 0593     		str	r3, [sp, #20]
- 783 0078 4FF4A053 		mov	r3, #5120
- 784 007c 0693     		str	r3, [sp, #24]
- 785 007e 4FF48053 		mov	r3, #4096
- 786 0082 0793     		str	r3, [sp, #28]
- 787 0084 0421     		movs	r1, #4
- 788 0086 03A8     		add	r0, sp, #12
- 789 0088 FFF7FEFF 		bl	HAL_RCC_ClockConfig
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 15
+ 734              		.thumb_func
+ 736              	MX_SPI1_Init:
+ 737              		@ args = 0, pretend = 0, frame = 0
+ 738              		@ frame_needed = 0, uses_anonymous_args = 0
+ 739 0000 08B5     		push	{r3, lr}
+ 740 0002 0D48     		ldr	r0, .L84
+ 741 0004 0D4B     		ldr	r3, .L84+4
+ 742 0006 0360     		str	r3, [r0]
+ 743 0008 4FF48273 		mov	r3, #260
+ 744 000c 4360     		str	r3, [r0, #4]
+ 745 000e 0023     		movs	r3, #0
+ 746 0010 8360     		str	r3, [r0, #8]
+ 747 0012 C360     		str	r3, [r0, #12]
+ 748 0014 0361     		str	r3, [r0, #16]
+ 749 0016 4361     		str	r3, [r0, #20]
+ 750 0018 4FF40072 		mov	r2, #512
+ 751 001c 8261     		str	r2, [r0, #24]
+ 752 001e C361     		str	r3, [r0, #28]
+ 753 0020 0362     		str	r3, [r0, #32]
+ 754 0022 4362     		str	r3, [r0, #36]
+ 755 0024 8362     		str	r3, [r0, #40]
+ 756 0026 0A23     		movs	r3, #10
+ 757 0028 C362     		str	r3, [r0, #44]
+ 758 002a FFF7FEFF 		bl	HAL_SPI_Init
+ 759 002e 00B9     		cbnz	r0, .L83
+ 760 0030 08BD     		pop	{r3, pc}
+ 761              	.L83:
+ 762 0032 FFF7FEFF 		bl	Error_Handler
+ 763              	.L85:
+ 764 0036 00BF     		.align	2
+ 765              	.L84:
+ 766 0038 00000000 		.word	hspi1
+ 767 003c 00300140 		.word	1073819648
+ 769              		.section	.text.SystemClock_Config,"ax",%progbits
+ 770              		.align	1
+ 771              		.global	SystemClock_Config
+ 772              		.syntax unified
+ 773              		.thumb
+ 774              		.thumb_func
+ 776              	SystemClock_Config:
+ 777              		@ args = 0, pretend = 0, frame = 80
+ 778              		@ frame_needed = 0, uses_anonymous_args = 0
+ 779 0000 00B5     		push	{lr}
+ 780 0002 95B0     		sub	sp, sp, #84
+ 781 0004 3022     		movs	r2, #48
+ 782 0006 0021     		movs	r1, #0
+ 783 0008 08A8     		add	r0, sp, #32
+ 784 000a FFF7FEFF 		bl	memset
+ 785 000e 0023     		movs	r3, #0
+ 786 0010 0393     		str	r3, [sp, #12]
+ 787 0012 0493     		str	r3, [sp, #16]
+ 788 0014 0593     		str	r3, [sp, #20]
+ 789 0016 0693     		str	r3, [sp, #24]
+ 790 0018 0793     		str	r3, [sp, #28]
+ 791 001a 0193     		str	r3, [sp, #4]
+ 792 001c 1F4A     		ldr	r2, .L92
+ 793 001e 116C     		ldr	r1, [r2, #64]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 15
 
 
- 790 008c 20B9     		cbnz	r0, .L89
- 791 008e 15B0     		add	sp, sp, #84
- 792              		@ sp needed
- 793 0090 5DF804FB 		ldr	pc, [sp], #4
- 794              	.L88:
- 795 0094 FFF7FEFF 		bl	Error_Handler
- 796              	.L89:
- 797 0098 FFF7FEFF 		bl	Error_Handler
- 798              	.L91:
- 799              		.align	2
- 800              	.L90:
- 801 009c 00380240 		.word	1073887232
- 802 00a0 00700040 		.word	1073770496
- 804              		.global	__aeabi_f2d
- 805              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 806              		.align	2
- 807              	.LC11:
- 808 0000 25342E32 		.ascii	"%4.2f,%4.2f,%4.2f,%4.2f,%4.2f,%4.2f,%.2f,101.325\015"
- 808      662C2534 
- 808      2E32662C 
- 808      25342E32 
- 808      662C2534 
- 809 0031 0A00     		.ascii	"\012\000"
- 810              		.section	.text.main,"ax",%progbits
- 811              		.align	1
- 812              		.global	main
- 813              		.syntax unified
- 814              		.thumb
- 815              		.thumb_func
- 817              	main:
- 818              		@ args = 0, pretend = 0, frame = 56
- 819              		@ frame_needed = 0, uses_anonymous_args = 0
- 820 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 821 0004 2DED048B 		vpush.64	{d8, d9}
- 822 0008 9AB0     		sub	sp, sp, #104
- 823 000a FFF7FEFF 		bl	HAL_Init
- 824 000e FFF7FEFF 		bl	SystemClock_Config
- 825 0012 FFF7FEFF 		bl	MX_GPIO_Init
- 826 0016 FFF7FEFF 		bl	MX_SDIO_SD_Init
- 827 001a FFF7FEFF 		bl	MX_USART1_UART_Init
- 828 001e FFF7FEFF 		bl	MX_I2C1_Init
- 829 0022 FFF7FEFF 		bl	MX_FATFS_Init
- 830 0026 FFF7FEFF 		bl	MX_SPI1_Init
- 831 002a B94B     		ldr	r3, .L108
- 832 002c 1693     		str	r3, [sp, #88]
- 833 002e B94B     		ldr	r3, .L108+4
- 834 0030 1793     		str	r3, [sp, #92]
- 835 0032 B94B     		ldr	r3, .L108+8
- 836 0034 1993     		str	r3, [sp, #100]
- 837 0036 B94A     		ldr	r2, .L108+12
- 838 0038 1192     		str	r2, [sp, #68]
- 839 003a B94A     		ldr	r2, .L108+16
- 840 003c 1292     		str	r2, [sp, #72]
- 841 003e B94A     		ldr	r2, .L108+20
- 842 0040 1392     		str	r2, [sp, #76]
- 843 0042 1593     		str	r3, [sp, #84]
- 844 0044 B84B     		ldr	r3, .L108+24
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 16
+ 794 0020 41F08051 		orr	r1, r1, #268435456
+ 795 0024 1164     		str	r1, [r2, #64]
+ 796 0026 126C     		ldr	r2, [r2, #64]
+ 797 0028 02F08052 		and	r2, r2, #268435456
+ 798 002c 0192     		str	r2, [sp, #4]
+ 799 002e 019A     		ldr	r2, [sp, #4]
+ 800 0030 0293     		str	r3, [sp, #8]
+ 801 0032 1B4A     		ldr	r2, .L92+4
+ 802 0034 1168     		ldr	r1, [r2]
+ 803 0036 41F48041 		orr	r1, r1, #16384
+ 804 003a 1160     		str	r1, [r2]
+ 805 003c 1268     		ldr	r2, [r2]
+ 806 003e 02F48042 		and	r2, r2, #16384
+ 807 0042 0292     		str	r2, [sp, #8]
+ 808 0044 029A     		ldr	r2, [sp, #8]
+ 809 0046 0222     		movs	r2, #2
+ 810 0048 0892     		str	r2, [sp, #32]
+ 811 004a 0121     		movs	r1, #1
+ 812 004c 0B91     		str	r1, [sp, #44]
+ 813 004e 1021     		movs	r1, #16
+ 814 0050 0C91     		str	r1, [sp, #48]
+ 815 0052 0E92     		str	r2, [sp, #56]
+ 816 0054 0F93     		str	r3, [sp, #60]
+ 817 0056 0823     		movs	r3, #8
+ 818 0058 1093     		str	r3, [sp, #64]
+ 819 005a 8023     		movs	r3, #128
+ 820 005c 1193     		str	r3, [sp, #68]
+ 821 005e 1292     		str	r2, [sp, #72]
+ 822 0060 0623     		movs	r3, #6
+ 823 0062 1393     		str	r3, [sp, #76]
+ 824 0064 08A8     		add	r0, sp, #32
+ 825 0066 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 826 006a 98B9     		cbnz	r0, .L90
+ 827 006c 0F23     		movs	r3, #15
+ 828 006e 0393     		str	r3, [sp, #12]
+ 829 0070 0223     		movs	r3, #2
+ 830 0072 0493     		str	r3, [sp, #16]
+ 831 0074 0023     		movs	r3, #0
+ 832 0076 0593     		str	r3, [sp, #20]
+ 833 0078 4FF4A053 		mov	r3, #5120
+ 834 007c 0693     		str	r3, [sp, #24]
+ 835 007e 4FF48053 		mov	r3, #4096
+ 836 0082 0793     		str	r3, [sp, #28]
+ 837 0084 0421     		movs	r1, #4
+ 838 0086 03A8     		add	r0, sp, #12
+ 839 0088 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 840 008c 20B9     		cbnz	r0, .L91
+ 841 008e 15B0     		add	sp, sp, #84
+ 842              		@ sp needed
+ 843 0090 5DF804FB 		ldr	pc, [sp], #4
+ 844              	.L90:
+ 845 0094 FFF7FEFF 		bl	Error_Handler
+ 846              	.L91:
+ 847 0098 FFF7FEFF 		bl	Error_Handler
+ 848              	.L93:
+ 849              		.align	2
+ 850              	.L92:
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 16
 
 
- 845 0046 1493     		str	r3, [sp, #80]
- 846 0048 4FF47A70 		mov	r0, #1000
- 847 004c FFF7FEFF 		bl	platform_delay
- 848 0050 0121     		movs	r1, #1
- 849 0052 16A8     		add	r0, sp, #88
- 850 0054 FFF7FEFF 		bl	lsm6dsm_spi_mode_set
- 851 0058 0121     		movs	r1, #1
- 852 005a 16A8     		add	r0, sp, #88
- 853 005c FFF7FEFF 		bl	lsm6dsm_auto_increment_set
- 854 0060 B24C     		ldr	r4, .L108+28
- 855 0062 2146     		mov	r1, r4
- 856 0064 16A8     		add	r0, sp, #88
- 857 0066 FFF7FEFF 		bl	lsm6dsm_device_id_get
- 858 006a 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
- 859 006c 6A2B     		cmp	r3, #106
- 860 006e 00D0     		beq	.L93
- 861              	.L94:
- 862 0070 FEE7     		b	.L94
- 863              	.L93:
- 864 0072 AF4C     		ldr	r4, .L108+32
- 865 0074 2146     		mov	r1, r4
- 866 0076 16A8     		add	r0, sp, #88
- 867 0078 FFF7FEFF 		bl	lsm6dsm_reset_get
- 868 007c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
- 869 007e 002B     		cmp	r3, #0
- 870 0080 F7D1     		bne	.L93
- 871 0082 0121     		movs	r1, #1
- 872 0084 16A8     		add	r0, sp, #88
- 873 0086 FFF7FEFF 		bl	lsm6dsm_block_data_update_set
- 874 008a 0A21     		movs	r1, #10
- 875 008c 16A8     		add	r0, sp, #88
- 876 008e FFF7FEFF 		bl	lsm6dsm_xl_data_rate_set
- 877 0092 0A21     		movs	r1, #10
- 878 0094 16A8     		add	r0, sp, #88
- 879 0096 FFF7FEFF 		bl	lsm6dsm_gy_data_rate_set
- 880 009a 0021     		movs	r1, #0
- 881 009c 16A8     		add	r0, sp, #88
- 882 009e FFF7FEFF 		bl	lsm6dsm_xl_full_scale_set
- 883 00a2 0621     		movs	r1, #6
- 884 00a4 16A8     		add	r0, sp, #88
- 885 00a6 FFF7FEFF 		bl	lsm6dsm_gy_full_scale_set
- 886 00aa 0121     		movs	r1, #1
- 887 00ac 16A8     		add	r0, sp, #88
- 888 00ae FFF7FEFF 		bl	lsm6dsm_xl_filter_analog_set
- 889 00b2 0321     		movs	r1, #3
- 890 00b4 16A8     		add	r0, sp, #88
- 891 00b6 FFF7FEFF 		bl	lsm6dsm_xl_lp2_bandwidth_set
- 892 00ba 0B21     		movs	r1, #11
- 893 00bc 16A8     		add	r0, sp, #88
- 894 00be FFF7FEFF 		bl	lsm6dsm_gy_band_pass_set
- 895 00c2 4FF4FA60 		mov	r0, #2000
- 896 00c6 FFF7FEFF 		bl	platform_delay
- 897 00ca 0024     		movs	r4, #0
- 898 00cc ADF83C40 		strh	r4, [sp, #60]	@ movhi
- 899 00d0 ADF83E40 		strh	r4, [sp, #62]	@ movhi
- 900 00d4 ADF84040 		strh	r4, [sp, #64]	@ movhi
- 901 00d8 02E0     		b	.L96
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 17
+ 851 009c 00380240 		.word	1073887232
+ 852 00a0 00700040 		.word	1073770496
+ 854              		.global	__aeabi_f2d
+ 855              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 856              		.align	2
+ 857              	.LC11:
+ 858 0000 25342E32 		.ascii	"%4.2f,%4.2f,%4.2f,%4.2f,%4.2f,%4.2f,%.2f,101.325\015"
+ 858      662C2534 
+ 858      2E32662C 
+ 858      25342E32 
+ 858      662C2534 
+ 859 0031 0A00     		.ascii	"\012\000"
+ 860              		.section	.text.main,"ax",%progbits
+ 861              		.align	1
+ 862              		.global	main
+ 863              		.syntax unified
+ 864              		.thumb
+ 865              		.thumb_func
+ 867              	main:
+ 868              		@ args = 0, pretend = 0, frame = 56
+ 869              		@ frame_needed = 0, uses_anonymous_args = 0
+ 870 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 871 0004 2DED028B 		vpush.64	{d8}
+ 872 0008 9AB0     		sub	sp, sp, #104
+ 873 000a FFF7FEFF 		bl	HAL_Init
+ 874 000e FFF7FEFF 		bl	SystemClock_Config
+ 875 0012 FFF7FEFF 		bl	MX_GPIO_Init
+ 876 0016 FFF7FEFF 		bl	MX_SDIO_SD_Init
+ 877 001a FFF7FEFF 		bl	MX_USART1_UART_Init
+ 878 001e FFF7FEFF 		bl	MX_I2C1_Init
+ 879 0022 FFF7FEFF 		bl	MX_FATFS_Init
+ 880 0026 FFF7FEFF 		bl	MX_SPI1_Init
+ 881 002a D04B     		ldr	r3, .L114
+ 882 002c 1693     		str	r3, [sp, #88]
+ 883 002e D04B     		ldr	r3, .L114+4
+ 884 0030 1793     		str	r3, [sp, #92]
+ 885 0032 D04B     		ldr	r3, .L114+8
+ 886 0034 1993     		str	r3, [sp, #100]
+ 887 0036 D04A     		ldr	r2, .L114+12
+ 888 0038 1192     		str	r2, [sp, #68]
+ 889 003a D04A     		ldr	r2, .L114+16
+ 890 003c 1292     		str	r2, [sp, #72]
+ 891 003e D04A     		ldr	r2, .L114+20
+ 892 0040 1392     		str	r2, [sp, #76]
+ 893 0042 1593     		str	r3, [sp, #84]
+ 894 0044 CF4B     		ldr	r3, .L114+24
+ 895 0046 1493     		str	r3, [sp, #80]
+ 896 0048 4FF47A70 		mov	r0, #1000
+ 897 004c FFF7FEFF 		bl	platform_delay
+ 898 0050 0121     		movs	r1, #1
+ 899 0052 16A8     		add	r0, sp, #88
+ 900 0054 FFF7FEFF 		bl	lsm6dsm_spi_mode_set
+ 901 0058 0121     		movs	r1, #1
+ 902 005a 16A8     		add	r0, sp, #88
+ 903 005c FFF7FEFF 		bl	lsm6dsm_auto_increment_set
+ 904 0060 C94C     		ldr	r4, .L114+28
+ 905 0062 2146     		mov	r1, r4
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 17
 
 
- 902              	.L95:
- 903 00da B4F57A7F 		cmp	r4, #1000
- 904 00de 48DA     		bge	.L104
- 905              	.L96:
- 906 00e0 0CA9     		add	r1, sp, #48
- 907 00e2 16A8     		add	r0, sp, #88
- 908 00e4 FFF7FEFF 		bl	lsm6dsm_status_reg_get
- 909 00e8 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
- 910 00ec 13F0010F 		tst	r3, #1
- 911 00f0 F3D0     		beq	.L95
- 912 00f2 904D     		ldr	r5, .L108+36
- 913 00f4 0023     		movs	r3, #0
- 914 00f6 2B60     		str	r3, [r5]
- 915 00f8 AB80     		strh	r3, [r5, #4]	@ movhi
- 916 00fa 2946     		mov	r1, r5
- 917 00fc 16A8     		add	r0, sp, #88
- 918 00fe FFF7FEFF 		bl	lsm6dsm_acceleration_raw_get
- 919 0102 B5F90000 		ldrsh	r0, [r5]
- 920 0106 FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
- 921 010a BDF93C30 		ldrsh	r3, [sp, #60]
- 922 010e 07EE903A 		vmov	s15, r3	@ int
- 923 0112 F8EEE77A 		vcvt.f32.s32	s15, s15
- 924 0116 77EE807A 		vadd.f32	s15, s15, s0
- 925 011a FDEEE77A 		vcvt.s32.f32	s15, s15
- 926 011e 17EE903A 		vmov	r3, s15	@ int
- 927 0122 ADF83C30 		strh	r3, [sp, #60]	@ movhi
- 928 0126 B5F90200 		ldrsh	r0, [r5, #2]
- 929 012a FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
- 930 012e BDF93E30 		ldrsh	r3, [sp, #62]
- 931 0132 07EE903A 		vmov	s15, r3	@ int
- 932 0136 F8EEE77A 		vcvt.f32.s32	s15, s15
- 933 013a 77EE807A 		vadd.f32	s15, s15, s0
- 934 013e FDEEE77A 		vcvt.s32.f32	s15, s15
- 935 0142 17EE903A 		vmov	r3, s15	@ int
- 936 0146 ADF83E30 		strh	r3, [sp, #62]	@ movhi
- 937 014a B5F90400 		ldrsh	r0, [r5, #4]
- 938 014e FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
- 939 0152 BDF94030 		ldrsh	r3, [sp, #64]
- 940 0156 07EE903A 		vmov	s15, r3	@ int
- 941 015a F8EEE77A 		vcvt.f32.s32	s15, s15
- 942 015e 77EE807A 		vadd.f32	s15, s15, s0
- 943 0162 FDEEE77A 		vcvt.s32.f32	s15, s15
- 944 0166 17EE903A 		vmov	r3, s15	@ int
- 945 016a ADF84030 		strh	r3, [sp, #64]	@ movhi
- 946 016e 0134     		adds	r4, r4, #1
- 947 0170 B3E7     		b	.L95
- 948              	.L104:
- 949 0172 BDF93C20 		ldrsh	r2, [sp, #60]
- 950 0176 4FF47A73 		mov	r3, #1000
- 951 017a 92FBF3F2 		sdiv	r2, r2, r3
- 952 017e 08EE102A 		vmov	s16, r2	@ int
- 953 0182 ADF83C20 		strh	r2, [sp, #60]	@ movhi
- 954 0186 BDF93E20 		ldrsh	r2, [sp, #62]
- 955 018a 92FBF3F2 		sdiv	r2, r2, r3
- 956 018e 08EE902A 		vmov	s17, r2	@ int
- 957 0192 ADF83E20 		strh	r2, [sp, #62]	@ movhi
- 958 0196 BDF94020 		ldrsh	r2, [sp, #64]
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 18
+ 906 0064 16A8     		add	r0, sp, #88
+ 907 0066 FFF7FEFF 		bl	lsm6dsm_device_id_get
+ 908 006a 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 909 006c 6A2B     		cmp	r3, #106
+ 910 006e 00D0     		beq	.L95
+ 911              	.L96:
+ 912 0070 FEE7     		b	.L96
+ 913              	.L95:
+ 914 0072 C64C     		ldr	r4, .L114+32
+ 915 0074 2146     		mov	r1, r4
+ 916 0076 16A8     		add	r0, sp, #88
+ 917 0078 FFF7FEFF 		bl	lsm6dsm_reset_get
+ 918 007c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 919 007e 002B     		cmp	r3, #0
+ 920 0080 F7D1     		bne	.L95
+ 921 0082 0121     		movs	r1, #1
+ 922 0084 16A8     		add	r0, sp, #88
+ 923 0086 FFF7FEFF 		bl	lsm6dsm_block_data_update_set
+ 924 008a 0421     		movs	r1, #4
+ 925 008c 16A8     		add	r0, sp, #88
+ 926 008e FFF7FEFF 		bl	lsm6dsm_xl_data_rate_set
+ 927 0092 0A21     		movs	r1, #10
+ 928 0094 16A8     		add	r0, sp, #88
+ 929 0096 FFF7FEFF 		bl	lsm6dsm_gy_data_rate_set
+ 930 009a 0021     		movs	r1, #0
+ 931 009c 16A8     		add	r0, sp, #88
+ 932 009e FFF7FEFF 		bl	lsm6dsm_xl_full_scale_set
+ 933 00a2 0621     		movs	r1, #6
+ 934 00a4 16A8     		add	r0, sp, #88
+ 935 00a6 FFF7FEFF 		bl	lsm6dsm_gy_full_scale_set
+ 936 00aa 0121     		movs	r1, #1
+ 937 00ac 16A8     		add	r0, sp, #88
+ 938 00ae FFF7FEFF 		bl	lsm6dsm_xl_filter_analog_set
+ 939 00b2 0321     		movs	r1, #3
+ 940 00b4 16A8     		add	r0, sp, #88
+ 941 00b6 FFF7FEFF 		bl	lsm6dsm_xl_lp2_bandwidth_set
+ 942 00ba 0A21     		movs	r1, #10
+ 943 00bc 16A8     		add	r0, sp, #88
+ 944 00be FFF7FEFF 		bl	lsm6dsm_gy_band_pass_set
+ 945 00c2 4FF4FA60 		mov	r0, #2000
+ 946 00c6 FFF7FEFF 		bl	platform_delay
+ 947 00ca 0024     		movs	r4, #0
+ 948 00cc ADF83C40 		strh	r4, [sp, #60]	@ movhi
+ 949 00d0 ADF83E40 		strh	r4, [sp, #62]	@ movhi
+ 950 00d4 ADF84040 		strh	r4, [sp, #64]	@ movhi
+ 951 00d8 02E0     		b	.L98
+ 952              	.L97:
+ 953 00da B4F57A7F 		cmp	r4, #1000
+ 954 00de 48DA     		bge	.L109
+ 955              	.L98:
+ 956 00e0 0CA9     		add	r1, sp, #48
+ 957 00e2 16A8     		add	r0, sp, #88
+ 958 00e4 FFF7FEFF 		bl	lsm6dsm_status_reg_get
+ 959 00e8 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
+ 960 00ec 13F0010F 		tst	r3, #1
+ 961 00f0 F3D0     		beq	.L97
+ 962 00f2 A74D     		ldr	r5, .L114+36
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 18
 
 
- 959 019a 92FBF3F3 		sdiv	r3, r2, r3
- 960 019e 09EE103A 		vmov	s18, r3	@ int
- 961 01a2 ADF84030 		strh	r3, [sp, #64]	@ movhi
- 962 01a6 0024     		movs	r4, #0
- 963 01a8 ADF83440 		strh	r4, [sp, #52]	@ movhi
- 964 01ac ADF83640 		strh	r4, [sp, #54]	@ movhi
- 965 01b0 ADF83840 		strh	r4, [sp, #56]	@ movhi
- 966 01b4 02E0     		b	.L98
- 967              	.L97:
- 968 01b6 B4F57A7F 		cmp	r4, #1000
- 969 01ba 48DA     		bge	.L105
- 970              	.L98:
- 971 01bc 0CA9     		add	r1, sp, #48
- 972 01be 16A8     		add	r0, sp, #88
- 973 01c0 FFF7FEFF 		bl	lsm6dsm_status_reg_get
- 974 01c4 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
- 975 01c8 13F0020F 		tst	r3, #2
- 976 01cc F3D0     		beq	.L97
- 977 01ce 5A4D     		ldr	r5, .L108+40
- 978 01d0 0023     		movs	r3, #0
- 979 01d2 2B60     		str	r3, [r5]
- 980 01d4 AB80     		strh	r3, [r5, #4]	@ movhi
- 981 01d6 2946     		mov	r1, r5
- 982 01d8 16A8     		add	r0, sp, #88
- 983 01da FFF7FEFF 		bl	lsm6dsm_angular_rate_raw_get
- 984 01de B5F90000 		ldrsh	r0, [r5]
- 985 01e2 FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
- 986 01e6 BDF93430 		ldrsh	r3, [sp, #52]
- 987 01ea 07EE903A 		vmov	s15, r3	@ int
- 988 01ee F8EEE77A 		vcvt.f32.s32	s15, s15
- 989 01f2 77EE807A 		vadd.f32	s15, s15, s0
- 990 01f6 FDEEE77A 		vcvt.s32.f32	s15, s15
- 991 01fa 17EE903A 		vmov	r3, s15	@ int
- 992 01fe ADF83430 		strh	r3, [sp, #52]	@ movhi
- 993 0202 B5F90200 		ldrsh	r0, [r5, #2]
- 994 0206 FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
- 995 020a BDF93630 		ldrsh	r3, [sp, #54]
- 996 020e 07EE903A 		vmov	s15, r3	@ int
- 997 0212 F8EEE77A 		vcvt.f32.s32	s15, s15
- 998 0216 77EE807A 		vadd.f32	s15, s15, s0
- 999 021a FDEEE77A 		vcvt.s32.f32	s15, s15
- 1000 021e 17EE903A 		vmov	r3, s15	@ int
- 1001 0222 ADF83630 		strh	r3, [sp, #54]	@ movhi
- 1002 0226 B5F90400 		ldrsh	r0, [r5, #4]
- 1003 022a FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
- 1004 022e BDF93830 		ldrsh	r3, [sp, #56]
- 1005 0232 07EE903A 		vmov	s15, r3	@ int
- 1006 0236 F8EEE77A 		vcvt.f32.s32	s15, s15
- 1007 023a 77EE807A 		vadd.f32	s15, s15, s0
- 1008 023e FDEEE77A 		vcvt.s32.f32	s15, s15
- 1009 0242 17EE903A 		vmov	r3, s15	@ int
- 1010 0246 ADF83830 		strh	r3, [sp, #56]	@ movhi
- 1011 024a 0134     		adds	r4, r4, #1
- 1012 024c B3E7     		b	.L97
- 1013              	.L105:
- 1014 024e BDF93430 		ldrsh	r3, [sp, #52]
- 1015 0252 4FF47A72 		mov	r2, #1000
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 19
+ 963 00f4 0023     		movs	r3, #0
+ 964 00f6 2B60     		str	r3, [r5]
+ 965 00f8 AB80     		strh	r3, [r5, #4]	@ movhi
+ 966 00fa 2946     		mov	r1, r5
+ 967 00fc 16A8     		add	r0, sp, #88
+ 968 00fe FFF7FEFF 		bl	lsm6dsm_acceleration_raw_get
+ 969 0102 B5F90000 		ldrsh	r0, [r5]
+ 970 0106 FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
+ 971 010a BDF93C30 		ldrsh	r3, [sp, #60]
+ 972 010e 07EE903A 		vmov	s15, r3	@ int
+ 973 0112 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 974 0116 77EE807A 		vadd.f32	s15, s15, s0
+ 975 011a FDEEE77A 		vcvt.s32.f32	s15, s15
+ 976 011e 17EE903A 		vmov	r3, s15	@ int
+ 977 0122 ADF83C30 		strh	r3, [sp, #60]	@ movhi
+ 978 0126 B5F90200 		ldrsh	r0, [r5, #2]
+ 979 012a FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
+ 980 012e BDF93E30 		ldrsh	r3, [sp, #62]
+ 981 0132 07EE903A 		vmov	s15, r3	@ int
+ 982 0136 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 983 013a 77EE807A 		vadd.f32	s15, s15, s0
+ 984 013e FDEEE77A 		vcvt.s32.f32	s15, s15
+ 985 0142 17EE903A 		vmov	r3, s15	@ int
+ 986 0146 ADF83E30 		strh	r3, [sp, #62]	@ movhi
+ 987 014a B5F90400 		ldrsh	r0, [r5, #4]
+ 988 014e FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
+ 989 0152 BDF94030 		ldrsh	r3, [sp, #64]
+ 990 0156 07EE903A 		vmov	s15, r3	@ int
+ 991 015a F8EEE77A 		vcvt.f32.s32	s15, s15
+ 992 015e 77EE807A 		vadd.f32	s15, s15, s0
+ 993 0162 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 994 0166 17EE903A 		vmov	r3, s15	@ int
+ 995 016a ADF84030 		strh	r3, [sp, #64]	@ movhi
+ 996 016e 0134     		adds	r4, r4, #1
+ 997 0170 B3E7     		b	.L97
+ 998              	.L109:
+ 999 0172 BDF93C30 		ldrsh	r3, [sp, #60]
+ 1000 0176 4FF47A72 		mov	r2, #1000
+ 1001 017a 93FBF2F3 		sdiv	r3, r3, r2
+ 1002 017e ADF83C30 		strh	r3, [sp, #60]	@ movhi
+ 1003 0182 BDF93E30 		ldrsh	r3, [sp, #62]
+ 1004 0186 93FBF2F3 		sdiv	r3, r3, r2
+ 1005 018a ADF83E30 		strh	r3, [sp, #62]	@ movhi
+ 1006 018e BDF94030 		ldrsh	r3, [sp, #64]
+ 1007 0192 93FBF2F3 		sdiv	r3, r3, r2
+ 1008 0196 ADF84030 		strh	r3, [sp, #64]	@ movhi
+ 1009 019a 0024     		movs	r4, #0
+ 1010 019c ADF83C40 		strh	r4, [sp, #60]	@ movhi
+ 1011 01a0 ADF83E40 		strh	r4, [sp, #62]	@ movhi
+ 1012 01a4 ADF84040 		strh	r4, [sp, #64]	@ movhi
+ 1013 01a8 ADF83440 		strh	r4, [sp, #52]	@ movhi
+ 1014 01ac ADF83640 		strh	r4, [sp, #54]	@ movhi
+ 1015 01b0 ADF83840 		strh	r4, [sp, #56]	@ movhi
+ 1016 01b4 02E0     		b	.L100
+ 1017              	.L99:
+ 1018 01b6 B4F57A7F 		cmp	r4, #1000
+ 1019 01ba 48DA     		bge	.L110
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 19
 
 
- 1016 0256 93FBF2F3 		sdiv	r3, r3, r2
- 1017 025a ADF83430 		strh	r3, [sp, #52]	@ movhi
- 1018 025e BDF93630 		ldrsh	r3, [sp, #54]
- 1019 0262 93FBF2F3 		sdiv	r3, r3, r2
- 1020 0266 ADF83630 		strh	r3, [sp, #54]	@ movhi
- 1021 026a BDF93830 		ldrsh	r3, [sp, #56]
- 1022 026e 93FBF2F3 		sdiv	r3, r3, r2
- 1023 0272 ADF83830 		strh	r3, [sp, #56]	@ movhi
- 1024 0276 0023     		movs	r3, #0
- 1025 0278 ADF83430 		strh	r3, [sp, #52]	@ movhi
- 1026 027c ADF83630 		strh	r3, [sp, #54]	@ movhi
- 1027 0280 ADF83830 		strh	r3, [sp, #56]	@ movhi
- 1028 0284 91E0     		b	.L102
- 1029              	.L106:
- 1030 0286 2B4C     		ldr	r4, .L108+36
- 1031 0288 0023     		movs	r3, #0
- 1032 028a 2360     		str	r3, [r4]
- 1033 028c A380     		strh	r3, [r4, #4]	@ movhi
- 1034 028e 2146     		mov	r1, r4
- 1035 0290 16A8     		add	r0, sp, #88
- 1036 0292 FFF7FEFF 		bl	lsm6dsm_acceleration_raw_get
- 1037 0296 B4F90000 		ldrsh	r0, [r4]
- 1038 029a FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
- 1039 029e F8EEC87A 		vcvt.f32.s32	s15, s16
- 1040 02a2 30EE670A 		vsub.f32	s0, s0, s15
- 1041 02a6 254D     		ldr	r5, .L108+44
- 1042 02a8 85ED000A 		vstr.32	s0, [r5]
- 1043 02ac B4F90200 		ldrsh	r0, [r4, #2]
- 1044 02b0 FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
- 1045 02b4 F8EEE87A 		vcvt.f32.s32	s15, s17
- 1046 02b8 30EE670A 		vsub.f32	s0, s0, s15
- 1047 02bc 85ED010A 		vstr.32	s0, [r5, #4]
- 1048 02c0 B4F90400 		ldrsh	r0, [r4, #4]
- 1049 02c4 FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
- 1050 02c8 F8EEC97A 		vcvt.f32.s32	s15, s18
- 1051 02cc 30EE670A 		vsub.f32	s0, s0, s15
- 1052 02d0 85ED020A 		vstr.32	s0, [r5, #8]
- 1053 02d4 73E0     		b	.L99
- 1054              	.L107:
- 1055 02d6 184C     		ldr	r4, .L108+40
- 1056 02d8 0023     		movs	r3, #0
- 1057 02da 2360     		str	r3, [r4]
- 1058 02dc A380     		strh	r3, [r4, #4]	@ movhi
- 1059 02de 2146     		mov	r1, r4
- 1060 02e0 16A8     		add	r0, sp, #88
- 1061 02e2 FFF7FEFF 		bl	lsm6dsm_angular_rate_raw_get
- 1062 02e6 B4F90000 		ldrsh	r0, [r4]
- 1063 02ea FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
- 1064 02ee 144D     		ldr	r5, .L108+48
- 1065 02f0 85ED000A 		vstr.32	s0, [r5]
- 1066 02f4 B4F90200 		ldrsh	r0, [r4, #2]
- 1067 02f8 FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
- 1068 02fc 85ED010A 		vstr.32	s0, [r5, #4]
- 1069 0300 B4F90400 		ldrsh	r0, [r4, #4]
- 1070 0304 FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
- 1071 0308 85ED020A 		vstr.32	s0, [r5, #8]
- 1072 030c 5CE0     		b	.L100
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 20
+ 1020              	.L100:
+ 1021 01bc 0CA9     		add	r1, sp, #48
+ 1022 01be 16A8     		add	r0, sp, #88
+ 1023 01c0 FFF7FEFF 		bl	lsm6dsm_status_reg_get
+ 1024 01c4 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
+ 1025 01c8 13F0020F 		tst	r3, #2
+ 1026 01cc F3D0     		beq	.L99
+ 1027 01ce 714D     		ldr	r5, .L114+40
+ 1028 01d0 0023     		movs	r3, #0
+ 1029 01d2 2B60     		str	r3, [r5]
+ 1030 01d4 AB80     		strh	r3, [r5, #4]	@ movhi
+ 1031 01d6 2946     		mov	r1, r5
+ 1032 01d8 16A8     		add	r0, sp, #88
+ 1033 01da FFF7FEFF 		bl	lsm6dsm_angular_rate_raw_get
+ 1034 01de B5F90000 		ldrsh	r0, [r5]
+ 1035 01e2 FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
+ 1036 01e6 BDF93430 		ldrsh	r3, [sp, #52]
+ 1037 01ea 07EE903A 		vmov	s15, r3	@ int
+ 1038 01ee F8EEE77A 		vcvt.f32.s32	s15, s15
+ 1039 01f2 77EE807A 		vadd.f32	s15, s15, s0
+ 1040 01f6 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 1041 01fa 17EE903A 		vmov	r3, s15	@ int
+ 1042 01fe ADF83430 		strh	r3, [sp, #52]	@ movhi
+ 1043 0202 B5F90200 		ldrsh	r0, [r5, #2]
+ 1044 0206 FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
+ 1045 020a BDF93630 		ldrsh	r3, [sp, #54]
+ 1046 020e 07EE903A 		vmov	s15, r3	@ int
+ 1047 0212 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 1048 0216 77EE807A 		vadd.f32	s15, s15, s0
+ 1049 021a FDEEE77A 		vcvt.s32.f32	s15, s15
+ 1050 021e 17EE903A 		vmov	r3, s15	@ int
+ 1051 0222 ADF83630 		strh	r3, [sp, #54]	@ movhi
+ 1052 0226 B5F90400 		ldrsh	r0, [r5, #4]
+ 1053 022a FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
+ 1054 022e BDF93830 		ldrsh	r3, [sp, #56]
+ 1055 0232 07EE903A 		vmov	s15, r3	@ int
+ 1056 0236 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 1057 023a 77EE807A 		vadd.f32	s15, s15, s0
+ 1058 023e FDEEE77A 		vcvt.s32.f32	s15, s15
+ 1059 0242 17EE903A 		vmov	r3, s15	@ int
+ 1060 0246 ADF83830 		strh	r3, [sp, #56]	@ movhi
+ 1061 024a 0134     		adds	r4, r4, #1
+ 1062 024c B3E7     		b	.L99
+ 1063              	.L110:
+ 1064 024e BDF93430 		ldrsh	r3, [sp, #52]
+ 1065 0252 4FF47A72 		mov	r2, #1000
+ 1066 0256 93FBF2F3 		sdiv	r3, r3, r2
+ 1067 025a ADF83430 		strh	r3, [sp, #52]	@ movhi
+ 1068 025e BDF93630 		ldrsh	r3, [sp, #54]
+ 1069 0262 93FBF2F3 		sdiv	r3, r3, r2
+ 1070 0266 ADF83630 		strh	r3, [sp, #54]	@ movhi
+ 1071 026a BDF93830 		ldrsh	r3, [sp, #56]
+ 1072 026e 93FBF2F3 		sdiv	r3, r3, r2
+ 1073 0272 ADF83830 		strh	r3, [sp, #56]	@ movhi
+ 1074 0276 0024     		movs	r4, #0
+ 1075              	.L101:
+ 1076 0278 022C     		cmp	r4, #2
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 20
 
 
- 1073              	.L109:
- 1074 030e 00BF     		.align	2
- 1075              	.L108:
- 1076 0310 00000000 		.word	lsm6dsm_platform_write
- 1077 0314 00000000 		.word	lsm6dsm_platform_read
- 1078 0318 00000000 		.word	hspi1
- 1079 031c 00000000 		.word	llcc68_platform_write
- 1080 0320 00000000 		.word	llcc68_platform_read
- 1081 0324 00000000 		.word	llcc68_platform_reset
- 1082 0328 00000240 		.word	1073872896
- 1083 032c 00000000 		.word	whoamI
- 1084 0330 00000000 		.word	rst
- 1085 0334 00000000 		.word	data_raw_acceleration
- 1086 0338 00000000 		.word	data_raw_angular_rate
- 1087 033c 00000000 		.word	acceleration_mg
- 1088 0340 00000000 		.word	angular_rate_mdps
- 1089              	.L101:
- 1090 0344 2A4B     		ldr	r3, .L110
- 1091 0346 5E68     		ldr	r6, [r3, #4]	@ float
- 1092 0348 9F68     		ldr	r7, [r3, #8]	@ float
- 1093 034a 2A4A     		ldr	r2, .L110+4
- 1094 034c D2F80080 		ldr	r8, [r2]	@ float
- 1095 0350 D2F80490 		ldr	r9, [r2, #4]	@ float
- 1096 0354 D2F808A0 		ldr	r10, [r2, #8]	@ float
- 1097 0358 1868     		ldr	r0, [r3]	@ float
- 1098 035a FFF7FEFF 		bl	__aeabi_f2d
- 1099 035e 0446     		mov	r4, r0
- 1100 0360 0D46     		mov	r5, r1
- 1101 0362 254B     		ldr	r3, .L110+8
- 1102 0364 1868     		ldr	r0, [r3]	@ float
- 1103 0366 FFF7FEFF 		bl	__aeabi_f2d
- 1104 036a CDE90A01 		strd	r0, [sp, #40]
- 1105 036e 5046     		mov	r0, r10	@ float
- 1106 0370 FFF7FEFF 		bl	__aeabi_f2d
- 1107 0374 CDE90801 		strd	r0, [sp, #32]
- 1108 0378 4846     		mov	r0, r9	@ float
- 1109 037a FFF7FEFF 		bl	__aeabi_f2d
- 1110 037e CDE90601 		strd	r0, [sp, #24]
- 1111 0382 4046     		mov	r0, r8	@ float
- 1112 0384 FFF7FEFF 		bl	__aeabi_f2d
- 1113 0388 CDE90401 		strd	r0, [sp, #16]
- 1114 038c 3846     		mov	r0, r7	@ float
- 1115 038e FFF7FEFF 		bl	__aeabi_f2d
- 1116 0392 CDE90201 		strd	r0, [sp, #8]
- 1117 0396 3046     		mov	r0, r6	@ float
- 1118 0398 FFF7FEFF 		bl	__aeabi_f2d
- 1119 039c CDE90001 		strd	r0, [sp]
- 1120 03a0 2246     		mov	r2, r4
- 1121 03a2 2B46     		mov	r3, r5
- 1122 03a4 1548     		ldr	r0, .L110+12
- 1123 03a6 FFF7FEFF 		bl	printf
- 1124              	.L102:
- 1125 03aa 0CA9     		add	r1, sp, #48
- 1126 03ac 16A8     		add	r0, sp, #88
- 1127 03ae FFF7FEFF 		bl	lsm6dsm_status_reg_get
- 1128 03b2 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
- 1129 03b6 13F0010F 		tst	r3, #1
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 21
+ 1077 027a 1FDC     		bgt	.L111
+ 1078 027c DFED468A 		vldr.32	s17, .L114+44
+ 1079 0280 9FED468A 		vldr.32	s16, .L114+48
+ 1080 0284 A500     		lsls	r5, r4, #2
+ 1081 0286 04EB8400 		add	r0, r4, r4, lsl #2
+ 1082 028a B0EE681A 		vmov.f32	s2, s17
+ 1083 028e F2EE040A 		vmov.f32	s1, #1.0e+1
+ 1084 0292 B0EE480A 		vmov.f32	s0, s16
+ 1085 0296 424B     		ldr	r3, .L114+52
+ 1086 0298 03EB8000 		add	r0, r3, r0, lsl #2
+ 1087 029c FFF7FEFF 		bl	kalman_init
+ 1088 02a0 2544     		add	r5, r5, r4
+ 1089 02a2 B0EE681A 		vmov.f32	s2, s17
+ 1090 02a6 F2EE040A 		vmov.f32	s1, #1.0e+1
+ 1091 02aa B0EE480A 		vmov.f32	s0, s16
+ 1092 02ae 3D48     		ldr	r0, .L114+56
+ 1093 02b0 00EB8500 		add	r0, r0, r5, lsl #2
+ 1094 02b4 FFF7FEFF 		bl	kalman_init
+ 1095 02b8 0134     		adds	r4, r4, #1
+ 1096 02ba DDE7     		b	.L101
+ 1097              	.L111:
+ 1098 02bc 0023     		movs	r3, #0
+ 1099 02be ADF83430 		strh	r3, [sp, #52]	@ movhi
+ 1100 02c2 ADF83630 		strh	r3, [sp, #54]	@ movhi
+ 1101 02c6 ADF83830 		strh	r3, [sp, #56]	@ movhi
+ 1102 02ca A4E0     		b	.L107
+ 1103              	.L112:
+ 1104 02cc 304C     		ldr	r4, .L114+36
+ 1105 02ce 0023     		movs	r3, #0
+ 1106 02d0 2360     		str	r3, [r4]
+ 1107 02d2 A380     		strh	r3, [r4, #4]	@ movhi
+ 1108 02d4 2146     		mov	r1, r4
+ 1109 02d6 16A8     		add	r0, sp, #88
+ 1110 02d8 FFF7FEFF 		bl	lsm6dsm_acceleration_raw_get
+ 1111 02dc B4F90000 		ldrsh	r0, [r4]
+ 1112 02e0 FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
+ 1113 02e4 2E4E     		ldr	r6, .L114+52
+ 1114 02e6 3046     		mov	r0, r6
+ 1115 02e8 FFF7FEFF 		bl	kalman_update
+ 1116 02ec 2E4D     		ldr	r5, .L114+60
+ 1117 02ee 85ED000A 		vstr.32	s0, [r5]
+ 1118 02f2 B4F90200 		ldrsh	r0, [r4, #2]
+ 1119 02f6 FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
+ 1120 02fa 06F11400 		add	r0, r6, #20
+ 1121 02fe FFF7FEFF 		bl	kalman_update
+ 1122 0302 85ED010A 		vstr.32	s0, [r5, #4]
+ 1123 0306 B4F90400 		ldrsh	r0, [r4, #4]
+ 1124 030a FFF7FEFF 		bl	lsm6dsm_from_fs2g_to_mg
+ 1125 030e 06F12800 		add	r0, r6, #40
+ 1126 0312 FFF7FEFF 		bl	kalman_update
+ 1127 0316 85ED020A 		vstr.32	s0, [r5, #8]
+ 1128 031a 8BE0     		b	.L104
+ 1129              	.L113:
+ 1130 031c 1D4C     		ldr	r4, .L114+40
+ 1131 031e 0023     		movs	r3, #0
+ 1132 0320 2360     		str	r3, [r4]
+ 1133 0322 A380     		strh	r3, [r4, #4]	@ movhi
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 21
 
 
- 1130 03ba 7FF464AF 		bne	.L106
- 1131              	.L99:
- 1132 03be 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
- 1133 03c2 13F0020F 		tst	r3, #2
- 1134 03c6 86D1     		bne	.L107
- 1135              	.L100:
- 1136 03c8 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
- 1137 03cc 13F0040F 		tst	r3, #4
- 1138 03d0 B8D0     		beq	.L101
- 1139 03d2 0B4C     		ldr	r4, .L110+16
- 1140 03d4 0023     		movs	r3, #0
- 1141 03d6 2380     		strh	r3, [r4]	@ movhi
- 1142 03d8 2146     		mov	r1, r4
- 1143 03da 16A8     		add	r0, sp, #88
- 1144 03dc FFF7FEFF 		bl	lsm6dsm_temperature_raw_get
- 1145 03e0 B4F90000 		ldrsh	r0, [r4]
- 1146 03e4 FFF7FEFF 		bl	lsm6dsm_from_lsb_to_celsius
- 1147 03e8 034B     		ldr	r3, .L110+8
- 1148 03ea 83ED000A 		vstr.32	s0, [r3]
- 1149 03ee A9E7     		b	.L101
- 1150              	.L111:
- 1151              		.align	2
- 1152              	.L110:
- 1153 03f0 00000000 		.word	acceleration_mg
- 1154 03f4 00000000 		.word	angular_rate_mdps
- 1155 03f8 00000000 		.word	temperature_degC
- 1156 03fc 00000000 		.word	.LC11
- 1157 0400 00000000 		.word	data_raw_temperature
- 1159              		.section	.bss.rst,"aw",%nobits
- 1162              	rst:
- 1163 0000 00       		.space	1
- 1164              		.section	.bss.whoamI,"aw",%nobits
- 1167              	whoamI:
- 1168 0000 00       		.space	1
- 1169              		.section	.bss.temperature_degC,"aw",%nobits
- 1170              		.align	2
- 1173              	temperature_degC:
- 1174 0000 00000000 		.space	4
- 1175              		.section	.bss.angular_rate_mdps,"aw",%nobits
- 1176              		.align	2
- 1179              	angular_rate_mdps:
- 1180 0000 00000000 		.space	12
- 1180      00000000 
- 1180      00000000 
- 1181              		.section	.bss.acceleration_mg,"aw",%nobits
- 1182              		.align	2
- 1185              	acceleration_mg:
- 1186 0000 00000000 		.space	12
- 1186      00000000 
- 1186      00000000 
- 1187              		.section	.bss.data_raw_temperature,"aw",%nobits
- 1188              		.align	1
- 1191              	data_raw_temperature:
- 1192 0000 0000     		.space	2
- 1193              		.section	.bss.data_raw_angular_rate,"aw",%nobits
- 1194              		.align	2
- 1197              	data_raw_angular_rate:
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 22
+ 1134 0324 2146     		mov	r1, r4
+ 1135 0326 16A8     		add	r0, sp, #88
+ 1136 0328 FFF7FEFF 		bl	lsm6dsm_angular_rate_raw_get
+ 1137 032c B4F90000 		ldrsh	r0, [r4]
+ 1138 0330 FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
+ 1139 0334 1B4E     		ldr	r6, .L114+56
+ 1140 0336 3046     		mov	r0, r6
+ 1141 0338 FFF7FEFF 		bl	kalman_update
+ 1142 033c 1B4D     		ldr	r5, .L114+64
+ 1143 033e 85ED000A 		vstr.32	s0, [r5]
+ 1144 0342 B4F90200 		ldrsh	r0, [r4, #2]
+ 1145 0346 FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
+ 1146 034a 06F11400 		add	r0, r6, #20
+ 1147 034e FFF7FEFF 		bl	kalman_update
+ 1148 0352 85ED010A 		vstr.32	s0, [r5, #4]
+ 1149 0356 B4F90400 		ldrsh	r0, [r4, #4]
+ 1150 035a FFF7FEFF 		bl	lsm6dsm_from_fs2000dps_to_mdps
+ 1151 035e 06F12800 		add	r0, r6, #40
+ 1152 0362 FFF7FEFF 		bl	kalman_update
+ 1153 0366 85ED020A 		vstr.32	s0, [r5, #8]
+ 1154 036a 69E0     		b	.L105
+ 1155              	.L115:
+ 1156              		.align	2
+ 1157              	.L114:
+ 1158 036c 00000000 		.word	lsm6dsm_platform_write
+ 1159 0370 00000000 		.word	lsm6dsm_platform_read
+ 1160 0374 00000000 		.word	hspi1
+ 1161 0378 00000000 		.word	llcc68_platform_write
+ 1162 037c 00000000 		.word	llcc68_platform_read
+ 1163 0380 00000000 		.word	llcc68_platform_reset
+ 1164 0384 00000240 		.word	1073872896
+ 1165 0388 00000000 		.word	whoamI
+ 1166 038c 00000000 		.word	rst
+ 1167 0390 00000000 		.word	data_raw_acceleration
+ 1168 0394 00000000 		.word	data_raw_angular_rate
+ 1169 0398 00000000 		.word	0
+ 1170 039c CDCCCC3D 		.word	1036831949
+ 1171 03a0 00000000 		.word	kalman_acc
+ 1172 03a4 00000000 		.word	kalman_gyro
+ 1173 03a8 00000000 		.word	acceleration_mg
+ 1174 03ac 00000000 		.word	angular_rate_mdps
+ 1175              	.L106:
+ 1176 03b0 2D4B     		ldr	r3, .L116
+ 1177 03b2 5E68     		ldr	r6, [r3, #4]	@ float
+ 1178 03b4 9F68     		ldr	r7, [r3, #8]	@ float
+ 1179 03b6 2D4A     		ldr	r2, .L116+4
+ 1180 03b8 D2F80080 		ldr	r8, [r2]	@ float
+ 1181 03bc D2F80490 		ldr	r9, [r2, #4]	@ float
+ 1182 03c0 D2F808A0 		ldr	r10, [r2, #8]	@ float
+ 1183 03c4 1868     		ldr	r0, [r3]	@ float
+ 1184 03c6 FFF7FEFF 		bl	__aeabi_f2d
+ 1185 03ca 0446     		mov	r4, r0
+ 1186 03cc 0D46     		mov	r5, r1
+ 1187 03ce 284B     		ldr	r3, .L116+8
+ 1188 03d0 1868     		ldr	r0, [r3]	@ float
+ 1189 03d2 FFF7FEFF 		bl	__aeabi_f2d
+ 1190 03d6 CDE90A01 		strd	r0, [sp, #40]
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 22
 
 
- 1198 0000 00000000 		.space	6
- 1198      0000
- 1199              		.section	.bss.data_raw_acceleration,"aw",%nobits
- 1200              		.align	2
- 1203              	data_raw_acceleration:
- 1204 0000 00000000 		.space	6
- 1204      0000
- 1205              		.global	temp
- 1206              		.section	.bss.temp,"aw",%nobits
- 1207              		.align	1
- 1210              	temp:
- 1211 0000 0000     		.space	2
- 1212              		.global	huart1
- 1213              		.section	.bss.huart1,"aw",%nobits
- 1214              		.align	2
- 1217              	huart1:
- 1218 0000 00000000 		.space	72
- 1218      00000000 
- 1218      00000000 
- 1218      00000000 
- 1218      00000000 
- 1219              		.global	hspi1
- 1220              		.section	.bss.hspi1,"aw",%nobits
- 1221              		.align	2
- 1224              	hspi1:
- 1225 0000 00000000 		.space	88
- 1225      00000000 
- 1225      00000000 
- 1225      00000000 
- 1225      00000000 
- 1226              		.global	hsd
- 1227              		.section	.bss.hsd,"aw",%nobits
- 1228              		.align	2
- 1231              	hsd:
- 1232 0000 00000000 		.space	132
- 1232      00000000 
- 1232      00000000 
- 1232      00000000 
- 1232      00000000 
- 1233              		.global	hi2c1
- 1234              		.section	.bss.hi2c1,"aw",%nobits
- 1235              		.align	2
- 1238              	hi2c1:
- 1239 0000 00000000 		.space	84
- 1239      00000000 
- 1239      00000000 
- 1239      00000000 
- 1239      00000000 
- 1240              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 23
+ 1191 03da 5046     		mov	r0, r10	@ float
+ 1192 03dc FFF7FEFF 		bl	__aeabi_f2d
+ 1193 03e0 CDE90801 		strd	r0, [sp, #32]
+ 1194 03e4 4846     		mov	r0, r9	@ float
+ 1195 03e6 FFF7FEFF 		bl	__aeabi_f2d
+ 1196 03ea CDE90601 		strd	r0, [sp, #24]
+ 1197 03ee 4046     		mov	r0, r8	@ float
+ 1198 03f0 FFF7FEFF 		bl	__aeabi_f2d
+ 1199 03f4 CDE90401 		strd	r0, [sp, #16]
+ 1200 03f8 3846     		mov	r0, r7	@ float
+ 1201 03fa FFF7FEFF 		bl	__aeabi_f2d
+ 1202 03fe CDE90201 		strd	r0, [sp, #8]
+ 1203 0402 3046     		mov	r0, r6	@ float
+ 1204 0404 FFF7FEFF 		bl	__aeabi_f2d
+ 1205 0408 CDE90001 		strd	r0, [sp]
+ 1206 040c 2246     		mov	r2, r4
+ 1207 040e 2B46     		mov	r3, r5
+ 1208 0410 1848     		ldr	r0, .L116+12
+ 1209 0412 FFF7FEFF 		bl	printf
+ 1210              	.L107:
+ 1211 0416 0CA9     		add	r1, sp, #48
+ 1212 0418 16A8     		add	r0, sp, #88
+ 1213 041a FFF7FEFF 		bl	lsm6dsm_status_reg_get
+ 1214 041e 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
+ 1215 0422 13F0010F 		tst	r3, #1
+ 1216 0426 7FF451AF 		bne	.L112
+ 1217 042a 0F4B     		ldr	r3, .L116
+ 1218 042c 0022     		movs	r2, #0
+ 1219 042e 1A60     		str	r2, [r3]	@ float
+ 1220 0430 5A60     		str	r2, [r3, #4]	@ float
+ 1221 0432 9A60     		str	r2, [r3, #8]	@ float
+ 1222              	.L104:
+ 1223 0434 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
+ 1224 0438 13F0020F 		tst	r3, #2
+ 1225 043c 7FF46EAF 		bne	.L113
+ 1226              	.L105:
+ 1227 0440 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
+ 1228 0444 13F0040F 		tst	r3, #4
+ 1229 0448 B2D0     		beq	.L106
+ 1230 044a 0B4C     		ldr	r4, .L116+16
+ 1231 044c 0023     		movs	r3, #0
+ 1232 044e 2380     		strh	r3, [r4]	@ movhi
+ 1233 0450 2146     		mov	r1, r4
+ 1234 0452 16A8     		add	r0, sp, #88
+ 1235 0454 FFF7FEFF 		bl	lsm6dsm_temperature_raw_get
+ 1236 0458 B4F90000 		ldrsh	r0, [r4]
+ 1237 045c FFF7FEFF 		bl	lsm6dsm_from_lsb_to_celsius
+ 1238 0460 034B     		ldr	r3, .L116+8
+ 1239 0462 83ED000A 		vstr.32	s0, [r3]
+ 1240 0466 A3E7     		b	.L106
+ 1241              	.L117:
+ 1242              		.align	2
+ 1243              	.L116:
+ 1244 0468 00000000 		.word	acceleration_mg
+ 1245 046c 00000000 		.word	angular_rate_mdps
+ 1246 0470 00000000 		.word	temperature_degC
+ 1247 0474 00000000 		.word	.LC11
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 23
+
+
+ 1248 0478 00000000 		.word	data_raw_temperature
+ 1250              		.global	kalman_gyro
+ 1251              		.section	.bss.kalman_gyro,"aw",%nobits
+ 1252              		.align	2
+ 1255              	kalman_gyro:
+ 1256 0000 00000000 		.space	60
+ 1256      00000000 
+ 1256      00000000 
+ 1256      00000000 
+ 1256      00000000 
+ 1257              		.global	kalman_acc
+ 1258              		.section	.bss.kalman_acc,"aw",%nobits
+ 1259              		.align	2
+ 1262              	kalman_acc:
+ 1263 0000 00000000 		.space	60
+ 1263      00000000 
+ 1263      00000000 
+ 1263      00000000 
+ 1263      00000000 
+ 1264              		.section	.bss.rst,"aw",%nobits
+ 1267              	rst:
+ 1268 0000 00       		.space	1
+ 1269              		.section	.bss.whoamI,"aw",%nobits
+ 1272              	whoamI:
+ 1273 0000 00       		.space	1
+ 1274              		.section	.bss.temperature_degC,"aw",%nobits
+ 1275              		.align	2
+ 1278              	temperature_degC:
+ 1279 0000 00000000 		.space	4
+ 1280              		.section	.bss.angular_rate_mdps,"aw",%nobits
+ 1281              		.align	2
+ 1284              	angular_rate_mdps:
+ 1285 0000 00000000 		.space	12
+ 1285      00000000 
+ 1285      00000000 
+ 1286              		.section	.bss.acceleration_mg,"aw",%nobits
+ 1287              		.align	2
+ 1290              	acceleration_mg:
+ 1291 0000 00000000 		.space	12
+ 1291      00000000 
+ 1291      00000000 
+ 1292              		.section	.bss.data_raw_temperature,"aw",%nobits
+ 1293              		.align	1
+ 1296              	data_raw_temperature:
+ 1297 0000 0000     		.space	2
+ 1298              		.section	.bss.data_raw_angular_rate,"aw",%nobits
+ 1299              		.align	2
+ 1302              	data_raw_angular_rate:
+ 1303 0000 00000000 		.space	6
+ 1303      0000
+ 1304              		.section	.bss.data_raw_acceleration,"aw",%nobits
+ 1305              		.align	2
+ 1308              	data_raw_acceleration:
+ 1309 0000 00000000 		.space	6
+ 1309      0000
+ 1310              		.global	temp
+ 1311              		.section	.bss.temp,"aw",%nobits
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 24
+
+
+ 1312              		.align	1
+ 1315              	temp:
+ 1316 0000 0000     		.space	2
+ 1317              		.global	huart1
+ 1318              		.section	.bss.huart1,"aw",%nobits
+ 1319              		.align	2
+ 1322              	huart1:
+ 1323 0000 00000000 		.space	72
+ 1323      00000000 
+ 1323      00000000 
+ 1323      00000000 
+ 1323      00000000 
+ 1324              		.global	hspi1
+ 1325              		.section	.bss.hspi1,"aw",%nobits
+ 1326              		.align	2
+ 1329              	hspi1:
+ 1330 0000 00000000 		.space	88
+ 1330      00000000 
+ 1330      00000000 
+ 1330      00000000 
+ 1330      00000000 
+ 1331              		.global	hsd
+ 1332              		.section	.bss.hsd,"aw",%nobits
+ 1333              		.align	2
+ 1336              	hsd:
+ 1337 0000 00000000 		.space	132
+ 1337      00000000 
+ 1337      00000000 
+ 1337      00000000 
+ 1337      00000000 
+ 1338              		.global	hi2c1
+ 1339              		.section	.bss.hi2c1,"aw",%nobits
+ 1340              		.align	2
+ 1343              	hi2c1:
+ 1344 0000 00000000 		.space	84
+ 1344      00000000 
+ 1344      00000000 
+ 1344      00000000 
+ 1344      00000000 
+ 1345              		.ident	"GCC: (Arm GNU Toolchain 13.3.Rel1 (Build arm-13.24)) 13.3.1 20240614"
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 25
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:18     .text.MX_SDIO_SD_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:23     .text.MX_SDIO_SD_Init:00000000 MX_SDIO_SD_Init
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:41     .text.MX_SDIO_SD_Init:00000018 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1231   .bss.hsd:00000000 hsd
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:45     .text.llcc68_platform_reset:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:50     .text.llcc68_platform_reset:00000000 llcc68_platform_reset
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:72     .text.llcc68_platform_reset:00000028 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:75     .text.platform_delay:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:80     .text.platform_delay:00000000 platform_delay
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:88     .text.llcc68_platform_write:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:93     .text.llcc68_platform_write:00000000 llcc68_platform_write
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:125    .text.llcc68_platform_write:00000048 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1224   .bss.hspi1:00000000 hspi1
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:129    .text.lsm6dsm_platform_write:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:134    .text.lsm6dsm_platform_write:00000000 lsm6dsm_platform_write
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:169    .text.lsm6dsm_platform_write:00000048 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:172    .text.llcc68_platform_read:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:177    .text.llcc68_platform_read:00000000 llcc68_platform_read
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:209    .text.llcc68_platform_read:00000048 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:213    .text.lsm6dsm_platform_read:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:218    .text.lsm6dsm_platform_read:00000000 lsm6dsm_platform_read
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:256    .text.lsm6dsm_platform_read:00000054 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:259    .text.MX_GPIO_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:264    .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:381    .text.MX_GPIO_Init:0000010c $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:386    .text._write:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:392    .text._write:00000000 _write
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:406    .text._write:00000014 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1217   .bss.huart1:00000000 huart1
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:409    .rodata.HAL_GPIO_EXTI_Callback.str1.4:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:413    .text.HAL_GPIO_EXTI_Callback:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:419    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:439    .text.HAL_GPIO_EXTI_Callback:00000014 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:442    .rodata.bmp5_error_codes_print_result.str1.4:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:471    .text.bmp5_error_codes_print_result:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:477    .text.bmp5_error_codes_print_result:00000000 bmp5_error_codes_print_result
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:493    .text.bmp5_error_codes_print_result:0000001a $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:545    .text.bmp5_error_codes_print_result:00000074 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:556    .text.Error_Handler:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:562    .text.Error_Handler:00000000 Error_Handler
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:577    .text.MX_USART1_UART_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:582    .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:607    .text.MX_USART1_UART_Init:0000002c $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:611    .rodata.MX_I2C1_Init.str1.4:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:615    .text.MX_I2C1_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:620    .text.MX_I2C1_Init:00000000 MX_I2C1_Init
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:674    .text.MX_I2C1_Init:0000006c $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1238   .bss.hi2c1:00000000 hi2c1
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:681    .text.MX_SPI1_Init:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:686    .text.MX_SPI1_Init:00000000 MX_SPI1_Init
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:716    .text.MX_SPI1_Init:00000038 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:720    .text.SystemClock_Config:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:726    .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:801    .text.SystemClock_Config:0000009c $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:806    .rodata.main.str1.4:00000000 $d
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 24
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:18     .text.MX_SDIO_SD_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:23     .text.MX_SDIO_SD_Init:00000000 MX_SDIO_SD_Init
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:41     .text.MX_SDIO_SD_Init:00000018 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1336   .bss.hsd:00000000 hsd
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:45     .text.llcc68_platform_reset:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:50     .text.llcc68_platform_reset:00000000 llcc68_platform_reset
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:72     .text.llcc68_platform_reset:00000028 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:75     .text.platform_delay:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:80     .text.platform_delay:00000000 platform_delay
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:88     .text.llcc68_platform_write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:93     .text.llcc68_platform_write:00000000 llcc68_platform_write
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:125    .text.llcc68_platform_write:00000048 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1329   .bss.hspi1:00000000 hspi1
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:129    .text.lsm6dsm_platform_write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:134    .text.lsm6dsm_platform_write:00000000 lsm6dsm_platform_write
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:169    .text.lsm6dsm_platform_write:00000048 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:172    .text.llcc68_platform_read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:177    .text.llcc68_platform_read:00000000 llcc68_platform_read
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:209    .text.llcc68_platform_read:00000048 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:213    .text.lsm6dsm_platform_read:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:218    .text.lsm6dsm_platform_read:00000000 lsm6dsm_platform_read
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:256    .text.lsm6dsm_platform_read:00000054 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:259    .text.MX_GPIO_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:264    .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:381    .text.MX_GPIO_Init:0000010c $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:386    .text.kalman_init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:392    .text.kalman_init:00000000 kalman_init
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:406    .text.kalman_update:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:412    .text.kalman_update:00000000 kalman_update
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:436    .text._write:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:442    .text._write:00000000 _write
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:456    .text._write:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1322   .bss.huart1:00000000 huart1
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:459    .rodata.HAL_GPIO_EXTI_Callback.str1.4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:463    .text.HAL_GPIO_EXTI_Callback:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:469    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:489    .text.HAL_GPIO_EXTI_Callback:00000014 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:492    .rodata.bmp5_error_codes_print_result.str1.4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:521    .text.bmp5_error_codes_print_result:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:527    .text.bmp5_error_codes_print_result:00000000 bmp5_error_codes_print_result
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:543    .text.bmp5_error_codes_print_result:0000001a $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:595    .text.bmp5_error_codes_print_result:00000074 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:606    .text.Error_Handler:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:612    .text.Error_Handler:00000000 Error_Handler
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:627    .text.MX_USART1_UART_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:632    .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:657    .text.MX_USART1_UART_Init:0000002c $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:661    .rodata.MX_I2C1_Init.str1.4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:665    .text.MX_I2C1_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:670    .text.MX_I2C1_Init:00000000 MX_I2C1_Init
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:724    .text.MX_I2C1_Init:0000006c $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1343   .bss.hi2c1:00000000 hi2c1
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:731    .text.MX_SPI1_Init:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:736    .text.MX_SPI1_Init:00000000 MX_SPI1_Init
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:766    .text.MX_SPI1_Init:00000038 $d
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 26
 
 
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:811    .text.main:00000000 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:817    .text.main:00000000 main
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1076   .text.main:00000310 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1167   .bss.whoamI:00000000 whoamI
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1162   .bss.rst:00000000 rst
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1203   .bss.data_raw_acceleration:00000000 data_raw_acceleration
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1197   .bss.data_raw_angular_rate:00000000 data_raw_angular_rate
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1185   .bss.acceleration_mg:00000000 acceleration_mg
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1179   .bss.angular_rate_mdps:00000000 angular_rate_mdps
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1090   .text.main:00000344 $t
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1153   .text.main:000003f0 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1173   .bss.temperature_degC:00000000 temperature_degC
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1191   .bss.data_raw_temperature:00000000 data_raw_temperature
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1163   .bss.rst:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1168   .bss.whoamI:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1170   .bss.temperature_degC:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1176   .bss.angular_rate_mdps:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1182   .bss.acceleration_mg:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1188   .bss.data_raw_temperature:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1194   .bss.data_raw_angular_rate:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1200   .bss.data_raw_acceleration:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1210   .bss.temp:00000000 temp
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1207   .bss.temp:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1214   .bss.huart1:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1221   .bss.hspi1:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1228   .bss.hsd:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:1235   .bss.hi2c1:00000000 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:500    .text.bmp5_error_codes_print_result:00000021 $d
-C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s:500    .text.bmp5_error_codes_print_result:00000022 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:770    .text.SystemClock_Config:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:776    .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:851    .text.SystemClock_Config:0000009c $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:856    .rodata.main.str1.4:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:861    .text.main:00000000 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:867    .text.main:00000000 main
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1158   .text.main:0000036c $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1272   .bss.whoamI:00000000 whoamI
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1267   .bss.rst:00000000 rst
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1308   .bss.data_raw_acceleration:00000000 data_raw_acceleration
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1302   .bss.data_raw_angular_rate:00000000 data_raw_angular_rate
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1262   .bss.kalman_acc:00000000 kalman_acc
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1255   .bss.kalman_gyro:00000000 kalman_gyro
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1290   .bss.acceleration_mg:00000000 acceleration_mg
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1284   .bss.angular_rate_mdps:00000000 angular_rate_mdps
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1176   .text.main:000003b0 $t
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1244   .text.main:00000468 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1278   .bss.temperature_degC:00000000 temperature_degC
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1296   .bss.data_raw_temperature:00000000 data_raw_temperature
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1252   .bss.kalman_gyro:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1259   .bss.kalman_acc:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1268   .bss.rst:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1273   .bss.whoamI:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1275   .bss.temperature_degC:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1281   .bss.angular_rate_mdps:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1287   .bss.acceleration_mg:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1293   .bss.data_raw_temperature:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1299   .bss.data_raw_angular_rate:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1305   .bss.data_raw_acceleration:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1315   .bss.temp:00000000 temp
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1312   .bss.temp:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1319   .bss.huart1:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1326   .bss.hspi1:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1333   .bss.hsd:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:1340   .bss.hi2c1:00000000 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:550    .text.bmp5_error_codes_print_result:00000021 $d
+C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s:550    .text.bmp5_error_codes_print_result:00000022 $t
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
@@ -1422,6 +1541,9 @@ HAL_RCC_ClockConfig
 __aeabi_f2d
 HAL_Init
 MX_FATFS_Init
+ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccZjhqeM.s 			page 27
+
+
 lsm6dsm_spi_mode_set
 lsm6dsm_auto_increment_set
 lsm6dsm_device_id_get
@@ -1430,9 +1552,6 @@ lsm6dsm_block_data_update_set
 lsm6dsm_xl_data_rate_set
 lsm6dsm_gy_data_rate_set
 lsm6dsm_xl_full_scale_set
-ARM GAS  C:\Users\Nathan\AppData\Local\Temp\ccUnUJYM.s 			page 25
-
-
 lsm6dsm_gy_full_scale_set
 lsm6dsm_xl_filter_analog_set
 lsm6dsm_xl_lp2_bandwidth_set

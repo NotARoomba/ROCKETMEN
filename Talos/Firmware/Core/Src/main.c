@@ -97,6 +97,35 @@ static float acceleration_mg[3];
 static float angular_rate_mdps[3];
 static float temperature_degC;
 static uint8_t whoamI, rst;
+typedef struct {
+  float q; // Process noise covariance
+  float r; // Measurement noise covariance
+  float x; // Value
+  float p; // Estimation error covariance
+  float k; // Kalman gain
+} KalmanFilter;
+
+void kalman_init(KalmanFilter* kf, float q, float r, float initial_value) {
+  kf->q = q;
+  kf->r = r;
+  kf->x = initial_value;
+  kf->p = 1.0f;
+  kf->k = 0.0f;
+}
+
+float kalman_update(KalmanFilter* kf, float measurement) {
+  // Prediction update
+  kf->p += kf->q;
+
+  // Measurement update
+  kf->k = kf->p / (kf->p + kf->r);
+  kf->x += kf->k * (measurement - kf->x);
+  kf->p *= (1.0f - kf->k);
+
+  return kf->x;
+}
+KalmanFilter kalman_acc[3];
+KalmanFilter kalman_gyro[3];
 /* USER CODE END 0 */
 
 /**
@@ -198,7 +227,7 @@ int main(void)
   /*  Enable Block Data Update */
   lsm6dsm_block_data_update_set(&dev_ctx, PROPERTY_ENABLE);
   /* Set Output Data Rate for Acc and Gyro */
-  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_6k66Hz);
+  lsm6dsm_xl_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_104Hz);
   lsm6dsm_gy_data_rate_set(&dev_ctx, LSM6DSM_XL_ODR_6k66Hz);
   /* Set full scale */
   lsm6dsm_xl_full_scale_set(&dev_ctx, LSM6DSM_2g);
@@ -216,7 +245,7 @@ int main(void)
   //lsm6dsm_xl_reference_mode_set(&dev_ctx, PROPERTY_DISABLE);
   //lsm6dsm_xl_hp_bandwidth_set(&dev_ctx, LSM6DSM_XL_HP_ODR_DIV_100);
   /* Gyroscope - filtering chain */
-  lsm6dsm_gy_band_pass_set(&dev_ctx, LSM6DSM_HP_DISABLE_LP1_AGGRESSIVE);
+  lsm6dsm_gy_band_pass_set(&dev_ctx,  LSM6DSM_HP_DISABLE_LP1_LIGHT     );
   // update the offset bias of acceleration
   platform_delay(2000);
 
@@ -242,6 +271,10 @@ int main(void)
   acc_bias[0] /= SAMPLE_SIZE;
   acc_bias[1] /= SAMPLE_SIZE;
   acc_bias[2] /= SAMPLE_SIZE;
+
+  acc_bias[0] = 0;
+  acc_bias[1] = 0;
+  acc_bias[2] = 0;
   // for (int i = 0; i < 10; i++) {
   //   lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
   //   acc_bias[0] += lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]);
@@ -276,6 +309,11 @@ int main(void)
   gyro_bias[0] /= SAMPLE_SIZE;
   gyro_bias[1] /= SAMPLE_SIZE;
   gyro_bias[2] /= SAMPLE_SIZE;
+
+  for (int i = 0; i < 3; i++) {
+    kalman_init(&kalman_acc[i], 0.1f, 10.0f, 0.0f);
+    kalman_init(&kalman_gyro[i], 0.1f, 10.0f, 0.0f);
+  }
 
   gyro_bias[0] = 0;
   gyro_bias[1] = 0;
@@ -332,30 +370,34 @@ int main(void)
 	      /* Read acceleration field data */
 	      memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
 	      lsm6dsm_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
-	      acceleration_mg[0] =
-	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]) - acc_bias[0];
-	      acceleration_mg[1] =
-	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]) - acc_bias[1];
-	      acceleration_mg[2] =
-	        lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]) - acc_bias[2];
+	      acceleration_mg[0] = kalman_update(&kalman_acc[0], 
+          lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[0]) - acc_bias[0]);
+acceleration_mg[1] = kalman_update(&kalman_acc[1], 
+          lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[1]) - acc_bias[1]);
+acceleration_mg[2] = kalman_update(&kalman_acc[2], 
+          lsm6dsm_from_fs2g_to_mg(data_raw_acceleration[2]) - acc_bias[2]);
 	      // printf("Acceleration [mg]:%4.2f\t%4.2f\t%4.2f\r\n",
 	      //         acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
         // printf("ACCEL:%4.2f,%4.2f,%4.2f\r\n", acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
-	    }
+	    } else {
+        acceleration_mg[0] = 0;
+        acceleration_mg[1] = 0;
+        acceleration_mg[2] = 0;
+      }
 
 	    if (reg.status_reg.gda) {
 	      /* Read angular rate field data */
 	      memset(data_raw_angular_rate, 0x00, 3 * sizeof(int16_t));
 	      lsm6dsm_angular_rate_raw_get(&dev_ctx, data_raw_angular_rate);
-	      angular_rate_mdps[0] =
-	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]) - gyro_bias[0];
-	      angular_rate_mdps[1] =
-	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]) - gyro_bias[1];
-	      angular_rate_mdps[2] =
-	        lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]) - gyro_bias[2];
+	      angular_rate_mdps[0] = kalman_update(&kalman_gyro[0], 
+          lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[0]) - gyro_bias[0]);
+angular_rate_mdps[1] = kalman_update(&kalman_gyro[1], 
+          lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[1]) - gyro_bias[1]);
+angular_rate_mdps[2] = kalman_update(&kalman_gyro[2], 
+          lsm6dsm_from_fs2000dps_to_mdps(data_raw_angular_rate[2]) - gyro_bias[2]);
 	      // printf("Angular rate [mdps]:%4.2f\t%4.2f\t%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
 	      // printf("ANGLE:%4.2f,%4.2f,%4.2f\r\n", angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
-	    }
+	    } 
 	    if (reg.status_reg.tda) {
 	      /* Read temperature data */
 	      memset(&data_raw_temperature, 0x00, sizeof(int16_t));
